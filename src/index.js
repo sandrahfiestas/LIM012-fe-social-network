@@ -2,7 +2,6 @@ import { example } from './example.js';
 
 example();
 
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyCRUpKAaeQ9e4ibo9Y4cT4D1HIenlA2yXM',
@@ -16,7 +15,6 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 
 const botonRegistrar = document.getElementById('boton');
 
