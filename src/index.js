@@ -16,9 +16,11 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const botonRegistrar = document.getElementById('boton');
+// Registro
 
-botonRegistrar.addEventListener('click', () => {
+const btnRegistrar = document.getElementById('boton');
+
+btnRegistrar.addEventListener('click', () => {
   const email = document.getElementById('email').value;
   const contrasena = document.getElementById('contrasena').value;
 
@@ -30,5 +32,46 @@ botonRegistrar.addEventListener('click', () => {
     console.log(errorMessage);
     // ...
   });
-
 });
+
+// Inicio de sesión
+
+const btnIniciarSesion = document.getElementById('boton2');
+
+btnIniciarSesion.addEventListener('click', () => {
+  const email2 = document.getElementById('email2').value;
+  const contrasena2 = document.getElementById('contrasena2').value;
+
+  firebase.auth().signInWithEmailAndPassword(email2, contrasena2).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+    // ...
+  });
+});
+
+// Observador
+
+const observador = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in.
+      console.log('Existe usuario activo');
+      const displayName = user.displayName;
+      const email = user.email;
+      const emailVerified = user.emailVerified;
+      const photoURL = user.photoURL;
+      const isAnonymous = user.isAnonymous;
+      const uid = user.uid;
+      const providerData = user.providerData;
+      // ...
+    } else {
+      // User is signed out.
+      console.log('No existe usuario activo');
+      // ...
+    }
+  });
+};
+observador();
