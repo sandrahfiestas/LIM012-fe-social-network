@@ -24,7 +24,9 @@ btnRegistrar.addEventListener('click', () => {
   const email = document.getElementById('email').value;
   const contrasena = document.getElementById('contrasena').value;
 
-  firebase.auth().createUserWithEmailAndPassword(email, contrasena).catch((error) => {
+  firebase.auth().createUserWithEmailAndPassword(email, contrasena).then(() => {
+    verificar();
+  }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -59,6 +61,7 @@ const observador = () => {
     if (user) {
       // User is signed in.
       console.log('Existe usuario activo');
+      aparece(user);
       const displayName = user.displayName;
       const email = user.email;
       const emailVerified = user.emailVerified;
@@ -66,6 +69,7 @@ const observador = () => {
       const isAnonymous = user.isAnonymous;
       const uid = user.uid;
       const providerData = user.providerData;
+      console.log(user);
       // ...
     } else {
       // User is signed out.
@@ -75,3 +79,37 @@ const observador = () => {
   });
 };
 observador();
+
+const contenido = document.getElementById('contenido');
+
+const aparece = (user) => {
+  const userV = user;
+  if (userV.emailVerified) {
+    contenido.innerHTML = 'Bienvenido';
+  } else {
+    contenido.innerHTML = 'Verifica tu correo';
+  }
+};
+
+// Botón Cerrar Sesión
+
+const btnSC = document.getElementById('btnSC');
+btnSC.addEventListener('click', () => {
+  firebase.auth().signOut().then(() => {
+    console.log('Saliendo...');
+  }).catch((error) => {
+    console.log(error);
+  });
+  contenido.innerHTML = 'Regresa pronto';
+});
+
+const verificar = () => {
+  const user = firebase.auth().currentUser;
+  user.sendEmailVerification().then(() => {
+    // Email sent.
+    console.log('Enviando correo...');
+  }).catch((error) => {
+    // An error happened.
+    console.log(error);
+  });
+};
