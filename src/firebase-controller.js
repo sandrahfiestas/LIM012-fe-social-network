@@ -1,7 +1,5 @@
 export const signIn = (emailLogIn, passwordLogIn) => {
-  window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).then(() => {
-    console.log('inicie sesion');
-  }).catch((error) => {
+  window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -41,30 +39,16 @@ export const logOut = () => {
 
 
 export const observer = () => {
+  let result = '';
   window.firebase.auth().onAuthStateChanged((user) => {
+    console.log(user);
     if (user) {
-      if (user.emailVerified) {
-
-        /*
-         * Lo que muestra cuando ya hay un usuario Loggeado
-         * sectionContainer.innerHTML = `
-         * <p>Bienvenido</p>
-         * <button id="btnSignOut">Cerrar sesión</button>
-         * `;
-         * const btnSignOut = document.getElementById('btnSignOut');
-         * btnSignOut.addEventListener('click', () => {
-         *   // Llamar aquí la función que cierra sesión
-         * });
-         */
-      } else {
-        // sectionContainer.innerHTML = 'Revise su correo electrónico';
-      }
-
-    console.log('Hay un user loggeado');
-
+      result = 'ok';
     } else {
-      // Si No hay un usuario loggeado debería mostrar la vista de inicio de sesión
-      console.log('No hay usuario loggeado');
+      result = 'no';
     }
   });
+  console.log(result);
+
+  return result;
 };

@@ -1,6 +1,7 @@
 import {
-  signIn,
+  logOut,
   observer,
+  signIn,
 } from './firebase-controller.js';
 import { changeView } from './view-controler.js';
 
@@ -25,20 +26,34 @@ const init = () => {
   changeView(window.location.hash);
   window.addEventListener('hashchange', () => changeView(window.location.hash));
   // Ver si hay un user loggeado o no
-  console.log(window.location.hash);
-  if (observer()) {
-    
+  const ver = observer();
+  console.log(ver);
+  if (ver === 'ok') {
+    console.log('loggeado');
+  } else if (ver === 'no') {
+    console.log('no loggeado');
+  } else if (ver === 'goemail') {
+    console.log('revise correo');
   }
+
   // Inicio de sesión
   const btnLogIn = document.getElementById('btnInitSession');
   btnLogIn.addEventListener('click', () => {
     const emailLogIn = document.getElementById('emailLogIn').value;
     const passwordLogIn = document.getElementById('passwordLogIn').value;
     signIn(emailLogIn, passwordLogIn);
+    observer();
+    // const abc = changeView('#/signinuser');
+
+    // cerrar sesión
+    const btnSignOut = document.getElementById('btnSignOut');
+    console.log(btnSignOut);
+    btnSignOut.addEventListener('click', () => {
+      console.log('ejecutando');
+      logOut();
+      observer();
+    });
   });
-  
-  
-  
 };
 
 window.addEventListener('load', init);
