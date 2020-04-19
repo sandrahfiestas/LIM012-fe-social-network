@@ -1,8 +1,5 @@
 import { changeView } from './view-controler.js';
-import { example } from './example.js';
-import signIn from './view/signin.js';
-
-example();
+// import { signIn, } from './firebase-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -59,6 +56,7 @@ const sectionContainer = document.getElementById('container');
 const sessionActive = (user) => {
   // const userActive = user;
   if (user.emailVerified) {
+    // Lo que muestra cuando ya hay un usuario Loggeado
     sectionContainer.innerHTML = `
     <p>Bienvenido</p>
     <button id="btnSignOut">Cerrar sesión</button>
@@ -77,35 +75,41 @@ const sessionActive = (user) => {
   }
 };
 
-// Detectando si hay un usuario loggeado
+// Esto debería ir al controlador de firebase
 window.firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    // Si hay un usuario loggeado debería mostrar directamente el muro de la red social
     sessionActive(user);
     console.log('Hay un user loggeado');
   } else {
-    // Mostrand vista de inicio de sesión si no hay user loggeado
+    // Si No hay un usuario loggeado debería mostrar la vista de inicio de sesión
     console.log('No hay usuario loggeado');
-    sectionContainer.appendChild(signIn());
 
-    // Inicio de sesión
-    const btnLogIn = document.getElementById('btnLogIn');
-    btnLogIn.addEventListener('click', () => {
-      const emailLogIn = document.getElementById('emailLogIn').value;
-      const passwordLogIn = document.getElementById('passwordLogIn').value;
+    /*
+     * Inicio de sesión
+     * const btnLogIn = document.getElementById('btnLogIn');
+     * btnLogIn.addEventListener('click', () => {
+     *   const emailLogIn = document.getElementById('emailLogIn').value;
+     *   const passwordLogIn = document.getElementById('passwordLogIn').value;
+     */
 
-      window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        // ...
-      });
-    });
+    /*
+     * YA ESTA EN CONTROLLER
+     *   window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).catch((error) => {
+     *     // Handle Errors here.
+     *     const errorCode = error.code;
+     *     const errorMessage = error.message;
+     *     console.log(errorCode);
+     *     console.log(errorMessage);
+     *     // ...
+     *   });
+     * });
+     */
   }
 });
 
 const init = () => {
+  changeView(window.location.hash);
   window.addEventListener('hashchange', () => changeView(window.location.hash));
 };
 
