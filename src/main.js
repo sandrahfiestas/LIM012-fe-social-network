@@ -18,11 +18,11 @@ firebase.initializeApp(firebaseConfig);
 
 // Registro
 
-const btnRegistrar = document.getElementById('boton');
+const btnRegistrar = document.getElementById('btnSignUp');
 
 btnRegistrar.addEventListener('click', () => {
-  const email = document.getElementById('email').value;
-  const contrasena = document.getElementById('contrasena').value;
+  const email = document.getElementById('emailSignUp').value;
+  const contrasena = document.getElementById('passwordSignUp').value;
 
   firebase.auth().createUserWithEmailAndPassword(email, contrasena).then(() => {
     verificar();
@@ -38,11 +38,11 @@ btnRegistrar.addEventListener('click', () => {
 
 // Inicio de sesión
 
-const btnIniciarSesion = document.getElementById('boton2');
+const btnIniciarSesion = document.getElementById('btnLogIn');
 
 btnIniciarSesion.addEventListener('click', () => {
-  const email2 = document.getElementById('email2').value;
-  const contrasena2 = document.getElementById('contrasena2').value;
+  const email2 = document.getElementById('emailLogIn').value;
+  const contrasena2 = document.getElementById('passwordLogIn').value;
 
   firebase.auth().signInWithEmailAndPassword(email2, contrasena2).catch((error) => {
     // Handle Errors here.
