@@ -5,7 +5,7 @@ export default () => {
 
     <input id="emailLogIn" type="email" placeholder="e-mail">
     <input id="passwordLogIn" type="password" placeholder="contraseña">
-    <button id="btnInitSession">Iniciar sesión</button>
+    <button id="btnInitSession"><a href="#/signinuser">Iniciar sesión</a></button>
 
     <p>¿No tienes cuenta?</p>
     <button id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>`;

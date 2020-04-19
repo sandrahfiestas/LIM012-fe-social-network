@@ -1,4 +1,9 @@
+import {
+  signIn,
+  observer,
+} from './firebase-controller.js';
 import { changeView } from './view-controler.js';
+
 // import { signIn, } from './firebase-controller.js';
 
 // Your web app's Firebase configuration
@@ -13,6 +18,31 @@ const firebaseConfig = {
   measurementId: 'G-VHBZKPRF3V',
 };
 
+// Initialize Firebase
+window.firebase.initializeApp(firebaseConfig);
+
+const init = () => {
+  changeView(window.location.hash);
+  window.addEventListener('hashchange', () => changeView(window.location.hash));
+  // Ver si hay un user loggeado o no
+  console.log(window.location.hash);
+  if (observer()) {
+    
+  }
+  // Inicio de sesión
+  const btnLogIn = document.getElementById('btnInitSession');
+  btnLogIn.addEventListener('click', () => {
+    const emailLogIn = document.getElementById('emailLogIn').value;
+    const passwordLogIn = document.getElementById('passwordLogIn').value;
+    signIn(emailLogIn, passwordLogIn);
+  });
+  
+  
+  
+};
+
+window.addEventListener('load', init);
+
 /*
  * Verificación de correo
  * const verification = () => {
@@ -26,16 +56,13 @@ const firebaseConfig = {
  * };
  */
 
-// Initialize Firebase
-window.firebase.initializeApp(firebaseConfig);
-
-/*
- * Registro de usuarios
- * const newAccount = document.getElementById('newAccount');
- * newAccount.addEventListener('click', () => {
- *   const emailSignUp = document.getElementById('emailSignUp').value;
- *   const passwordSignUp = document.getElementById('passwordSignUp').value;
- */
+ /*
+  * Registro de usuarios
+  * const newAccount = document.getElementById('newAccount');
+  * newAccount.addEventListener('click', () => {
+  *   const emailSignUp = document.getElementById('emailSignUp').value;
+  *   const passwordSignUp = document.getElementById('passwordSignUp').value;
+  */
 
 /*
  *   window.firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp).then(() => {
@@ -51,39 +78,20 @@ window.firebase.initializeApp(firebaseConfig);
  * });
  */
 
-const sectionContainer = document.getElementById('container');
+/*
+ * Esto debería ir al controlador de firebase
+ * window.firebase.auth().onAuthStateChanged((user) => {
+ *   if (user) {
+ *     // Si hay un usuario loggeado debería mostrar directamente el muro de la red social
+ *     sessionActive(user);
+ *     console.log('Hay un user loggeado');
+ *   } else {
+ *     // Si No hay un usuario loggeado debería mostrar la vista de inicio de sesión
+ *     console.log('No hay usuario loggeado');
+ *   }
+ * });
+ */
 
-const sessionActive = (user) => {
-  // const userActive = user;
-  if (user.emailVerified) {
-    // Lo que muestra cuando ya hay un usuario Loggeado
-    sectionContainer.innerHTML = `
-    <p>Bienvenido</p>
-    <button id="btnSignOut">Cerrar sesión</button>
-    `;
-    const btnSignOut = document.getElementById('btnSignOut');
-    btnSignOut.addEventListener('click', () => {
-      window.firebase.auth().signOut().then(() => {
-        sectionContainer.innerHTML = '';
-        console.log('Cerrando sesión');
-      }).catch((error) => {
-        console.log(error);
-      });
-    });
-  } else {
-    sectionContainer.innerHTML = 'Revise su correo electrónico';
-  }
-};
-
-// Esto debería ir al controlador de firebase
-window.firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // Si hay un usuario loggeado debería mostrar directamente el muro de la red social
-    sessionActive(user);
-    console.log('Hay un user loggeado');
-  } else {
-    // Si No hay un usuario loggeado debería mostrar la vista de inicio de sesión
-    console.log('No hay usuario loggeado');
 
     /*
      * Inicio de sesión
@@ -105,12 +113,3 @@ window.firebase.auth().onAuthStateChanged((user) => {
      *   });
      * });
      */
-  }
-});
-
-const init = () => {
-  changeView(window.location.hash);
-  window.addEventListener('hashchange', () => changeView(window.location.hash));
-};
-
-window.addEventListener('load', init);
