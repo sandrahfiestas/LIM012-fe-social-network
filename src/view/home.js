@@ -5,6 +5,7 @@ import { publishComment } from '../firebase-controller/firestore-controller.js';
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
+
 export default (notes) => {
   
   const currentUser = user();
@@ -54,14 +55,36 @@ export default (notes) => {
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
   // const showPicture = viewSignInUser.querySelector('#showPicture');
-  // const newPost = viewSignInUser.querySelector('#newPost');
 
 
   // Selecciona y guarda imagen en el Storage (sin visualización previa)
   selectImage.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    uploadImagePost(file, currentUser.uid);
+
+     // Vista previa de imagen cargada
+    const input = event.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;
+      showPicture.src = dataURL;
+      newPost.classList.add('hide');
+
+      localStorage.setItem('image', dataURL)
+      let showIma = localStorage.getItem('image');
+      profilePhoto.src = showIma;
+      
+      
+     };
+    reader.readAsDataURL(input.files[0]);
+    
+
+   
+    
+    
+    // |^|
+    // const file = e.target.files[0];
+    // uploadImagePost(file, currentUser.uid);
   });
+
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
   const navHome = viewSignInUser.querySelector('.nav-home');
