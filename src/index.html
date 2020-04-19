@@ -4,26 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css" />
   <title>Voz Amiga</title>
 </head>
 <body>
-  <h3>Registro de usuarios</h3>
-  <input type="text" placeholder="Nombre">
-  <input type="text" placeholder="Apellido">
-  <input id="emailSignUp" type="email" placeholder="ingresa tu email">
-  <input id="passwordSignUp" type="password" placeholder="ingresa tu password">
-  <button id="btnSignUp">Crear Cuenta</button>
-  <h4>o ingresa con</h4>
-  <h4>¿Ya tienes cuenta?</h4>
-  <h4>Iniciar Sesión</h4>
-
-  <h3>Iniciar sesión</h3>
-  <input id="emailLogIn" type="email" placeholder="ingresa tu email">
-  <input id="passwordLogIn" type="password" placeholder="ingresa tu password">
-  <button id="btnLogIn">Iniciar sesión</button>
-
-  <div id="contenido"></div>
-  <button id="btnSC">Cerrar Sesión</button>
+  <main id="container" class="container">
+    <h3>Iniciar sesión</h3>
+    <input id="emailLogIn" type="email" placeholder="ingresa tu email">
+    <input id="passwordLogIn" type="password" placeholder="ingresa tu password">
+    <button id="btnLogIn"><a href="#/home">Iniciar sesión</a></button>
+    <h4>¿No tienes cuenta?</h4>
+    <button id="viewSignUp"><a href="#/register">Regístrate</a></button>
+  </main>
+  
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>

@@ -1,6 +1,12 @@
 import { example } from './example.js';
+import { changeView } from './view-controller/router.js';
 
 example();
+
+const init = () => {
+  window.addEventListener('hashchange', () => changeView(window.location.hash));
+};
+window.addEventListener('load', init);
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
