@@ -13,16 +13,21 @@ const firebaseConfig = {
   appId: '1:264882127288:web:cc17210f5ad83a83ec0f4d',
   measurementId: 'G-VHBZKPRF3V',
 };
-// Initialize Firebase
+
+// Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 
-const botonRegistrar = document.getElementById('boton');
+const btnRegistrar = document.getElementById('btnRegistrar');
 
-botonRegistrar.addEventListener('click', () => {
+
+// Registro de Usuarios (signIn)
+btnRegistrar.addEventListener('click', () => {
   const email = document.getElementById('email').value;
   const contrasena = document.getElementById('contrasena').value;
+  
 
-  firebase.auth().createUserWithEmailAndPassword(email, contrasena).catch((error) => {
+  firebase.auth().createUserWithEmailAndPassword(email, contrasena)
+  .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -30,5 +35,4 @@ botonRegistrar.addEventListener('click', () => {
     console.log(errorMessage);
     // ...
   });
-
 });
