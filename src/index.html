@@ -7,9 +7,18 @@
   <title>Voz Amiga</title>
 </head>
 <body>
-  <input id="email" type="email" placeholder="ingresa tu email">
-  <input id="contrasena" type="password" placeholder="ingresa tu password">
-  <button id="boton">Enviar</button>
+  <section id="container">
+    <p class="description">Bienvenida a la red social para mujeres</p>
+
+    <input id="emailLogIn" type="email" placeholder="e-mail">
+    <input id="passwordLogIn" type="password" placeholder="contraseña">
+    <button id="btnLogIn">Iniciar sesión</button>
+
+    <p>¿No tienes cuenta?</p>
+    <button id="btnSignUp"><a href="#/registro">Regístrate</a></button>
+  </section>
+
+  <section id="content"></section>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
@@ -17,11 +26,6 @@
   <!-- Add Firebase products that you want to use -->
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
-  
-
-
-
-
   <script type="module" src="index.js"></script>
 </body>
 </html>
