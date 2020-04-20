@@ -1,12 +1,10 @@
-import { example } from './example.js';
+/* eslint-disable multiline-comment-style */
+import {
+  logOut,
+  observer,
+  signIn,
+} from './firebase-controller.js';
 import { changeView } from './view-controller/router.js';
-
-example();
-
-const init = () => {
-  window.addEventListener('hashchange', () => changeView(window.location.hash));
-};
-window.addEventListener('load', init);
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,103 +17,35 @@ const firebaseConfig = {
   appId: '1:264882127288:web:cc17210f5ad83a83ec0f4d',
   measurementId: 'G-VHBZKPRF3V',
 };
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+window.firebase.initializeApp(firebaseConfig);
 
-// Registro
+const init = () => {
+  changeView(window.location.hash);
+  console.log(window.location.hash);
 
-const btnRegistrar = document.getElementById('btnSignUp');
-
-btnRegistrar.addEventListener('click', () => {
-  const email = document.getElementById('emailSignUp').value;
-  const contrasena = document.getElementById('passwordSignUp').value;
-
-  firebase.auth().createUserWithEmailAndPassword(email, contrasena).then(() => {
-    verificar();
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-    // ...
-  });
-});
-
-// Inicio de sesión
-
-const btnIniciarSesion = document.getElementById('btnLogIn');
-
-btnIniciarSesion.addEventListener('click', () => {
-  const email2 = document.getElementById('emailLogIn').value;
-  const contrasena2 = document.getElementById('passwordLogIn').value;
-
-  firebase.auth().signInWithEmailAndPassword(email2, contrasena2).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-    // ...
-  });
-});
-
-// Observador
-
-const observador = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in.
-      console.log('Existe usuario activo');
-      aparece(user);
-      const displayName = user.displayName;
-      const email = user.email;
-      const emailVerified = user.emailVerified;
-      const photoURL = user.photoURL;
-      const isAnonymous = user.isAnonymous;
-      const uid = user.uid;
-      const providerData = user.providerData;
-      console.log(user);
-      // ...
-    } else {
-      // User is signed out.
-      console.log('No existe usuario activo');
-      // ...
+  window.addEventListener('hashchange', () => {
+    changeView(window.location.hash);
+    // Primero debería ver si hay un user loggeado o no
+    // Pero no funciona el observer cuando no hay user loggeado porque es null :(
+    if (window.location.hash === '#/') {
+      // Inicio de sesión
+      const btnLogIn = document.getElementById('btnInitSession');
+      btnLogIn.addEventListener('click', () => {
+        const emailLogIn = document.getElementById('emailLogIn').value;
+        const passwordLogIn = document.getElementById('passwordLogIn').value;
+        signIn(emailLogIn, passwordLogIn);
+      });
+    } else if (window.location.hash === '#/signinuser') {
+      // Sesión iniciada
+      const btnSignOut = document.getElementById('btnSignOut');
+      console.log(btnSignOut);
+      btnSignOut.addEventListener('click', () => {
+        logOut();
+      });
     }
   });
 };
-observador();
 
-const contenido = document.getElementById('contenido');
-
-const aparece = (user) => {
-  const userV = user;
-  if (userV.emailVerified) {
-    contenido.innerHTML = 'Bienvenido';
-  } else {
-    contenido.innerHTML = 'Verifica tu correo';
-  }
-};
-
-// Botón Cerrar Sesión
-
-const btnSC = document.getElementById('btnSC');
-btnSC.addEventListener('click', () => {
-  firebase.auth().signOut().then(() => {
-    console.log('Saliendo...');
-  }).catch((error) => {
-    console.log(error);
-  });
-  contenido.innerHTML = 'Regresa pronto';
-});
-
-const verificar = () => {
-  const user = firebase.auth().currentUser;
-  user.sendEmailVerification().then(() => {
-    // Email sent.
-    console.log('Enviando correo...');
-  }).catch((error) => {
-    // An error happened.
-    console.log(error);
-  });
-};
+window.addEventListener('load', init);

@@ -1,7 +1,12 @@
-import Home from './home.js';
-import Register from './register.js';
+import SignIn from './signin.js';
+import SignUp from './register.js';
+import signInUser from './signInUser.js';
 
-export const components = {
-  home: Home,
-  register: Register,
+const components = {
+    signin: SignIn,
+    signup: SignUp,
+    signinuser: signInUser,
 };
+
+export { components };
+
