@@ -17,14 +17,22 @@ const firebaseConfig = {
 // Inicializar Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Definición de variables
+/*
 const btnRegistrar = document.getElementById('btnRegistrar');
-
+const email = document.getElementById('email').value;
+const contrasena = document.getElementById('contrasena').value;
+const btnIngreso = document.getElementById('btnIngreso');
+const email2 = document.getElementById('email').value;
+const contrasena2 = document.getElementById('contrasena').value;
+*/
 
 // Registro de Usuarios (signIn)
+
+const btnRegistrar = document.getElementById('btnRegistrar');
 btnRegistrar.addEventListener('click', () => {
   const email = document.getElementById('email').value;
   const contrasena = document.getElementById('contrasena').value;
-  
 
   firebase.auth().createUserWithEmailAndPassword(email, contrasena)
   .catch((error) => {
@@ -36,3 +44,54 @@ btnRegistrar.addEventListener('click', () => {
     // ...
   });
 });
+
+// Ingreso de usuarios
+
+const btnIngreso = document.getElementById('btnIngreso');
+btnIngreso.addEventListener('click', () => {
+  const email2 = document.getElementById('email2').value;
+  const contrasena2 = document.getElementById('contrasena2').value;
+
+  firebase.auth().signInWithEmailAndPassword(email2, contrasena2)
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+    // ...
+  });
+});
+
+
+// Observador
+
+ const observador = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log('Existe usuario activo');
+      aparece();
+      // User is signed in.
+      const displayName = user.displayName;
+      const email = user.email;
+      // console.log(user);
+      const emailVerified = user.emailVerified;
+      const photoURL = user.photoURL;
+      const isAnonymous = user.isAnonymous;
+      const uid = user.uid;
+      const providerData = user.providerData;
+      // ...
+    } else {
+      // User is signed out.
+      console.log('No existe usuario activo');
+      
+      // ...
+    }
+  });
+};
+observador();
+
+const aparece = () => {
+  const contenido = document.getElementById('contenido');
+  contenido.innerHTML = `Solo lo ve usuario activo`;
+}
