@@ -4,9 +4,7 @@ import {
   observer,
   signIn,
 } from './firebase-controller.js';
-import { changeView } from './view-controler.js';
-
-// import { signIn, } from './firebase-controller.js';
+import { changeView } from './view-controller/router.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -25,6 +23,8 @@ window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
   changeView(window.location.hash);
+  console.log(window.location.hash);
+
   window.addEventListener('hashchange', () => {
     changeView(window.location.hash);
     // Primero debería ver si hay un user loggeado o no

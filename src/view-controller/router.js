@@ -1,4 +1,4 @@
-import { components } from './view/router.js';
+import { components } from '../view/index.js';
 
 const changeView = (route) => {
     const sectionContainer = document.getElementById('container');
