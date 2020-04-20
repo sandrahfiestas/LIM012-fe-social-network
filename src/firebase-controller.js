@@ -1,5 +1,7 @@
 export const signIn = (emailLogIn, passwordLogIn) => {
-  window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).catch((error) => {
+  window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).then(() => {
+    console.log('Iniciando sesión');
+  }).catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -39,16 +41,18 @@ export const logOut = () => {
 
 
 export const observer = () => {
-  let result = '';
+  // let result = '';
   window.firebase.auth().onAuthStateChanged((user) => {
     console.log(user);
     if (user) {
-      result = 'ok';
+      console.log('usuario loggeado');
+      // result = 'ok';
     } else {
-      result = 'no';
+      console.log('usuario no loggeado');
+      // result = 'no';
     }
   });
-  console.log(result);
+  // console.log(result);
 
-  return result;
+  // return result;
 };
