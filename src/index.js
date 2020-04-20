@@ -91,7 +91,27 @@ btnIngreso.addEventListener('click', () => {
 };
 observador();
 
+/*
 const aparece = () => {
   const contenido = document.getElementById('contenido');
-  contenido.innerHTML = `Solo lo ve usuario activo`;
+  contenido.innerHTML = `
+  <p>Bienvenido</p>
+  <button id="btnSignOff">Cerrar Sesión</button>
+  `;
 }
+
+const btnSignOff = document.getElementById('btnSignOff');
+btnSignOff.addEventListener('click', () => {
+alert('si funciona');
+
+  firebase.auth().signOut()
+
+  .then(function(){
+    console.log('Saliendo...');
+  })
+  .catch(function(error){
+    console.log(error);
+  });
+
+});
+*/
