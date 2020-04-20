@@ -9,7 +9,7 @@ const changeView = (route) => {
         break;
         case '#/signup': routeSelected = sectionContainer.appendChild(components.signup());
         break;
-        case '#/signinuser': routeSelected = sectionContainer.appendChild(components.signinuser());
+        case '#/home': routeSelected = sectionContainer.appendChild(components.home());
         break;
         default: routeSelected = 'no se ha encontrado la ruta';
         break;

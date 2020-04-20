@@ -1,3 +1,4 @@
+// Iniciar sesión
 export const signIn = (emailLogIn, passwordLogIn) => {
   window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).then(() => {
     console.log('Iniciando sesión');
@@ -11,6 +12,7 @@ export const signIn = (emailLogIn, passwordLogIn) => {
   });
 };
 
+// Registrar usuario
 export const signUp = (emailSignUp, passwordSignUp) => {
   window.firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp).catch((error) => {
     // Handle Errors here.
@@ -21,6 +23,7 @@ export const signUp = (emailSignUp, passwordSignUp) => {
   });
 };
 
+// Verificación
 export const verification = () => {
   const user = window.firebase.auth().currentUser;
   user.sendEmailVerification().then(() => {
@@ -31,7 +34,8 @@ export const verification = () => {
   });
 };
 
-export const logOut = () => {
+// Cerrar sesión
+export const signOut = () => {
   window.firebase.auth().signOut().then(() => {
     console.log('Cerrando sesión');
   }).catch((error) => {

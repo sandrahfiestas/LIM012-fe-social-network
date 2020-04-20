@@ -1,10 +1,8 @@
 export default () => {
-  const viewHome = `
-    <div id="contenido"></div>
-    <h2>Perfil</h2>
-    <button id="btnSC"><a href="#/">Cerrar Sesión</a></button>
-  `;
-  const divElem = document.createElement('div');
-  divElem.innerHTML = viewHome;
-  return divElem;
+    const viewSignInUser = document.createElement('div');
+    viewSignInUser.innerHTML = `
+    <p>Bienvenido</p>
+    <button id="btnSignOut"><a href="#/">Cerrar sesión</a></button>`;
+
+    return viewSignInUser;
 };

@@ -1,8 +1,8 @@
 /* eslint-disable multiline-comment-style */
 import {
-  logOut,
   observer,
   signIn,
+  signOut,
 } from './firebase-controller.js';
 import { changeView } from './view-controller/router.js';
 
@@ -24,6 +24,7 @@ window.firebase.initializeApp(firebaseConfig);
 const init = () => {
   changeView(window.location.hash);
   console.log(window.location.hash);
+  observer();
 
   window.addEventListener('hashchange', () => {
     changeView(window.location.hash);
@@ -37,12 +38,12 @@ const init = () => {
         const passwordLogIn = document.getElementById('passwordLogIn').value;
         signIn(emailLogIn, passwordLogIn);
       });
-    } else if (window.location.hash === '#/signinuser') {
+    } else if (window.location.hash === '#/home') {
       // Sesión iniciada
       const btnSignOut = document.getElementById('btnSignOut');
       console.log(btnSignOut);
       btnSignOut.addEventListener('click', () => {
-        logOut();
+        signOut();
       });
     }
   });
