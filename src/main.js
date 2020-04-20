@@ -22,6 +22,7 @@ const firebaseConfig = {
 window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
+  window.location.hash = '#/signin';
   changeView(window.location.hash);
   console.log(window.location.hash);
   observer();
