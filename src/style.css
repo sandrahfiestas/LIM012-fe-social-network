@@ -58,11 +58,18 @@ body{
     font-family: Noto Serif;
     font-size: 1.35em;
     margin-bottom: 1.2em;
+    color: white;
+    padding-left: 1em;
+}
+
+.email-login:focus, .password-login:focus {
+    outline: none;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px 5px 0px 0px;
 }
 
 .email-login::placeholder, .password-login::placeholder{
     color: white;
-    padding-left: 1em;
 }
 
 .btn-initsession{
