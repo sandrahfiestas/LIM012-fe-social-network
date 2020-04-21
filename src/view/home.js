@@ -1,3 +1,4 @@
+import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
 
 export default () => {
@@ -8,6 +9,7 @@ export default () => {
 
     const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
       btnSignOut.addEventListener('click', () => {
+        changeView('#/signin');
         signOut();
     });
 

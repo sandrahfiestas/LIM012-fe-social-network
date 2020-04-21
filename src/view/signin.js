@@ -1,10 +1,11 @@
+import { changeView } from '../view-controller/router.js';
 import { signIn } from '../firebase-controller.js';
 
 export default () => {
     const viewSignIn = document.createElement('div');
     viewSignIn.classList.add('signin');
     viewSignIn.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+    <img src="../src/img/logo.svg" alt="Voz Amiga" class="logo-social-network">
     <p class="text">Bienvenida a la red social para mujeres</p>
     <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
     <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
@@ -19,7 +20,7 @@ export default () => {
         const passwordLogIn = viewSignIn.querySelector('#passwordLogIn').value;
         // Esto deberíamos pasar a otro archivo
         signIn(emailLogIn, passwordLogIn).then(() => {
-            // Llamar a la vista HOME
+            changeView('#/home');
             console.log('todo ok');
             // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
         }).catch((error) => {

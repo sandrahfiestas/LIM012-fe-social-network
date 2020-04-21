@@ -2,7 +2,9 @@ import { signUp } from '../firebase-controller.js';
 
 export default () => {
     const viewSignUp = document.createElement('div');
+    viewSignUp.classList.add('signup');
     viewSignUp.innerHTML = `
+    <img src="../src/img/logo.svg" alt="Voz Amiga" class="logo-social-network">
     <p>Registro de usuarios</p>
     <input id="emailSignUp" type="email" placeholder="e-mail">
     <input id="passwordSignUp" type="password" placeholder="contraseña">
