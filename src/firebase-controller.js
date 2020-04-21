@@ -1,27 +1,10 @@
 // Iniciar sesión
-export const signIn = (emailLogIn, passwordLogIn) => {
-  window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn).then(() => {
-    console.log('Iniciando sesión');
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-    // ...
-  });
-};
+export const signIn = (emailLogIn, passwordLogIn) => window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
+
 
 // Registrar usuario
-export const signUp = (emailSignUp, passwordSignUp) => {
-  window.firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-  });
-};
+export const signUp = (emailSignUp, passwordSignUp) => window.firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
+
 
 // Verificación
 export const verification = () => {
@@ -45,18 +28,11 @@ export const signOut = () => {
 
 
 export const observer = () => {
-  // let result = '';
   window.firebase.auth().onAuthStateChanged((user) => {
-    console.log(user);
     if (user) {
       console.log('usuario loggeado');
-      // result = 'ok';
     } else {
       console.log('usuario no loggeado');
-      // result = 'no';
     }
   });
-  // console.log(result);
-
-  // return result;
 };
