@@ -1,4 +1,3 @@
-  
 import { signUp } from '../firebase-controller.js';
 
 export default () => {
@@ -16,8 +15,17 @@ export default () => {
     btnNewAccount.addEventListener('click', () => {
         const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
         const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
-        signUp(emailLogUp, passwordLogUp);
+        signUp(emailLogUp, passwordLogUp).then(() => {
 
+            /*
+             * verification();
+             * 1. Avisar que se envió correo. 2. Ir a la vista iniciar sesión ?
+             */
+
+        }).catch((error) => {
+            console.log(error.message);
+            // Mostrar el error en pantalla
+        });
     });
 
     return viewSignUp;

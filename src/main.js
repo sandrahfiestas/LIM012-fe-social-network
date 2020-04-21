@@ -18,14 +18,13 @@ const firebaseConfig = {
 window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
+// Primero debería ver si hay un user loggeado o no
   window.location.hash = '#/signin';
   changeView(window.location.hash);
   observer();
 
   window.addEventListener('hashchange', () => {
     changeView(window.location.hash);
-    // Primero debería ver si hay un user loggeado o no
-    // Pero no funciona el observer cuando no hay user loggeado porque es null :(
   });
 };
 
