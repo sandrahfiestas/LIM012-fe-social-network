@@ -3,9 +3,111 @@
     padding: 0;
 }
 
-.container{
+body{
+    font-size: 12px;
+    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Noto Serif', serif;
+    height: 100vh;
+}
+
+.signin{
+    height: 100vh;
+    background-image: url(./img/background-socialnetwork.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-content: center;
+    align-items: center;
+    padding: 5em 3em 5em 3em;
+    box-sizing: border-box;
 }
+
+.logo-social-network{
+    width: 13em;
+    margin-bottom: 3em;
+}
+
+.text{
+    color: white;
+    font-size: 1.2em;
+    width: 14em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.text2{
+    color: white;
+    font-size: 1.5em;
+    width: 14em;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.email-login, .password-login{
+    width: 15em;
+    height: 2em;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 0.1em;
+    border-left-style: none;
+    font-family: Noto Serif;
+    font-size: 1.35em;
+    margin-bottom: 1.2em;
+}
+
+.email-login::placeholder, .password-login::placeholder{
+    color: white;
+    padding-left: 1em;
+}
+
+.btn-initsession{
+    width: 18em;
+    height: 3em;
+    background: #FFFFFF;
+    border-radius: 10px;
+    border-style: none;
+    font-family: Noto Sans;
+    margin-bottom: 2em;
+}
+
+.btn-initsession a{
+    font-size: 1.6em;
+    text-decoration: none;
+    color: #9F00A3;
+    font-weight: 700;
+}
+
+.btn-signup{
+    width: 12em;
+    height: 2.6em;
+    background: #FFC6B9;
+    border-radius: 10px;
+    border-style: none;
+    font-family: Noto Sans;
+    margin-bottom: 2em; 
+}
+
+.btn-signup a{
+    font-size: 1.2em;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 1250px){
+    .signin{
+        align-content: flex-end;
+        padding-right: 20em;
+    }
+}
+
+/* Para la vista desktop
+body{
+    background-position: top left;
+}
+*/
