@@ -45,18 +45,12 @@ export const signOut = () => {
 
 
 export const observer = () => {
-  // let result = '';
   window.firebase.auth().onAuthStateChanged((user) => {
     console.log(user);
     if (user) {
       console.log('usuario loggeado');
-      // result = 'ok';
     } else {
       console.log('usuario no loggeado');
-      // result = 'no';
     }
   });
-  // console.log(result);
-
-  // return result;
 };
