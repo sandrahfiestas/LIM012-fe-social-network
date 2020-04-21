@@ -1,4 +1,8 @@
-import { signIn } from '../firebase-controller.js';
+import { 
+    signIn,
+    logInFacebook
+ } from '../firebase-controller.js';
+// import { provider } from '../firebase-controller.js';
 
 export default () => {
     const viewSignIn = document.createElement('div');
@@ -8,7 +12,10 @@ export default () => {
     <input id="passwordLogIn" type="password" placeholder="contraseña">
     <button id="btnInitSession"><a href="#/home">Iniciar sesión</a></button>
     <p>¿No tienes cuenta?</p>
-    <button id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>`;
+    <button id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
+    <p>ó</p>
+    <button id="btnLogInFacebook">Inicia Sesion con FACEBOOK</button>
+    `;
 
     const btnLogIn = viewSignIn.querySelector('#btnInitSession');
     btnLogIn.addEventListener('click', () => {
@@ -25,5 +32,27 @@ export default () => {
         });
     });
 
+    const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
+    btnLogInFacebook.addEventListener('click', () => {
+        logInFacebook()
+        .then((result) => {
+            console.log('muestrame result: ' + result);
+        }).catch((error) => {
+            console.log('muestrame el error: ' + error);
+        })
+
+        /*
+        provider.addScope('public_profile');
+        firebase.auth()
+            .signInWithPopup(provider)
+            .then((datosUsuario) => {
+                console.log('datos de usuario: ' + datosUsuario);
+            }).catch((err) => {
+                console.log('ERROR: ' + err)
+            })
+        */
+    }); 
+
     return viewSignIn;
-};
+ };
+
