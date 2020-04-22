@@ -1,5 +1,5 @@
+import { signUp, verification } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
-import { signUp } from '../firebase-controller.js';
 
 export default () => {
     const viewSignUp = document.createElement('div');
@@ -24,12 +24,10 @@ export default () => {
         const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
         const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
         signUp(emailLogUp, passwordLogUp).then(() => {
-
-            /*
-             * verification();
-             * 1. Avisar que se envió correo. 2. Ir a la vista iniciar sesión ?
-             */
-
+            verification().then(() => {
+                console.log('se envió correo');
+                // Avisar que se envió correo.
+            });
         }).catch((error) => {
             console.log(error.message);
             // Mostrar el error en pantalla

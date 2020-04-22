@@ -1,6 +1,6 @@
 /* eslint-disable multiline-comment-style */
 import { changeView } from './view-controller/router.js';
-// import { observer } from './firebase-controller.js';
+import { observer } from './firebase-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,19 +16,7 @@ const firebaseConfig = {
 window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
-  // window.location.hash = '#/signin';
-  // changeView(window.location.hash);
-  window.firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log('usuario loggeado');
-      window.location.hash = '#/home';
-      changeView(window.location.hash);
-    } else {
-      console.log('usuario no loggeado');
-      window.location.hash = '#/signin';
-      changeView(window.location.hash);
-    }
-  });
+  observer(changeView);
 };
 
 window.addEventListener('load', init);
