@@ -10,6 +10,10 @@ body{
     height: 100vh;
 }
 
+.hide{
+    display: none;
+}
+
 .signin{
     height: 100vh;
     background-image: url(./img/background-socialnetwork.jpg);
@@ -193,6 +197,11 @@ body{
     color: #170842;
     font-size: 1.5em;
     font-weight: 700;
+}
+
+.msg-alert{
+    color: white;
+    margin-bottom: 1em;
 }
 
 @media screen and (min-width: 1250px){
