@@ -4,8 +4,13 @@ export default () => {
     const viewSignUp = document.createElement('div');
     viewSignUp.innerHTML = `
     <p>Registro de usuarios</p>
-    <input id="emailSignUp" type="email" placeholder="e-mail">
-    <input id="passwordSignUp" type="password" placeholder="contraseña">
+    <input id="emailSignUp" type="email" placeholder="e-mail" autofocus="autofocus">
+    <input id="passwordSignUp" type="password" placeholder="contraseña" maxlength="6" class="">
+    <div class="tooltip"><span>?</span>
+            <div class="tooltipText">
+              <p><span class="bold">minimo 6 caracteres</span></p>
+            </div>
+    </div>
     <button id="btnNewAccount">Crear cuenta</button>
     <h4>o ingresa con</h4>
     <p>¿Ya tienes una cuenta?</p>

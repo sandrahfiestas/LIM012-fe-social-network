@@ -111,3 +111,48 @@ body{
     background-position: top left;
 }
 */
+
+.tooltip{
+    position: relative;
+    margin-top: 2%;
+    display: inline-block;
+}
+
+.tooltip > span{
+    font-size: 0.8em;
+    color:#575959;
+    border-bottom: 1px dotted #575959;
+}
+
+.tooltip .tooltipText{
+    visibility: hidden;
+    position: absolute;
+    display: inline-block;
+    width: 22vw;
+    left: 90px;
+    background-color: #A62D2D;
+    opacity: 95%;
+    border-radius: 3px;
+    text-align: justify;
+    padding: 1em;
+}
+
+.tooltip .tooltipText::after {
+    content: "";
+    position: absolute;
+    top: 4%;
+    left: 0%;
+    margin-left: -10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #A62D2D transparent transparent;
+  }
+
+.tooltipText p{
+    color: #FFFFFF;
+    font-size: 0.8em;
+}
+
+.tooltip:hover .tooltipText{
+    visibility: visible
+    
