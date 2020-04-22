@@ -4,14 +4,13 @@ import { observer } from './firebase-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCRUpKAaeQ9e4ibo9Y4cT4D1HIenlA2yXM',
-  authDomain: 'crear-usuario-66208.firebaseapp.com',
-  databaseURL: 'https://crear-usuario-66208.firebaseio.com',
-  projectId: 'crear-usuario-66208',
-  storageBucket: 'crear-usuario-66208.appspot.com',
-  messagingSenderId: '264882127288',
-  appId: '1:264882127288:web:cc17210f5ad83a83ec0f4d',
-  measurementId: 'G-VHBZKPRF3V',
+  apiKey: 'AIzaSyDiA9ghv2IrE2sXpqDw-DL2wUP9Tw4Bud8',
+  authDomain: 'voz-amiga.firebaseapp.com',
+  databaseURL: 'https://voz-amiga.firebaseio.com',
+  projectId: 'voz-amiga',
+  storageBucket: 'voz-amiga.appspot.com',
+  messagingSenderId: '1080723145307',
+  appId: '1:1080723145307:web:767dc97ae31aaf7998757e',
 };
 
 // Initialize Firebase

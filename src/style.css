@@ -10,6 +10,10 @@ body{
     height: 100vh;
 }
 
+.hide{
+    display: none;
+}
+
 .signin{
     height: 100vh;
     background-image: url(./img/background-socialnetwork.jpg);
@@ -60,6 +64,8 @@ body{
     margin-bottom: 1.2em;
     color: white;
     padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
 }
 
 .email-login:focus, .password-login:focus {
@@ -102,8 +108,13 @@ body{
 .btn-signup a{
     font-size: 1.2em;
     text-decoration: none;
-    color: black;
+    color:#170842;
     font-weight: 700;
+}
+
+.msg-alert{
+    color: white;
+    margin-bottom: 1em;
 }
 
 @media screen and (min-width: 1250px){
