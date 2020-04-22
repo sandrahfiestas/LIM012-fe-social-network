@@ -21,12 +21,16 @@ export default () => {
         // Esto deberíamos pasar a otro archivo
         signIn(emailLogIn, passwordLogIn).then(() => {
             changeView('#/home');
-            console.log('todo ok');
             // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
         }).catch((error) => {
             // Mostrar el error en pantalla
             console.log(error.message);
         });
+    });
+
+    const btnViewSignUp = viewSignIn.querySelector('#btnViewSignUp');
+    btnViewSignUp.addEventListener('click', () => {
+        changeView('#/signup');
     });
 
     return viewSignIn;
