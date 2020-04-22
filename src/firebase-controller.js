@@ -26,7 +26,6 @@ export const signOut = () => {
   });
 };
 
-
 export const observer = () => {
   window.firebase.auth().onAuthStateChanged((user) => {
     if (user) {
