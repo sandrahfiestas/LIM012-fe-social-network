@@ -114,6 +114,10 @@ body{
 
 /* Estilos de register */
 
+.hide-show {
+    display: none;
+}
+
 .signup {
     height: 100vh;
     background: linear-gradient(180deg, #E253C3 0%, #A254AD 100%);
@@ -130,8 +134,8 @@ body{
 
 .register {
     background-color: #FFF;
-    border-radius: 20px;
-    width: 27em;
+    border-radius: 10px;
+    width: 23em;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -204,10 +208,20 @@ body{
     margin-bottom: 1em;
 }
 
-@media screen and (min-width: 1250px){
+@media screen and (min-width: 1024px){
     .signin{
         align-content: flex-end;
         padding-right: 20em;
+    }
+
+    .hide-show {
+        display: block;
+    }
+
+    .register {
+        background-color: #FFF;
+        border-radius: 20px;
+        width: 27em;
     }
 }
 

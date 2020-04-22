@@ -5,7 +5,7 @@ export default () => {
     const viewSignUp = document.createElement('div');
     viewSignUp.classList.add('signup');
     viewSignUp.innerHTML = `
-    <img src="../src/img/logo.svg" alt="Voz Amiga">
+    <img src="../src/img/logo.svg" alt="Voz Amiga" class="hide-show"> 
     <div class="register-container">
         <div class="register-container register">
             <p class="text-purple">Regístrate</p>
