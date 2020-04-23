@@ -12,7 +12,7 @@ export default () => {
     <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
     <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
     <p class="msg-alert hide" id="msgAlert"><p>
-    <button class="btn-initsession" id="btnInitSession"><a href="#/home">Iniciar sesión</a></button>
+    <button class="btn-initsession" id="btnInitSession">Iniciar sesión</button>
     <p class="text2">o ingresa con</p>
     <p class="text2">¿No tienes cuenta?</p>
     <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>`;
