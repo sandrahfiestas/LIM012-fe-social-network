@@ -16,7 +16,9 @@ const firebaseConfig = {
 window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
+  // Colocando el mismo hash en window - revisar
   observer(changeView);
+  console.log(window.location.hash);
 };
 
 window.addEventListener('load', init);

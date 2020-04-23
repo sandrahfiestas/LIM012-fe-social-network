@@ -40,9 +40,12 @@ export const observer = (callback) => {
   window.firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       if (user.emailVerified) {
+        window.location.hash = '#/home';
+
         return callback('#/home');
       }
     }
+    window.location.hash = '#/signin';
 
   return callback('#/signin');
   });

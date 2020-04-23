@@ -84,7 +84,7 @@ body{
     background: #FFFFFF;
     border-radius: 10px;
     border-style: none;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     margin-bottom: 2em;
 }
 
@@ -171,7 +171,7 @@ body{
 }
 
 .text-purple {
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     color: #A354AD;
     font-size: 2em;
     font-weight: bold;
@@ -197,7 +197,7 @@ body{
     background: #FFC6B9;
     border-radius: 10px;
     border-style: none;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     color: #170842;
     font-size: 1.5em;
     font-weight: 700;
@@ -206,6 +206,22 @@ body{
 .msg-alert{
     color: white;
     margin-bottom: 1em;
+}
+
+.notification {
+    width: 250px;
+    position: absolute;
+    text-align: center;
+    z-index: 1; 
+    top: 10%;
+    left: 50%;
+    margin-left: -125px;
+    padding: 1%; 
+    background: #FFC6B9;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.3em;
+    color: #170842;
 }
 
 @media screen and (min-width: 1024px){
@@ -222,6 +238,11 @@ body{
         background-color: #FFF;
         border-radius: 20px;
         width: 27em;
+    }
+
+    .notification {
+        width: 400px;
+        margin-left: -200px;
     }
 }
 

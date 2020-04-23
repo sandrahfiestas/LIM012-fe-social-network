@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import { signUp, verification } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
@@ -25,8 +26,13 @@ export default () => {
         const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
         signUp(emailLogUp, passwordLogUp).then(() => {
             verification().then(() => {
-                console.log('se envió correo');
-                // Avisar que se envió correo.
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.textContent = 'Revisa tu correo electrónico para terminar el registro';
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 3000);
             });
         }).catch((error) => {
             console.log(error.message);
