@@ -1,11 +1,13 @@
+import { signIn, validation } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
-import { signIn } from '../firebase-controller.js';
+
+// const BASE_URL = 'http://127.0.0.1:5500/src';
 
 export default () => {
     const viewSignIn = document.createElement('div');
     viewSignIn.classList.add('signin');
     viewSignIn.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+    <img src="../src/img/logo.svg" alt="Voz Amiga" class="logo-social-network">
     <p class="text">Bienvenida a la red social para mujeres</p>
     <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
     <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
@@ -20,9 +22,11 @@ export default () => {
         const emailLogIn = viewSignIn.querySelector('#emailLogIn').value;
         const passwordLogIn = viewSignIn.querySelector('#passwordLogIn').value;
         const msgAlert = viewSignIn.querySelector('#msgAlert');
-        // Esto deberíamos pasar a otro archivo
+
         signIn(emailLogIn, passwordLogIn).then(() => {
-            changeView('#/home');
+            console.log('que pasa');
+            // o llamo a observer
+            validation(changeView);
             // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
         }).catch((error) => {
             // Mostrar el error en pantalla

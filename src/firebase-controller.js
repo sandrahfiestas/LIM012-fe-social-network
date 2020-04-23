@@ -1,3 +1,4 @@
+/* eslint-disable multiline-comment-style */
 // Iniciar sesión
 export const signIn = (emailLogIn, passwordLogIn) => window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
@@ -9,12 +10,19 @@ export const signUp = (emailSignUp, passwordSignUp) => window.firebase.auth().cr
 // Verificación
 export const verification = () => {
   const user = window.firebase.auth().currentUser;
-  user.sendEmailVerification().then(() => {
-    // Email sent.
-    console.log('Enviando correo');
-  }).catch((error) => {
-    console.log(error);
-  });
+
+  return user.sendEmailVerification();
+};
+
+// Validación
+export const validation = (callback) => {
+  console.log('validation');
+  const user = window.firebase.auth().currentUser;
+  if (user.emailVerified) {
+    return callback('/#home');
+  }
+
+  return callback('#/signin');
 };
 
 // Cerrar sesión
@@ -26,13 +34,19 @@ export const signOut = () => {
   });
 };
 
+export const observer = (callback) => {
+  console.log('observer');
 
-export const observer = () => {
   window.firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log('usuario loggeado');
-    } else {
-      console.log('usuario no loggeado');
+      if (user.emailVerified) {
+        window.location.hash = '#/home';
+
+        return callback('#/home');
+      }
     }
+    window.location.hash = '#/signin';
+
+  return callback('#/signin');
   });
 };

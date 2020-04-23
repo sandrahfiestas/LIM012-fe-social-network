@@ -1,11 +1,12 @@
+/* eslint-disable no-magic-numbers */
+import { signUp, verification } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
-import { signUp } from '../firebase-controller.js';
 
 export default () => {
     const viewSignUp = document.createElement('div');
     viewSignUp.classList.add('signup');
     viewSignUp.innerHTML = `
-    <img src="../src/img/logo.svg" alt="Voz Amiga">
+    <img src="../src/img/logo.svg" alt="Voz Amiga" class="hide-show"> 
     <div class="register-container">
         <div class="register-container register">
             <p class="text-purple">Regístrate</p>
@@ -24,12 +25,15 @@ export default () => {
         const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
         const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
         signUp(emailLogUp, passwordLogUp).then(() => {
-
-            /*
-             * verification();
-             * 1. Avisar que se envió correo. 2. Ir a la vista iniciar sesión ?
-             */
-
+            verification().then(() => {
+                const notification = document.createElement('div');
+                notification.classList.add('notification');
+                notification.textContent = 'Revisa tu correo electrónico para terminar el registro';
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 3000);
+            });
         }).catch((error) => {
             console.log(error.message);
             // Mostrar el error en pantalla
