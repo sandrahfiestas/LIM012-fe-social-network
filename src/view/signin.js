@@ -24,6 +24,7 @@ export default () => {
     const passwordLogIn = viewSignIn.querySelector('#passwordLogIn').value;
     const msgAlert = viewSignIn.querySelector('.balloon');
 
+<<<<<<< HEAD
     signIn(emailLogIn, passwordLogIn).then(() => {
       validation(changeView);
     }).catch(() => {
@@ -32,6 +33,18 @@ export default () => {
       setTimeout(() => {
         msgAlert.classList.add('ocult');
       }, 3000);
+=======
+        signIn(emailLogIn, passwordLogIn).then(() => {
+            // o llamo a observer
+            validation(changeView);
+            // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
+        }).catch((error) => {
+            // Mostrar el error en pantalla
+            console.log(error.message);
+            msgAlert.classList.remove('hide');
+            msgAlert.innerHTML = 'El email o la contraseña no son válidos';
+        });
+>>>>>>> Inicio de sesión solucionado
     });
   });
   
