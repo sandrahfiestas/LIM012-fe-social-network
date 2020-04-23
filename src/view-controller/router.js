@@ -11,7 +11,7 @@ const changeView = (route) => {
         break;
         case '#/home': routeSelected = sectionContainer.appendChild(components.home());
         break;
-        default: routeSelected = 'no se ha encontrado la ruta';
+        default: routeSelected = sectionContainer.appendChild(components.notfound());
         break;
     }
 

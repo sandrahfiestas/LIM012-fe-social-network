@@ -24,7 +24,6 @@ export default () => {
         const msgAlert = viewSignIn.querySelector('#msgAlert');
 
         signIn(emailLogIn, passwordLogIn).then(() => {
-            console.log('que pasa');
             // o llamo a observer
             validation(changeView);
             // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?

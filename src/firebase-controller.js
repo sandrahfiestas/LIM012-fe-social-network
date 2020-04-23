@@ -13,19 +13,6 @@ export const verification = () => {
   return user.sendEmailVerification();
 };
 
-// Validación
-export const validation = (callback) => {
-  console.log('validation');
-  const user = firebase.auth().currentUser;
-  if (user.emailVerified) {
-    window.location.hash = '#/home';
-
-    return callback('/#home');
-  }
-
-  return callback('#/signin');
-};
-
 // Cerrar sesión
 export const signOut = () => {
   firebase.auth().signOut().then(() => {
@@ -35,19 +22,21 @@ export const signOut = () => {
   });
 };
 
-export const observer = (callback) => {
-  console.log('observer');
+export const validation = (callback) => {
+  console.log('validacion de usuario');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       if (user.emailVerified) {
         window.location.hash = '#/home';
 
-        return callback('#/home');
+        return callback(window.location.hash);
+      } else {
+        console.log('Error en validación del observador');
       }
     }
     window.location.hash = '#/signin';
 
-  return callback('#/signin');
+  return callback(window.location.hash);
   });
 };
