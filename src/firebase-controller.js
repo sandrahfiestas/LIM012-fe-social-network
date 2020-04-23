@@ -1,4 +1,3 @@
-/* eslint-disable multiline-comment-style */
 // Iniciar sesión
 export const signIn = (emailLogIn, passwordLogIn) => window.firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
@@ -47,6 +46,6 @@ export const observer = (callback) => {
     }
     window.location.hash = '#/signin';
 
-  return callback('#/signin');
+    return callback('#/signin');
   });
 };
