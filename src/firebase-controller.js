@@ -1,8 +1,10 @@
 // Iniciar sesión
+// eslint-disable-next-line max-len
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
 
 // Registrar usuario
+// eslint-disable-next-line max-len
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
 
@@ -14,17 +16,17 @@ export const verification = () => {
 };
 
 // Validación
-export const validation = (callback) => {
-  console.log('validation');
-  const user = firebase.auth().currentUser;
-  if (user.emailVerified) {
-    window.location.hash = '#/home';
-
-    return callback('/#home');
-  }
-
-  return callback('#/signin');
-};
+// export const validation = (callback) => {
+//   console.log('validation');
+//   const user = firebase.auth().currentUser;
+//   if (user.emailVerified) {
+//     window.location.hash = '#/home';
+//
+//     return callback('/#home');
+//   }
+//
+//   return callback('#/signin');
+// };
 
 // Cerrar sesión
 export const signOut = () => {
@@ -35,19 +37,20 @@ export const signOut = () => {
   });
 };
 
-export const observer = (callback) => {
-  console.log('observer');
+export const validation = (callback) => {
+  console.log('validacion de usuario');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       if (user.emailVerified) {
         window.location.hash = '#/home';
 
-        return callback('#/home');
+        return callback(window.location.hash);
       }
+      console.log('Error en validación del observador');
     }
     window.location.hash = '#/signin';
 
-    return callback('#/signin');
+    return callback(window.location.hash);
   });
 };

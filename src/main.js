@@ -1,6 +1,6 @@
 /* eslint-disable multiline-comment-style */
 import { changeView } from './view-controller/router.js';
-import { observer } from './firebase-controller.js';
+import { validation } from './firebase-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +17,7 @@ window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
   // Colocando el mismo hash en window - revisar
-  observer(changeView);
+  validation(changeView);
   console.log(window.location.hash);
 };
 
