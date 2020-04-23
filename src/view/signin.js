@@ -1,8 +1,7 @@
-import { 
-    signIn,
-    logInFacebook
- } from '../firebase-controller.js';
-// import { provider } from '../firebase-controller.js';
+import { changeView } from '../view-controller/router.js';
+import { signIn,
+         logInFacebook
+        } from '../firebase-controller.js';
 
 export default () => {
     const viewSignIn = document.createElement('div');
@@ -12,6 +11,7 @@ export default () => {
     <p class="text">Bienvenida a la red social para mujeres</p>
     <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
     <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
+    <p class="msg-alert hide" id="msgAlert"><p>
     <button class="btn-initsession" id="btnInitSession"><a href="#/home">Iniciar sesión</a></button>
     <p class="text2">o ingresa con</p>
     <p class="text2">¿No tienes cuenta?</p>
@@ -25,15 +25,22 @@ export default () => {
     btnLogIn.addEventListener('click', () => {
         const emailLogIn = viewSignIn.querySelector('#emailLogIn').value;
         const passwordLogIn = viewSignIn.querySelector('#passwordLogIn').value;
+        const msgAlert = viewSignIn.querySelector('#msgAlert');
         // Esto deberíamos pasar a otro archivo
         signIn(emailLogIn, passwordLogIn).then(() => {
-            // Llamar a la vista HOME
-            console.log('todo ok');
+            changeView('#/home');
             // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
         }).catch((error) => {
             // Mostrar el error en pantalla
             console.log(error.message);
+            msgAlert.classList.remove('hide');
+            msgAlert.innerHTML = 'El email o la contraseña no son válidos';
         });
+    });
+
+    const btnViewSignUp = viewSignIn.querySelector('#btnViewSignUp');
+    btnViewSignUp.addEventListener('click', () => {
+        changeView('#/signup');
     });
 
     const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
@@ -56,6 +63,7 @@ export default () => {
             })
         */
     }); 
+
 
     return viewSignIn;
  };

@@ -13,7 +13,6 @@ const firebaseConfig = {
   messagingSenderId: '1080723145307',
   appId: '1:1080723145307:web:767dc97ae31aaf7998757e',
 };
-
 // Initialize Firebase
 window.firebase.initializeApp(firebaseConfig);
 
@@ -23,9 +22,9 @@ const init = () => {
   changeView(window.location.hash);
   observer();
 
-  window.addEventListener('hashchange', () => {
-    changeView(window.location.hash);
-  });
+  // window.addEventListener('hashchange', () => {
+  //   changeView(window.location.hash);
+  // });
 };
 
 window.addEventListener('load', init);
