@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import { signUp, verification } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
