@@ -1,5 +1,4 @@
 import { signUp, verification } from '../firebase-controller.js';
-// eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
 
 export default () => {

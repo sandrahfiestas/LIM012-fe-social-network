@@ -1,6 +1,6 @@
 export default () => {
   const notFound = document.createElement('div');
-  notFound.classList.add('nf-page')
+  notFound.classList.add('nf-page');
   notFound.innerHTML = `
   <img src ="../src/img/notfound.png" class="nf-image">
   <p class="nf-number">404</p>

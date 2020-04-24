@@ -1,10 +1,7 @@
 // Iniciar sesión
-// eslint-disable-next-line max-len
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
-
 // Registrar usuario
-// eslint-disable-next-line max-len
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
 
@@ -24,6 +21,7 @@ export const signOut = () => {
   });
 };
 
+// Estado del usuario
 export const validation = (callback) => {
   console.log('validacion de usuario');
 

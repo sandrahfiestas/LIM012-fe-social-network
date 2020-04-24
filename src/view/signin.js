@@ -1,5 +1,4 @@
 import { signIn, validation } from '../firebase-controller.js';
-// eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
 // const BASE_URL = 'http://127.0.0.1:5500/src';
 
@@ -25,9 +24,7 @@ export default () => {
     const msgAlert = viewSignIn.querySelector('.balloon');
 
     signIn(emailLogIn, passwordLogIn).then(() => {
-        // o llamo a observer
         validation(changeView);
-        // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
     }).catch((error) => {
         // Mostrar el error en pantalla
         console.log(error.message);
