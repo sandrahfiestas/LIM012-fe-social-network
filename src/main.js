@@ -2,7 +2,6 @@
 import { changeView } from './view-controller/router.js';
 import { validation } from './firebase-controller.js';
 
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyDiA9ghv2IrE2sXpqDw-DL2wUP9Tw4Bud8',

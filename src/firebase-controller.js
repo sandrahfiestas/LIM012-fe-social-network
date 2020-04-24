@@ -1,8 +1,10 @@
 // Iniciar sesión
+// eslint-disable-next-line max-len
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
 
 // Registrar usuario
+// eslint-disable-next-line max-len
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
 
@@ -46,13 +48,12 @@ export const validation = (callback) => {
         window.location.hash = '#/home';
 
         return callback(window.location.hash);
-      } else {
-        console.log('Error en validación del observador');
       }
+      console.log('Error en validación del observador');
     }
     window.location.hash = '#/signin';
 
-  return callback(window.location.hash);
+    return callback(window.location.hash);
   });
 };
 

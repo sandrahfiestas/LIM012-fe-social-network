@@ -11,8 +11,9 @@ export default () => {
     <p class="text">Bienvenida a la red social para mujeres</p>
     <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
     <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
-    <p class="msg-alert hide" id="msgAlert"><p>
-    <button class="btn-initsession" id="btnInitSession">Iniciar sesión</button>
+    <button class="btn-initsession" id="btnInitSession">Iniciar sesión
+      <span class="balloon ocult">El email o contraseña no son válidos</span>
+    </button>
     <p class="text2">o ingresa con</p>
     <p class="text2">¿No tienes cuenta?</p>
     <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
@@ -25,7 +26,7 @@ export default () => {
   btnLogIn.addEventListener('click', () => {
     const emailLogIn = viewSignIn.querySelector('#emailLogIn').value;
     const passwordLogIn = viewSignIn.querySelector('#passwordLogIn').value;
-    const msgAlert = viewSignIn.querySelector('#msgAlert');
+    const msgAlert = viewSignIn.querySelector('.balloon');
 
     signIn(emailLogIn, passwordLogIn).then(() => {
       console.log('que pasa');
@@ -35,8 +36,10 @@ export default () => {
     }).catch((error) => {
       // Mostrar el error en pantalla
       console.log(error.message);
-      msgAlert.classList.remove('hide');
-      msgAlert.innerHTML = 'El email o la contraseña no son válidos';
+      msgAlert.classList.remove('ocult');
+      setTimeout(() => {
+        msgAlert.classList.add('ocult');
+      }, 3000);
     });
   });
 

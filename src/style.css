@@ -14,6 +14,14 @@ body{
     display: none;
 }
 
+.show{
+    visibility: visible;
+}
+
+.ocult{
+    visibility: hidden;
+}
+
 .signin{
     height: 100vh;
     background-image: url(./img/background-socialnetwork.jpg);
@@ -79,20 +87,22 @@ body{
 }
 
 .btn-initsession{
-    width: 18em;
-    height: 3em;
+    position: relative;
+    width: 13em;
+    height: 2.5em;
     background: #FFFFFF;
     border-radius: 10px;
     border-style: none;
     font-family: 'Noto Sans', sans-serif;
     margin-bottom: 2em;
-}
-
-.btn-initsession a{
     font-size: 1.6em;
-    text-decoration: none;
     color: #9F00A3;
     font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-initsession:hover{
+    background-color: #F7D7FF;
 }
 
 .btn-signup{
@@ -102,7 +112,7 @@ body{
     border-radius: 10px;
     border-style: none;
     font-family: Noto Sans;
-    margin-bottom: 2em; 
+    margin-bottom: 2em;
 }
 
 .btn-signup a{
@@ -111,6 +121,51 @@ body{
     color: #170842;
     font-weight: 700;
 }
+
+/*  Mensaje de error al iniciar sesión  */
+
+.balloon{
+    position: absolute;
+    width: 22em;
+    background-color: #4E2954;
+    color:white;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+    text-align: center;
+    top: 5em;
+    left: -1.6em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+    font-size: 0.7em;
+    z-index: 2
+}
+
+.balloon:before {
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin: -2em 0 0 7.4em;
+    border-bottom: 20px solid #4E2954;
+    border-right: 18px solid transparent;
+    border-left: 18px solid transparent;
+}
+
+.msgAlertReg {
+    position: relative;
+    width: 100%;
+    
+}
+.msgAlertReg:hover .balloon {
+    visibility: visible;
+    /* margin-top: 2%;
+    display: inline-block;
+    background-color: rgb(105, 77, 109); */
+}
+
+
+
+
 
 /* Estilos de register */
 
@@ -141,6 +196,7 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 2em;
+    align-items: center;
 }
 
 .input-register {
@@ -245,93 +301,26 @@ body{
         margin-left: -200px;
     }
 }
+    /* .msgInvalid {
+        color: #ff0000;
+    }  */
 
-/* Para la vista desktop
-body{
-    background-position: top left;
-}
-*/
+    /* .invalid {
+       border-bottom-color: #ff0000;
+    } */
 
-/*
-.tooltip{
-    position: relative;
-    margin-top: 2%;
-    display: inline-block;
-}
-
-.tooltip > span{
-    color:#575959;
-    border-bottom: 1px dotted #575959;
-}
-
-.tooltip .tooltipText{
-    visibility: hidden;
-    position: absolute;
-    display: inline-block;
-    width: 22vw;
-    left: 90px;
-    background-color: #FFFFFF;
-    opacity: 95%;
-    border-radius: 3px;
-    text-align: justify;
-    padding: 1em;
-}
-
-.tooltip .tooltipText::after {
-    content: "";
-    position: absolute;
-    top: 4%;
-    left: 0%;
-    margin-left: -10px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #A354AD transparent transparent;
-  }
-
-.tooltipText p{
-    color: #A354AD;
-    font-size: 0.8em;
-}
-
-.tooltip:hover .tooltipText{
-    visibility: visible
-}
-*/
-
-[data-title]:hover:after {
-    opacity: 1;
-    transition: all 0.1s ease 0.5s;
-    visibility: visible;
-}
-
-[data-title]:after {
-    content: attr(data-title);
-    background-color: #333;
-    color: #fff;
-    font-size: 14px;
-    font-family: Raleway;
-    position: absolute;
-    padding: 3px 20px;
-    bottom: -1.6em;
-    left: 100%;
-    white-space: nowrap;
-    box-shadow: 1px 1px 3px #222222;
-    opacity: 0;
-    border: 1px solid #111111;
-    z-index: 99999;
-    visibility: hidden;
-    border-radius: 6px;
-    
-}
-[data-title] {
-    position: relative;
-}
-
- .msgInvalid {
-    color: #ff0000;
-    } 
-
- .invalid {
-    border-bottom-color: #ff0000;
+    .input-register:invalid {
+        border-bottom-color: #ff0000;
     }
+
+    .btn-locked {
+     background: rgb(212, 186, 181);
+     color: #4c4858;
+     cursor: none;
+    }
+
+
+    /* ejemplo */
+
+
     
