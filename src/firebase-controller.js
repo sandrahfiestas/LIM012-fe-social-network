@@ -15,19 +15,6 @@ export const verification = () => {
   return user.sendEmailVerification();
 };
 
-// Validación
-// export const validation = (callback) => {
-//   console.log('validation');
-//   const user = firebase.auth().currentUser;
-//   if (user.emailVerified) {
-//     window.location.hash = '#/home';
-//
-//     return callback('/#home');
-//   }
-//
-//   return callback('#/signin');
-// };
-
 // Cerrar sesión
 export const signOut = () => {
   firebase.auth().signOut().then(() => {
@@ -46,11 +33,13 @@ export const validation = (callback) => {
         window.location.hash = '#/home';
 
         return callback(window.location.hash);
+      } else {
+        console.log('Error en validación del observador');
       }
       console.log('Error en validación del observador');
     }
     window.location.hash = '#/signin';
 
-    return callback(window.location.hash);
+  return callback(window.location.hash);
   });
 };
