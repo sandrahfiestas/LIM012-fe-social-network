@@ -315,5 +315,6 @@ body{
 
     .nf-image {
         width: 30em;
+        margin-bottom: 1em;
     }
 }
