@@ -27,14 +27,12 @@ export default () => {
     signIn(emailLogIn, passwordLogIn).then(() => {
       validation(changeView);
     }).catch(() => {
-      // Mostrar el error en pantalla
       msgAlert.classList.remove('ocult');
       setTimeout(() => {
         msgAlert.classList.add('ocult');
       }, 3000);
     });
   });
-  
 
   const btnViewSignUp = viewSignIn.querySelector('#btnViewSignUp');
   btnViewSignUp.addEventListener('click', () => {
