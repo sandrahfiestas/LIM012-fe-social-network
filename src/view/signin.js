@@ -7,7 +7,7 @@ export default () => {
   const viewSignIn = document.createElement('div');
   viewSignIn.classList.add('signin');
   viewSignIn.innerHTML = `
-  <img src="../src/img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+  <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
   <p class="text">Bienvenida a la red social para mujeres</p>
   <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
   <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
