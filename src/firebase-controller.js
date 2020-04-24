@@ -31,14 +31,14 @@ export const verification = () => {
 // Cerrar sesión
 export const signOut = () => {
   firebase.auth().signOut().then(() => {
-    console.log('Cerrando sesión');
-  }).catch((error) => {
-    console.log(error);
+    // console.log('Cerrando sesión');
+  }).catch(() => {
+    // console.log(error);
   });
 };
 
 export const validation = (callback) => {
-  console.log('validacion de usuario');
+  // console.log('validacion de usuario');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -47,7 +47,7 @@ export const validation = (callback) => {
 
         return callback(window.location.hash);
       }
-      console.log('Error en validación del observador');
+      // console.log('Error en validación del observador');
     }
     window.location.hash = '#/signin';
 

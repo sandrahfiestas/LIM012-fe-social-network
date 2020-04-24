@@ -67,7 +67,7 @@ body{
     border-bottom-color: white;
     border-bottom-width: 0.1em;
     border-left-style: none;
-    font-family: Noto Serif;
+    /*font-family: 'Noto Serif';*/
     font-size: 1.35em;
     margin-bottom: 1.2em;
     color: white;
@@ -111,7 +111,7 @@ body{
     background: #FFC6B9;
     border-radius: 10px;
     border-style: none;
-    font-family: Noto Sans;
+    /* font-family: 'Noto Serif'; */
     margin-bottom: 2em;
 }
 
@@ -137,6 +137,7 @@ body{
     left: -1.6em;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     font-size: 0.7em;
+    z-index: 2;
 }
 
 .balloon:before {
@@ -193,7 +194,7 @@ body{
     box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
-    font-family: Noto Serif;
+    /* font-family: 'Noto Serif'; */
     font-size: 1.35em;
     color: #A354AD;
 }
@@ -216,7 +217,7 @@ body{
 }
 
 .text-init-session {
-    font-family: Noto serif;
+    /* font-family: 'Noto Serif'; */
     color: #FFF;
     text-decoration: none;
     font-size: 1.7em;
