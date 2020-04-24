@@ -1,6 +1,6 @@
 /* eslint-disable multiline-comment-style */
 import { changeView } from './view-controller/router.js';
-import { observer } from './firebase-controller.js';
+import { validation } from './firebase-controller.js';
 
 
 // Your web app's Firebase configuration
@@ -17,14 +17,9 @@ const firebaseConfig = {
 window.firebase.initializeApp(firebaseConfig);
 
 const init = () => {
-// Primero debería ver si hay un user loggeado o no
-  window.location.hash = '#/signin';
-  changeView(window.location.hash);
-  observer();
-
-  // window.addEventListener('hashchange', () => {
-  //   changeView(window.location.hash);
-  // });
+  // Colocando el mismo hash en window - revisar
+  validation(changeView);
+  console.log(window.location.hash);
 };
 
 window.addEventListener('load', init);

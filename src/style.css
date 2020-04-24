@@ -84,7 +84,7 @@ body{
     background: #FFFFFF;
     border-radius: 10px;
     border-style: none;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     margin-bottom: 2em;
 }
 
@@ -114,6 +114,10 @@ body{
 
 /* Estilos de register */
 
+.hide-show {
+    display: none;
+}
+
 .signup {
     height: 100vh;
     background: linear-gradient(180deg, #E253C3 0%, #A254AD 100%);
@@ -130,8 +134,8 @@ body{
 
 .register {
     background-color: #FFF;
-    border-radius: 20px;
-    width: 27em;
+    border-radius: 10px;
+    width: 23em;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -141,7 +145,7 @@ body{
 
 .input-register {
     width: 70%;
-    height: 3em;
+    height: 2em;
     border-top-style: none;
     border-right-style: none;
     border-left-style: none;
@@ -167,7 +171,7 @@ body{
 }
 
 .text-purple {
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     color: #A354AD;
     font-size: 2em;
     font-weight: bold;
@@ -193,7 +197,7 @@ body{
     background: #FFC6B9;
     border-radius: 10px;
     border-style: none;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     color: #170842;
     font-size: 1.5em;
     font-weight: 700;
@@ -204,10 +208,41 @@ body{
     margin-bottom: 1em;
 }
 
-@media screen and (min-width: 1250px){
+.notification {
+    width: 250px;
+    position: absolute;
+    text-align: center;
+    z-index: 1; 
+    top: 10%;
+    left: 50%;
+    margin-left: -125px;
+    padding: 1%; 
+    background: #FFC6B9;
+    border-radius: 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.3em;
+    color: #170842;
+}
+
+@media screen and (min-width: 1024px){
     .signin{
         align-content: flex-end;
         padding-right: 20em;
+    }
+
+    .hide-show {
+        display: block;
+    }
+
+    .register {
+        background-color: #FFF;
+        border-radius: 20px;
+        width: 27em;
+    }
+
+    .notification {
+        width: 400px;
+        margin-left: -200px;
     }
 }
 
@@ -292,7 +327,11 @@ body{
     position: relative;
 }
 
-.invalid {
+ .msgInvalid {
+    color: #ff0000;
+    } 
+
+ .invalid {
     border-bottom-color: #ff0000;
-    border-bottom-width: 0.1em;
     }
+    
