@@ -1,14 +1,10 @@
 export default () => {
-    const viewSignInUser = document.createElement('div');
-    viewSignInUser.innerHTML = `
-    <p>Bienvenido</p>
-    <button id="btnSignOut"><a href="#/signin">Cerrar sesión</a></button>`;
+  const notFound = document.createElement('div');
+  notFound.classList.add('nf-page')
+  notFound.innerHTML = `
+  <img src ="../src/img/notfound.png" class="nf-image">
+  <p class="nf-number">404</p>
+  <p class="nf-text">Página no encontrada</p>`;
 
-    const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
-      btnSignOut.addEventListener('click', () => {
-        changeView('#/signin');
-        signOut();
-    });
-
-    return viewSignInUser;
+  return notFound;
 };

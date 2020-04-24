@@ -262,6 +262,37 @@ body{
     color: #170842;
 }
 
+/* Estilos de notfound */
+
+.nf-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4em;
+    background-color: #FFC6B9;
+    height: 100vh;
+}
+
+.nf-image {
+    width: 80%;
+    margin-bottom: 1em;
+}
+
+.nf-number {
+    font-family: 'Noto Serif', serif;
+    color: #9F00A3;
+    font-weight: 1000;
+    font-size: 7em;
+}
+
+.nf-text {
+    font-family: 'Noto Serif', serif;
+    color: #9F00A3;
+    font-size: 2em;
+}
+
+
+
 @media screen and (min-width: 1024px){
     .signin{
         align-content: flex-end;
@@ -281,5 +312,10 @@ body{
     .notification {
         width: 400px;
         margin-left: -200px;
+    }
+
+    .nf-image {
+        width: 30em;
+        margin-bottom: 1em;
     }
 }
