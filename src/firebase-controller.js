@@ -1,10 +1,9 @@
+/* eslint-disable max-len */
 // Iniciar sesión
-// eslint-disable-next-line max-len
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
 
 // Registrar usuario
-// eslint-disable-next-line max-len
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
 
@@ -14,19 +13,6 @@ export const verification = () => {
 
   return user.sendEmailVerification();
 };
-
-// Validación
-// export const validation = (callback) => {
-//   console.log('validation');
-//   const user = firebase.auth().currentUser;
-//   if (user.emailVerified) {
-//     window.location.hash = '#/home';
-//
-//     return callback('/#home');
-//   }
-//
-//   return callback('#/signin');
-// };
 
 // Cerrar sesión
 export const signOut = () => {

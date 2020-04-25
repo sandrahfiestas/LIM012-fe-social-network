@@ -35,7 +35,6 @@ export default () => {
         }, 3000);
       });
     }).catch(() => {
-      // console.log(error.message);
       // Mostrar el error en pantalla
     });
   });

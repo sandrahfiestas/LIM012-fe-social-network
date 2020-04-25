@@ -31,7 +31,6 @@ export default () => {
       // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
     }).catch(() => {
       // Mostrar el error en pantalla
-      // console.log(error.message);
       msgAlert.classList.remove('ocult');
       setTimeout(() => {
         msgAlert.classList.add('ocult');
