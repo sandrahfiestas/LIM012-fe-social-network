@@ -1,4 +1,4 @@
-import { signIn, validation } from '../firebase-controller.js';
+import { signIn, validation, logInGoogle} from '../firebase-controller.js';
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
 // const BASE_URL = 'http://127.0.0.1:5500/src';
@@ -18,7 +18,8 @@ export default () => {
     <p class="text2">¿No tienes cuenta?</p>
     <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
     <p>ó</p>
-    <button id="btnLogInFacebook">Inicia Sesion con FACEBOOK</button>
+    <button id="btnLogInGoogle">Google SingIn</button>
+    <button id="btnLogInFacebook">Facebook SingIn</button>
     `;
 
 
@@ -48,6 +49,30 @@ export default () => {
     changeView('#/signup');
   });
 
+
+// Iniciar sesión con Google
+  const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
+  btnLogInGoogle.addEventListener('click', () => {
+    logInGoogle()
+    .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+});
+
+
 /*
     const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
     btnLogInFacebook.addEventListener('click', () => {
@@ -73,4 +98,3 @@ export default () => {
 
     return viewSignIn;
  };
-
