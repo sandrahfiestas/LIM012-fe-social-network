@@ -305,13 +305,16 @@ body{
         color: #ff0000;
     }  */
 
-    /* .invalid {
-       border-bottom-color: #ff0000;
-    } */
-
-    .input-register:invalid {
-        border-bottom-color: #ff0000;
+    .iconInvalid{
+        color: red;
     }
+    .inputInvalid {
+       border-bottom-color: red;
+    }
+
+    /* .input-register:invalid {
+        border-bottom-color: #ff0000;
+    } */
 
     .btn-locked {
      background: rgb(212, 186, 181);
