@@ -20,8 +20,8 @@ export const validation = (callback) => {
         window.location.hash = '#/home';
         return callback(window.location.hash);
       }
-      window.location.hash = '#/signin';
     }
+    window.location.hash = '#/signin';
     return callback(window.location.hash);
   });
 };
