@@ -1,5 +1,5 @@
+/* eslint-disable import/no-cycle */
 import { signIn, validation } from '../firebase-controller.js';
-// eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
 // const BASE_URL = 'http://127.0.0.1:5500/src';
 

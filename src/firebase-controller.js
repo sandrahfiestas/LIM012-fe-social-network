@@ -15,28 +15,20 @@ export const verification = () => {
 };
 
 // Cerrar sesión
-export const signOut = () => {
-  firebase.auth().signOut().then(() => {
-    // console.log('Cerrando sesión');
-  }).catch(() => {
-    // console.log(error);
-  });
-};
+export const signOut = () => firebase.auth().signOut();
+
+// Validación
 
 export const validation = (callback) => {
   // console.log('validacion de usuario');
-
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       if (user.emailVerified) {
         window.location.hash = '#/home';
-
         return callback(window.location.hash);
       }
-      // console.log('Error en validación del observador');
+      window.location.hash = '#/signin';
     }
-    window.location.hash = '#/signin';
-
     return callback(window.location.hash);
   });
 };

@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
 

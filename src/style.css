@@ -67,7 +67,7 @@ body{
     border-bottom-color: white;
     border-bottom-width: 0.1em;
     border-left-style: none;
-    /*font-family: 'Noto Serif';*/
+    font-family: 'Noto Serif', serif;
     font-size: 1.35em;
     margin-bottom: 1.2em;
     color: white;
@@ -111,7 +111,7 @@ body{
     background: #FFC6B9;
     border-radius: 10px;
     border-style: none;
-    /* font-family: 'Noto Serif'; */
+    font-family: 'Noto Sans', sans-serif;
     margin-bottom: 2em;
 }
 
@@ -194,7 +194,7 @@ body{
     box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
-    /* font-family: 'Noto Serif'; */
+    font-family: 'Noto Serif', serif;
     font-size: 1.35em;
     color: #A354AD;
 }
@@ -217,7 +217,7 @@ body{
 }
 
 .text-init-session {
-    /* font-family: 'Noto Serif'; */
+    font-family: 'Noto Serif', serif;
     color: #FFF;
     text-decoration: none;
     font-size: 1.7em;
