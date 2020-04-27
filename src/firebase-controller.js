@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // Iniciar sesión
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
