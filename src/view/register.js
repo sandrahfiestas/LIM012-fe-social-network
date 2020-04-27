@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { signUp, verification } from '../firebase-controller.js';
+import { signUp, verificationEmail } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
 export default () => {
@@ -25,7 +25,7 @@ export default () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
     signUp(emailLogUp, passwordLogUp).then(() => {
-      verification().then(() => {
+      verificationEmail().then(() => {
         const notification = document.createElement('div');
         notification.classList.add('notification');
         notification.textContent = 'Revisa tu correo electrónico para terminar el registro';

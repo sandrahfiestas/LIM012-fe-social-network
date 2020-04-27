@@ -8,11 +8,7 @@ export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUse
 
 
 // Verificación
-export const verification = () => {
-  const user = firebase.auth().currentUser;
-
-  return user.sendEmailVerification();
-};
+export const verificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
 
 // Cerrar sesión
 export const signOut = () => firebase.auth().signOut();
@@ -23,7 +19,7 @@ export const validation = (callback) => {
   // console.log('validacion de usuario');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      if (user.emailVerified) {
+      if (user.emailVerified === true) {
         window.location.hash = '#/home';
         return callback(window.location.hash);
       }
