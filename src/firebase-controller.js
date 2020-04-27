@@ -26,18 +26,15 @@ export const validation = (callback) => {
   });
 };
 
-
 // Iniciar sesión con Google
 export const logInGoogle = () => {
   // Creando instancia del proveedor - Google
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(providerGoogle);
-}
-
+};
 
 // Iniciar sesión con Facebook
 export const logInFacebook = () => {
   const providerFacebook = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(providerFacebook);
-}
-
+};
