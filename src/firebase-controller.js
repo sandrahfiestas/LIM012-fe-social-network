@@ -26,9 +26,11 @@ export const validation = (callback) => {
       if (user.emailVerified) {
         window.location.hash = '#/home';
         return callback(window.location.hash);
+      } else {
+        console.log('Error en validación del observador');
       }
-      window.location.hash = '#/signin';
     }
+    window.location.hash = '#/signin';
     return callback(window.location.hash);
   });
 };
