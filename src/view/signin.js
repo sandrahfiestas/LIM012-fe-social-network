@@ -7,16 +7,16 @@ export default () => {
   const viewSignIn = document.createElement('div');
   viewSignIn.classList.add('signin');
   viewSignIn.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
-    <p class="text">Bienvenida a la red social para mujeres</p>
-    <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
-    <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
-    <button class="btn-initsession" id="btnInitSession">Iniciar sesión
-      <span class="balloon ocult">El email o contraseña no son válidos</span>
-    </button>
-    <p class="text2">o ingresa con</p>
-    <p class="text2">¿No tienes cuenta?</p>
-    <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>`;
+  <img src="../src/img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+  <p class="text">Bienvenida a la red social para mujeres</p>
+  <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
+  <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
+  <button class="btn-initsession" id="btnInitSession">Iniciar sesión
+    <span class="balloon ocult">El email o contraseña no son válidos</span>
+  </button>
+  <p class="text2">o ingresa con</p>
+  <p class="text2">¿No tienes cuenta?</p>
+  <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>`;
 
   const btnLogIn = viewSignIn.querySelector('#btnInitSession');
   btnLogIn.addEventListener('click', () => {
@@ -25,10 +25,7 @@ export default () => {
     const msgAlert = viewSignIn.querySelector('.balloon');
 
     signIn(emailLogIn, passwordLogIn).then(() => {
-      // console.log('que pasa');
-      // o llamo a observer
       validation(changeView);
-      // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
     }).catch(() => {
       // Mostrar el error en pantalla
       msgAlert.classList.remove('ocult');
@@ -37,6 +34,7 @@ export default () => {
       }, 3000);
     });
   });
+  
 
   const btnViewSignUp = viewSignIn.querySelector('#btnViewSignUp');
   btnViewSignUp.addEventListener('click', () => {

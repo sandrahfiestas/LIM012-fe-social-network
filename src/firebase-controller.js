@@ -2,7 +2,6 @@
 // Iniciar sesión
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
-
 // Registrar usuario
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
@@ -18,7 +17,6 @@ export const verification = () => {
 export const signOut = () => firebase.auth().signOut();
 
 // Validación
-
 export const validation = (callback) => {
   // console.log('validacion de usuario');
   firebase.auth().onAuthStateChanged((user) => {
@@ -31,6 +29,7 @@ export const validation = (callback) => {
       }
     }
     window.location.hash = '#/signin';
-    return callback(window.location.hash);
+
+  return callback(window.location.hash);
   });
 };
