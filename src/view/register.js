@@ -37,7 +37,7 @@ export default () => {
     const alertIconE = viewSignUp.querySelector('#alertIconE');
     const alertIconP = viewSignUp.querySelector('#alertIconP');
 
-  
+
     //Validación de formulario
     
     nameUser.addEventListener('blur', () => {
@@ -81,6 +81,7 @@ export default () => {
         alertIconP.classList.add('hide');
         passwordLogUp.classList.remove('inputInvalid');
         btnNewAccount.classList.remove('btn-locked');
+        btnNewAccount.disabled= false;
         console.log('verdadero password');
        }else {
         alertIconP.classList.remove('hide');
@@ -91,10 +92,8 @@ export default () => {
       }      
     });
     // Termina validación de formulario
-  
-      
-  
-  //const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
+
+
   btnNewAccount.addEventListener('click', () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
