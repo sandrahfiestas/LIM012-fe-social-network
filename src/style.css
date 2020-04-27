@@ -67,7 +67,7 @@ body{
     border-bottom-color: white;
     border-bottom-width: 0.1em;
     border-left-style: none;
-    font-family: Noto Serif;
+    font-family: 'Noto Serif', serif;
     font-size: 1.35em;
     margin-bottom: 1.2em;
     color: white;
@@ -111,7 +111,7 @@ body{
     background: #FFC6B9;
     border-radius: 10px;
     border-style: none;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans', sans-serif;
     margin-bottom: 2em;
 }
 
@@ -137,7 +137,8 @@ body{
     left: -1.6em;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     font-size: 0.7em;
-    z-index: 2
+    z-index: 2;
+
 }
 
 .balloon:before {
@@ -211,7 +212,7 @@ body{
     box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
-    font-family: Noto Serif;
+    font-family: 'Noto Serif', serif;
     font-size: 1.35em;
     color: #A354AD;
 }
@@ -234,7 +235,7 @@ body{
 }
 
 .text-init-session {
-    font-family: Noto serif;
+    font-family: 'Noto Serif', serif;
     color: #FFF;
     text-decoration: none;
     font-size: 1.7em;
@@ -280,6 +281,35 @@ body{
     color: #170842;
 }
 
+/* Estilos de notfound */
+
+.nf-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4em;
+    background-color: #FFC6B9;
+    height: 100vh;
+}
+
+.nf-image {
+    width: 80%;
+    margin-bottom: 1em;
+}
+
+.nf-number {
+    font-family: 'Noto Serif', serif;
+    color: #9F00A3;
+    font-weight: 1000;
+    font-size: 7em;
+}
+
+.nf-text {
+    font-family: 'Noto Serif', serif;
+    color: #9F00A3;
+    font-size: 2em;
+}
+
 @media screen and (min-width: 1024px){
     .signin{
         align-content: flex-end;
@@ -299,6 +329,10 @@ body{
     .notification {
         width: 400px;
         margin-left: -200px;
+    }
+
+    .nf-image {
+        width: 30em;
     }
 }
     /* .msgInvalid {

@@ -1,44 +1,17 @@
+/* eslint-disable max-len */
 // Iniciar sesión
-// eslint-disable-next-line max-len
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
 
-
 // Registrar usuario
-// eslint-disable-next-line max-len
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
-
-// Verificación
-export const verification = () => {
-  const user = firebase.auth().currentUser;
-
-  return user.sendEmailVerification();
-};
-
-/*
-// Validación
-export const validation = (callback) => {
-  console.log('validation');
-  const user = firebase.auth().currentUser;
-  if (user.emailVerified) {
-    window.location.hash = '#/home';
-
-    return callback('/#home');
-  }
-
-  return callback('#/signin');
-};
-*/
+// Verificación de email
+export const verificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
 
 // Cerrar sesión
-export const signOut = () => {
-  firebase.auth().signOut().then(() => {
-    console.log('Cerrando sesión');
-  }).catch((error) => {
-    console.log(error);
-  });
-};
+export const signOut = () => firebase.auth().signOut();
 
+// Validación
 export const validation = (callback) => {
   // console.log('validacion de usuario');
   firebase.auth().onAuthStateChanged((user) => {

@@ -25,7 +25,6 @@ export default () => {
     <button id="btnLogInFacebook">Facebook SingIn</button>
     `;
 
-
   const btnLogIn = viewSignIn.querySelector('#btnInitSession');
   btnLogIn.addEventListener('click', () => {
     const emailLogIn = viewSignIn.querySelector('#emailLogIn').value;
@@ -33,13 +32,8 @@ export default () => {
     const msgAlert = viewSignIn.querySelector('.balloon');
 
     signIn(emailLogIn, passwordLogIn).then(() => {
-      console.log('que pasa');
-      // o llamo a observer
       validation(changeView);
-      // Antes de eso deberíamos ver si se verificó el correo con el enlace enviado  ?
-    }).catch((error) => {
-      // Mostrar el error en pantalla
-      console.log(error.message);
+    }).catch(() => {
       msgAlert.classList.remove('ocult');
       setTimeout(() => {
         msgAlert.classList.add('ocult');

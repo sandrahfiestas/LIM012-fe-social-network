@@ -1,12 +1,12 @@
-import { signUp, verification } from '../firebase-controller.js';
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
+import { signUp, verificationEmail } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup');
   viewSignUp.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="hide-show"> 
+    <img src="../src/img/logo.svg" alt="Voz Amiga" class="hide-show"> 
     <div class="register-container">
         <div class="register-container register">
             <p class="text-purple">Regístrate</p>
@@ -99,7 +99,7 @@ export default () => {
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
   
     signUp(emailLogUp, passwordLogUp).then(() => {
-      verification().then(() => {
+      verificationEmail().then(() => {
         const notification = document.createElement('div');
         notification.classList.add('notification');
         notification.textContent = 'Revisa tu correo electrónico para terminar el registro';

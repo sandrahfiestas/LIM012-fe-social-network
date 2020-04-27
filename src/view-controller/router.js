@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
 import { components } from '../view/index.js';
 
 const changeView = (route) => {
@@ -12,7 +12,7 @@ const changeView = (route) => {
       break;
     case '#/home': routeSelected = sectionContainer.appendChild(components.home());
       break;
-    default: routeSelected = 'no se ha encontrado la ruta';
+    default: routeSelected = sectionContainer.appendChild(components.notfound());
       break;
   }
 
