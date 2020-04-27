@@ -322,8 +322,11 @@ body{
      cursor: none;
     }
 
-
-    /* ejemplo */
+    .logoRedes{
+     width: 50px;
+     height: 50px;
+    }
+  
 
 
     

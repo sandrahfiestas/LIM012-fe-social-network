@@ -10,7 +10,7 @@ export default () => {
   const viewSignIn = document.createElement('div');
   viewSignIn.classList.add('signin');
   viewSignIn.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+    <img src="./img/logo.svg" alt="Voz Amiga" class="logo-social-network">
     <p class="text">Bienvenida a la red social para mujeres</p>
     <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
     <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
@@ -21,6 +21,8 @@ export default () => {
     <p class="text2">¿No tienes cuenta?</p>
     <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
     <p>ó</p>
+    <img class="logoRedes" src="./img/imaGoogle.png" alt="Google">
+    <img class="logoRedes" src="./img/imaFace.png" alt="Facebook">
     <button id="btnLogInGoogle">Google SingIn</button>
     <button id="btnLogInFacebook">Facebook SingIn</button>
     `;

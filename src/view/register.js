@@ -10,7 +10,6 @@ export default () => {
     <div class="register-container">
         <div class="register-container register">
             <p class="text-purple">Regístrate</p>
-          <form action="" method="post">
             <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"><p id= "alertIconN" class= "hide">*</p>
             <div class="msgAlertReg">
             <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"><p id= "alertIconE" class= "hide">*</p>
@@ -20,14 +19,15 @@ export default () => {
             <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" maxlength= "20"><p id= "alertIconP" class= "hide">*</p>
             <span class="balloon ocult">Tamaño mínimo de 6 caracteres</span>
             </div>
-            <button type="submit" class="btn-new-account btn-locked" id="btnNewAccount" disabled= true>Crear cuenta</button>
-          </form>
+            <button class="btn-new-account btn-locked" id="btnNewAccount" disabled= true>Crear cuenta</button>
             <p class="text-init-app">o ingresa con</p>
         </div>
         <p class="text2">¿Ya tienes una cuenta?</p>
         <a class="text-init-session" id="btnViewLogIn" href="#/signin">Inicia sesión</a>
     </div>`;
-    
+  
+    // <button class="btn-new-account btn-locked" id="btnNewAccount" disabled= true>Crear cuenta</button>
+
 
     const nameUser = viewSignUp.querySelector('#nameUser');
     const emailLogUp = viewSignUp.querySelector('#emailSignUp');
@@ -38,8 +38,8 @@ export default () => {
     const alertIconP = viewSignUp.querySelector('#alertIconP');
 
 
+
     //Validación de formulario
-    
     nameUser.addEventListener('blur', () => {
       const patronName = /^[A-Za-z]+$/;
       let coincideName = patronName.test(nameUser.value);
@@ -73,7 +73,7 @@ export default () => {
         console.log('falso boton email');     
       }      
     })
-    
+  
     passwordLogUp.addEventListener('input', () => {
       const patronPassword = /[A-Za-z0-9]{6,20}$/;
       let coincidenciaPassword = patronPassword.test(passwordLogUp.value);
@@ -93,7 +93,6 @@ export default () => {
     });
     // Termina validación de formulario
 
-
   btnNewAccount.addEventListener('click', () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
@@ -112,6 +111,7 @@ export default () => {
       console.log(error.message);
     });
   });
+
 
   const btnViewLogIn = viewSignUp.querySelector('#btnViewLogIn');
   btnViewLogIn.addEventListener('click', () => {
