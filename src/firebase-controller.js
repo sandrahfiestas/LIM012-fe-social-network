@@ -1,7 +1,5 @@
-/* eslint-disable max-len */
 // Iniciar sesión
 export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithEmailAndPassword(emailLogIn, passwordLogIn);
-
 
 // Registrar usuario
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
@@ -14,7 +12,6 @@ export const verificationEmail = () => firebase.auth().currentUser.sendEmailVeri
 export const signOut = () => firebase.auth().signOut();
 
 // Validación
-
 export const validation = (callback) => {
   // console.log('validacion de usuario');
   firebase.auth().onAuthStateChanged((user) => {
@@ -22,9 +19,12 @@ export const validation = (callback) => {
       if (user.emailVerified === true) {
         window.location.hash = '#/home';
         return callback(window.location.hash);
+      } else {
+        console.log('Error en validación del observador');
       }
-      window.location.hash = '#/signin';
     }
-    return callback(window.location.hash);
+    window.location.hash = '#/signin';
+
+  return callback(window.location.hash);
   });
 };
