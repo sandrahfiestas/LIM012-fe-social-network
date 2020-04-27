@@ -5,8 +5,7 @@ export const signIn = (emailLogIn, passwordLogIn) => firebase.auth().signInWithE
 // Registrar usuario
 export const signUp = (emailSignUp, passwordSignUp) => firebase.auth().createUserWithEmailAndPassword(emailSignUp, passwordSignUp);
 
-
-// Verificación
+// Verificación de email
 export const verificationEmail = () => firebase.auth().currentUser.sendEmailVerification();
 
 // Cerrar sesión
@@ -26,3 +25,19 @@ export const validation = (callback) => {
     return callback(window.location.hash);
   });
 };
+
+
+// Iniciar sesión con Google
+export const logInGoogle = () => {
+  // Creando instancia del proveedor - Google
+  const providerGoogle = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(providerGoogle);
+}
+
+
+// Iniciar sesión con Facebook
+export const logInFacebook = () => {
+  const providerFacebook = new firebase.auth.FacebookAuthProvider();
+  return firebase.auth().signInWithPopup(providerFacebook);
+}
+

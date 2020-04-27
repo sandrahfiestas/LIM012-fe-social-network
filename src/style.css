@@ -138,6 +138,7 @@ body{
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     font-size: 0.7em;
     z-index: 2;
+
 }
 
 .balloon:before {
@@ -150,6 +151,22 @@ body{
     border-right: 18px solid transparent;
     border-left: 18px solid transparent;
 }
+
+.msgAlertReg {
+    position: relative;
+    width: 100%;
+    
+}
+.msgAlertReg:hover .balloon {
+    visibility: visible;
+    /* margin-top: 2%;
+    display: inline-block;
+    background-color: rgb(105, 77, 109); */
+}
+
+
+
+
 
 /* Estilos de register */
 
@@ -180,6 +197,7 @@ body{
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 2em;
+    align-items: center;
 }
 
 .input-register {
@@ -317,3 +335,29 @@ body{
         width: 30em;
     }
 }
+    /* .msgInvalid {
+        color: #ff0000;
+    }  */
+
+    .iconInvalid{
+        color: red;
+    }
+    .inputInvalid {
+       border-bottom-color: red;
+    }
+
+    /* .input-register:invalid {
+        border-bottom-color: #ff0000;
+    } */
+
+    .btn-locked {
+     background: rgb(212, 186, 181);
+     color: #4c4858;
+     cursor: none;
+    }
+
+
+    /* ejemplo */
+
+
+    
