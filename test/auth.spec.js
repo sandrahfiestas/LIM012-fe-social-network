@@ -2,6 +2,9 @@ import {
   signIn,
   signUp,
   signOut,
+  logInGoogle,
+  logInFacebook,
+  // verificationEmail,
 } from '../src/firebase-controller.js';
 
 // configurando firebase mock
@@ -41,3 +44,26 @@ describe('signOut', () => {
       expect(user).toBe(undefined);
     }));
 });
+
+describe('logInGoogle', () => {
+  it('Debería poder iniciar sesión con Google', () => logInGoogle()
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
+      expect(user.providerData).toEqual([{ providerId: 'google.com' }]);
+    }));
+});
+
+describe('logInFacebook', () => {
+  it('Debería poder iniciar sesión con Facebook', () => logInFacebook()
+    .then((user) => {
+      expect(user.isAnonymous).toBe(false);
+      expect(user.providerData).toEqual([{ providerId: 'facebook.com' }]);
+    }));
+});
+
+// describe('verificationEmail', () => {
+//   it('Debería enviar un email luego de registrarse', () => verificationEmail()
+//     .then((user) => {
+//       expect(user).toBe('');
+//     }));
+// });

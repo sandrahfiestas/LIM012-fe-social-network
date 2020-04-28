@@ -1,6 +1,7 @@
 import {
-  signIn, validation, logInGoogle, logInFacebook,
+  signIn, logInGoogle, logInFacebook,
 } from '../firebase-controller.js';
+import { validation } from '../validation-controller.js';
 
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
@@ -44,23 +45,13 @@ export default () => {
     changeView('#/signup');
   });
 
-
   // Iniciar sesión con Google
   const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle().then(() => {
-      // changeView('#/home');
-    });
-  });
-
+  btnLogInGoogle.addEventListener('click', logInGoogle);
 
   // Iniciar sesión con Facebook
   const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
-  btnLogInFacebook.addEventListener('click', () => {
-    logInFacebook().then(() => {
-      changeView('#/home');
-    });
-  });
+  btnLogInFacebook.addEventListener('click', logInFacebook);
 
   return viewSignIn;
 };

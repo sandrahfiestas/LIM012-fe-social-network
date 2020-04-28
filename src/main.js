@@ -1,5 +1,5 @@
 import { changeView } from './view-controller/router.js';
-import { validation } from './firebase-controller.js';
+import { validation } from './validation-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

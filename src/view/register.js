@@ -90,7 +90,6 @@ export default () => {
   });
   // Termina validación de formulario
 
-
   btnNewAccount.addEventListener('click', () => {
     const emailLogUpValue = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUpValue = viewSignUp.querySelector('#passwordSignUp').value;
