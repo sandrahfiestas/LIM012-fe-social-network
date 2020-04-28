@@ -104,6 +104,7 @@ body{
     color: #9F00A3;
     font-weight: 700;
     cursor: pointer;
+    outline: none;
 }
 
 .btn-initsession:hover{
@@ -183,7 +184,6 @@ body{
 /* Fin de estilos de iniciar sesión*/
 
 /* Estilos de register */
-
 .hide-show {
     display: none;
 }
@@ -194,6 +194,39 @@ body{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.msgAlertReg:hover .balloon-2 {
+    visibility: visible;
+}
+
+.balloon-2 {
+    position: absolute;
+    width: 18em;
+    background-color: #4E2954;
+    color:white;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+    text-align: center;
+    top: 5em;
+    left: 50%;
+    margin-left: -9em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+    font-size: 1em;
+    z-index: 2;
+}
+
+.balloon-2:before {
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin-top: -2em;
+    left: 42%;
+    border-bottom: 20px solid #4E2954;
+    border-right: 18px solid transparent;
+    border-left: 18px solid transparent;
 }
 
 .register-container {
@@ -529,6 +562,10 @@ section .description{
         width: 27em;
     }
 
+    .logo-register {
+        width: 250px;
+    }
+
     .notification {
         width: 400px;
         margin-left: -200px;
@@ -543,9 +580,6 @@ section .description{
         color: #ff0000;
     }  */
 
-    .iconInvalid{
-        color: red;
-    }
     .inputInvalid {
        border-bottom-color: red;
     }
