@@ -1,28 +1,34 @@
-import { signIn, validation, logInGoogle, logInFacebook} from '../firebase-controller.js';
+import {
+  signIn,
+  validation,
+  logInGoogle,
+  logInFacebook,
+} from '../firebase-controller.js';
 
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
 // const BASE_URL = 'http://127.0.0.1:5500/src';
 
-
-
 export default () => {
   const viewSignIn = document.createElement('div');
   viewSignIn.classList.add('signin');
   viewSignIn.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
-    <p class="text">Bienvenida a la red social para mujeres</p>
-    <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
-    <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
-    <button class="btn-initsession" id="btnInitSession">Iniciar sesión
-      <span class="balloon ocult">El email o contraseña no son válidos</span>
-    </button>
-    <p class="text2">o ingresa con</p>
-    <p class="text2">¿No tienes cuenta?</p>
-    <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
-    <p>ó</p>
-    <button id="btnLogInGoogle">Google SingIn</button>
-    <button id="btnLogInFacebook">Facebook SingIn</button>
+    <div class="signin-container">
+      <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+      <p class="text">Bienvenida a la red social para mujeres</p>
+      <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
+      <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
+      <button class="btn-initsession" id="btnInitSession">Iniciar sesión
+        <span class="balloon ocult">El email o contraseña no son válidos</span>
+      </button>
+      <p class="text2">o ingresa con</p>
+      <div class="container-social-network">
+        <button class="btnSocialNetwork googleSignIn" id="btnLogInGoogle"></button>
+        <button class="btnSocialNetwork facebookSignIn" id="btnLogInFacebook"></button>
+      </div>
+      <p class="text2">¿No tienes cuenta?</p>
+      <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
+    </div>
     `;
 
   const btnLogIn = viewSignIn.querySelector('#btnInitSession');
@@ -47,52 +53,50 @@ export default () => {
   });
 
 
-// Iniciar sesión con Google
+  // Iniciar sesión con Google
   const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
   btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle()
-    .then((result) => {
+    logInGoogle().then(() => {
     //  changeView('#/home')
     // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
+      // const token = result.credential.accessToken;
+      // The signed-in user info.
+      // const user = result.user;
     // ...
-  }).catch((error) => {
+    }).catch(() => {
     // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // The email of the user's account used.
+      // const email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      // const credential = error.credential;
     // ...
+    });
   });
-});
 
 
-// Iniciar sesión con Facebook
+  // Iniciar sesión con Facebook
   const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
   btnLogInFacebook.addEventListener('click', () => {
-    logInFacebook()
-    .then((result) => {
-      changeView('#/home')
+    logInFacebook().then(() => {
+      changeView('#/home');
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
+      // const token = result.credential.accessToken;
       // The signed-in user info.
-      var user = result.user;
+      // const user = result.user;
       // ...
-    }).catch((error) => {
+    }).catch(() => {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
       // The email of the user's account used.
-      var email = error.email;
+      // const email = error.email;
       // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+      // const credential = error.credential;
       // ...
     });
   });
 
-    return viewSignIn;
- };
+  return viewSignIn;
+};

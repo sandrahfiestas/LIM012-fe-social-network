@@ -13,15 +13,14 @@ export const signOut = () => firebase.auth().signOut();
 
 // Validación
 export const validation = (callback) => {
-  // console.log('validacion de usuario');
-  firebase.auth().onAuthStateChanged((user) => {
+  return firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       if (user.emailVerified === true) {
         window.location.hash = '#/home';
         return callback(window.location.hash);
       }
-      window.location.hash = '#/signin';
     }
+    window.location.hash = '#/signin';
     return callback(window.location.hash);
   });
 };
@@ -32,12 +31,11 @@ export const logInGoogle = () => {
   // Creando instancia del proveedor - Google
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(providerGoogle);
-}
+};
 
 
 // Iniciar sesión con Facebook
 export const logInFacebook = () => {
   const providerFacebook = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(providerFacebook);
-}
-
+};

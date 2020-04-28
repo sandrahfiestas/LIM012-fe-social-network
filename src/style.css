@@ -22,6 +22,8 @@ body{
     visibility: hidden;
 }
 
+/* Inicio de estilos de iniciar sesión*/
+
 .signin{
     height: 100vh;
     background-image: url(./img/background-socialnetwork.jpg);
@@ -32,13 +34,20 @@ body{
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    padding: 5em 3em 5em 3em;
     box-sizing: border-box;
 }
 
+.signin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+    margin: auto;
+}
+
 .logo-social-network{
-    width: 13em;
-    margin-bottom: 3em;
+    width: 14em;
 }
 
 .text{
@@ -46,7 +55,6 @@ body{
     font-size: 1.2em;
     width: 14em;
     text-align: center;
-    margin-bottom: 1em;
 }
 
 .text2{
@@ -54,7 +62,6 @@ body{
     font-size: 1.5em;
     width: 14em;
     text-align: center;
-    margin-bottom: 0.5em;
 }
 
 .email-login, .password-login{
@@ -69,7 +76,6 @@ body{
     border-left-style: none;
     font-family: 'Noto Serif', serif;
     font-size: 1.35em;
-    margin-bottom: 1.2em;
     color: white;
     padding-left: 1em;
     padding-right: 1em;
@@ -94,7 +100,6 @@ body{
     border-radius: 10px;
     border-style: none;
     font-family: 'Noto Sans', sans-serif;
-    margin-bottom: 2em;
     font-size: 1.6em;
     color: #9F00A3;
     font-weight: 700;
@@ -112,7 +117,6 @@ body{
     border-radius: 10px;
     border-style: none;
     font-family: 'Noto Sans', sans-serif;
-    margin-bottom: 2em;
 }
 
 .btn-signup a{
@@ -120,6 +124,32 @@ body{
     text-decoration: none;
     color: #170842;
     font-weight: 700;
+}
+
+.container-social-network{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 10em;
+}
+
+.btnSocialNetwork{
+    width: 4em;
+    height: 4em;
+    background-color: rgba(255, 255, 255, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.googleSignIn{
+    background-image: url(./img/logo-google.png);
+}
+
+.facebookSignIn{
+    background-image: url(./img/logo-facebook.png);
 }
 
 /*  Mensaje de error al iniciar sesión  */
@@ -138,7 +168,6 @@ body{
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     font-size: 0.7em;
     z-index: 2;
-
 }
 
 .balloon:before {
@@ -155,6 +184,9 @@ body{
 .msgAlertReg {
     position: relative;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 .msgAlertReg:hover .balloon {
@@ -164,9 +196,7 @@ body{
     background-color: rgb(105, 77, 109); */
 }
 
-
-
-
+/* Fin de estilos de iniciar sesión*/
 
 /* Estilos de register */
 
@@ -191,12 +221,20 @@ body{
 .register {
     background-color: #FFF;
     border-radius: 10px;
-    width: 23em;
+    width: 24em;
     height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 2em;
+    align-items: center;
+}
+
+.formRegister{
+    display: flex;
+    height: 17em;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -281,6 +319,14 @@ body{
     color: #170842;
 }
 
+.googleRegister{
+    background-image: url(./img/logo-google-purple.png);
+}
+
+.facebookRegister{
+    background-image: url(./img/logo-facebook-purple.png);
+}
+
 /* Estilos de notfound */
 
 .nf-page {
@@ -311,9 +357,18 @@ body{
 }
 
 @media screen and (min-width: 1024px){
+
+    .container{
+        display: grid;
+    }
+
     .signin{
-        align-content: flex-end;
-        padding-right: 20em;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .signin-container{
+        grid-column-start: 2;
     }
 
     .hide-show {
