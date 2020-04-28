@@ -2,6 +2,7 @@
 import { components } from '../view/index.js';
 
 const changeView = (route) => {
+  window.location.hash = route;
   const sectionContainer = document.getElementById('container');
   sectionContainer.innerHTML = '';
   let routeSelected = '';
