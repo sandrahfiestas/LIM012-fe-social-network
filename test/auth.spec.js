@@ -18,7 +18,8 @@ global.firebase = firebasemock.MockFirebaseSdk(
 
 //
 describe('signIn', () => {
-  it('Debería poder iniciar sesión', () => {
+  it('Debería poder iniciar sesión'
+  , () => {
     signIn('hola@gmail.com', '123456').then((user) => {
       expect(user.email).toBe('hola@gmail.com');
       expect(user.isAnonymous).toBe(false);

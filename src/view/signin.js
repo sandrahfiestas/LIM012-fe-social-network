@@ -58,6 +58,9 @@ export default () => {
     // The signed-in user info.
     var user = result.user;
     // ...
+    let name = result.user.displayName;
+    console.log(user);
+    
   }).catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;
