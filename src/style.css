@@ -110,22 +110,6 @@ body{
     background-color: #F7D7FF;
 }
 
-.btn-signup{
-    width: 12em;
-    height: 2.6em;
-    background: #FFC6B9;
-    border-radius: 10px;
-    border-style: none;
-    font-family: 'Noto Sans', sans-serif;
-}
-
-.btn-signup a{
-    font-size: 1.2em;
-    text-decoration: none;
-    color: #170842;
-    font-weight: 700;
-}
-
 .container-social-network{
     display: flex;
     flex-direction: row;
@@ -327,6 +311,153 @@ body{
     background-image: url(./img/logo-facebook-purple.png);
 }
 
+/* Estilos del home */
+
+.header-home{
+    width: 100vw;
+    height: 4em;
+    background: linear-gradient(180deg, #E153C3 -22.34%, #A254AD 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2em;
+    box-sizing: border-box;
+}
+
+.nav-home{
+    width: 10em;
+    display: flex;
+    align-items: center;
+}
+
+.menu-home{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-home li{
+    color: white;
+}
+
+.btnSignOut a{
+    text-decoration: none;
+    color: white;
+}
+
+.btnHome{
+    width: 10em;
+    background-image: url(./img/logo-voz-amiga.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.btn-signup{
+    width: 12em;
+    height: 2.6em;
+    background: #FFC6B9;
+    border-radius: 10px;
+    border-style: none;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.btn-signup a{
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #170842;
+    font-weight: 700;
+}
+
+.profileSection{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: #DADADA;
+    border-bottom-width: 0.1em;
+    position: relative;
+}
+
+.coverImage{
+    width: 100%;
+    height: 10em;
+    background-image: url(./img/cover-profile.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 16em;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    z-index: 3;
+    position: absolute;
+    top: 6em;
+}
+
+.profileDiv{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.profilePicture{
+    width: 7em;
+    height: 7em;
+    background-image: url(./img/profile-ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-right: 1em;
+}
+
+.userProfile{
+    font-size: 22px;
+    color: #454545;
+    font-family: 'Noto Sans', sans-serif;
+    align-self: flex-end;
+}
+
+section h3{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+section .description{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.divWhite{
+    width: 100%;
+    display: flex;
+    height: 13em;
+    background-color: white;
+}
+
+.timeline{
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+.newPost{
+    width: 100%;
+    height: 15em;
+    box-sizing: border-box;
+    border: 0.2em solid #BE58C0;
+}
+
 /* Estilos de notfound */
 
 .nf-page {
@@ -354,6 +485,23 @@ body{
     font-family: 'Noto Serif', serif;
     color: #9F00A3;
     font-size: 2em;
+}
+
+@media screen and (min-width: 750px){
+
+    .containerHome{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    /* .profileSection{
+        grid-column-start: 1;
+    }
+
+    .timeline{
+        grid-column-start: 3;
+    } */
 }
 
 @media screen and (min-width: 1024px){
@@ -389,6 +537,7 @@ body{
     .nf-image {
         width: 30em;
     }
+
 }
     /* .msgInvalid {
         color: #ff0000;

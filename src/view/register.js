@@ -100,7 +100,6 @@ export default () => {
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
 
     signUp(emailLogUp, passwordLogUp).then(() => {
-
       verificationEmail().then(() => {
         const notification = document.createElement('div');
         notification.classList.add('notification');
@@ -120,4 +119,3 @@ export default () => {
 
   return viewSignUp;
 };
-

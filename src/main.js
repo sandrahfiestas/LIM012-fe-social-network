@@ -16,7 +16,6 @@ firebase.initializeApp(firebaseConfig);
 
 const init = () => {
   validation(changeView);
-  console.log(validation(changeView));
 };
 
 window.addEventListener('load', init);
