@@ -12,12 +12,12 @@ export default () => {
             <p class="text-purple">Regístrate</p>
             <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"><p id= "alertIconN" class= "hide">*</p>
             <div class="msgAlertReg">
-            <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"><p id= "alertIconE" class= "hide">*</p>
-            <span class="balloon ocult">Ingrese un e-mail valido</span>
+              <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"><p id= "alertIconE" class= "hide">*</p>
+              <span class="balloon ocult">Ingrese un e-mail valido</span>
             </div>
             <div class="msgAlertReg">
-            <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" maxlength= "20"><p id= "alertIconP" class= "hide">*</p>
-            <span class="balloon ocult">Tamaño mínimo de 6 caracteres</span>
+              <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" maxlength= "20"><p id= "alertIconP" class= "hide">*</p>
+              <span class="balloon ocult">Tamaño mínimo de 6 caracteres</span>
             </div>
             <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>
             <p class="text-init-app">o ingresa con</p>
@@ -93,7 +93,6 @@ export default () => {
     }
   });
 
-
   // Termina validación de formulario
 
   btnNewAccount.addEventListener('click', () => {
@@ -101,6 +100,7 @@ export default () => {
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
 
     signUp(emailLogUp, passwordLogUp).then(() => {
+
       verificationEmail().then(() => {
         const notification = document.createElement('div');
         notification.classList.add('notification');
@@ -110,9 +110,6 @@ export default () => {
           document.body.removeChild(notification);
         }, 3000);
       });
-    }).catch((error) => {
-      // eslint-disable-next-line no-console
-      console.log(error.message);
     });
   });
 
@@ -124,33 +121,3 @@ export default () => {
   return viewSignUp;
 };
 
-/*
- // Validando nombre de usuario y e-mail
- const nameUser = viewSignUp.querySelector('#nameUser').value;
- const patronName = /[A-Za-z]/;
- const patronEmail = /[A-Za-z]+@[a-z]+\.[a-z]+/ ;
-
- let coincideEmail = patronEmail.test(emailLogUp);
- let coincideName = patronName.test(nameUser);
- if (coincideEmail) {
-   console.log('e- mail VALIDO');
- } if (coincideName) {
-   console.log('nombre VALIDO');
- }else {
-   console.log('DATOS INVALIDOS');
- }
-// Termina Validación
-*/
-
-
-/*
-  // Validación solo expresiones regulares
-      const patronName = /^[A-Za-z]+$/;
-      const patronEmail = /[A-Za-z]+@[a-z]+\.[a-z]+/;
-      const patronPassword = /[A-Za-z0-9]{6,20}$/;
-
-      let coincideName = patronName.test(nameUser.value);
-      let coincideEmail = patronEmail.test(emailLogUp.value);
-      let coincidenciaPassword = patronPassword.test(passwordLogUp.value);
-    // Termina Validación
-*/

@@ -1,9 +1,8 @@
 import {
-  signIn,
-  validation,
-  logInGoogle,
-  logInFacebook,
+  signIn, logInGoogle, logInFacebook,
 } from '../firebase-controller.js';
+import { validation } from '../validation-controller.js';
+
 
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
@@ -52,51 +51,13 @@ export default () => {
     changeView('#/signup');
   });
 
-
   // Iniciar sesión con Google
   const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle().then(() => {
-    //  changeView('#/home')
-    // This gives you a Google Access Token. You can use it to access the Google API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info.
-      // const user = result.user;
-    // ...
-    }).catch(() => {
-    // Handle Errors here.
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // The email of the user's account used.
-      // const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      // const credential = error.credential;
-    // ...
-    });
-  });
-
+  btnLogInGoogle.addEventListener('click', logInGoogle);
 
   // Iniciar sesión con Facebook
   const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
-  btnLogInFacebook.addEventListener('click', () => {
-    logInFacebook().then(() => {
-      changeView('#/home');
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      // const token = result.credential.accessToken;
-      // The signed-in user info.
-      // const user = result.user;
-      // ...
-    }).catch(() => {
-      // Handle Errors here.
-      // const errorCode = error.code;
-      // const errorMessage = error.message;
-      // The email of the user's account used.
-      // const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      // const credential = error.credential;
-      // ...
-    });
-  });
+  btnLogInFacebook.addEventListener('click', logInFacebook);
 
   return viewSignIn;
 };
