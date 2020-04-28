@@ -22,6 +22,8 @@ body{
     visibility: hidden;
 }
 
+/* Inicio de estilos de iniciar sesión*/
+
 .signin{
     height: 100vh;
     background-image: url(./img/background-socialnetwork.jpg);
@@ -32,13 +34,20 @@ body{
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    padding: 5em 3em 5em 3em;
     box-sizing: border-box;
 }
 
+.signin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 80vh;
+    margin: auto;
+}
+
 .logo-social-network{
-    width: 13em;
-    margin-bottom: 3em;
+    width: 14em;
 }
 
 .text{
@@ -46,7 +55,6 @@ body{
     font-size: 1.2em;
     width: 14em;
     text-align: center;
-    margin-bottom: 1em;
 }
 
 .text2{
@@ -54,7 +62,6 @@ body{
     font-size: 1.5em;
     width: 14em;
     text-align: center;
-    margin-bottom: 0.5em;
 }
 
 .email-login, .password-login{
@@ -67,9 +74,8 @@ body{
     border-bottom-color: white;
     border-bottom-width: 0.1em;
     border-left-style: none;
-    font-family: Noto Serif;
+    font-family: 'Noto Serif', serif;
     font-size: 1.35em;
-    margin-bottom: 1.2em;
     color: white;
     padding-left: 1em;
     padding-right: 1em;
@@ -94,7 +100,6 @@ body{
     border-radius: 10px;
     border-style: none;
     font-family: 'Noto Sans', sans-serif;
-    margin-bottom: 2em;
     font-size: 1.6em;
     color: #9F00A3;
     font-weight: 700;
@@ -105,21 +110,30 @@ body{
     background-color: #F7D7FF;
 }
 
-.btn-signup{
-    width: 12em;
-    height: 2.6em;
-    background: #FFC6B9;
-    border-radius: 10px;
-    border-style: none;
-    font-family: Noto Sans;
-    margin-bottom: 2em;
+.container-social-network{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 10em;
 }
 
-.btn-signup a{
-    font-size: 1.2em;
-    text-decoration: none;
-    color: #170842;
-    font-weight: 700;
+.btnSocialNetwork{
+    width: 4em;
+    height: 4em;
+    background-color: rgba(255, 255, 255, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+}
+
+.googleSignIn{
+    background-image: url(./img/logo-google.png);
+}
+
+.facebookSignIn{
+    background-image: url(./img/logo-facebook.png);
 }
 
 /*  Mensaje de error al iniciar sesión  */
@@ -137,7 +151,7 @@ body{
     left: -1.6em;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
     font-size: 0.7em;
-    z-index: 2
+    z-index: 2;
 }
 
 .balloon:before {
@@ -154,6 +168,9 @@ body{
 .msgAlertReg {
     position: relative;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 .msgAlertReg:hover .balloon {
@@ -163,9 +180,7 @@ body{
     background-color: rgb(105, 77, 109); */
 }
 
-
-
-
+/* Fin de estilos de iniciar sesión*/
 
 /* Estilos de register */
 
@@ -190,12 +205,20 @@ body{
 .register {
     background-color: #FFF;
     border-radius: 10px;
-    width: 23em;
+    width: 24em;
     height: 70vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 2em;
+    align-items: center;
+}
+
+.formRegister{
+    display: flex;
+    height: 17em;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -211,7 +234,7 @@ body{
     box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
-    font-family: Noto Serif;
+    font-family: 'Noto Serif', serif;
     font-size: 1.35em;
     color: #A354AD;
 }
@@ -234,7 +257,7 @@ body{
 }
 
 .text-init-session {
-    font-family: Noto serif;
+    font-family: 'Noto Serif', serif;
     color: #FFF;
     text-decoration: none;
     font-size: 1.7em;
@@ -280,10 +303,220 @@ body{
     color: #170842;
 }
 
+.googleRegister{
+    background-image: url(./img/logo-google-purple.png);
+}
+
+.facebookRegister{
+    background-image: url(./img/logo-facebook-purple.png);
+}
+
+/* Estilos del home */
+
+.header-home{
+    width: 100vw;
+    height: 4em;
+    background: linear-gradient(180deg, #E153C3 -22.34%, #A254AD 100%);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2em;
+    box-sizing: border-box;
+}
+
+.nav-home{
+    width: 10em;
+    display: flex;
+    align-items: center;
+}
+
+.menu-home{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-home li{
+    color: white;
+}
+
+.btnSignOut a{
+    text-decoration: none;
+    color: white;
+}
+
+.btnHome{
+    width: 10em;
+    background-image: url(./img/logo-voz-amiga.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.btn-signup{
+    width: 12em;
+    height: 2.6em;
+    background: #FFC6B9;
+    border-radius: 10px;
+    border-style: none;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.btn-signup a{
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #170842;
+    font-weight: 700;
+}
+
+.profileSection{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: #DADADA;
+    border-bottom-width: 0.1em;
+    position: relative;
+}
+
+.coverImage{
+    width: 100%;
+    height: 10em;
+    background-image: url(./img/cover-profile.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top right;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 16em;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    z-index: 3;
+    position: absolute;
+    top: 6em;
+}
+
+.profileDiv{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.profilePicture{
+    width: 7em;
+    height: 7em;
+    background-image: url(./img/profile-ico.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-right: 1em;
+}
+
+.userProfile{
+    font-size: 22px;
+    color: #454545;
+    font-family: 'Noto Sans', sans-serif;
+    align-self: flex-end;
+}
+
+section h3{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+section .description{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.divWhite{
+    width: 100%;
+    display: flex;
+    height: 13em;
+    background-color: white;
+}
+
+.timeline{
+    width: 100%;
+    padding: 2em;
+    box-sizing: border-box;
+}
+
+.newPost{
+    width: 100%;
+    height: 15em;
+    box-sizing: border-box;
+    border: 0.2em solid #BE58C0;
+}
+
+/* Estilos de notfound */
+
+.nf-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4em;
+    background-color: #FFC6B9;
+    height: 100vh;
+}
+
+.nf-image {
+    width: 80%;
+    margin-bottom: 1em;
+}
+
+.nf-number {
+    font-family: 'Noto Serif', serif;
+    color: #9F00A3;
+    font-weight: 1000;
+    font-size: 7em;
+}
+
+.nf-text {
+    font-family: 'Noto Serif', serif;
+    color: #9F00A3;
+    font-size: 2em;
+}
+
+@media screen and (min-width: 750px){
+
+    .containerHome{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    /* .profileSection{
+        grid-column-start: 1;
+    }
+
+    .timeline{
+        grid-column-start: 3;
+    } */
+}
+
 @media screen and (min-width: 1024px){
+
+    .container{
+        display: grid;
+    }
+
     .signin{
-        align-content: flex-end;
-        padding-right: 20em;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .signin-container{
+        grid-column-start: 2;
     }
 
     .hide-show {
@@ -300,6 +533,11 @@ body{
         width: 400px;
         margin-left: -200px;
     }
+
+    .nf-image {
+        width: 30em;
+    }
+
 }
     /* .msgInvalid {
         color: #ff0000;

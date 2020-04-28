@@ -1,6 +1,5 @@
-/* eslint-disable multiline-comment-style */
 import { changeView } from './view-controller/router.js';
-import { validation } from './firebase-controller.js';
+import { validation } from './validation-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,12 +12,10 @@ const firebaseConfig = {
   appId: '1:1080723145307:web:767dc97ae31aaf7998757e',
 };
 // Initialize Firebase
-window.firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 const init = () => {
-  // Colocando el mismo hash en window - revisar
   validation(changeView);
-  console.log(window.location.hash);
 };
 
 window.addEventListener('load', init);
