@@ -402,9 +402,9 @@ body{
     color: white;
 }
 
-.btnSignOut a{
-    text-decoration: none;
+.btnHeader {
     color: white;
+    cursor: pointer;
 }
 
 .btnHome{

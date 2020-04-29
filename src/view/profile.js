@@ -1,16 +1,16 @@
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
-import { signOut } from '../firebase-controller.js';
+import { signOut, user } from '../firebase-controller.js';
 
 export default () => {
-  const userName = firebase.auth().currentUser.displayName;
+  const userName = user().displayName;
 
-  const viewSignInUser = document.createElement('div');
-  viewSignInUser.innerHTML = `
+  const viewUserProfile = document.createElement('div');
+  viewUserProfile.innerHTML = `
     <header class="header-home">
       <nav class="nav-home">
         <ul class="menu-home">
-          <li class="btnHeader" id="btnProfile">Perfil</li>
+          <li class="btnHeader" id="btnHome">Inicio</li>
           <li class="btnHeader" id="btnSignOut">Cerrar sesión</li>
         </ul>
       </nav>
@@ -34,16 +34,16 @@ export default () => {
       </div>
     </section>`;
 
-  const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
+  const btnSignOut = viewUserProfile.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
-    changeView('#/signin');
+    // changeView('#/signin');
     signOut();
   });
 
-  const btnProfile = viewSignInUser.querySelector('#btnProfile');
-  btnProfile.addEventListener('click', () => {
-    changeView('#/profile');
+  const btnHome = viewUserProfile.querySelector('#btnHome');
+  btnHome.addEventListener('click', () => {
+    changeView('#/home');
   });
 
-  return viewSignInUser;
+  return viewUserProfile;
 };

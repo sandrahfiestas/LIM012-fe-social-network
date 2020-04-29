@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { signUp, verificationEmail, logInGoogle } from '../firebase-controller.js';
+import { signUp, verificationEmail, user } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
 export default () => {
@@ -90,6 +90,12 @@ export default () => {
 
     signUp(emailLogUp, passwordLogUp).then(() => {
       verificationEmail().then(() => {
+        // Guardando nombre de usuario en la base de datos
+        const userData = user();
+        userData.updateProfile({
+          displayName: nameUser.value,
+        });
+
         const notification = document.createElement('div');
         notification.classList.add('notification');
         notification.textContent = 'Revisa tu correo electrónico para terminar el registro';
