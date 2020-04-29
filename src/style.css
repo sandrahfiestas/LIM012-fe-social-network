@@ -173,12 +173,14 @@ body{
     align-items: center;
     
 }
+
 .msgAlertReg:hover .balloon {
     visibility: visible;
     /* margin-top: 2%;
     display: inline-block;
     background-color: rgb(105, 77, 109); */
 }
+
 
 /* Fin de estilos de iniciar sesión*/
 
@@ -543,16 +545,19 @@ section .description{
         color: #ff0000;
     }  */
 
+/*     
     .iconInvalid{
         color: red;
     }
-    .inputInvalid {
+     */
+     
+    /* .inputInvalid {
        border-bottom-color: red;
-    }
-
-    /* .input-register:invalid {
-        border-bottom-color: #ff0000;
     } */
+
+    .input-register:invalid {
+        border-bottom-color: #ff0000;
+    }
 
     .btn-locked {
      background: rgb(212, 186, 181);
