@@ -1,12 +1,12 @@
 /* eslint-disable import/no-cycle */
-import { signUp, verificationEmail } from '../firebase-controller.js';
+import { signUp, verificationEmail, logInGoogle } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup');
   viewSignUp.innerHTML = `
-    <img src="../src/img/logo.svg" alt="Voz Amiga" class="hide-show logo-register"> 
+    <img src="../img/logo.svg" alt="Voz Amiga" class="hide-show logo-register"> 
     <div class="register-container">
       <div class="register-container register">
         <p class="text-purple">Regístrate</p>
@@ -23,10 +23,9 @@ export default () => {
           <span class="balloon-2 ocult">Tamaño mínimo de 6 caracteres</span>
         </div>
         <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>
-        <p class="text-init-app">o ingresa con</p>
-        <div class="container-social-network">
-          <button class="btnSocialNetwork googleRegister" id="btnLogInGoogle"></button>
-          <button class="btnSocialNetwork facebookRegister" id="btnLogInFacebook"></button>
+        <div class="btn-google btn-google-size" id="btnLogInGoogle">
+          <div class="logoGoogle googleRegister"></div>
+          <p class="text3">Ingresa sesión con Google</p>
         </div>
       </div>
       <p class="text2">¿Ya tienes una cuenta?</p>
@@ -107,5 +106,12 @@ export default () => {
     changeView('#/signin');
   });
 
+  // Iniciar sesión con Google
+  const btnLogInGoogle = viewSignUp.querySelector('#btnLogInGoogle');
+  btnLogInGoogle.addEventListener('click', logInGoogle);
+
   return viewSignUp;
 };
+
+// Template string del botón de Facebook
+// <button class="btnSocialNetwork facebookRegister" id="btnLogInFacebook"></button>
