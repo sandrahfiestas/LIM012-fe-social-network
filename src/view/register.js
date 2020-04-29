@@ -10,7 +10,7 @@ export default () => {
     <div class="register-container">
         <div class="register-container register">
             <p class="text-purple">Regístrate</p>
-            <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" maxlength="30" pattern="^[A-Za-z]{3,30}*$">
+            <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
             <div class="msgAlertReg ">
               <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]+">
               <span class="balloon ocult">Ingrese un e-mail valido</span>
@@ -101,37 +101,52 @@ const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
 
 
   nameUser.addEventListener('input', () => {  
-    if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
+    if (emailLogUp2.value == "" || passwordLogUp2.value == ""){
+      btnNewAccount.classList.add('btn-locked');
+      btnNewAccount.disabled = true;
+      console.log('email y password vacios');
+    }else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid){
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
       console.log('activar boton');
       console.log(nameUser.validity.valid);
     } else {
       btnNewAccount.classList.add('btn-locked');
+      btnNewAccount.disabled = true;
       console.log('desactivar boton');
     }
   });
 
   emailLogUp2.addEventListener('input', () => {
-    if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
+    if (nameUser.value == "" || passwordLogUp2.value == ""){
+      btnNewAccount.classList.add('btn-locked');
+      btnNewAccount.disabled = true;
+      console.log('usuario y password vacios');
+    } else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
       console.log('activar boton');
       console.log(emailLogUp2.validity.valid);
     } else {
       btnNewAccount.classList.add('btn-locked');
+      btnNewAccount.disabled = true;
       console.log('desactivar boton');
     }
   });
 
   passwordLogUp2.addEventListener('input', () => {
-    if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
+    if (nameUser.value == "" || emailLogUp2.value == ""){
+      btnNewAccount.classList.add('btn-locked');
+      btnNewAccount.disabled = true;
+      console.log('usuario y password vacios');
+    } else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
       console.log('activar boton');
       console.log(passwordLogUp2.validity.valid);
     } else {
       btnNewAccount.classList.add('btn-locked');
+      btnNewAccount.disabled = true;
       console.log('desactivar boton');
     }
   });
