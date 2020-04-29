@@ -101,10 +101,10 @@ const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
 
 
   nameUser.addEventListener('input', () => {  
-    if (emailLogUp2.value == "" || passwordLogUp2.value == ""){
+    if (nameUser.value == "" || emailLogUp2.value == "" || passwordLogUp2.value == ""){
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
-      console.log('email y password vacios');
+      console.log('email o password vacios');
     }else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid){
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
@@ -118,10 +118,10 @@ const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
   });
 
   emailLogUp2.addEventListener('input', () => {
-    if (nameUser.value == "" || passwordLogUp2.value == ""){
+    if (nameUser.value == "" || emailLogUp2.value == "" || passwordLogUp2.value == ""){
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
-      console.log('usuario y password vacios');
+      console.log('usuario o password vacios');
     } else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
@@ -135,10 +135,10 @@ const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
   });
 
   passwordLogUp2.addEventListener('input', () => {
-    if (nameUser.value == "" || emailLogUp2.value == ""){
+    if (nameUser.value == "" || emailLogUp2.value == "" || passwordLogUp2.value == ""){
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
-      console.log('usuario y password vacios');
+      console.log('usuario o password vacios');
     } else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
