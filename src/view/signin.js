@@ -1,5 +1,5 @@
 import {
-  signIn, logInGoogle, logInFacebook,
+  signIn, logInGoogle,
 } from '../firebase-controller.js';
 import { validation } from '../validation-controller.js';
 
@@ -13,17 +13,16 @@ export default () => {
   viewSignIn.classList.add('signin');
   viewSignIn.innerHTML = `
     <div class="signin-container">
-      <img src="../src/img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+      <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
       <p class="text">Bienvenida a la red social para mujeres</p>
       <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
       <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">
       <button class="btn-initsession" id="btnInitSession">Iniciar sesión
         <span class="balloon ocult">El email o contraseña no son válidos</span>
       </button>
-      <p class="text2">o ingresa con</p>
-      <div class="container-social-network">
-        <button class="btnSocialNetwork googleSignIn" id="btnLogInGoogle"></button>
-        <button class="btnSocialNetwork facebookSignIn" id="btnLogInFacebook"></button>
+      <div class="btn-google" id="btnLogInGoogle">
+        <div class="logoGoogle googleSignIn"></div>
+        <p class="text3">Ingresa sesión con Google</p>
       </div>
       <p class="text2">¿No tienes cuenta?</p>
       <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
@@ -56,8 +55,10 @@ export default () => {
   btnLogInGoogle.addEventListener('click', logInGoogle);
 
   // Iniciar sesión con Facebook
-  const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
-  btnLogInFacebook.addEventListener('click', logInFacebook);
+  // Agregar como template string
+  // <button class="btnSocialNetwork facebookSignIn" id="btnLogInFacebook"></button>
+  // const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
+  // btnLogInFacebook.addEventListener('click', logInFacebook);
 
   return viewSignIn;
 };
