@@ -16,7 +16,8 @@ export default () => {
               <span class="balloon ocult">Ingrese un e-mail valido</span>
             </div>
             <div class="msgAlertReg">
-              <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" minlength="6" maxlength="30" pattern="[A-Za-z0-9]{6,30}$">
+        
+            <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" minlength="6" maxlength="30" pattern="[A-Za-z0-9]{6,30}$">
               <span class="balloon ocult">Tamaño mínimo de 6 caracteres</span>
             </div>
             <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>

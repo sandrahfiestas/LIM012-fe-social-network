@@ -418,7 +418,7 @@ body{
 .profilePicture{
     width: 7em;
     height: 7em;
-    background-image: url(./img/profile-ico.png);
+    /* background-image: url(./img/profile-ico.png); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -570,6 +570,10 @@ section .description{
      height: 50px;
     }
   
+    .imgPhotoURL{
+        width: 100px;
+        height: 100px;
+    }
 
 
     
