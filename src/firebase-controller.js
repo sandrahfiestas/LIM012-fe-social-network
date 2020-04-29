@@ -24,3 +24,10 @@ export const logInFacebook = () => {
   const providerFacebook = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(providerFacebook);
 };
+
+export const user = () => firebase.auth().currentUser;
+// .then(function() {
+//   // Update successful.
+// }).catch(function(error) {
+//   // An error happened.
+// });
