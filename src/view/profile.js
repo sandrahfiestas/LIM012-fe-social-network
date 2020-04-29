@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
-import { signOut } from '../firebase-controller.js';
+import { signOut, user } from '../firebase-controller.js';
 
 export default () => {
-  const userName = firebase.auth().currentUser.displayName;
+  const userName = user().displayName;
 
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
@@ -36,7 +36,7 @@ export default () => {
 
   const btnSignOut = viewUserProfile.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
-    changeView('#/signin');
+    // changeView('#/signin');
     signOut();
   });
 
