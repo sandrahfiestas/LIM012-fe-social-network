@@ -1,34 +1,35 @@
 /* eslint-disable import/no-cycle */
-import { signUp, verificationEmail } from '../firebase-controller.js';
-import { changeView } from '../view-controller/router.js';
+import { signUp, verificationEmail, user, logInGoogle} from '../firebase-controller.js';
+import { changeView} from '../view-controller/router.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup');
   viewSignUp.innerHTML = `
-    <img src="../src/img/logo.svg" alt="Voz Amiga" class="hide-show"> 
+    <img src="../img/logo.svg" alt="Voz Amiga" class="hide-show logo-register"> 
     <div class="register-container">
-        <div class="register-container register">
-            <p class="text-purple">Regístrate</p>
-            <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
-            <div class="msgAlertReg ">
-              <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]+">
-              <span class="balloon ocult">Ingrese un e-mail valido</span>
-            </div>
-            <div class="msgAlertReg">
-        
-            <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" minlength="6" maxlength="30" pattern="[A-Za-z0-9]{6,30}$">
-              <span class="balloon ocult">Tamaño mínimo de 6 caracteres</span>
-            </div>
-            <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>
-            <p class="text-init-app">o ingresa con</p>
-            <div class="container-social-network">
-              <button class="btnSocialNetwork googleRegister" id="btnLogInGoogle"></button>
-              <button class="btnSocialNetwork facebookRegister" id="btnLogInFacebook"></button>
-            </div>
+      <div class="register-container register">
+        <p class="text-purple">Regístrate</p>
+        <div class="msgAlertReg">
+        <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
+          <span class="balloon-2 ocult">Solo letras</span>
         </div>
-        <p class="text2">¿Ya tienes una cuenta?</p>
-        <a class="text-init-session" id="btnViewLogIn" href="#/signin">Inicia sesión</a>
+        <div class="msgAlertReg">
+        <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]+">
+          <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
+        </div>
+        <div class="msgAlertReg">
+        <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" minlength="6" maxlength="30" pattern="[A-Za-z0-9]{6,30}$">
+          <span class="balloon-2 ocult">Tamaño mínimo de 6 caracteres</span>
+        </div>
+        <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>
+        <div class="btn-google btn-google-size" id="btnLogInGoogle">
+          <div class="logoGoogle googleRegister"></div>
+          <p class="text3">Ingresa sesión con Google</p>
+        </div>
+      </div>
+      <p class="text2">¿Ya tienes una cuenta?</p>
+      <a class="text-init-session" id="btnViewLogIn" href="#/signin">Inicia sesión</a>
     </div>`;
 
   
@@ -84,6 +85,12 @@ const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
 
     signUp(emailLogUp, passwordLogUp).then(() => {
       verificationEmail().then(() => {
+        // Guardando nombre de usuario en la base de datos
+        const userData = user();
+        userData.updateProfile({
+          displayName: nameUser.value,
+        });
+
         const notification = document.createElement('div');
         notification.classList.add('notification');
         notification.textContent = 'Revisa tu correo electrónico para terminar el registro';
@@ -101,5 +108,12 @@ const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
     changeView('#/signin');
   });
 
+  // Iniciar sesión con Google
+  const btnLogInGoogle = viewSignUp.querySelector('#btnLogInGoogle');
+  btnLogInGoogle.addEventListener('click', logInGoogle);
+
   return viewSignUp;
 };
+
+// Template string del botón de Facebook
+// <button class="btnSocialNetwork facebookRegister" id="btnLogInFacebook"></button>

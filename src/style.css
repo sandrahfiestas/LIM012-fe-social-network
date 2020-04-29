@@ -104,37 +104,53 @@ body{
     color: #9F00A3;
     font-weight: 700;
     cursor: pointer;
+    outline: none;
 }
 
 .btn-initsession:hover{
     background-color: #F7D7FF;
 }
 
-.container-social-network{
+.btn-google{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 10em;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    width: 90%;
+    height: 4em;
+    padding: 0.5em;
+    box-sizing: border-box;
+    background-color: #9E4FA9;
+    border-radius: 1em;
 }
 
-.btnSocialNetwork{
-    width: 4em;
-    height: 4em;
+.btn-google:hover{
+    background-color: rgb(128, 64, 136);
+}
+
+.logoGoogle{
+    width: 2.2em;
+    height: 2.2em;
     background-color: rgba(255, 255, 255, 0);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    border: none;
-    cursor: pointer;
+}
+
+.text3{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1em;
+    color: white;
 }
 
 .googleSignIn{
-    background-image: url(./img/logo-google.png);
+    background-image: url(./img/logo-google-white.png);
 }
 
-.facebookSignIn{
+/* .facebookSignIn{
     background-image: url(./img/logo-facebook.png);
-}
+} */
 
 /*  Mensaje de error al iniciar sesión  */
 
@@ -185,7 +201,6 @@ body{
 /* Fin de estilos de iniciar sesión*/
 
 /* Estilos de register */
-
 .hide-show {
     display: none;
 }
@@ -196,6 +211,39 @@ body{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.balloon-2 {
+    position: absolute;
+    width: 18em;
+    background-color: #4E2954;
+    color:white;
+    padding: 1em;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+    text-align: center;
+    top: 5em;
+    left: 50%;
+    margin-left: -9em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+    font-size: 1em;
+    z-index: 2;
+}
+
+.balloon-2:before {
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin-top: -2em;
+    left: 42%;
+    border-bottom: 20px solid #4E2954;
+    border-right: 18px solid transparent;
+    border-left: 18px solid transparent;
+}
+
+.msgAlertReg:hover .balloon-2 {
+    visibility: visible;
 }
 
 .register-container {
@@ -305,13 +353,23 @@ body{
     color: #170842;
 }
 
-.googleRegister{
-    background-image: url(./img/logo-google-purple.png);
+.btn-google-size{
+    width: 80%;
+    background-color: #BC54B6;
+    box-sizing: border-box;
 }
 
-.facebookRegister{
-    background-image: url(./img/logo-facebook-purple.png);
+.btn-google-size:hover{
+    background-color: #9D4DA3;
 }
+
+.googleRegister{
+    background-image: url(./img/logo-google-white.png);
+}
+
+/* .facebookRegister{
+    background-image: url(./img/logo-facebook-purple.png);
+} */
 
 /* Estilos del home */
 
@@ -346,9 +404,9 @@ body{
     color: white;
 }
 
-.btnSignOut a{
-    text-decoration: none;
+.btnHeader {
     color: white;
+    cursor: pointer;
 }
 
 .btnHome{
@@ -489,6 +547,16 @@ section .description{
     font-size: 2em;
 }
 
+.inputInvalid {
+    border-bottom-color: red;
+}
+
+.btn-locked {
+    background: rgb(212, 186, 181);
+    color: #4c4858;
+    cursor: none;
+}
+
 @media screen and (min-width: 750px){
 
     .containerHome{
@@ -531,6 +599,10 @@ section .description{
         width: 27em;
     }
 
+    .logo-register {
+        width: 250px;
+    }
+
     .notification {
         width: 400px;
         margin-left: -200px;
@@ -540,27 +612,27 @@ section .description{
         width: 30em;
     }
 
+    .btn-google-size{
+        width: 70%;
+    }
 }
-    
-    .input-register:invalid {
-        border-bottom-color: #ff0000;
-    }
 
-    .btn-locked {
-     background: rgb(212, 186, 181);
-     color: #4c4858;
-     cursor: none;
-    }
+.input-register:invalid {
+    border-bottom-color: #ff0000;
+}
 
-    .logoRedes{
-     width: 50px;
-     height: 50px;
-    }
-  
-    .imgPhotoURL{
-     width: 100px;
-     height: 100px;
-    }
+.btn-locked {
+ background: rgb(212, 186, 181);
+ color: #4c4858;
+ cursor: none;
+}
 
+.logoRedes{
+ width: 50px;
+ height: 50px;
+}
 
-    
+.imgPhotoURL{
+ width: 100px;
+ height: 100px;
+}

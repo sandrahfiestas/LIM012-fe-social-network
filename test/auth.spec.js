@@ -3,8 +3,8 @@ import {
   signUp,
   signOut,
   logInGoogle,
-  logInFacebook,
-  // verificationEmail,
+  // logInFacebook,
+  verificationEmail,
 } from '../src/firebase-controller.js';
 
 // configurando firebase mock
@@ -18,6 +18,8 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => null,
   () => mockauth,
 );
+
+const assert = require('assert');
 
 //
 describe('signIn', () => {
@@ -53,17 +55,23 @@ describe('logInGoogle', () => {
     }));
 });
 
-describe('logInFacebook', () => {
-  it('Debería poder iniciar sesión con Facebook', () => logInFacebook()
+// describe('logInFacebook', () => {
+//   it('Debería poder iniciar sesión con Facebook', () => logInFacebook()
+//     .then((user) => {
+//       expect(user.isAnonymous).toBe(false);
+//       expect(user.providerData).toEqual([{ providerId: 'facebook.com' }]);
+//     }));
+// });
+
+describe('verificationEmail', () => {
+  it('Debería enviar un email luego de registrarse', () => verificationEmail()
     .then((user) => {
-      expect(user.isAnonymous).toBe(false);
-      expect(user.providerData).toEqual([{ providerId: 'facebook.com' }]);
+      expect(user.emailVerified).toEqual(false);
     }));
 });
 
-// describe('verificationEmail', () => {
-//   it('Debería enviar un email luego de registrarse', () => verificationEmail()
-//     .then((user) => {
-//       expect(user).toBe('');
-//     }));
-// });
+describe('verificationEmail2', () => {
+  it('Debería enviar un email luego de registrarse', (user) => {
+    assert.equal(verificationEmail(user.emailVerified), false);
+  });
+});
