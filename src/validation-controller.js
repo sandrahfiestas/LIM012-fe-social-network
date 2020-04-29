@@ -1,11 +1,10 @@
 // Validación
 export const validation = callback => firebase.auth().onAuthStateChanged((user) => {
+  let route = '#/signin';
   if (user) {
-    if (user.emailVerified === true) {
-      window.location.hash = '#/home';
-      return callback(window.location.hash);
+    if (user.emailVerified) {
+      route = '#/home';
     }
   }
-  window.location.hash = '#/signin';
-  return callback(window.location.hash);
+  return callback(route);
 });

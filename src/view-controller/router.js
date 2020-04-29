@@ -2,6 +2,7 @@
 import { components } from '../view/index.js';
 
 const changeView = (route) => {
+  window.location.hash = route;
   const sectionContainer = document.getElementById('container');
   sectionContainer.innerHTML = '';
   let routeSelected = '';
@@ -15,6 +16,8 @@ const changeView = (route) => {
     case '#/signup': routeSelected = sectionContainer.appendChild(components.signup());
       break;
     case '#/home': routeSelected = sectionContainer.appendChild(components.home());
+      break;
+    case '#/profile': routeSelected = sectionContainer.appendChild(components.profile());
       break;
     default: routeSelected = sectionContainer.appendChild(components.notfound());
       break;
