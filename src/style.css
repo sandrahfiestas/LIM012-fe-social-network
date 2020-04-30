@@ -526,7 +526,7 @@ header img{
     align-items: flex-end;
 }
 
-.profilePicture{
+.profilePicture {
     width: 7em;
     height: 7em;
     background-image: url(./img/profile-ico.png); 
@@ -543,14 +543,14 @@ header img{
 }
 
 .input-style {
-    max-width: 10em;
+    /* width: 20em; */
     border: 1px solid gray;
     box-sizing: border-box;
 }
 
 .btn-save {
     height: 2em;
-    margin-left: 5em;
+    /* margin-left: 5em; */
 }
 
 section h3{

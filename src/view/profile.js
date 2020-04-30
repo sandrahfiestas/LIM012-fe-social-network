@@ -12,11 +12,11 @@ export default () => {
       <label for="menu-mobile2" class="menuMobile"></label>
       <nav class="nav-home hide">
         <ul class="menu-home">
-          <li class="btnGoProfile" id="btnGoHome"><img class="proPicSmall" src="../img/home-ico.png">Inicio</li>
-          <li class="btnGoOut" id="btnSignOut2"><img class="icoSignOut" src="../img/sign-out.png">Cerrar sesión</li>
+          <li class="btnGoProfile" id="btnGoHome"><img class="proPicSmall" src="./img/home-ico.png">Inicio</li>
+          <li class="btnGoOut" id="btnSignOut2"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
         </ul>
       </nav>
-      <img src="../img/logo-voz-amiga.png" alt="Voz Amiga">
+      <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
       <div class="profileSection">
@@ -25,7 +25,7 @@ export default () => {
           <div class="profileDiv">
             <div class="profilePicture"></div>
             <p class="userProfile" id="name">${userName}</p>
-            <button id="btnSave" class="btn-save hide">Guardar</button>
+            <button id="btnSave" class="btn-save hide">G</button>
           </div>
           <h3>Sobre mí</h3>
           <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
@@ -87,7 +87,7 @@ export default () => {
     saveUser(name.textContent);
   };
 
-  name.addEventListener('blur', editTextName);
+  // name.addEventListener('blur', editTextName);
   btnSave.addEventListener('click', editTextName);
 
   return viewUserProfile;

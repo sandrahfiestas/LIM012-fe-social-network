@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
-import { signOut} from '../firebase-controller.js';
+import { signOut } from '../firebase-controller.js';
 
 export default () => {
   const userName = firebase.auth().currentUser.displayName;
@@ -13,11 +13,11 @@ export default () => {
     <label for="menu-mobile" class="menuMobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="../img/profile-ico.png">Perfil</li>
-        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="../img/sign-out.png">Cerrar sesión</li>
+        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="./img/profile-ico.png">Perfil</li>
+        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
-    <img src="../img/logo-voz-amiga.png" alt="Voz Amiga">
+    <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
       <div class="profileSection">
@@ -25,7 +25,7 @@ export default () => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-                  <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
             </div>
             <p class="userProfile">${userName}</p>
           </div>
