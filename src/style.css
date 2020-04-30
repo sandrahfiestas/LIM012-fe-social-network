@@ -371,7 +371,7 @@ body{
     background-image: url(./img/logo-facebook-purple.png);
 } */
 
-/* Estilos del home */
+/* Estilos del home y profile */
 
 .header-home{
     width: 100vw;
@@ -523,6 +523,7 @@ header img{
     display: flex;
     flex-direction: row;
     align-content: center;
+    align-items: flex-end;
 }
 
 .profilePicture{
@@ -539,7 +540,17 @@ header img{
     font-size: 22px;
     color: #454545;
     font-family: 'Noto Sans', sans-serif;
-    align-self: flex-end;
+}
+
+.input-style {
+    max-width: 10em;
+    border: 1px solid gray;
+    box-sizing: border-box;
+}
+
+.btn-save {
+    height: 2em;
+    margin-left: 5em;
 }
 
 section h3{
@@ -555,6 +566,13 @@ section .description{
     display: flex;
     height: 13em;
     background-color: white;
+    justify-content: right;
+}
+
+.edit-icon {
+    width: 4em;
+    height: 1.5em;
+    cursor: pointer;
 }
 
 .timeline{
@@ -569,6 +587,7 @@ section .description{
     box-sizing: border-box;
     border: 0.2em solid #BE58C0;
 }
+
 
 /* Estilos de notfound */
 
