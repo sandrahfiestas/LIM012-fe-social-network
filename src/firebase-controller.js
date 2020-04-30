@@ -11,13 +11,14 @@ export const verificationEmail = () => firebase.auth().currentUser.sendEmailVeri
 // Cerrar sesión
 export const signOut = () => firebase.auth().signOut();
 
+
 // Iniciar sesión con Google
 export const logInGoogle = () => {
   // Creando instancia del proveedor - Google
   const providerGoogle = new firebase.auth.GoogleAuthProvider();
-  // console.log(providerGoogle);
   return firebase.auth().signInWithPopup(providerGoogle);
 };
+
 
 // Iniciar sesión con Facebook
 export const logInFacebook = () => {
@@ -26,8 +27,3 @@ export const logInFacebook = () => {
 };
 
 export const user = () => firebase.auth().currentUser;
-// .then(function() {
-//   // Update successful.
-// }).catch(function(error) {
-//   // An error happened.
-// });

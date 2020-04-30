@@ -1,9 +1,10 @@
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
-import { signOut } from '../firebase-controller.js';
+import { signOut} from '../firebase-controller.js';
 
 export default () => {
   const userName = firebase.auth().currentUser.displayName;
+  const photoURL = firebase.auth().currentUser.photoURL;
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -23,7 +24,9 @@ export default () => {
         <div class="coverImage"></div>
         <div class="profile">
           <div class="profileDiv">
-            <div class="profilePicture"></div>
+            <div class="profilePicture">
+                  <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
+            </div>
             <p class="userProfile">${userName}</p>
           </div>
           <h3>Sobre mí</h3>

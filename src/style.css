@@ -189,12 +189,14 @@ body{
     align-items: center;
     
 }
+
 .msgAlertReg:hover .balloon {
     visibility: visible;
     /* margin-top: 2%;
     display: inline-block;
     background-color: rgb(105, 77, 109); */
 }
+
 
 /* Fin de estilos de iniciar sesión*/
 
@@ -526,7 +528,7 @@ header img{
 .profilePicture{
     width: 7em;
     height: 7em;
-    background-image: url(./img/profile-ico.png);
+    background-image: url(./img/profile-ico.png); 
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -723,4 +725,22 @@ section .description{
     }
 }
 
-    
+.input-register:invalid {
+    border-bottom-color: #ff0000;
+}
+
+.btn-locked {
+ background: rgb(212, 186, 181);
+ color: #4c4858;
+ cursor: none;
+}
+
+.logoRedes{
+ width: 50px;
+ height: 50px;
+}
+
+.imgPhotoURL{
+ width: 100px;
+ height: 100px;
+}
