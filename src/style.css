@@ -547,7 +547,8 @@ header img{
 }
 
 .input-style {
-    border: 1px solid #FFC6B9;
+    /* width: 20em; */
+    border: 1px solid gray;
     box-sizing: border-box;
 }
 

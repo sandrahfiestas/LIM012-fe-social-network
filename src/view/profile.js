@@ -47,8 +47,12 @@ export default () => {
           <div class="profileDiv">
             <div class="profilePicture"></div>
             <p class="userProfile" id="name">${userName}</p>
+<<<<<<< HEAD
             <button id="btnSave" class="btn-save hide">Guardar</button>
 >>>>>>> Editando nombre
+=======
+            <button id="btnSave" class="btn-save hide">G</button>
+>>>>>>> Enlaces de fotos
           </div>
           
         </div>
@@ -169,7 +173,7 @@ export default () => {
     saveUser(name.textContent);
   };
 
-  name.addEventListener('blur', editTextName);
+  // name.addEventListener('blur', editTextName);
   btnSave.addEventListener('click', editTextName);
 >>>>>>> Editando nombre
 
