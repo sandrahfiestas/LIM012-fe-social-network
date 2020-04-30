@@ -421,7 +421,6 @@ body{
 
 .btnGoProfile{
     width: 100%;
-    /* */
     height: 50%;
     border-bottom-style: solid;
     border-bottom-color: white;
@@ -435,7 +434,6 @@ body{
 
 .btnGoOut{
     width: 100%;
-    /* */
     height: 50%;
 }
 
@@ -603,10 +601,24 @@ section .description{
     border-bottom-color: red;
 }
 
+.input-register:invalid {
+    border-bottom-color: #ff0000;
+}
+
 .btn-locked {
     background: rgb(212, 186, 181);
     color: #4c4858;
     cursor: none;
+}
+
+.logoRedes{
+    width: 50px;
+    height: 50px;
+}
+
+.imgPhotoURL{
+    width: 100px;
+    height: 100px;
 }
 
 @media screen and (min-width: 750px){
@@ -723,24 +735,4 @@ section .description{
     .btn-google-size{
         width: 70%;
     }
-}
-
-.input-register:invalid {
-    border-bottom-color: #ff0000;
-}
-
-.btn-locked {
- background: rgb(212, 186, 181);
- color: #4c4858;
- cursor: none;
-}
-
-.logoRedes{
- width: 50px;
- height: 50px;
-}
-
-.imgPhotoURL{
- width: 100px;
- height: 100px;
 }

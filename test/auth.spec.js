@@ -3,8 +3,8 @@ import {
   signUp,
   signOut,
   logInGoogle,
-  // logInFacebook,
   verificationEmail,
+  // logInFacebook,
 } from '../src/firebase-controller.js';
 
 // configurando firebase mock
@@ -21,7 +21,6 @@ global.firebase = firebasemock.MockFirebaseSdk(
 
 const assert = require('assert');
 
-//
 describe('signIn', () => {
   it('Debería poder iniciar sesión', () => {
     signIn('hola@gmail.com', '123456').then((user) => {
@@ -64,14 +63,7 @@ describe('logInGoogle', () => {
 // });
 
 describe('verificationEmail', () => {
-  it('Debería enviar un email luego de registrarse', () => verificationEmail()
-    .then((user) => {
-      expect(user.emailVerified).toEqual(false);
-    }));
-});
-
-describe('verificationEmail2', () => {
-  it('Debería enviar un email luego de registrarse', (user) => {
-    assert.equal(verificationEmail(user.emailVerified), false);
+  it('Debería enviar un mail de verificación', () => {
+    assert(verificationEmail, 'Envía el mail');
   });
 });
