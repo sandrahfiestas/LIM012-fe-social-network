@@ -8,31 +8,31 @@ export default () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup');
   viewSignUp.innerHTML = `
-    <img src="../img/logo.svg" alt="Voz Amiga" class="hide-show logo-register"> 
-    <div class="register-container">
-      <div class="register-container register">
-        <p class="text-purple">Regístrate</p>
-        <div class="msgAlertReg">
-        <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-Z]{2,30}\\s*)+">
-          <span class="balloon-2 ocult">Solo letras</span>
-        </div>
-        <div class="msgAlertReg">
-        <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
-          <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
-        </div>
-        <div class="msgAlertReg">
-        <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" minlength="6" maxlength="30" pattern="[A-Za-z0-9]{6,30}$">
-          <span class="balloon-2 ocult">Tamaño mínimo de 6 caracteres</span>
-        </div>
-        <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>
-        <div class="btn-google btn-google-size" id="btnLogInGoogle">
-          <div class="logoGoogle googleRegister"></div>
-          <p class="text3">Ingresa sesión con Google</p>
-        </div>
+  <img src="./img/logo.svg" alt="Voz Amiga" class="hide-show logo-register"> 
+  <div class="register-container">
+    <div class="register-container register">
+      <p class="text-purple">Regístrate</p>
+      <div class="msgAlertReg">
+      <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
+        <span class="balloon-2 ocult">Solo letras</span>
       </div>
-      <p class="text2">¿Ya tienes una cuenta?</p>
-      <a class="text-init-session" id="btnViewLogIn" href="#/signin">Inicia sesión</a>
-    </div>`;
+      <div class="msgAlertReg">
+      <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
+        <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
+      </div>
+      <div class="msgAlertReg">
+      <input class="input-register" id="passwordSignUp" type="password" placeholder="contraseña" minlength="6" maxlength="30" pattern="[A-Za-z0-9]{6,30}$">
+        <span class="balloon-2 ocult">Tamaño mínimo de 6 caracteres</span>
+      </div>
+      <button class="btn-new-account btn-locked" id="btnNewAccount" disabled=true>Crear cuenta</button>
+      <div class="btn-google btn-google-size" id="btnLogInGoogle">
+        <div class="logoGoogle googleRegister"></div>
+        <p class="text3">Ingresa sesión con Google</p>
+      </div>
+    </div>
+    <p class="text2">¿Ya tienes una cuenta?</p>
+    <a class="text-init-session" id="btnViewLogIn" href="#/signin">Inicia sesión</a>
+  </div>`;
 
   const nameUser = viewSignUp.querySelector('#nameUser');
   const emailLogUp2 = viewSignUp.querySelector('#emailSignUp');
