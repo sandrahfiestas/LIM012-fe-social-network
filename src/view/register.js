@@ -1,5 +1,10 @@
 /* eslint-disable import/no-cycle */
-import { signUp, verificationEmail, user } from '../firebase-controller.js';
+import {
+  signUp,
+  verificationEmail,
+  user,
+  logInGoogle,
+} from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
 export default () => {
@@ -11,7 +16,7 @@ export default () => {
       <div class="register-container register">
         <p class="text-purple">Regístrate</p>
         <div class="msgAlertReg">
-          <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario">
+        <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-Z]{2,30}\\s*)+">
           <span class="balloon-2 ocult">Solo letras</span>
         </div>
         <div class="msgAlertReg">
