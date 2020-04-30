@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 /* eslint-disable import/no-cycle */
 import {
   signUp, verificationEmail, user, logInGoogle,
@@ -18,7 +17,7 @@ export default () => {
           <span class="balloon-2 ocult">Solo letras</span>
         </div>
         <div class="msgAlertReg">
-        <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]+">
+        <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
           <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
         </div>
         <div class="msgAlertReg">

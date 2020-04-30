@@ -19,8 +19,6 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockauth,
 );
 
-const assert = require('assert');
-
 describe('signIn', () => {
   it('Debería poder iniciar sesión', () => {
     signIn('hola@gmail.com', '123456').then((user) => {
@@ -64,6 +62,9 @@ describe('logInGoogle', () => {
 
 describe('verificationEmail', () => {
   it('Debería enviar un mail de verificación', () => {
-    assert(verificationEmail, 'Envía el mail');
+    const myMock = jest.fn();
+    firebase.auth().currentUser.sendEmailVerification = myMock;
+    verificationEmail();
+    expect(myMock.mock.calls).toHaveLength(1);
   });
 });

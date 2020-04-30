@@ -19,11 +19,10 @@ export const logInGoogle = () => {
   return firebase.auth().signInWithPopup(providerGoogle);
 };
 
-
 // Iniciar sesión con Facebook
-export const logInFacebook = () => {
-  const providerFacebook = new firebase.auth.FacebookAuthProvider();
-  return firebase.auth().signInWithPopup(providerFacebook);
-};
+// export const logInFacebook = () => {
+//   const providerFacebook = new firebase.auth.FacebookAuthProvider();
+//   return firebase.auth().signInWithPopup(providerFacebook);
+// };
 
 export const user = () => firebase.auth().currentUser;
