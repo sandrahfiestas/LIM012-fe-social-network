@@ -24,12 +24,15 @@ export default () => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture"></div>
-            <p class="userProfile">${userName}</p>
+            <p class="userProfile" id="name">${userName}</p>
+            <button id="btnSave" class="btn-save hide">Guardar</button>
           </div>
           <h3>Sobre mí</h3>
           <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
         </div>
-        <div class="divWhite"></div>
+        <div class="divWhite">
+          <img class ="edit-icon" id="editName" src="../src/img/edition-icon.png">
+        </div>
       </div>
       <div class="timeline">
         <div class="newPost"></div>
@@ -56,6 +59,36 @@ export default () => {
   btnHome.addEventListener('click', () => {
     changeView('#/home');
   });
+
+  const editName = viewUserProfile.querySelector('#editName');
+  const btnSave = viewUserProfile.querySelector('#btnSave');
+  const name = viewUserProfile.querySelector('#name');
+
+  editName.addEventListener('click', () => {
+    name.contentEditable = 'true';
+    name.classList.add('input-style');
+    name.focus();
+    btnSave.classList.remove('hide');
+    // name.classList.remove('input-style');
+  });
+
+  const saveUser = (nameUser) => {
+    const userData = user();
+    console.log(userData);
+    userData.updateProfile({
+      displayName: nameUser,
+    });
+  };
+
+  const editTextName = () => {
+    name.contentEditable = 'false';
+    name.classList.remove('input-style');
+    btnSave.classList.add('hide');
+    saveUser(name.textContent);
+  };
+
+  name.addEventListener('blur', editTextName);
+  btnSave.addEventListener('click', editTextName);
 
   return viewUserProfile;
 };
