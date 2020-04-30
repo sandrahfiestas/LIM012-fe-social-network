@@ -24,6 +24,7 @@ export default () => {
         <div class="coverImage"></div>
 
         <div class="profile">
+<<<<<<< HEAD
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${userName}</p>
@@ -42,9 +43,21 @@ export default () => {
           <div class="profile-btn-editions">
             <button id="btnCancel" class="btn-profile hide">Cancelar</button>
             <button id="btnSave" class="btn-profile hide">Guardar</button>
+=======
+          <div class="profileDiv">
+            <div class="profilePicture"></div>
+            <p class="userProfile" id="name">${userName}</p>
+            <button id="btnSave" class="btn-save hide">Guardar</button>
+>>>>>>> Editando nombre
           </div>
           
         </div>
+<<<<<<< HEAD
+=======
+        <div class="divWhite">
+          <img class ="edit-icon" id="editName" src="../src/img/edition-icon.png">
+        </div>
+>>>>>>> Editando nombre
       </div>
 
       <div class="timeline">
@@ -73,6 +86,7 @@ export default () => {
     changeView('#/home');
   });
 
+<<<<<<< HEAD
   const editIcon = viewUserProfile.querySelector('.edit-icon');
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
@@ -99,16 +113,33 @@ export default () => {
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
     btnCancel.classList.remove('hide');
+=======
+  const editName = viewUserProfile.querySelector('#editName');
+  const btnSave = viewUserProfile.querySelector('#btnSave');
+  const name = viewUserProfile.querySelector('#name');
+
+  editName.addEventListener('click', () => {
+    name.contentEditable = 'true';
+    name.classList.add('input-style');
+    name.focus();
+    btnSave.classList.remove('hide');
+    // name.classList.remove('input-style');
+>>>>>>> Editando nombre
   });
 
   const saveUser = (nameUser) => {
     const userData = user();
+<<<<<<< HEAD
     // console.log(userData);
+=======
+    console.log(userData);
+>>>>>>> Editando nombre
     userData.updateProfile({
       displayName: nameUser,
     });
   };
 
+<<<<<<< HEAD
   const editableInfo = () => {
     name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
@@ -130,6 +161,17 @@ export default () => {
     editableInfo();
     saveUser(name.textContent);
   });
+=======
+  const editTextName = () => {
+    name.contentEditable = 'false';
+    name.classList.remove('input-style');
+    btnSave.classList.add('hide');
+    saveUser(name.textContent);
+  };
+
+  name.addEventListener('blur', editTextName);
+  btnSave.addEventListener('click', editTextName);
+>>>>>>> Editando nombre
 
   return viewUserProfile;
 };
