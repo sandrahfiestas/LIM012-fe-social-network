@@ -552,20 +552,25 @@ section .description{
 }
 
 .btn-locked {
-    background: rgb(212, 186, 181);
+    background: rgb(209, 192, 188);
     color: #4c4858;
     cursor: none;
+}
+
+.upload {
+    display: none;
+}
+
+.point-photo{
+    cursor: pointer;
 }
 
 .post-image {
     width: 140px;
     height: 138px;
-    /* margin-top: 25px; */
   }
 
-.upload {
-    display: none;
-}
+
 
 @media screen and (min-width: 750px){
 

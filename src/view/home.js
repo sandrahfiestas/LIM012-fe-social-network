@@ -35,43 +35,60 @@ export default () => {
       <div class="timeline">
         <div class="newPost">   
         
-        <form id="formularioPost" method="post" action="" enctype="multipart/form-data">
+       
         <div id="" class="">
            <textarea id="postText" name="textarea" rows="9" cols="60" placeholder="¿Qué quisieras compartir?"></textarea>
-           <img id="showPicture" class="post-image" src="#" alt="">
-           
-           <figure class="">
+           <img id="showPicture" class="post-image" src="#" alt=""><br>
              <label for="selectImage">
              <input type="file" id="selectImage" class="upload" accept="image/gif, image/jpeg, image/png">
-             <img src="./img/add-photo.png">
+             <img class ="point-photo" src="./img/add-photo.png">
              </label>
-
              <img src="./img/status.png">
-             <input type="submit" id="toPost" value="Publicar">
-            </figure>
-           
-
+             <button class="" id="btnToPost">Publicar</button>
         </div>
-       </form>
+       
 
         </div>
       </div>
     </section>`;
 
-  // Vista previa de imagen cargada
+  
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
+  const btnToPost = viewSignInUser.querySelector('#btnToPost');
 
+
+  // Vista previa de imagen cargada
   selectImage.addEventListener('change', (event) => {
     const input = event.target;
     const reader = new FileReader();
-    reader.onload = function(){
+    reader.onload = () => {
       const dataURL = reader.result;
       
       showPicture.src = dataURL;
     };
     reader.readAsDataURL(input.files[0]);
  });
+
+
+ // Guardar en la Base de datos
+ btnToPost.addEventListener('click', () => {
+   btnToPost.disabled=true;
+  firebase.database().ref("publicaciones")
+  .set({
+    nombre:"Sandra",
+  })
+ });
+
+
+
+
+
+
+
+
+
+
 
   // imgInp.change(() => {
   //   alert ("se cambió de imagen");
