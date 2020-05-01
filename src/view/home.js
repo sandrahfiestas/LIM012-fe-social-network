@@ -27,14 +27,13 @@ export default () => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-              <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
             </div>
-            <p class="userProfile">${userName}</p>
+            <p class="user-name">${userName}</p>
           </div>
           <h3>Sobre mí</h3>
           <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
         </div>
-        <div class="divWhite"></div>
       </div>
       <div class="timeline">
         <div class="post">
