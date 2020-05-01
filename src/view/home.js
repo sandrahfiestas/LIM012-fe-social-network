@@ -31,10 +31,14 @@ export default () => {
           <div class="profileDiv">
             <div class="profilePicture">
 <<<<<<< HEAD
+<<<<<<< HEAD
               <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
 =======
               <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
 >>>>>>> Enlaces de fotos
+=======
+              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
+>>>>>>> Campos editables en el perfil
             </div>
             <p class="user-name">${userName}</p>
           </div>

@@ -45,6 +45,7 @@ export default () => {
             <button id="btnSave" class="btn-profile hide">Guardar</button>
 =======
           <div class="profileDiv">
+<<<<<<< HEAD
             <div class="profilePicture"></div>
             <p class="userProfile" id="name">${userName}</p>
 <<<<<<< HEAD
@@ -60,6 +61,21 @@ export default () => {
 =======
         <div class="divWhite">
           <img class ="edit-icon" id="editName" src="../src/img/edition-icon.png">
+=======
+            <img class="profilePicture" src="./img/profile-ico.png">
+            <p class="user-name" id="name">${userName}</p>
+          </div>
+          <div class="profileDiv profile-text">
+            <h3>Sobre mí</h3>
+            <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
+            <span class="location">Puno, Perú</span>
+          </div>
+          <div class="profile-btn-editions">
+            <img class="edit-icon" src="../src/img/edition-icon.png">
+            <button id="btnSave" class="btn-save hide">Guardar</button>
+          </div>
+          <p class="dropDown hide" id="editName">Editar</p>
+>>>>>>> Campos editables en el perfil
         </div>
 >>>>>>> Editando nombre
       </div>
@@ -91,6 +107,7 @@ export default () => {
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const editIcon = viewUserProfile.querySelector('.edit-icon');
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
@@ -118,14 +135,28 @@ export default () => {
     btnSave.classList.remove('hide');
     btnCancel.classList.remove('hide');
 =======
+=======
+  const editIcon = viewUserProfile.querySelector('.edit-icon');
+>>>>>>> Campos editables en el perfil
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
   const name = viewUserProfile.querySelector('#name');
+  const aboutMe = viewUserProfile.querySelector('.description');
+  const location = viewUserProfile.querySelector('.location');
+
+  editIcon.addEventListener('click', () => {
+    editName.classList.toggle('hide');
+  });
 
   editName.addEventListener('click', () => {
     name.contentEditable = 'true';
+    aboutMe.contentEditable = 'true';
+    location.contentEditable = 'true';
+    aboutMe.classList.add('input-style');
     name.classList.add('input-style');
+    location.classList.add('input-style');
     name.focus();
+    editName.classList.add('hide');
     btnSave.classList.remove('hide');
     // name.classList.remove('input-style');
 >>>>>>> Editando nombre
@@ -134,10 +165,14 @@ export default () => {
   const saveUser = (nameUser) => {
     const userData = user();
 <<<<<<< HEAD
+<<<<<<< HEAD
     // console.log(userData);
 =======
     console.log(userData);
 >>>>>>> Editando nombre
+=======
+    // console.log(userData);
+>>>>>>> Campos editables en el perfil
     userData.updateProfile({
       displayName: nameUser,
     });
@@ -168,7 +203,11 @@ export default () => {
 =======
   const editTextName = () => {
     name.contentEditable = 'false';
+    aboutMe.contentEditable = 'false';
+    location.contentEditable = 'false';
+    aboutMe.classList.remove('input-style');
     name.classList.remove('input-style');
+    location.classList.remove('input-style');
     btnSave.classList.add('hide');
     saveUser(name.textContent);
   };

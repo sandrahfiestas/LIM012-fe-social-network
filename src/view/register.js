@@ -13,19 +13,11 @@ export default () => {
     <div class="register-container register">
       <p class="text-purple">Regístrate</p>
       <div class="msgAlertReg">
-<<<<<<< HEAD
       <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-Z]{2,30}\\s*)+">
         <span class="balloon-2 ocult">Solo letras</span>
       </div>
       <div class="msgAlertReg">
       <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
-=======
-      <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
-        <span class="balloon-2 ocult">Solo letras</span>
-      </div>
-      <div class="msgAlertReg">
-      <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]+">
->>>>>>> Enlaces de fotos
         <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
       </div>
       <div class="msgAlertReg">
@@ -41,7 +33,6 @@ export default () => {
     <p class="text2">¿Ya tienes una cuenta?</p>
     <a class="text-init-session" id="btnViewLogIn" href="#/signin">Inicia sesión</a>
   </div>`;
-<<<<<<< HEAD
 
   const nameUser = viewSignUp.querySelector('#nameUser');
   const emailLogUp2 = viewSignUp.querySelector('#emailSignUp');
@@ -50,29 +41,6 @@ export default () => {
 
   // Inicia validación de registro
   const signUpValidInputs = () => {
-=======
-
-  const nameUser = viewSignUp.querySelector('#nameUser');
-  const emailLogUp2 = viewSignUp.querySelector('#emailSignUp');
-  const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
-  const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
-
-  // Inicia validación de registro
-  nameUser.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
-
-  emailLogUp2.addEventListener('input', () => {
->>>>>>> Enlaces de fotos
     if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
@@ -86,24 +54,9 @@ export default () => {
     }
   };
 
-<<<<<<< HEAD
   nameUser.addEventListener('input', signUpValidInputs);
   emailLogUp2.addEventListener('input', signUpValidInputs);
   passwordLogUp2.addEventListener('input', signUpValidInputs);
-=======
-  passwordLogUp2.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
->>>>>>> Enlaces de fotos
   // Termina validación de registro
 
   btnNewAccount.addEventListener('click', () => {
