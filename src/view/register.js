@@ -11,7 +11,7 @@ export default () => {
       <div class="register-container register">
         <p class="text-purple">Regístrate</p>
         <div class="msgAlertReg">
-        <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
+        <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-Z]{2,30}\\s*)+">
           <span class="balloon-2 ocult">Solo letras</span>
         </div>
         <div class="msgAlertReg">
@@ -40,10 +40,15 @@ const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
 
 // Inicia validación de registro
   nameUser.addEventListener('input', () => {  
+    console.log(nameUser);
+    console.log(nameUser.validity.valid);
     if (nameUser.value == "" || emailLogUp2.value == "" || passwordLogUp2.value == ""){
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
     }else if (nameUser.validity.valid && emailLogUp2.validity.valid && passwordLogUp2.validity.valid){
+      console.log(nameUser);
+      console.log(nameUser.validity.valid);
+      
       btnNewAccount.classList.remove('btn-locked');
       btnNewAccount.disabled = false;
     } else {

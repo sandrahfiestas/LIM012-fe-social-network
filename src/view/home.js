@@ -33,9 +33,79 @@ export default () => {
         <div class="divWhite"></div>
       </div>
       <div class="timeline">
-        <div class="newPost"></div>
+        <div class="newPost">   
+        
+        <form id="formularioPost" method="post" action="" enctype="multipart/form-data">
+        <div id="" class="">
+           <textarea id="postText" name="textarea" rows="9" cols="60" placeholder="¿Qué quisieras compartir?"></textarea>
+           <img id="showPicture" class="post-image" src="#" alt="">
+           
+           <figure class="">
+             <label for="selectImage">
+             <input type="file" id="selectImage" class="upload" accept="image/gif, image/jpeg, image/png">
+             <img src="./img/add-photo.png">
+             </label>
+
+             <img src="./img/status.png">
+             <input type="submit" id="toPost" value="Publicar">
+            </figure>
+           
+
+        </div>
+       </form>
+
+        </div>
       </div>
     </section>`;
+
+  // Vista previa de imagen cargada
+  const selectImage = viewSignInUser.querySelector('#selectImage');
+  const showPicture = viewSignInUser.querySelector('#showPicture');
+
+  selectImage.addEventListener('change', (event) => {
+    const input = event.target;
+    const reader = new FileReader();
+    reader.onload = function(){
+      const dataURL = reader.result;
+      
+      showPicture.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+ });
+
+  // imgInp.change(() => {
+  //   alert ("se cambió de imagen");
+  // });
+
+  // function readImage (input) {
+  //   if (input.files && input.files[0]) {
+  //     let reader = new FileReader();
+
+  //     reader.onload = function(e) {
+  //       blah.attr('src', e.target.result); // Renderizando la imagen
+  //       console.log(e.target.result);
+  //     };
+
+  //     reader.readAsDataURL(input.files[0]);
+  //     console.log(blah);
+      
+  //   }
+
+  // };
+
+  // imgInp.addEventListener('change', () => {
+  //   console.log('Se cambió la imagen');
+  //   readImage();
+  // });
+
+
+
+
+
+
+
+
+
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {

@@ -557,6 +557,16 @@ section .description{
     cursor: none;
 }
 
+.post-image {
+    width: 140px;
+    height: 138px;
+    /* margin-top: 25px; */
+  }
+
+.upload {
+    display: none;
+}
+
 @media screen and (min-width: 750px){
 
     .containerHome{
@@ -635,4 +645,8 @@ section .description{
 .imgPhotoURL{
  width: 100px;
  height: 100px;
+}
+
+textarea {
+    resize: none;
 }
