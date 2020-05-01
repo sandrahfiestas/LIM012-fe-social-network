@@ -19,21 +19,28 @@ export default () => {
       <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
+
       <div class="profileSection">
         <div class="coverImage"></div>
+
         <div class="profile">
           <div class="profileDiv">
-            <div class="profilePicture"></div>
-            <p class="userProfile" id="name">${userName}</p>
-            <button id="btnSave" class="btn-save hide">G</button>
+            <img class="profilePicture" src="./img/profile-ico.png">
+            <p class="user-name" id="name">${userName}</p>
           </div>
-          <h3>Sobre mí</h3>
-          <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
-        </div>
-        <div class="divWhite">
-          <img class ="edit-icon" id="editName" src="../src/img/edition-icon.png">
+          <div class="profileDiv profile-text">
+            <h3>Sobre mí</h3>
+            <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
+            <span class="location">Puno, Perú</span>
+          </div>
+          <div class="profile-btn-editions">
+            <img class="edit-icon" src="../src/img/edition-icon.png">
+            <button id="btnSave" class="btn-save hide">Guardar</button>
+          </div>
+          <p class="dropDown hide" id="editName">Editar</p>
         </div>
       </div>
+
       <div class="timeline">
         <div class="newPost"></div>
       </div>
@@ -60,21 +67,33 @@ export default () => {
     changeView('#/home');
   });
 
+  const editIcon = viewUserProfile.querySelector('.edit-icon');
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
   const name = viewUserProfile.querySelector('#name');
+  const aboutMe = viewUserProfile.querySelector('.description');
+  const location = viewUserProfile.querySelector('.location');
+
+  editIcon.addEventListener('click', () => {
+    editName.classList.toggle('hide');
+  });
 
   editName.addEventListener('click', () => {
     name.contentEditable = 'true';
+    aboutMe.contentEditable = 'true';
+    location.contentEditable = 'true';
+    aboutMe.classList.add('input-style');
     name.classList.add('input-style');
+    location.classList.add('input-style');
     name.focus();
+    editName.classList.add('hide');
     btnSave.classList.remove('hide');
     // name.classList.remove('input-style');
   });
 
   const saveUser = (nameUser) => {
     const userData = user();
-    console.log(userData);
+    // console.log(userData);
     userData.updateProfile({
       displayName: nameUser,
     });
@@ -82,7 +101,11 @@ export default () => {
 
   const editTextName = () => {
     name.contentEditable = 'false';
+    aboutMe.contentEditable = 'false';
+    location.contentEditable = 'false';
+    aboutMe.classList.remove('input-style');
     name.classList.remove('input-style');
+    location.classList.remove('input-style');
     btnSave.classList.add('hide');
     saveUser(name.textContent);
   };
