@@ -13,11 +13,15 @@ export default () => {
     <div class="register-container register">
       <p class="text-purple">Regístrate</p>
       <div class="msgAlertReg">
-      <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario" minlength="3" maxlength="30" pattern="^[A-Za-z]{3,30}$">
+      <input class="input-register" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-Z]{2,30}\\s*)+">
         <span class="balloon-2 ocult">Solo letras</span>
       </div>
       <div class="msgAlertReg">
+<<<<<<< HEAD
       <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
+=======
+      <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
+>>>>>>> Campos editables en el perfil
         <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
       </div>
       <div class="msgAlertReg">
