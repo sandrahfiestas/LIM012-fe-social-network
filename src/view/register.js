@@ -17,11 +17,7 @@ export default () => {
         <span class="balloon-2 ocult">Solo letras</span>
       </div>
       <div class="msgAlertReg">
-<<<<<<< HEAD
-      <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
-=======
       <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
->>>>>>> Campos editables en el perfil
         <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
       </div>
       <div class="msgAlertReg">
@@ -63,7 +59,6 @@ export default () => {
   passwordLogUp2.addEventListener('input', signUpValidInputs);
 
   // Termina validación de registro
-
   btnNewAccount.addEventListener('click', () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
@@ -86,7 +81,6 @@ export default () => {
       });
     });
   });
-
 
   const btnViewLogIn = viewSignUp.querySelector('#btnViewLogIn');
   btnViewLogIn.addEventListener('click', () => {
