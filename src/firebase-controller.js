@@ -27,3 +27,6 @@ export const logInFacebook = () => {
 };
 
 export const user = () => firebase.auth().currentUser;
+
+
+//export const savePost = () => db.jhjhj

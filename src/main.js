@@ -14,6 +14,10 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Initialize Cloud Firestore through Firebase
+//const db = firebase.firestore();
+
+
 const init = () => {
   validation(changeView);
 };

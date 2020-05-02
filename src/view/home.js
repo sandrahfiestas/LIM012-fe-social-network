@@ -34,10 +34,8 @@ export default () => {
       </div>
       <div class="timeline">
         <div class="newPost">   
-        
-       
         <div id="" class="">
-           <textarea id="postText" name="textarea" rows="9" cols="60" placeholder="¿Qué quisieras compartir?"></textarea>
+           <textarea id="postText" rows="9" cols="60" placeholder="¿Qué quisieras compartir?"></textarea>
            <img id="showPicture" class="post-image" src="#" alt=""><br>
              <label for="selectImage">
              <input type="file" id="selectImage" class="upload" accept="image/gif, image/jpeg, image/png">
@@ -46,8 +44,6 @@ export default () => {
              <img src="./img/status.png">
              <button class="" id="btnToPost">Publicar</button>
         </div>
-       
-
         </div>
       </div>
     </section>`;
@@ -56,6 +52,7 @@ export default () => {
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
   const btnToPost = viewSignInUser.querySelector('#btnToPost');
+  
 
 
   // Vista previa de imagen cargada
@@ -73,11 +70,33 @@ export default () => {
 
  // Guardar en la Base de datos
  btnToPost.addEventListener('click', () => {
-   btnToPost.disabled=true;
-  firebase.database().ref("publicaciones")
-  .set({
-    nombre:"Sandra",
-  })
+  const postText = viewSignInUser.querySelector('#postText').value;
+   //console.log(postText);
+  firebase.firestore().collection("publicaciones").add({
+    user: userName,
+    post: postText,
+})
+.then((docRef) => {
+    firebase.firestore().collection("publicaciones").get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`);
+      });
+    });
+
+
+    console.log("Document written with ID: ", docRef.id);
+})
+.catch((error) => {
+    console.error("Error adding document: ", error);
+});
+
+
+  //  btnToPost.disabled=true;
+  // firebase.database().ref("publicaciones")
+  // .set({
+  //   nombre:"Sandra",
+  // })
  });
 
 
