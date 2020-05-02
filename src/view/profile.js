@@ -29,7 +29,7 @@ export default () => {
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${userName}</p>
-            <input class="hide" id="inputName" type="text" value="${userName}" pattern="([a-zA-Z]{2,30}\\s*)+">
+            <input class="hide validity" id="inputName" type="text" value="${userName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
@@ -129,6 +129,7 @@ export default () => {
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
+<<<<<<< HEAD
   // const inputName = viewUserProfile.querySelector('#inputName');
 <<<<<<< HEAD
 
@@ -160,21 +161,25 @@ export default () => {
   const location = viewUserProfile.querySelector('.location');
 =======
 >>>>>>> Boton cancelar
+=======
+  const inputName = viewUserProfile.querySelector('#inputName');
+>>>>>>> Permitiendo solo letras en el nombre al editar el perfil
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
   });
 
   editName.addEventListener('click', () => {
-    name.contentEditable = 'true';
+    // name.contentEditable = 'true';
     aboutMe.contentEditable = 'true';
     location.contentEditable = 'true';
     aboutMe.classList.add('input-style');
-    name.classList.add('input-style');
+    name.classList.add('hide');
+    // name.classList.add('input-style');
     location.classList.add('input-style');
-    // inputName.classList.remove('hide');
-    // inputName.focus();
-    name.focus();
+    inputName.classList.remove('hide');
+    inputName.focus();
+    // name.focus();
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
 <<<<<<< HEAD
@@ -233,10 +238,12 @@ export default () => {
     aboutMe.contentEditable = 'false';
     location.contentEditable = 'false';
     aboutMe.classList.remove('input-style');
-    name.classList.remove('input-style');
+    name.classList.remove('hide');
+    // name.classList.remove('input-style');
     location.classList.remove('input-style');
     btnSave.classList.add('hide');
     btnCancel.classList.add('hide');
+    inputName.classList.add('hide');
   };
 
 <<<<<<< HEAD
@@ -246,13 +253,21 @@ export default () => {
 =======
   btnCancel.addEventListener('click', () => {
     editableInfo();
-    name.textContent = user().displayName;
+    inputName.value = name.textContent;
   });
 
-  // name.addEventListener('blur', editableInfo);
+  inputName.addEventListener('input', () => {
+    if (inputName.validity.valid && inputName.value) {
+      btnSave.disabled = false;
+    } else {
+      btnSave.disabled = true;
+    }
+  });
+
   btnSave.addEventListener('click', () => {
     editableInfo();
-    saveUser(name.textContent);
+    name.textContent = saveUser(inputName.value);
+    name.textContent = inputName.value;
   });
 >>>>>>> Boton cancelar
 
