@@ -487,16 +487,10 @@ header img{
 
 .profileSection{
     width: 100%;
-<<<<<<< HEAD
     height: 25em;
     flex-direction: column;
     align-items: center;
-    border-bottom-style: solid;
-    border-bottom-color: #DADADA;
-    border-bottom-width: 0.1em;
     position: relative;
-=======
->>>>>>> Campos editables en el perfil
 }
 
 .coverImage{
@@ -851,8 +845,6 @@ section h3{
     }
 }
 
-<<<<<<< HEAD
-=======
 .input-register:invalid {
     border-bottom-color: #ff0000;
 }
@@ -867,4 +859,3 @@ section h3{
  width: 50px;
  height: 50px;
 }
->>>>>>> Campos editables en el perfil

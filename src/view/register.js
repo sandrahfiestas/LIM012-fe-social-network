@@ -17,11 +17,7 @@ export default () => {
         <span class="balloon-2 ocult">Solo letras</span>
       </div>
       <div class="msgAlertReg">
-<<<<<<< HEAD
-      <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail"  pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
-=======
       <input class="input-register" id="emailSignUp" type="email" placeholder="e-mail" pattern="[A-Za-z0-9]+@[a-z]+\\.[a-z]+">
->>>>>>> Campos editables en el perfil
         <span class="balloon-2 ocult">Ingrese un e-mail valido</span>
       </div>
       <div class="msgAlertReg">
@@ -44,7 +40,7 @@ export default () => {
   const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
 
   // Inicia validación de registro
-  const signUpValidation = () => {
+  const signUpValidInputs = () => {
     if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
@@ -57,28 +53,12 @@ export default () => {
       btnNewAccount.disabled = true;
     }
   };
-  nameUser.addEventListener('input', signUpValidation);
-  emailLogUp2.addEventListener('input', signUpValidation);
-  passwordLogUp2.addEventListener('input', signUpValidation);
 
-<<<<<<< HEAD
-  passwordLogUp2.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid
-      && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
-
-=======
->>>>>>> Boton cancelar
+  nameUser.addEventListener('input', signUpValidInputs);
+  emailLogUp2.addEventListener('input', signUpValidInputs);
+  passwordLogUp2.addEventListener('input', signUpValidInputs);
   // Termina validación de registro
+
   btnNewAccount.addEventListener('click', () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
