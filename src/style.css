@@ -533,6 +533,12 @@ header img{
     margin-top: 5px;
 }
 
+.profileDiv input {
+    font-size: 1.5em;
+    color: #454545;
+    font-family: 'Noto Sans', sans-serif;
+}
+
 .profilePicture {
     width: 60px;
     height: 60px;
@@ -573,11 +579,17 @@ header img{
     color: #170842;
 }
 
+.btn-profile:last-child:disabled {
+    background-color: #DADADA;
+    border: 1px solid #DADADA;
+    color: #454545;
+}
+
 .btn-profile:first-child:hover {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.btn-profile:last-child:hover {
+.btn-profile:last-child:hover:enabled {
     background-color: rgb(248, 174, 158);
 }
 
@@ -620,11 +632,11 @@ section h3{
     border-left: 10px solid transparent;
 }
 
-.btn-save {
+/* .btn-save {
     align-self: flex-end;
     margin: 0 0.5em 0 0;
     padding: 0.3em;
-}
+} */
 
 .edit-icon {
     width: 4em;
@@ -705,7 +717,7 @@ section h3{
     font-size: 2em;
 }
 
-.inputInvalid {
+.validity:invalid {
     border-bottom-color: red;
 }
 
@@ -845,17 +857,4 @@ section h3{
     }
 }
 
-.input-register:invalid {
-    border-bottom-color: #ff0000;
-}
 
-.btn-locked {
- background: rgb(212, 186, 181);
- color: #4c4858;
- cursor: none;
-}
-
-.logoRedes{
- width: 50px;
- height: 50px;
-}
