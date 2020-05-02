@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { changeView } from './view-controller/router.js';
 import { validation } from './validation-controller.js';
 
@@ -13,6 +14,11 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// Iniciar Firestore
+export const db = firebase.firestore();
+
+//
 
 const init = () => {
   validation(changeView);

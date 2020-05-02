@@ -1,6 +1,8 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
+import { publishComment } from '../firestore-controller.js';
+import { db } from '../main.js';
 
 export default () => {
   const userName = firebase.auth().currentUser.displayName;
@@ -35,7 +37,15 @@ export default () => {
         <div class="divWhite"></div>
       </div>
       <div class="timeline">
-        <div class="newPost"></div>
+        <div class="post">
+          <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
+            <div class="buttons-post">
+              <button id="addImage">Agregar imagen</button>
+              <button id="choosePrivacity">Privacidad</button>
+              <button id="btnNewPost">Publicar</button>
+            </div>
+        </div>
+        <div class="comments" id="comments"></div>
       </div>
     </section>`;
 
@@ -58,6 +68,27 @@ export default () => {
   const btnProfile = viewSignInUser.querySelector('#btnProfile');
   btnProfile.addEventListener('click', () => {
     changeView('#/profile');
+  });
+
+  const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
+  btnNewPost.addEventListener('click', () => {
+    publishComment();
+  });
+
+  // Leyendo datos del database
+
+  const comments = viewSignInUser.querySelector('#comments');
+  db.collection('posts').onSnapshot((querySnapshot) => {
+    comments.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      // console.log(`${doc.id} => ${doc.data()}`);
+      comments.innerHTML += `
+      <div>
+        <p>${doc.data().name}</p>
+        <p>${doc.data().post}</p>
+      </div>
+      `;
+    });
   });
 
   // const btnViewHome = viewSignInUser.querySelector('#btnHome');

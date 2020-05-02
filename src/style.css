@@ -488,6 +488,7 @@ header img{
 .profileSection{
     display: flex;
     width: 100%;
+    height: 25em;
     flex-direction: column;
     align-items: center;
     border-bottom-style: solid;
@@ -557,15 +558,41 @@ section .description{
 
 .timeline{
     width: 100%;
+    height: 100%;
     padding: 2em;
     box-sizing: border-box;
 }
 
-.newPost{
+.post{
+    width: 100%;
+    border: 0.2em solid #BE58C0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+.new-post{
     width: 100%;
     height: 15em;
     box-sizing: border-box;
+    border: 0.1em solid #E599FF;
+    resize: none;
+}
+
+.buttons-post{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.comments{
+    width: 100%;
+    height: 100%;
     border: 0.2em solid #BE58C0;
+    box-sizing: border-box;
 }
 
 /* Estilos de notfound */
