@@ -25,6 +25,7 @@ export default () => {
 
         <div class="profile">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${userName}</p>
@@ -62,20 +63,33 @@ export default () => {
         <div class="divWhite">
           <img class ="edit-icon" id="editName" src="../src/img/edition-icon.png">
 =======
+=======
+          <div class="profileDiv profile-margin">
+>>>>>>> Boton cancelar
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${userName}</p>
+            <input class="hide" id="inputName" type="text" value="${userName}" pattern="([a-zA-Z]{2,30}\\s*)+">
           </div>
-          <div class="profileDiv profile-text">
+          <div class="profile-margin">
             <h3>Sobre mí</h3>
-            <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
-            <span class="location">Puno, Perú</span>
+            <p class="profile-text" id="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
+            <div class="location-info profile-text">
+              <img src="./img/location.png">
+              <span id="location">Puno, Perú</span>
+            </div>
           </div>
+          <img class="edit-icon" src="../src/img/edition-icon.png">
+          <p class="dropDown hide" id="editName">Editar</p>
           <div class="profile-btn-editions">
-            <img class="edit-icon" src="../src/img/edition-icon.png">
-            <button id="btnSave" class="btn-save hide">Guardar</button>
+            <button id="btnCancel" class="btn-profile hide">Cancelar</button>
+            <button id="btnSave" class="btn-profile hide">Guardar</button>
           </div>
+<<<<<<< HEAD
           <p class="dropDown hide" id="editName">Editar</p>
 >>>>>>> Campos editables en el perfil
+=======
+          
+>>>>>>> Boton cancelar
         </div>
 >>>>>>> Editando nombre
       </div>
@@ -116,6 +130,7 @@ export default () => {
   const location = viewUserProfile.querySelector('#location');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
   // const inputName = viewUserProfile.querySelector('#inputName');
+<<<<<<< HEAD
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
@@ -143,6 +158,8 @@ export default () => {
   const name = viewUserProfile.querySelector('#name');
   const aboutMe = viewUserProfile.querySelector('.description');
   const location = viewUserProfile.querySelector('.location');
+=======
+>>>>>>> Boton cancelar
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
@@ -155,11 +172,17 @@ export default () => {
     aboutMe.classList.add('input-style');
     name.classList.add('input-style');
     location.classList.add('input-style');
+    // inputName.classList.remove('hide');
+    // inputName.focus();
     name.focus();
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
+<<<<<<< HEAD
     // name.classList.remove('input-style');
 >>>>>>> Editando nombre
+=======
+    btnCancel.classList.remove('hide');
+>>>>>>> Boton cancelar
   });
 
   const saveUser = (nameUser) => {
@@ -178,6 +201,7 @@ export default () => {
     });
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   const editableInfo = () => {
     name.contentEditable = 'false';
@@ -202,6 +226,9 @@ export default () => {
   });
 =======
   const editTextName = () => {
+=======
+  const editableInfo = () => {
+>>>>>>> Boton cancelar
     name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
     location.contentEditable = 'false';
@@ -209,12 +236,25 @@ export default () => {
     name.classList.remove('input-style');
     location.classList.remove('input-style');
     btnSave.classList.add('hide');
-    saveUser(name.textContent);
+    btnCancel.classList.add('hide');
   };
 
+<<<<<<< HEAD
   // name.addEventListener('blur', editTextName);
   btnSave.addEventListener('click', editTextName);
 >>>>>>> Editando nombre
+=======
+  btnCancel.addEventListener('click', () => {
+    editableInfo();
+    name.textContent = user().displayName;
+  });
+
+  // name.addEventListener('blur', editableInfo);
+  btnSave.addEventListener('click', () => {
+    editableInfo();
+    saveUser(name.textContent);
+  });
+>>>>>>> Boton cancelar
 
   return viewUserProfile;
 };
