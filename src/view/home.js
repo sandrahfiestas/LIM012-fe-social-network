@@ -67,6 +67,23 @@ export default () => {
     reader.readAsDataURL(input.files[0]);
  });
 
+ 
+  // Guarda nombre y post del usuario en la Base de datos
+  btnToPost.addEventListener('click', () => {
+    const postText = viewSignInUser.querySelector('#postText').value;
+    firebase.firestore().collection("publicaciones").add({
+    user: userName,
+    post: postText,
+    })
+    .then((docRef) => {
+        //  btnToPost.disabled=true;
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+  });
+
 
    const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
