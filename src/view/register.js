@@ -40,7 +40,7 @@ export default () => {
   const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
 
   // Inicia validación de registro
-  nameUser.addEventListener('input', () => {
+  const signUpValidInputs = () => {
     if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
@@ -52,35 +52,11 @@ export default () => {
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
     }
-  });
+  };
 
-  emailLogUp2.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid
-      && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
-
-  passwordLogUp2.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid
-      && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
+  nameUser.addEventListener('input', signUpValidInputs);
+  emailLogUp2.addEventListener('input', signUpValidInputs);
+  passwordLogUp2.addEventListener('input', signUpValidInputs);
 
   // Termina validación de registro
 

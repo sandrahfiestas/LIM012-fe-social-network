@@ -45,7 +45,7 @@ export default () => {
               <button id="btnNewPost">Publicar</button>
             </div>
         </div>
-        <div class="comments" id="comments"></div>
+        <div class="all-posts" id="allPosts"></div>
       </div>
     </section>`;
 
@@ -77,19 +77,41 @@ export default () => {
 
   // Leyendo datos del database
 
-  const comments = viewSignInUser.querySelector('#comments');
+  const allPosts = viewSignInUser.querySelector('#allPosts');
   db.collection('posts').onSnapshot((querySnapshot) => {
-    comments.innerHTML = '';
+    allPosts.innerHTML = '';
     querySnapshot.forEach((doc) => {
       // console.log(`${doc.id} => ${doc.data()}`);
-      comments.innerHTML += `
-      <div>
+      allPosts.innerHTML += `
+      <div class="each-post">
         <p>${doc.data().name}</p>
         <p>${doc.data().post}</p>
+        <div class="container-menu-post">
+          <input type="checkbox" id="menu-post" class="hide">
+          <label for="menu-post" class="label-menu-post"></label>
+          <nav class="hide" id="nav-post">
+            <ul class="menu-post">
+              <li class="btn-post-edit" id="btnPostEdit">Editar</li>
+              <li class="btn-post-delete" id="btnPostDelete">Eliminar</li>
+            </ul>
+          </nav>
+        </div>
       </div>
       `;
+
+      const menuPost = viewSignInUser.querySelector('#menu-post');
+      menuPost.addEventListener('click', () => {
+        const navPost = viewSignInUser.querySelector('#nav-post');
+        if (menuPost.checked === true) {
+          navPost.classList.remove('hide');
+        } else if (menuPost.checked === false) {
+          navPost.classList.add('hide');
+        }
+      });
     });
   });
+
+  // Borrando datos del database
 
   // const btnViewHome = viewSignInUser.querySelector('#btnHome');
   // btnViewHome.addEventListener('click', () => {
