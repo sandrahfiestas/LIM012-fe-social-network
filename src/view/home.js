@@ -9,15 +9,13 @@ export default () => {
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-    <input type="checkbox" id="menu-mobile" class="hide">
-    <label for="menu-mobile" class="menuMobile"></label>
-    <nav class="nav-home hide">
-      <ul class="menu-home">
-        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="../img/profile-ico.png">Perfil</li>
-        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="../img/sign-out.png">Cerrar sesión</li>
-      </ul>
-    </nav>
-    <img src="../img/logo-voz-amiga.png" alt="Voz Amiga">
+      <nav class="nav-home">
+        <ul class="menu-home">
+          <li class="btnHeader" id="btnProfile">Perfil</li>
+          <li class="btnHeader" id="btnSignOut">Cerrar sesión</li>
+        </ul>
+      </nav>
+      <button class="btnHome"><a href="#/home"></a></button>
     </header>
     <section class="containerHome">
       <div class="profileSection">
@@ -35,21 +33,42 @@ export default () => {
         <div class="divWhite"></div>
       </div>
       <div class="timeline">
-        <div class="newPost"></div>
+        <div class="newPost">   
+        <div id="" class="">
+           <textarea id="postText" rows="9" cols="60" placeholder="¿Qué quisieras compartir?"></textarea>
+           <img id="showPicture" class="post-image" src="#" alt=""><br>
+             <label for="selectImage">
+             <input type="file" id="selectImage" class="upload" accept="image/gif, image/jpeg, image/png">
+             <img class ="point-photo" src="./img/add-photo.png">
+             </label>
+             <img src="./img/status.png">
+             <button class="" id="btnToPost">Publicar</button>
+        </div>
+        </div>
       </div>
     </section>`;
 
-  const menuMobile = viewSignInUser.querySelector('#menu-mobile');
-  menuMobile.addEventListener('click', () => {
-    const navHome = viewSignInUser.querySelector('.nav-home');
-    if (menuMobile.checked === true) {
-      navHome.classList.remove('hide');
-    } else if (menuMobile.checked === false) {
-      navHome.classList.add('hide');
-    }
-  });
+  
+  const selectImage = viewSignInUser.querySelector('#selectImage');
+  const showPicture = viewSignInUser.querySelector('#showPicture');
+  const btnToPost = viewSignInUser.querySelector('#btnToPost');
+  
 
-  const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
+
+  // Vista previa de imagen cargada
+  selectImage.addEventListener('change', (event) => {
+    const input = event.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;
+      
+      showPicture.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+ });
+
+
+   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
     signOut();
@@ -59,11 +78,6 @@ export default () => {
   btnProfile.addEventListener('click', () => {
     changeView('#/profile');
   });
-
-  // const btnViewHome = viewSignInUser.querySelector('#btnHome');
-  // btnViewHome.addEventListener('click', () => {
-  //   changeView('#/home');
-  // });
 
   return viewSignInUser;
 };
