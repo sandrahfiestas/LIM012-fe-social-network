@@ -57,8 +57,8 @@ export default () => {
   nameUser.addEventListener('input', signUpValidInputs);
   emailLogUp2.addEventListener('input', signUpValidInputs);
   passwordLogUp2.addEventListener('input', signUpValidInputs);
-
   // Termina validación de registro
+
   btnNewAccount.addEventListener('click', () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;

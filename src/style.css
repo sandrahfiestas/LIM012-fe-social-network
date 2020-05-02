@@ -490,9 +490,6 @@ header img{
     height: 25em;
     flex-direction: column;
     align-items: center;
-    border-bottom-style: solid;
-    border-bottom-color: #DADADA;
-    border-bottom-width: 0.1em;
     position: relative;
 }
 
