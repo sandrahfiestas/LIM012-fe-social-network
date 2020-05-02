@@ -40,7 +40,7 @@ export default () => {
   const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
 
   // Inicia validación de registro
-  nameUser.addEventListener('input', () => {
+  const signUpValidation = () => {
     if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
@@ -52,37 +52,12 @@ export default () => {
       btnNewAccount.classList.add('btn-locked');
       btnNewAccount.disabled = true;
     }
-  });
+  };
+  nameUser.addEventListener('input', signUpValidation);
+  emailLogUp2.addEventListener('input', signUpValidation);
+  passwordLogUp2.addEventListener('input', signUpValidation);
 
-  emailLogUp2.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid
-      && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
-
-  passwordLogUp2.addEventListener('input', () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid
-      && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  });
   // Termina validación de registro
-
   btnNewAccount.addEventListener('click', () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
