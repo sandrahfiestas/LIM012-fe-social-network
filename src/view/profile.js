@@ -124,8 +124,12 @@ export default () => {
   };
 
   btnCancel.addEventListener('click', () => {
-    editableInfo();
     inputName.value = name.textContent;
+    getProfileInfo(currentUser.uid).then((doc) => {
+      aboutMe.textContent = doc.data().aboutMe;
+      location.textContent = doc.data().location;
+    });
+    editableInfo();
   });
 
   inputName.addEventListener('input', () => {
