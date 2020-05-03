@@ -89,10 +89,10 @@ export default () => {
         <div class="container-menu-post">
           <input type="checkbox" id="menu-post" class="hide">
           <label for="menu-post" class="label-menu-post"></label>
-          <nav class="hide" id="nav-post">
+          <nav class="" id="nav-post">
             <ul class="menu-post">
               <li class="btn-post-edit" id="btnPostEdit">Editar</li>
-              <li class="btn-post-delete" id="btnPostDelete">Eliminar</li>
+              <li class="btn-post-delete" id="delete-${doc.id}">Eliminar</li>
             </ul>
           </nav>
         </div>
@@ -108,10 +108,22 @@ export default () => {
           navPost.classList.add('hide');
         }
       });
+
+      // Delete post
+
+      const btnPostDelete = viewSignInUser.querySelector(`#delete-${doc.id}`);
+      // const id = doc.id;
+      btnPostDelete.addEventListener('click', () => {
+        // Borrando datos del database
+        db.collection('posts').doc(doc.id).delete().then(() => {
+          console.log('Document successfully deleted!');
+        })
+          .catch((error) => {
+            console.error('Error removing document: ', error);
+          });
+      });
     });
   });
-
-  // Borrando datos del database
 
   // const btnViewHome = viewSignInUser.querySelector('#btnHome');
   // btnViewHome.addEventListener('click', () => {

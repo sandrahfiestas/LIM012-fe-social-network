@@ -604,7 +604,7 @@ section .description{
 
 .each-post{
     width: 100%;
-    height: 5em;
+    height: 10em;
     border: 0.1em solid #E599FF;
     box-sizing: border-box;
     position: relative;
