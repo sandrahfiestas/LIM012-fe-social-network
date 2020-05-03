@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
-import { signOut, user } from '../firebase-controller.js';
+import { signOut, user, updateUserName } from '../firebase-controller.js';
 
 export default () => {
-  const userName = user().displayName;
+  const currentUser = user();
 
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
@@ -26,8 +26,8 @@ export default () => {
         <div class="profile">
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
-            <p class="user-name" id="name">${userName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${userName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
+            <p class="user-name" id="name">${currentUser.displayName}</p>
+            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
@@ -102,14 +102,6 @@ export default () => {
     btnCancel.classList.remove('hide');
   });
 
-  const saveUser = (nameUser) => {
-    const userData = user();
-    // console.log(userData);
-    userData.updateProfile({
-      displayName: nameUser,
-    });
-  };
-
   const editableInfo = () => {
     name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
@@ -138,7 +130,7 @@ export default () => {
 
   btnSave.addEventListener('click', () => {
     editableInfo();
-    name.textContent = saveUser(inputName.value);
+    name.textContent = updateUserName(currentUser, inputName.value);
     name.textContent = inputName.value;
   });
 
