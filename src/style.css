@@ -547,13 +547,14 @@ header img{
 }
 
 .user-name {
-    font-size: 1.7em;
+    font-size: 1.8em;
     color: #454545;
     font-family: 'Noto Sans', sans-serif;
 }
 
 .input-style {
-    border: 1px solid #FFC6B9;
+    border: 1px solid gray;
+    padding: 0.15em;
     box-sizing: border-box;
 }
 
@@ -595,11 +596,13 @@ header img{
 
 section h3{
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
     color: #454545;
 }
 
 .profile-text{
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
     margin-top: 1em;
     color: #454545;
 }
