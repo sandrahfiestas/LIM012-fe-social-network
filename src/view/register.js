@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import {
-  signUp, verificationEmail, user, logInGoogle,
+  signUp, verificationEmail, user, logInGoogle, updateUserName,
 } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
 
@@ -66,9 +66,7 @@ export default () => {
       verificationEmail().then(() => {
         // Guardando nombre de usuario en la base de datos
         const userData = user();
-        userData.updateProfile({
-          displayName: nameUser.value,
-        });
+        updateUserName(userData, nameUser.value);
 
         const notification = document.createElement('div');
         notification.classList.add('notification');

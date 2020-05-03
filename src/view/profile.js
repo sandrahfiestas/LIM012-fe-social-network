@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
-import { signOut, user } from '../firebase-controller.js';
+import { signOut, user, updateUserName } from '../firebase-controller.js';
 
 export default () => {
-  const userName = user().displayName;
+  const currentUser = user();
 
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
@@ -28,8 +28,8 @@ export default () => {
 <<<<<<< HEAD
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
-            <p class="user-name" id="name">${userName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${userName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
+            <p class="user-name" id="name">${currentUser.displayName}</p>
+            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
@@ -120,8 +120,6 @@ export default () => {
     changeView('#/home');
   });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   const editIcon = viewUserProfile.querySelector('.edit-icon');
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
@@ -129,9 +127,9 @@ export default () => {
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
-<<<<<<< HEAD
+
   // const inputName = viewUserProfile.querySelector('#inputName');
-<<<<<<< HEAD
+
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
@@ -150,20 +148,15 @@ export default () => {
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
     btnCancel.classList.remove('hide');
-=======
-=======
+
   const editIcon = viewUserProfile.querySelector('.edit-icon');
->>>>>>> Campos editables en el perfil
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
   const name = viewUserProfile.querySelector('#name');
   const aboutMe = viewUserProfile.querySelector('.description');
   const location = viewUserProfile.querySelector('.location');
-=======
->>>>>>> Boton cancelar
-=======
   const inputName = viewUserProfile.querySelector('#inputName');
->>>>>>> Permitiendo solo letras en el nombre al editar el perfil
+
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
@@ -182,32 +175,19 @@ export default () => {
     // name.focus();
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
-<<<<<<< HEAD
-    // name.classList.remove('input-style');
->>>>>>> Editando nombre
-=======
     btnCancel.classList.remove('hide');
->>>>>>> Boton cancelar
   });
 
   const saveUser = (nameUser) => {
     const userData = user();
-<<<<<<< HEAD
-<<<<<<< HEAD
     // console.log(userData);
-=======
     console.log(userData);
->>>>>>> Editando nombre
-=======
     // console.log(userData);
->>>>>>> Campos editables en el perfil
     userData.updateProfile({
       displayName: nameUser,
     });
   };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   const editableInfo = () => {
     name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
@@ -229,11 +209,9 @@ export default () => {
     editableInfo();
     saveUser(name.textContent);
   });
-=======
+
   const editTextName = () => {
-=======
   const editableInfo = () => {
->>>>>>> Boton cancelar
     name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
     location.contentEditable = 'false';
@@ -246,11 +224,9 @@ export default () => {
     inputName.classList.add('hide');
   };
 
-<<<<<<< HEAD
+
   // name.addEventListener('blur', editTextName);
   btnSave.addEventListener('click', editTextName);
->>>>>>> Editando nombre
-=======
   btnCancel.addEventListener('click', () => {
     editableInfo();
     inputName.value = name.textContent;
@@ -266,10 +242,10 @@ export default () => {
 
   btnSave.addEventListener('click', () => {
     editableInfo();
-    name.textContent = saveUser(inputName.value);
+    name.textContent = updateUserName(currentUser, inputName.value);
     name.textContent = inputName.value;
   });
->>>>>>> Boton cancelar
 
   return viewUserProfile;
+});
 };
