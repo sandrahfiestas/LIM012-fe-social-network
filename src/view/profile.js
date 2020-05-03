@@ -1,6 +1,8 @@
-// eslint-disable-next-line import/no-cycle
+/* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
+// import { profileInfo } from '../firestore-controller.js';
 import { signOut, user, updateUserName } from '../firebase-controller.js';
+import { getProfileInfo, updateProfileInfo } from '../firestore-controller.js';
 
 export default () => {
   const currentUser = user();
@@ -31,10 +33,10 @@ export default () => {
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
-            <p class="profile-text" id="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
+            <p class="profile-text" id="description"></p>
             <div class="location-info profile-text">
               <img src="./img/location.png">
-              <span id="location">Puno, Perú</span>
+              <span id="location"></span>
             </div>
           </div>
           <img class="edit-icon" src="../src/img/edition-icon.png">
@@ -51,6 +53,14 @@ export default () => {
         <div class="newPost"></div>
       </div>
     </section>`;
+
+  const aboutMe = viewUserProfile.querySelector('#description');
+  const location = viewUserProfile.querySelector('#location');
+
+  getProfileInfo(currentUser.uid).then((doc) => {
+    aboutMe.textContent = doc.data().aboutMe;
+    location.textContent = doc.data().location;
+  });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
   menuMobile.addEventListener('click', () => {
@@ -77,8 +87,6 @@ export default () => {
   const editName = viewUserProfile.querySelector('#editName');
   const btnSave = viewUserProfile.querySelector('#btnSave');
   const name = viewUserProfile.querySelector('#name');
-  const aboutMe = viewUserProfile.querySelector('#description');
-  const location = viewUserProfile.querySelector('#location');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
   const inputName = viewUserProfile.querySelector('#inputName');
 
@@ -130,7 +138,8 @@ export default () => {
 
   btnSave.addEventListener('click', () => {
     editableInfo();
-    name.textContent = updateUserName(currentUser, inputName.value);
+    updateUserName(currentUser, inputName.value);
+    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
     name.textContent = inputName.value;
   });
 

@@ -3,6 +3,7 @@ import {
   signUp, verificationEmail, user, logInGoogle, updateUserName,
 } from '../firebase-controller.js';
 import { changeView } from '../view-controller/router.js';
+import { createProfileInfo } from '../firestore-controller.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
@@ -62,7 +63,8 @@ export default () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
 
-    signUp(emailLogUp, passwordLogUp).then(() => {
+    signUp(emailLogUp, passwordLogUp).then((cred) => {
+      createProfileInfo(cred);
       verificationEmail().then(() => {
         // Guardando nombre de usuario en la base de datos
         const userData = user();
