@@ -374,7 +374,7 @@ body{
 /* Estilos del home */
 
 .header-home{
-    width: 100vw;
+    width: 100%;
     height: 4em;
     background: linear-gradient(180deg, #E153C3 -22.34%, #A254AD 100%);
     display: flex;
@@ -421,7 +421,6 @@ body{
 
 .btnGoProfile{
     width: 100%;
-    /* */
     height: 50%;
     border-bottom-style: solid;
     border-bottom-color: white;
@@ -435,7 +434,6 @@ body{
 
 .btnGoOut{
     width: 100%;
-    /* */
     height: 50%;
 }
 
@@ -490,6 +488,7 @@ header img{
 .profileSection{
     display: flex;
     width: 100%;
+    height: 25em;
     flex-direction: column;
     align-items: center;
     border-bottom-style: solid;
@@ -557,17 +556,119 @@ section .description{
     background-color: white;
 }
 
+/* TIMELINE DE POSTS */
+
 .timeline{
     width: 100%;
+    height: 100%;
     padding: 2em;
     box-sizing: border-box;
 }
 
-.newPost{
+.post{
+    width: 100%;
+    border: 0.2em solid #BE58C0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+.new-post{
     width: 100%;
     height: 15em;
     box-sizing: border-box;
+    border: 0.1em solid #E599FF;
+    resize: none;
+}
+
+.buttons-post{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-right{
+    margin-left: auto;
+}
+
+.all-posts{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
     border: 0.2em solid #BE58C0;
+    box-sizing: border-box;
+}
+
+.each-post{
+    width: 100%;
+    height: 5em;
+    border: 0.1em solid #E599FF;
+    box-sizing: border-box;
+    position: relative;
+    padding: 1em;
+    box-sizing: border-box;  
+}
+
+.container-menu-post{
+    position: absolute;
+    display: flex;
+    top: 1em;
+    right: 1em;
+}
+
+.label-menu-post{
+    width: 3em;
+    height: 1em;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(./img/three-points-ico.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#menu-post:checked ~ .label-menu-post{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.menu-post{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style-type: none;
+    width: 6em;
+    height: 5em;
+    background-color: #DFD3C7;
+}
+
+#nav-post{
+    position: absolute;
+    top: 1em;
+    right: 0;
+    z-index: 5;
+}
+
+.btn-post-edit{
+    height: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-bottom-style: solid;
+    border-bottom-color: #BE58C0;
+    border-bottom-width: 0.1em;
+}
+
+.btn-post-delete{
+    height: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
 }
 
 /* Estilos de notfound */
@@ -603,11 +704,39 @@ section .description{
     border-bottom-color: red;
 }
 
+.input-register:invalid {
+    border-bottom-color: #ff0000;
+}
+
 .btn-locked {
     background: rgb(212, 186, 181);
     color: #4c4858;
     cursor: none;
 }
+
+.logoRedes{
+    width: 50px;
+    height: 50px;
+}
+
+.imgPhotoURL{
+    width: 100px;
+    height: 100px;
+}
+
+.post-image{
+    width: 30%;
+    height: 30%;
+}
+
+.upload{
+    display: none;
+}
+
+.point-photo{
+    cursor: pointer;
+}
+
 
 @media screen and (min-width: 750px){
 
@@ -725,22 +854,3 @@ section .description{
     }
 }
 
-.input-register:invalid {
-    border-bottom-color: #ff0000;
-}
-
-.btn-locked {
- background: rgb(212, 186, 181);
- color: #4c4858;
- cursor: none;
-}
-
-.logoRedes{
- width: 50px;
- height: 50px;
-}
-
-.imgPhotoURL{
- width: 100px;
- height: 100px;
-}
