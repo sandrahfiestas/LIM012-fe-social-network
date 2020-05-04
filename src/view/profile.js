@@ -30,7 +30,6 @@ export default () => {
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
-<<<<<<< HEAD
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
@@ -40,17 +39,6 @@ export default () => {
               <span id="location"></span>
             </div>
           </div>
-=======
-          </div>
-          <div class="profile-margin">
-            <h3>Sobre mí</h3>
-            <p class="profile-text" id="description"></p>
-            <div class="location-info profile-text">
-              <img src="./img/location.png">
-              <span id="location"></span>
-            </div>
-          </div>
->>>>>>> 8ba7acf22a8d01f39fd187741ecb33f3fffd2f0c
           <img class="edit-icon" src="../src/img/edition-icon.png">
           <p class="dropDown hide" id="editName">Editar</p>
           <div class="profile-btn-editions">

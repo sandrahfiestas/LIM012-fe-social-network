@@ -28,8 +28,6 @@ export default () => {
           <div class="profileDiv">
             <div class="profilePicture">
               <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
-              <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
-              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
             </div>
             <p class="user-name">${userName}</p>
           </div>
