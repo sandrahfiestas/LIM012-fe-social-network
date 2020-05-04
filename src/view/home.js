@@ -2,24 +2,24 @@
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
 import { publishComment } from '../firestore-controller.js';
-import { db, storage} from '../main.js';
+import { db, storage } from '../main.js';
 
 export default () => {
-
-  
   const userName = firebase.auth().currentUser.displayName;
   const photoURL = firebase.auth().currentUser.photoURL;
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-      <nav class="nav-home">
-        <ul class="menu-home">
-          <li class="btnHeader" id="btnProfile">Perfil</li>
-          <li class="btnHeader" id="btnSignOut">Cerrar sesión</li>
-        </ul>
-      </nav>
-      <button class="btnHome"><a href="#/home"></a></button>
+    <input type="checkbox" id="menu-mobile" class="hide">
+    <label for="menu-mobile" class="menuMobile"></label>
+    <nav class="nav-home hide">
+      <ul class="menu-home">
+        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="./img/profile-ico.png">Perfil</li>
+        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
+      </ul>
+    </nav>
+    <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
       <div class="profileSection">
@@ -27,14 +27,13 @@ export default () => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-                  <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
             </div>
-            <p class="userProfile">${userName}</p>
+            <p class="user-name">${userName}</p>
           </div>
           <h3>Sobre mí</h3>
           <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
         </div>
-        <div class="divWhite"></div>
       </div>
       <div class="timeline">
         <div class="post">
@@ -55,12 +54,9 @@ export default () => {
       </div>
     </section>`;
 
-  
   const selectImage = viewSignInUser.querySelector('#selectImage');
-  const showPicture = viewSignInUser.querySelector('#showPicture');
-  const newPost = viewSignInUser.querySelector('#newPost');
-  
-  
+  // const showPicture = viewSignInUser.querySelector('#showPicture');
+  // const newPost = viewSignInUser.querySelector('#newPost');
   // Vista previa de imagen cargada
   /*
   selectImage.addEventListener('change', (event) => {
@@ -75,22 +71,15 @@ export default () => {
     */
 
 
-    // Seleccionar imagen y guardarla en Storage
-    selectImage.addEventListener('change', (e) => {
+  // Seleccionar imagen y guardarla en Storage
+  selectImage.addEventListener('change', (e) => {
     // Obtener el archivo
     const file = e.target.files[0];
-    
     // Crea referencia de almacenamiento
-    let storageRef = storage.ref('images/' + file.name);
-    
+    const storageRef = storage.ref(`images/ ${file.name}`);
     // Subir archivo
     storageRef.put(file);
-
- });
-
- 
-
-
+  });
 
   // // Guarda nombre y post del usuario en la Base de datos
   // btnToPost.addEventListener('click', () => {
@@ -109,7 +98,7 @@ export default () => {
   // });
 
 
-   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
+  const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
     signOut();
