@@ -2,11 +2,9 @@
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
 import { publishComment } from '../firestore-controller.js';
-import { db, storage} from '../main.js';
+import { db, storage } from '../main.js';
 
 export default () => {
-
-  
   const userName = firebase.auth().currentUser.displayName;
   const photoURL = firebase.auth().currentUser.photoURL;
 
@@ -56,12 +54,9 @@ export default () => {
       </div>
     </section>`;
 
-  
   const selectImage = viewSignInUser.querySelector('#selectImage');
-  const showPicture = viewSignInUser.querySelector('#showPicture');
-  const newPost = viewSignInUser.querySelector('#newPost');
-  
-  
+  // const showPicture = viewSignInUser.querySelector('#showPicture');
+  // const newPost = viewSignInUser.querySelector('#newPost');
   // Vista previa de imagen cargada
   /*
   selectImage.addEventListener('change', (event) => {
@@ -76,22 +71,15 @@ export default () => {
     */
 
 
-    // Seleccionar imagen y guardarla en Storage
-    selectImage.addEventListener('change', (e) => {
+  // Seleccionar imagen y guardarla en Storage
+  selectImage.addEventListener('change', (e) => {
     // Obtener el archivo
     const file = e.target.files[0];
-    
     // Crea referencia de almacenamiento
-    let storageRef = storage.ref('images/' + file.name);
-    
+    const storageRef = storage.ref(`images/ ${file.name}`);
     // Subir archivo
     storageRef.put(file);
-
- });
-
- 
-
-
+  });
 
   // // Guarda nombre y post del usuario en la Base de datos
   // btnToPost.addEventListener('click', () => {
@@ -110,7 +98,7 @@ export default () => {
   // });
 
 
-   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
+  const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
     signOut();
