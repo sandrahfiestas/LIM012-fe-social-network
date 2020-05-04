@@ -2,9 +2,11 @@
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
 import { publishComment } from '../firestore-controller.js';
-import { db } from '../main.js';
+import { db, storage} from '../main.js';
 
 export default () => {
+
+  
   const userName = firebase.auth().currentUser.displayName;
   const photoURL = firebase.auth().currentUser.photoURL;
 
@@ -39,28 +41,78 @@ export default () => {
       </div>
       <div class="timeline">
         <div class="post">
+        <img id="showPicture" class="post-image" src="#" alt=""><br>
           <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <div class="buttons-post">
-              <button id="addImage">Agregar imagen</button>
-              <button id="choosePrivacity">Privacidad</button>
-              <button id="btnNewPost">Publicar</button>
+
+              <label for="selectImage">
+              <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
+              <img class ="point-photo" src="./img/add-photo.png">
+              </label> 
+              <img id="choosePrivacity" src="./img/status.png">
+
+              <button id="btnNewPost" class="button-right">Publicar</button>
             </div>
         </div>
         <div class="all-posts" id="allPosts"></div>
       </div>
     </section>`;
 
-  const menuMobile = viewSignInUser.querySelector('#menu-mobile');
-  menuMobile.addEventListener('click', () => {
-    const navHome = viewSignInUser.querySelector('.nav-home');
-    if (menuMobile.checked === true) {
-      navHome.classList.remove('hide');
-    } else if (menuMobile.checked === false) {
-      navHome.classList.add('hide');
-    }
-  });
+  
+  const selectImage = viewSignInUser.querySelector('#selectImage');
+  const showPicture = viewSignInUser.querySelector('#showPicture');
+  const newPost = viewSignInUser.querySelector('#newPost');
+  
+  
+  // Vista previa de imagen cargada
+  /*
+  selectImage.addEventListener('change', (event) => {
+    const input = event.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;
+      showPicture.src = dataURL;
+      newPost.classList.add('hide');
+    };
+    reader.readAsDataURL(input.files[0]);
+    */
 
-  const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
+
+    // Seleccionar imagen y guardarla en Storage
+    selectImage.addEventListener('change', (e) => {
+    // Obtener el archivo
+    const file = e.target.files[0];
+    
+    // Crea referencia de almacenamiento
+    let storageRef = storage.ref('images/' + file.name);
+    
+    // Subir archivo
+    storageRef.put(file);
+
+ });
+
+ 
+
+
+
+  // // Guarda nombre y post del usuario en la Base de datos
+  // btnToPost.addEventListener('click', () => {
+  //   const postText = viewSignInUser.querySelector('#postText').value;
+  //   firebase.firestore().collection("publicaciones").add({
+  //   user: userName,
+  //   post: postText,
+  //   })
+  //   .then((docRef) => {
+  //       //  btnToPost.disabled=true;
+  //       console.log("Document written with ID: ", docRef.id);
+  //   })
+  //   .catch((error) => {
+  //       console.error("Error adding document: ", error);
+  //   });
+  // });
+
+
+   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
     signOut();
