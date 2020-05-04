@@ -1,11 +1,8 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
-<<<<<<< HEAD
 import { publishComment } from '../firestore-controller.js';
 import { db } from '../main.js';
-=======
->>>>>>> Enlaces de fotos
 
 export default () => {
   const userName = firebase.auth().currentUser.displayName;
@@ -30,15 +27,9 @@ export default () => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-<<<<<<< HEAD
-<<<<<<< HEAD
               <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
-=======
               <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
->>>>>>> Enlaces de fotos
-=======
               <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
->>>>>>> Campos editables en el perfil
             </div>
             <p class="user-name">${userName}</p>
           </div>
