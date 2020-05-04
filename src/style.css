@@ -371,7 +371,7 @@ body{
     background-image: url(./img/logo-facebook-purple.png);
 } */
 
-/* Estilos del home */
+/* Estilos del home y profile */
 
 .header-home{
     width: 100%;
@@ -486,20 +486,16 @@ header img{
 }
 
 .profileSection{
-    display: flex;
     width: 100%;
     height: 25em;
     flex-direction: column;
     align-items: center;
-    border-bottom-style: solid;
-    border-bottom-color: #DADADA;
-    border-bottom-width: 0.1em;
     position: relative;
 }
 
 .coverImage{
     width: 100%;
-    height: 12em;
+    height: 8em;
     background-image: url(./img/cover-profile.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -507,53 +503,179 @@ header img{
 }
 
 .profile{
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 16em;
-    box-sizing: border-box;
-    justify-content: space-evenly;
-    z-index: 3;
-    position: absolute;
-    top: 7em;
+    border-bottom: 1px solid #DADADA;
+    padding-bottom: 3px;
 }
 
 .profileDiv{
     display: flex;
-    flex-direction: row;
     align-content: center;
+    align-items: center;
 }
 
-.profilePicture{
-    width: 7em;
-    height: 7em;
-    background-image: url(./img/profile-ico.png); 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+.profile-margin {
+    width: 74%;
+    margin: 1em 13% 0 13%;
+}
+
+.location-info {
+    display: flex;
+    /* align-content: center; */
+    align-items: center;
+}
+
+.profile-btn-editions {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+}
+
+.profileDiv input {
+    font-size: 1.5em;
+    color: #454545;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.profilePicture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     margin-right: 1em;
 }
 
-.userProfile{
-    font-size: 22px;
+.user-name {
+    font-size: 1.8em;
     color: #454545;
     font-family: 'Noto Sans', sans-serif;
-    align-self: flex-end;
+}
+
+.input-style {
+    border: 1px solid gray;
+    padding: 0.15em;
+    box-sizing: border-box;
+}
+
+.btn-profile {
+    height: 2em;
+    width: 48%;
+    border-radius: 3px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.btn-profile:first-child {
+    background-color: #DADADA;
+    border: 1px solid #DADADA;
+    color: #454545;
+}
+
+.btn-profile:last-child {
+    background-color: #FFC6B9;
+    border: 1px solid #FFC6B9;
+    color: #170842;
+}
+
+.btn-profile:last-child:disabled {
+    background-color: #DADADA;
+    border: 1px solid #DADADA;
+    color: #454545;
+}
+
+.btn-profile:first-child:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-profile:last-child:hover:enabled {
+    background-color: rgb(248, 174, 158);
 }
 
 section h3{
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+    color: #454545;
 }
 
-section .description{
+.profile-text{
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+    margin-top: 1em;
+    color: #454545;
 }
 
-.divWhite{
-    width: 100%;
-    display: flex;
-    height: 13em;
-    background-color: white;
+.dropDown {
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    width: 80px;
+    height: 25px;
+    background-color: #DADADA;
+    z-index: 10;
+    text-align: center;
+    font-family: "Noto sans", sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 25px;
+    color: gray;
+    cursor: pointer;
+}
+
+.dropDown:before {
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin: -10px 0 0 29px;
+    border-bottom: 10px solid #DADADA;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+
+/* .btn-save {
+    align-self: flex-end;
+    margin: 0 0.5em 0 0;
+    padding: 0.3em;
+} */
+
+.edit-icon {
+    width: 4em;
+    height: 1.5em;
+    cursor: pointer;
+    /* align-self: flex-end; */
+    position: absolute;
+    top: 2px;
+    right: 4px;
+}
+
+.dropDown:before {
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin: -10px 0 0 29px;
+    border-bottom: 10px solid #DADADA;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+
+/* .btn-save {
+    align-self: flex-end;
+    margin: 0 0.5em 0 0;
+    padding: 0.3em;
+} */
+
+.edit-icon {
+    width: 4em;
+    height: 1.5em;
+    cursor: pointer;
+    /* align-self: flex-end; */
+    position: absolute;
+    top: 2px;
+    right: 4px;
 }
 
 /* TIMELINE DE POSTS */
@@ -608,7 +730,7 @@ section .description{
 
 .each-post{
     width: 100%;
-    height: 5em;
+    height: 10em;
     border: 0.1em solid #E599FF;
     box-sizing: border-box;
     position: relative;
@@ -700,7 +822,7 @@ section .description{
     font-size: 2em;
 }
 
-.inputInvalid {
+.validity:invalid {
     border-bottom-color: red;
 }
 
@@ -797,9 +919,9 @@ section .description{
         height: 10em;
     }
 
-    .profile{
+    /* .profile{
         top: 6em;
-    }
+    } */
     
 
     /* .profileSection{
@@ -853,4 +975,3 @@ section .description{
         width: 70%;
     }
 }
-

@@ -13,13 +13,15 @@ export default () => {
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-      <nav class="nav-home">
-        <ul class="menu-home">
-          <li class="btnHeader" id="btnProfile">Perfil</li>
-          <li class="btnHeader" id="btnSignOut">Cerrar sesión</li>
-        </ul>
-      </nav>
-      <button class="btnHome"><a href="#/home"></a></button>
+    <input type="checkbox" id="menu-mobile" class="hide">
+    <label for="menu-mobile" class="menuMobile"></label>
+    <nav class="nav-home hide">
+      <ul class="menu-home">
+        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="./img/profile-ico.png">Perfil</li>
+        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
+      </ul>
+    </nav>
+    <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
       <div class="profileSection">
@@ -27,14 +29,15 @@ export default () => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-                  <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="imgPhotoURL" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
             </div>
-            <p class="userProfile">${userName}</p>
+            <p class="user-name">${userName}</p>
           </div>
           <h3>Sobre mí</h3>
           <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
         </div>
-        <div class="divWhite"></div>
       </div>
       <div class="timeline">
         <div class="post">
@@ -139,10 +142,10 @@ export default () => {
         <div class="container-menu-post">
           <input type="checkbox" id="menu-post" class="hide">
           <label for="menu-post" class="label-menu-post"></label>
-          <nav class="hide" id="nav-post">
+          <nav class="" id="nav-post">
             <ul class="menu-post">
               <li class="btn-post-edit" id="btnPostEdit">Editar</li>
-              <li class="btn-post-delete" id="btnPostDelete">Eliminar</li>
+              <li class="btn-post-delete" id="delete-${doc.id}">Eliminar</li>
             </ul>
           </nav>
         </div>
@@ -158,10 +161,22 @@ export default () => {
           navPost.classList.add('hide');
         }
       });
+
+      // Delete post
+
+      const btnPostDelete = viewSignInUser.querySelector(`#delete-${doc.id}`);
+      // const id = doc.id;
+      btnPostDelete.addEventListener('click', () => {
+        // Borrando datos del database
+        db.collection('posts').doc(doc.id).delete().then(() => {
+          console.log('Document successfully deleted!');
+        })
+          .catch((error) => {
+            console.error('Error removing document: ', error);
+          });
+      });
     });
   });
-
-  // Borrando datos del database
 
   // const btnViewHome = viewSignInUser.querySelector('#btnHome');
   // btnViewHome.addEventListener('click', () => {
