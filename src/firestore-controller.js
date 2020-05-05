@@ -1,21 +1,10 @@
 /* eslint-disable import/no-cycle */
 import { db } from './main.js';
 
-export const publishComment = (userName) => {
-  const newPost = document.querySelector('#newPost').value;
-
-  db.collection('posts').add({
-    name: userName,
-    post: newPost,
-  })
-    .then((docRef) => {
-      console.log('Document written with ID: ', docRef.id);
-      document.getElementById('newPost').value = '';
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
-    });
-};
+export const publishComment = (userName, newPost) => db.collection('posts').add({
+  name: userName,
+  post: newPost,
+});
 
 export const createProfileInfo = (cred) => {
   db.collection('users').doc(cred.user.uid).set({

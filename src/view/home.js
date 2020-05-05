@@ -1,12 +1,12 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
-import { signOut } from '../auth-controller.js';
+import { signOut, user } from '../auth-controller.js';
 import { publishComment } from '../firestore-controller.js';
 import { db, storage } from '../main.js';
 
 export default () => {
-  const userName = firebase.auth().currentUser.displayName;
-  const photoURL = firebase.auth().currentUser.photoURL;
+  const userName = user().displayName;
+  const photoURL = user().photoURL;
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -94,11 +94,13 @@ export default () => {
 
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
-    publishComment();
+    const newPost = document.querySelector('#newPost').value;
+    publishComment(userName, newPost).then(() => {
+      document.getElementById('newPost').value = '';
+    });
   });
 
   // Leyendo datos del database
-
   const allPosts = viewSignInUser.querySelector('#allPosts');
   db.collection('posts').onSnapshot((querySnapshot) => {
     allPosts.innerHTML = '';
