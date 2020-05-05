@@ -580,8 +580,9 @@ section .description{
     width: 100%;
     height: 15em;
     box-sizing: border-box;
-    border: 0.1em solid #E599FF;
+    border: 0.1em solid #C4C4C4;
     resize: none;
+    position: relative;
 }
 
 .buttons-post{
@@ -609,7 +610,6 @@ section .description{
     box-sizing: border-box;
     position: relative;
     padding: 1em;
-    box-sizing: border-box;  
 }
 
 .container-menu-post{

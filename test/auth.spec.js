@@ -20,19 +20,21 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 describe('signIn', () => {
-  it('Debería poder iniciar sesión', () => {
+  it('Debería poder iniciar sesión', (done) => {
     signIn('hola@gmail.com', '123456').then((user) => {
       expect(user.email).toBe('hola@gmail.com');
       expect(user.isAnonymous).toBe(false);
+      done();
     });
   });
 });
 
 describe('signUp', () => {
-  it('Debería poder crear un nuevo usuario', () => {
+  it('Debería poder crear un nuevo usuario', (done) => {
     signUp('hola@laboratoria.com', '123456').then((user) => {
       expect(user.email).toBe('hola@laboratoria.com');
       expect(user.isAnonymous).toBe(false);
+      done();
     });
   });
 });
