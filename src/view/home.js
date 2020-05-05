@@ -103,8 +103,8 @@ export default (notes) => {
 
   // Leyendo datos del database
   const allPosts = viewSignInUser.querySelector('#allPosts');
-  notes.forEach((note) => {
-    allPosts.appendChild(eachPost(note));
+  notes.forEach((element) => {
+    allPosts.appendChild(eachPost(element));
   });
 
   return viewSignInUser;
