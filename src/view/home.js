@@ -2,7 +2,7 @@
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
 import { publishComment } from '../firestore-controller.js';
-import { db, storage } from '../main.js';
+import { db} from '../main.js';
 
 export default () => {
   const userName = firebase.auth().currentUser.displayName;
@@ -55,10 +55,10 @@ export default () => {
     </section>`;
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
-  // const showPicture = viewSignInUser.querySelector('#showPicture');
+  const showPicture = viewSignInUser.querySelector('#showPicture');
   // const newPost = viewSignInUser.querySelector('#newPost');
+
   // Vista previa de imagen cargada
-  /*
   selectImage.addEventListener('change', (event) => {
     const input = event.target;
     const reader = new FileReader();
@@ -68,9 +68,10 @@ export default () => {
       newPost.classList.add('hide');
     };
     reader.readAsDataURL(input.files[0]);
-    */
+    
 
 
+/*
   // Seleccionar imagen y guardarla en Storage
   selectImage.addEventListener('change', (e) => {
     // Obtener el archivo
@@ -79,25 +80,18 @@ export default () => {
     const storageRef = storage.ref(`images/ ${file.name}`);
     // Subir archivo
     storageRef.put(file);
+*/
+
+
+
   });
 
-  // // Guarda nombre y post del usuario en la Base de datos
-  // btnToPost.addEventListener('click', () => {
-  //   const postText = viewSignInUser.querySelector('#postText').value;
-  //   firebase.firestore().collection("publicaciones").add({
-  //   user: userName,
-  //   post: postText,
-  //   })
-  //   .then((docRef) => {
-  //       //  btnToPost.disabled=true;
-  //       console.log("Document written with ID: ", docRef.id);
-  //   })
-  //   .catch((error) => {
-  //       console.error("Error adding document: ", error);
-  //   });
-  // });
-
-
+  // const handleFileSelect = (evt) => {
+  //   const files = evt.target.selectImage[0];
+  //   const storageRef = storage.ref(`images/ ${files.name}`);
+  //   storageRef.put(files);
+  // }
+  
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
@@ -111,7 +105,9 @@ export default () => {
 
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
-    publishComment();
+    publishComment(userName);
+    
+    
   });
 
   // Leyendo datos del database

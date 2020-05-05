@@ -29,7 +29,7 @@ export default () => {
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${currentUser.displayName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
+            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{1,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
