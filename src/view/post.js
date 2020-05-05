@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { deletePost } from '../firestore-controller.js';
 
 export const eachPost = (objNote) => {
@@ -28,9 +29,9 @@ export const eachPost = (objNote) => {
     }
   });
 
-  const btnDelete = eachPost.querySelector(`#delete-${objNote.id}`);
+  const btnDelete = eachNote.querySelector(`#delete-${objNote.id}`);
   btnDelete.addEventListener('click', () => {
-    deletePost(objNote);
+    deletePost(objNote.id);
   });
   return eachNote;
 };

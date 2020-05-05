@@ -14,6 +14,7 @@ const changeView = (route) => {
       break;
     case '#/home':
       getAllPosts((notes) => {
+        sectionContainer.innerHTML = '';
         routeSelected = sectionContainer.appendChild(components.home(notes));
       });
       break;

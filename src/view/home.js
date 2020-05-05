@@ -3,7 +3,7 @@ import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../auth-controller.js';
 import { publishComment } from '../firestore-controller.js';
 import { storage } from '../main.js';
-import { eachPost } from '../view/post.js';
+import { eachPost } from './post.js';
 
 export default (notes) => {
   const userName = user().displayName;
@@ -103,7 +103,7 @@ export default (notes) => {
 
   // Leyendo datos del database
   const allPosts = viewSignInUser.querySelector('#allPosts');
-  notes.foreach((note) => {
+  notes.forEach((note) => {
     allPosts.appendChild(eachPost(note));
   });
 
