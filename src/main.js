@@ -8,7 +8,7 @@ const firebaseConfig = {
   authDomain: 'voz-amiga.firebaseapp.com',
   databaseURL: 'https://voz-amiga.firebaseio.com',
   projectId: 'voz-amiga',
-  storageBucket: 'voz-amiga.appspot.com', 
+  storageBucket: 'voz-amiga.appspot.com',
   messagingSenderId: '1080723145307',
   appId: '1:1080723145307:web:767dc97ae31aaf7998757e',
 };

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import {
   signUp, verificationEmail, user, logInGoogle, updateUserName,
-} from '../firebase-controller.js';
+} from '../auth-controller.js';
 import { changeView } from '../view-controller/router.js';
 import { createProfileInfo } from '../firestore-controller.js';
 

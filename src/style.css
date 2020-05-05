@@ -507,6 +507,8 @@ header img{
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid #DADADA;
+    border-left: 1px solid #DADADA;
+    border-right: 1px solid #DADADA;
     padding-bottom: 3px;
 }
 
@@ -791,6 +793,7 @@ section h3{
     height: 50%;
     padding: 0.5em;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 /* Estilos de notfound */

@@ -1,6 +1,6 @@
 import {
   signIn, logInGoogle,
-} from '../firebase-controller.js';
+} from '../auth-controller.js';
 import { validation } from '../validation-controller.js';
 
 

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 // import { profileInfo } from '../firestore-controller.js';
-import { signOut, user, updateUserName } from '../firebase-controller.js';
+import { signOut, user, updateUserName } from '../auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firestore-controller.js';
 
 export default () => {

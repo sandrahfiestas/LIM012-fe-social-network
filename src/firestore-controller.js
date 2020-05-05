@@ -1,11 +1,11 @@
 /* eslint-disable import/no-cycle */
 import { db } from './main.js';
 
-export const publishComment = () => {
+export const publishComment = (userName) => {
   const newPost = document.querySelector('#newPost').value;
 
   db.collection('posts').add({
-    name: 'Alice Ramírez',
+    name: userName,
     post: newPost,
   })
     .then((docRef) => {
