@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { db } from './main.js';
+import { db } from '../main.js';
 
 export const publishComment = (userName, newPost) => db.collection('posts').add({
   name: userName,

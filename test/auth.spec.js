@@ -5,7 +5,7 @@ import {
   logInGoogle,
   verificationEmail,
   // logInFacebook,
-} from '../src/firebase-controller.js';
+} from '../src/firebase-controller/auth-controller.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');

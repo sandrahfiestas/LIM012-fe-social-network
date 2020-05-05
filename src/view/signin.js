@@ -1,7 +1,7 @@
 import {
   signIn, logInGoogle,
-} from '../auth-controller.js';
-import { validation } from '../validation-controller.js';
+} from '../firebase-controller/auth-controller.js';
+import { validation } from '../firebase-controller/validation-controller.js';
 
 
 // eslint-disable-next-line import/no-cycle
