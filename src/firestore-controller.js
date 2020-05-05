@@ -1,18 +1,32 @@
 /* eslint-disable import/no-cycle */
 import { db } from './main.js';
 
-export const publishComment = () => {
-  const newPost = document.querySelector('#newPost').value;
+export const publishComment = (userName, newPost) => db.collection('posts').add({
+  name: userName,
+  post: newPost,
+});
 
-  db.collection('posts').add({
-    name: 'Alice Ramírez',
-    post: newPost,
-  })
-    .then((docRef) => {
-      console.log('Document written with ID: ', docRef.id);
-      document.getElementById('newPost').value = '';
-    })
-    .catch((error) => {
-      console.error('Error adding document: ', error);
+export const getAllPosts = callback => db.collection('posts')
+  .onSnapshot((querySnapshot) => {
+    const allPosts = [];
+    querySnapshot.forEach((doc) => {
+      allPosts.push({ id: doc.id, ...doc.data() });
     });
+    callback(allPosts);
+  });
+
+export const createProfileInfo = (cred) => {
+  db.collection('users').doc(cred.user.uid).set({
+    aboutMe: 'Cuenta un poco sobre ti',
+    location: 'Ciudad, País',
+  });
 };
+
+export const getProfileInfo = userId => db.collection('users').doc(userId).get();
+
+export const updateProfileInfo = (userId, description, place) => db.collection('users').doc(userId).update({
+  aboutMe: description,
+  location: place,
+});
+
+export const deletePost = id => db.collection('posts').doc(id).delete();

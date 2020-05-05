@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { components } from '../view/index.js';
+import { getAllPosts } from '../firestore-controller.js';
 
 const changeView = (route) => {
   window.location.hash = route;
@@ -11,7 +12,11 @@ const changeView = (route) => {
       break;
     case '#/signup': routeSelected = sectionContainer.appendChild(components.signup());
       break;
-    case '#/home': routeSelected = sectionContainer.appendChild(components.home());
+    case '#/home':
+      getAllPosts((notes) => {
+        sectionContainer.innerHTML = '';
+        routeSelected = sectionContainer.appendChild(components.home(notes));
+      });
       break;
     case '#/profile': routeSelected = sectionContainer.appendChild(components.profile());
       break;
