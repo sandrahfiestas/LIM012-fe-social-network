@@ -6,6 +6,15 @@ export const publishComment = (userName, newPost) => db.collection('posts').add(
   post: newPost,
 });
 
+export const getAllPosts = callback => db.collection('posts')
+  .onSnapshot((querySnapshot) => {
+    const allPosts = [];
+    querySnapshot.forEach((doc) => {
+      allPosts.push({ id: doc.id, ...doc.data() });
+    });
+    callback(allPosts);
+  });
+
 export const createProfileInfo = (cred) => {
   db.collection('users').doc(cred.user.uid).set({
     aboutMe: 'Cuenta un poco sobre ti',
@@ -19,3 +28,5 @@ export const updateProfileInfo = (userId, description, place) => db.collection('
   aboutMe: description,
   location: place,
 });
+
+export const deletePost = id => db.collection('posts').doc(id).delete();

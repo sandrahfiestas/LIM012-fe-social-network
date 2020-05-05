@@ -2,9 +2,10 @@
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../auth-controller.js';
 import { publishComment } from '../firestore-controller.js';
-import { db, storage } from '../main.js';
+import { storage } from '../main.js';
+import { eachPost } from '../view/post.js';
 
-export default () => {
+export default (notes) => {
   const userName = user().displayName;
   const photoURL = user().photoURL;
 
@@ -102,57 +103,9 @@ export default () => {
 
   // Leyendo datos del database
   const allPosts = viewSignInUser.querySelector('#allPosts');
-  db.collection('posts').onSnapshot((querySnapshot) => {
-    allPosts.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-      // console.log(`${doc.id} => ${doc.data()}`);
-      allPosts.innerHTML += `
-      <div class="each-post">
-        <p>${doc.data().name}</p>
-        <p>${doc.data().post}</p>
-        <div class="container-menu-post">
-          <input type="checkbox" id="menu-post" class="hide">
-          <label for="menu-post" class="label-menu-post"></label>
-          <nav class="" id="nav-post">
-            <ul class="menu-post">
-              <li class="btn-post-edit" id="btnPostEdit">Editar</li>
-              <li class="btn-post-delete" id="delete-${doc.id}">Eliminar</li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      `;
-
-      const menuPost = viewSignInUser.querySelector('#menu-post');
-      menuPost.addEventListener('click', () => {
-        const navPost = viewSignInUser.querySelector('#nav-post');
-        if (menuPost.checked === true) {
-          navPost.classList.remove('hide');
-        } else if (menuPost.checked === false) {
-          navPost.classList.add('hide');
-        }
-      });
-
-      // Delete post
-
-      const btnPostDelete = viewSignInUser.querySelector(`#delete-${doc.id}`);
-      // const id = doc.id;
-      btnPostDelete.addEventListener('click', () => {
-        // Borrando datos del database
-        db.collection('posts').doc(doc.id).delete().then(() => {
-          console.log('Document successfully deleted!');
-        })
-          .catch((error) => {
-            console.error('Error removing document: ', error);
-          });
-      });
-    });
+  notes.foreach((note) => {
+    allPosts.appendChild(eachPost(note));
   });
-
-  // const btnViewHome = viewSignInUser.querySelector('#btnHome');
-  // btnViewHome.addEventListener('click', () => {
-  //   changeView('#/home');
-  // });
 
   return viewSignInUser;
 };
