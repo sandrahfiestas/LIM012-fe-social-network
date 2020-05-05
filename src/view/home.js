@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
-import { signOut, user } from '../auth-controller.js';
-import { publishComment } from '../firestore-controller.js';
+import { signOut, user } from '../firebase-controller/auth-controller.js';
+import { publishComment } from '../firebase-controller/firestore-controller.js';
 import { storage } from '../main.js';
 import { eachPost } from './post.js';
 

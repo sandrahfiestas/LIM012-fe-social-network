@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { components } from '../view/index.js';
-import { getAllPosts } from '../firestore-controller.js';
+import { getAllPosts } from '../firebase-controller/firestore-controller.js';
 
 const changeView = (route) => {
   window.location.hash = route;

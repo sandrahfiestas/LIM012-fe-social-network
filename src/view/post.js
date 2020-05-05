@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { deletePost } from '../firestore-controller.js';
+import { deletePost } from '../firebase-controller/firestore-controller.js';
 
 export const eachPost = (objNote) => {
   const eachNote = document.createElement('div');

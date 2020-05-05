@@ -653,32 +653,11 @@ section h3{
     right: 4px;
 }
 
-.dropDown:before {
-    content:"";
-    width: 0;
-    height: 0;
-    position: absolute;
-    margin: -10px 0 0 29px;
-    border-bottom: 10px solid #DADADA;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
-}
-
 /* .btn-save {
     align-self: flex-end;
     margin: 0 0.5em 0 0;
     padding: 0.3em;
 } */
-
-.edit-icon {
-    width: 4em;
-    height: 1.5em;
-    cursor: pointer;
-    /* align-self: flex-end; */
-    position: absolute;
-    top: 2px;
-    right: 4px;
-}
 
 /* TIMELINE DE POSTS */
 
@@ -737,7 +716,6 @@ section h3{
     box-sizing: border-box;
     position: relative;
     padding: 1em;
-    box-sizing: border-box;  
 }
 
 .container-menu-post{
