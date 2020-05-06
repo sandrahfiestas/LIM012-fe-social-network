@@ -64,6 +64,7 @@ export default () => {
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
 
     signUp(emailLogUp, passwordLogUp).then((cred) => {
+      console.log(cred);
       createProfileInfo(cred);
       verificationEmail().then(() => {
         // Guardando nombre de usuario en la base de datos

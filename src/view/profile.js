@@ -106,16 +106,16 @@ export default () => {
   });
 
   const editableInfo = () => {
-    name.contentEditable = 'false';
+    // name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
     location.contentEditable = 'false';
     aboutMe.classList.remove('input-style');
-    name.classList.remove('hide');
-    // name.classList.remove('input-style');
     location.classList.remove('input-style');
+    name.classList.remove('hide');
+    inputName.classList.add('hide');
+    // name.classList.remove('input-style');
     btnSave.classList.add('hide');
     btnCancel.classList.add('hide');
-    inputName.classList.add('hide');
   };
 
   btnCancel.addEventListener('click', () => {
