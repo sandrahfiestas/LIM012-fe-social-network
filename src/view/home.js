@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishComment, time } from '../firebase-controller/firestore-controller.js';
+import { publishComment, time, getProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
@@ -31,7 +31,11 @@ export default (notes) => {
             <p class="user-name">${currentUser.displayName}</p>
           </div>
           <h3>Sobre mí</h3>
-          <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
+          <p class="description"></p>
+          <div class="location-info profile-text">
+              <img src="./img/location.png">
+              <span id="location"></span>
+            </div>
         </div>
       </div>
       <div class="timeline">
@@ -71,6 +75,13 @@ export default (notes) => {
   const navHome = viewSignInUser.querySelector('.nav-home');
   menuMobile.addEventListener('click', () => {
     navHome.classList.toggle('hide');
+  });
+
+  const aboutMe = viewSignInUser.querySelector('.description');
+  const location = viewSignInUser.querySelector('#location');
+  getProfileInfo(currentUser.uid).then((doc) => {
+    aboutMe.textContent = doc.data().aboutMe;
+    location.textContent = doc.data().location;
   });
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
