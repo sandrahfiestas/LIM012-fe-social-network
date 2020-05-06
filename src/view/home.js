@@ -87,7 +87,7 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.displayName, newPost, time()).then(() => {
+    publishComment(currentUser.uid, currentUser.displayName, newPost, time()).then(() => {
       document.getElementById('newPost').value = '';
     });
   });
