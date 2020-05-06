@@ -1,7 +1,7 @@
 import {
   signIn, logInGoogle,
-} from '../firebase-controller.js';
-import { validation } from '../validation-controller.js';
+} from '../firebase-controller/auth-controller.js';
+import { validation } from '../firebase-controller/validation-controller.js';
 
 
 // eslint-disable-next-line import/no-cycle
@@ -13,7 +13,7 @@ export default () => {
   viewSignIn.classList.add('signin');
   viewSignIn.innerHTML = `
     <div class="signin-container">
-      <img src="../img/logo.svg" alt="Voz Amiga" class="logo-social-network">
+      <img src="./img/logo.svg" alt="Voz Amiga" class="logo-social-network">
       <p class="text">Bienvenida a la red social para mujeres</p>
       <input class="email-login" id="emailLogIn" type="email" placeholder="e-mail" autocomplete="off">
       <input class="password-login" id="passwordLogIn" type="password" placeholder="contraseña" autocomplete="off">

@@ -3,9 +3,9 @@ import {
   signUp,
   signOut,
   logInGoogle,
-  // logInFacebook,
   verificationEmail,
-} from '../src/firebase-controller.js';
+  // logInFacebook,
+} from '../src/firebase-controller/auth-controller.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
@@ -19,24 +19,22 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockauth,
 );
 
-const assert = require('assert');
-
-//
 describe('signIn', () => {
-  it('Debería poder iniciar sesión'
-  , () => {
+  it('Debería poder iniciar sesión', (done) => {
     signIn('hola@gmail.com', '123456').then((user) => {
       expect(user.email).toBe('hola@gmail.com');
       expect(user.isAnonymous).toBe(false);
+      done();
     });
   });
 });
 
 describe('signUp', () => {
-  it('Debería poder crear un nuevo usuario', () => {
+  it('Debería poder crear un nuevo usuario', (done) => {
     signUp('hola@laboratoria.com', '123456').then((user) => {
       expect(user.email).toBe('hola@laboratoria.com');
       expect(user.isAnonymous).toBe(false);
+      done();
     });
   });
 });
@@ -65,14 +63,10 @@ describe('logInGoogle', () => {
 // });
 
 describe('verificationEmail', () => {
-  it('Debería enviar un email luego de registrarse', () => verificationEmail()
-    .then((user) => {
-      expect(user.emailVerified).toEqual(false);
-    }));
-});
-
-describe('verificationEmail2', () => {
-  it('Debería enviar un email luego de registrarse', (user) => {
-    assert.equal(verificationEmail(user.emailVerified), false);
+  it('Debería enviar un mail de verificación', () => {
+    const myMock = jest.fn();
+    firebase.auth().currentUser.sendEmailVerification = myMock;
+    verificationEmail();
+    expect(myMock.mock.calls).toHaveLength(1);
   });
 });

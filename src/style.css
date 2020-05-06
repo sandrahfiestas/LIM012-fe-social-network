@@ -371,52 +371,102 @@ body{
     background-image: url(./img/logo-facebook-purple.png);
 } */
 
-/* Estilos del home */
+/* Estilos del home y profile */
 
 .header-home{
-    width: 100vw;
+    width: 100%;
     height: 4em;
     background: linear-gradient(180deg, #E153C3 -22.34%, #A254AD 100%);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 0 2em;
     box-sizing: border-box;
+    position: relative;
 }
 
 .nav-home{
-    width: 10em;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    z-index: 4;
 }
 
 .menu-home{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    align-items: center;
+    width: 14em;
+    height: 7em;
 }
 
 .menu-home li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     color: white;
+    cursor: pointer;
+    align-content: center;
+    padding: 0.5em 2em;
+    box-sizing: border-box;
+    background-color: #BE58C0;
 }
 
-.btnHeader {
-    color: white;
+.menu-home li:hover{
+    background-color: #A94EAB;
+}
+
+.btnGoProfile{
+    width: 100%;
+    height: 50%;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 0.1em;
+}
+
+.proPicSmall{
+    width: 2em;
+    height: 2em;
+}
+
+.btnGoOut{
+    width: 100%;
+    height: 50%;
+}
+
+.icoSignOut{
+    width: 1.8em;
+    height: 1.8em;  
+}
+
+.menuMobile{
+    width: 2em;
+    height: 2.5em;
+    background-image: url(./img/menu-mobile.png);
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    outline: none;
     cursor: pointer;
 }
 
-.btnHome{
-    width: 10em;
-    background-image: url(./img/logo-voz-amiga.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
+#menu-mobile:checked ~ .menuMobile{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#menu-mobile2:checked ~ .menuMobile2{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Logo en header, no es botón */
+
+header img{
+    height: 50%;
 }
 
 .btn-signup{
@@ -436,19 +486,16 @@ body{
 }
 
 .profileSection{
-    display: flex;
     width: 100%;
+    height: 25em;
     flex-direction: column;
     align-items: center;
-    border-bottom-style: solid;
-    border-bottom-color: #DADADA;
-    border-bottom-width: 0.1em;
     position: relative;
 }
 
 .coverImage{
     width: 100%;
-    height: 10em;
+    height: 8em;
     background-image: url(./img/cover-profile.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -456,66 +503,280 @@ body{
 }
 
 .profile{
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 16em;
-    box-sizing: border-box;
-    justify-content: space-evenly;
-    z-index: 3;
-    position: absolute;
-    top: 6em;
+    border-bottom: 1px solid #DADADA;
+    border-left: 1px solid #DADADA;
+    border-right: 1px solid #DADADA;
+    padding-bottom: 3px;
 }
 
 .profileDiv{
     display: flex;
-    flex-direction: row;
     align-content: center;
+    align-items: center;
 }
 
-.profilePicture{
-    width: 7em;
-    height: 7em;
-    background-image: url(./img/profile-ico.png); 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+.profile-margin {
+    width: 74%;
+    margin: 1em 13% 0 13%;
+}
+
+.location-info {
+    display: flex;
+    /* align-content: center; */
+    align-items: center;
+}
+
+.profile-btn-editions {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 5px;
+}
+
+.profileDiv input {
+    font-size: 1.5em;
+    color: #454545;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.profilePicture {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     margin-right: 1em;
 }
 
-.userProfile{
-    font-size: 22px;
+.user-name {
+    font-size: 1.8em;
     color: #454545;
     font-family: 'Noto Sans', sans-serif;
-    align-self: flex-end;
+}
+
+.input-style {
+    border: 1px solid gray;
+    padding: 0.15em;
+    box-sizing: border-box;
+}
+
+.btn-profile {
+    height: 2em;
+    width: 48%;
+    border-radius: 3px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.btn-profile:first-child {
+    background-color: #DADADA;
+    border: 1px solid #DADADA;
+    color: #454545;
+}
+
+.btn-profile:last-child {
+    background-color: #FFC6B9;
+    border: 1px solid #FFC6B9;
+    color: #170842;
+}
+
+.btn-profile:last-child:disabled {
+    background-color: #DADADA;
+    border: 1px solid #DADADA;
+    color: #454545;
+}
+
+.btn-profile:first-child:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-profile:last-child:hover:enabled {
+    background-color: rgb(248, 174, 158);
 }
 
 section h3{
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+    color: #454545;
 }
 
-section .description{
+.profile-text{
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+    margin-top: 1em;
+    color: #454545;
 }
 
-.divWhite{
-    width: 100%;
-    display: flex;
-    height: 13em;
-    background-color: white;
+.dropDown {
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    width: 80px;
+    height: 25px;
+    background-color: #DADADA;
+    z-index: 10;
+    text-align: center;
+    font-family: "Noto sans", sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 25px;
+    color: gray;
+    cursor: pointer;
 }
+
+.dropDown:before {
+    content:"";
+    width: 0;
+    height: 0;
+    position: absolute;
+    margin: -10px 0 0 29px;
+    border-bottom: 10px solid #DADADA;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+
+/* .btn-save {
+    align-self: flex-end;
+    margin: 0 0.5em 0 0;
+    padding: 0.3em;
+} */
+
+.edit-icon {
+    width: 4em;
+    height: 1.5em;
+    cursor: pointer;
+    /* align-self: flex-end; */
+    position: absolute;
+    top: 2px;
+    right: 4px;
+}
+
+/* .btn-save {
+    align-self: flex-end;
+    margin: 0 0.5em 0 0;
+    padding: 0.3em;
+} */
+
+/* TIMELINE DE POSTS */
 
 .timeline{
     width: 100%;
-    padding: 2em;
-    box-sizing: border-box;
+    height: 100%;
+    /* padding: 2em;
+    box-sizing: border-box; */
 }
 
-.newPost{
+.post{
+    width: 100%;
+    border: 0.2em solid #BE58C0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    box-sizing: border-box;
+    margin-bottom: 2em;
+}
+
+.new-post{
     width: 100%;
     height: 15em;
     box-sizing: border-box;
+    border: 0.1em solid #C4C4C4;
+    resize: none;
+    position: relative;
+}
+
+.buttons-post{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.button-right{
+    margin-left: auto;
+}
+
+.all-posts{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
     border: 0.2em solid #BE58C0;
+    box-sizing: border-box;
+}
+
+.each-post{
+    width: 100%;
+    height: 10em;
+    border: 0.1em solid #E599FF;
+    box-sizing: border-box;
+    position: relative;
+    padding: 1em;
+}
+
+.container-menu-post{
+    position: absolute;
+    display: flex;
+    top: 1em;
+    right: 1em;
+}
+
+.label-menu-post{
+    width: 3em;
+    height: 1em;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(./img/three-points-ico.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.menu-post{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style-type: none;
+    width: 6em;
+    height: 5em;
+    background-color: #DFD3C7;
+}
+
+.nav-post{
+    position: absolute;
+    top: 1em;
+    right: 0;
+    z-index: 5;
+}
+
+.input-post{
+    width: 100%;
+    height: 4em;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.btn-post-edit{
+    height: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-bottom-style: solid;
+    border-bottom-color: #BE58C0;
+    border-bottom-width: 0.1em;
+    cursor: pointer;
+}
+
+.btn-post-delete{
+    height: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 /* Estilos de notfound */
@@ -547,8 +808,12 @@ section .description{
     font-size: 2em;
 }
 
-.inputInvalid {
+.validity:invalid {
     border-bottom-color: red;
+}
+
+.input-register:invalid {
+    border-bottom-color: #ff0000;
 }
 
 .btn-locked {
@@ -557,13 +822,103 @@ section .description{
     cursor: none;
 }
 
+.logoRedes{
+    width: 50px;
+    height: 50px;
+}
+
+.imgPhotoURL{
+    width: 100px;
+    height: 100px;
+}
+
+.post-image{
+    width: 30%;
+    height: 30%;
+}
+
+.upload{
+    display: none;
+}
+
+.point-photo{
+    cursor: pointer;
+}
+
+
 @media screen and (min-width: 750px){
 
     .containerHome{
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        padding-top: 2em;
+        box-sizing: border-box;
+    }
+
+    .timeline{
+        width: 47%;
+    }
+
+    .profileSection{
+        width: 47%;
+    }
+
+    .menuMobile{
+        display: none;
+    }
+
+    .nav-home{
+        display: flex;
+        align-items: center;
+        position: relative;
+        top: 0;
+    }
+
+    .menu-home{
+        display: flex;
+        width: 16em;
+        flex-direction: row;
+        justify-content: space-between;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .menu-home li{
+        background-color: rgba(0, 0, 0, 0);
+        justify-content: space-evenly;
+        padding: 0;
+    }
+
+    .menu-home li:hover{
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .btnGoProfile{
+        display: flex;
+        align-items: center;
+        width: 40%;
+        justify-content: space-evenly;
+        border-bottom-style: none;
+    }
+
+    .btnGoOut{
+        display: flex;
+        align-items: center;
+        width: 60%;
         justify-content: space-evenly;
     }
+
+    .coverImage{
+        height: 10em;
+    }
+
+    /* .profile{
+        top: 6em;
+    } */
+    
 
     /* .profileSection{
         grid-column-start: 1;
@@ -578,6 +933,11 @@ section .description{
 
     .container{
         display: grid;
+    }
+
+    .containerHome{
+        margin: 0 auto;
+        max-width: 1024px;
     }
 
     .signin{
@@ -615,24 +975,4 @@ section .description{
     .btn-google-size{
         width: 70%;
     }
-}
-
-.input-register:invalid {
-    border-bottom-color: #ff0000;
-}
-
-.btn-locked {
- background: rgb(212, 186, 181);
- color: #4c4858;
- cursor: none;
-}
-
-.logoRedes{
- width: 50px;
- height: 50px;
-}
-
-.imgPhotoURL{
- width: 100px;
- height: 100px;
 }

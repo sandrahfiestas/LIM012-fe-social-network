@@ -11,7 +11,6 @@ export const verificationEmail = () => firebase.auth().currentUser.sendEmailVeri
 // Cerrar sesión
 export const signOut = () => firebase.auth().signOut();
 
-
 // Iniciar sesión con Google
 export const logInGoogle = () => {
   // Creando instancia del proveedor - Google
@@ -19,11 +18,18 @@ export const logInGoogle = () => {
   return firebase.auth().signInWithPopup(providerGoogle);
 };
 
+// Usuario loggeado
+export const user = () => firebase.auth().currentUser;
 
-// Iniciar sesión con Facebook
-export const logInFacebook = () => {
-  const providerFacebook = new firebase.auth.FacebookAuthProvider();
-  return firebase.auth().signInWithPopup(providerFacebook);
+// Guardando/actualizando nombre de usuario
+export const updateUserName = (userData, userName) => {
+  userData.updateProfile({
+    displayName: userName,
+  });
 };
 
-export const user = () => firebase.auth().currentUser;
+// Iniciar sesión con Facebook
+// export const logInFacebook = () => {
+//   const providerFacebook = new firebase.auth.FacebookAuthProvider();
+//   return firebase.auth().signInWithPopup(providerFacebook);
+// };

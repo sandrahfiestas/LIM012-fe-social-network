@@ -1,5 +1,6 @@
+/* eslint-disable import/no-cycle */
 import { changeView } from './view-controller/router.js';
-import { validation } from './validation-controller.js';
+import { validation } from './firebase-controller/validation-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,6 +14,13 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// Iniciar Firestore
+export const db = firebase.firestore();
+
+// Obtiene una referencia al servicio de Storage
+export const storage = firebase.storage();
+
 
 const init = () => {
   validation(changeView);
