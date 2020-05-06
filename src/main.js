@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from './view-controller/router.js';
-import { validation } from './validation-controller.js';
+import { validation } from './firebase-controller/validation-controller.js';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

@@ -1,9 +1,9 @@
 /* eslint-disable import/no-cycle */
 import {
   signUp, verificationEmail, user, logInGoogle, updateUserName,
-} from '../auth-controller.js';
+} from '../firebase-controller/auth-controller.js';
 import { changeView } from '../view-controller/router.js';
-import { createProfileInfo } from '../firestore-controller.js';
+import { createProfileInfo } from '../firebase-controller/firestore-controller.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
