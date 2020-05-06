@@ -20,15 +20,13 @@ export default () => {
       <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
-
       <div class="profileSection">
         <div class="coverImage"></div>
-
         <div class="profile">
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="./img/profile-ico.png">
             <p class="user-name" id="name">${currentUser.displayName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{2,30}\\s*)+">
+            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{1,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
@@ -44,10 +42,8 @@ export default () => {
             <button id="btnCancel" class="btn-profile hide">Cancelar</button>
             <button id="btnSave" class="btn-profile hide">Guardar</button>
           </div>
-          
         </div>
       </div>
-
       <div class="timeline">
         <div class="newPost"></div>
       </div>
@@ -90,30 +86,25 @@ export default () => {
   });
 
   editName.addEventListener('click', () => {
-    // name.contentEditable = 'true';
     aboutMe.contentEditable = 'true';
     location.contentEditable = 'true';
     aboutMe.classList.add('input-style');
     name.classList.add('hide');
-    // name.classList.add('input-style');
     location.classList.add('input-style');
     inputName.classList.remove('hide');
     inputName.focus();
-    // name.focus();
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
     btnCancel.classList.remove('hide');
   });
 
   const editableInfo = () => {
-    // name.contentEditable = 'false';
     aboutMe.contentEditable = 'false';
     location.contentEditable = 'false';
     aboutMe.classList.remove('input-style');
     location.classList.remove('input-style');
     name.classList.remove('hide');
     inputName.classList.add('hide');
-    // name.classList.remove('input-style');
     btnSave.classList.add('hide');
     btnCancel.classList.add('hide');
   };

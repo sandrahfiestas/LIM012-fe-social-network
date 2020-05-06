@@ -2,7 +2,7 @@
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
 import { publishComment } from '../firebase-controller/firestore-controller.js';
-import { storage } from '../main.js';
+import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
 export default (notes) => {
@@ -39,13 +39,11 @@ export default (notes) => {
           <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
           <img id="showPicture" class="post-image" src="#" alt="">
             <div class="buttons-post">
-
               <label for="selectImage">
               <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
               <img class ="point-photo" src="./img/add-photo.png">
               </label> 
               <img id="choosePrivacity" src="./img/status.png">
-
               <button id="btnNewPost" class="button-right">Publicar</button>
             </div>
         </div>
@@ -56,28 +54,12 @@ export default (notes) => {
   const selectImage = viewSignInUser.querySelector('#selectImage');
   // const showPicture = viewSignInUser.querySelector('#showPicture');
   // const newPost = viewSignInUser.querySelector('#newPost');
-  // Vista previa de imagen cargada
-  /*
-  selectImage.addEventListener('change', (event) => {
-    const input = event.target;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataURL = reader.result;
-      showPicture.src = dataURL;
-      newPost.classList.add('hide');
-    };
-    reader.readAsDataURL(input.files[0]);
-    */
 
 
-  // Seleccionar imagen y guardarla en Storage
+  // Selecciona y guarda imagen en el Storage (sin visualización previa)
   selectImage.addEventListener('change', (e) => {
-    // Obtener el archivo
     const file = e.target.files[0];
-    // Crea referencia de almacenamiento
-    const storageRef = storage.ref(`images/ ${file.name}`);
-    // Subir archivo
-    storageRef.put(file);
+    uploadImagePost(file, currentUser.uid);
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
