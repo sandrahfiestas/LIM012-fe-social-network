@@ -6,8 +6,7 @@ import { storage } from '../main.js';
 import { eachPost } from './post.js';
 
 export default (notes) => {
-  const userName = user().displayName;
-  const photoURL = user().photoURL;
+  const currentUser = user();
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -30,7 +29,7 @@ export default (notes) => {
             <div class="profilePicture">
               <img id="profilePhoto" class="profilePicture" src="./img/profile-ico.png" alt="">
             </div>
-            <p class="user-name">${userName}</p>
+            <p class="user-name">${currentUser.displayName}</p>
           </div>
           <h3>Sobre mí</h3>
           <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
@@ -96,7 +95,7 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(userName, newPost).then(() => {
+    publishComment(currentUser.displayName, newPost).then(() => {
       document.getElementById('newPost').value = '';
     });
   });
