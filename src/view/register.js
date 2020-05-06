@@ -63,9 +63,8 @@ export default () => {
     const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
     const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
 
-    signUp(emailLogUp, passwordLogUp).then((cred) => {
-      console.log(cred);
-      createProfileInfo(cred);
+    signUp(emailLogUp, passwordLogUp).then((result) => {
+      createProfileInfo(result.user.uid);
       verificationEmail().then(() => {
         // Guardando nombre de usuario en la base de datos
         const userData = user();
@@ -89,7 +88,11 @@ export default () => {
 
   // Iniciar sesión con Google
   const btnLogInGoogle = viewSignUp.querySelector('#btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', logInGoogle);
+  btnLogInGoogle.addEventListener('click', () => {
+    logInGoogle().then((result) => {
+      createProfileInfo(result.user.uid);
+    });
+  });
 
   return viewSignUp;
 };

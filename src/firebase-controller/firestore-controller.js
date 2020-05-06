@@ -19,8 +19,8 @@ export const getAllPosts = callback => db.collection('posts')
     callback(allPosts);
   });
 
-export const createProfileInfo = (cred) => {
-  db.collection('users').doc(cred.user.uid).set({
+export const createProfileInfo = (id) => {
+  db.collection('users').doc(id).set({
     aboutMe: 'Cuenta un poco sobre ti',
     location: 'Ciudad, País',
   });
