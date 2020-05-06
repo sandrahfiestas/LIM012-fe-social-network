@@ -10,8 +10,7 @@ export default () => {
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
     <header class="header-home">
-      <input type="checkbox" id="menu-mobile2" class="hide">
-      <label for="menu-mobile2" class="menuMobile"></label>
+      <label id="menu-mobile2" class="menuMobile"></label>
       <nav class="nav-home hide">
         <ul class="menu-home">
           <li class="btnGoProfile" id="btnGoHome"><img class="proPicSmall" src="./img/home-ico.png">Inicio</li>
@@ -63,13 +62,9 @@ export default () => {
   });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
+  const navHome = viewUserProfile.querySelector('.nav-home');
   menuMobile.addEventListener('click', () => {
-    const navHome = viewUserProfile.querySelector('.nav-home');
-    if (menuMobile.checked === true) {
-      navHome.classList.remove('hide');
-    } else if (menuMobile.checked === false) {
-      navHome.classList.add('hide');
-    }
+    navHome.classList.toggle('hide');
   });
 
   const btnSignOut = viewUserProfile.querySelector('#btnSignOut2');
