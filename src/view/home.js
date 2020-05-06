@@ -6,6 +6,7 @@ import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
 export default (notes) => {
+  
   const currentUser = user();
 
   const viewSignInUser = document.createElement('div');
@@ -82,14 +83,14 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.displayName, newPost).then(() => {
+    publishComment(currentUser.uid, currentUser.displayName, newPost).then(() => {
       document.getElementById('newPost').value = '';
     });
   });
 
   // Leyendo datos del database
   const allPosts = viewSignInUser.querySelector('#allPosts');
-  notes.forEach((element) => {
+  notes.forEach((element) => {    
     allPosts.appendChild(eachPost(element));
   });
 

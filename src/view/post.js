@@ -1,7 +1,9 @@
 /* eslint-disable import/no-cycle */
 import { deletePost, updatePost, getPost } from '../firebase-controller/firestore-controller.js';
+import { user } from '../firebase-controller/auth-controller.js';
 
 export const eachPost = (objPost) => {
+ 
   const eachNote = document.createElement('div');
   eachNote.classList.add('each-post');
   eachNote.innerHTML = `
@@ -20,6 +22,12 @@ export const eachPost = (objPost) => {
     <button class="hide" id="btnSave">Guardar</button>
     <button class="hide" id="btnCancel">Cancelar</button>
     `;
+
+  const userId = user().uid;
+  const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
+  if (userId !== objPost.user) {
+    menuBar.classList.add('hide');
+  }  
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
