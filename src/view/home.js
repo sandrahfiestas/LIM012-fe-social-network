@@ -28,7 +28,7 @@ export default (notes) => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-              <img id="profilePhoto" class="profilePicture" src="${photoURL}" alt="">
+              <img id="profilePhoto" class="profilePicture" src="./img/profile-ico.png" alt="">
             </div>
             <p class="user-name">${userName}</p>
           </div>

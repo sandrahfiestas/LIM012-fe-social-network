@@ -8,9 +8,9 @@ export const eachPost = (objPost) => {
     <p>${objPost.name}</p>
     <p>${objPost.post}</p>
     <div class="container-menu-post">
-        <input type="checkbox" id="menu-post" class="hide">
-        <label for="menu-post" class="label-menu-post"></label>
-        <nav class="hide" id="nav-post">
+        <input type="checkbox" id="menu-${objPost.id}" class="hide">
+        <label for="menu-${objPost.id}" class="label-menu-post"></label>
+        <nav class="hide" id="nav-${objPost.id}">
         <ul class="menu-post">
             <li class="btn-post-edit" id="btnPostEdit">Editar</li>
             <li class="btn-post-delete" id="delete-${objPost.id}">Eliminar</li>
@@ -18,9 +18,9 @@ export const eachPost = (objPost) => {
         </nav>
     </div>`;
 
-  const menuPost = eachNote.querySelector('#menu-post');
+  const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   menuPost.addEventListener('click', () => {
-    const navPost = eachNote.querySelector('#nav-post');
+    const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
     if (menuPost.checked === true) {
       navPost.classList.remove('hide');
     } else if (menuPost.checked === false) {
