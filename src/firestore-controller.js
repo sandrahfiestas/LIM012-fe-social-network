@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable import/no-cycle */
 import { db } from './main.js';
 
@@ -24,9 +25,13 @@ export const createProfileInfo = (cred) => {
 
 export const getProfileInfo = userId => db.collection('users').doc(userId).get();
 
+export const getPost = id => db.collection('posts').doc(id).get();
+
 export const updateProfileInfo = (userId, description, place) => db.collection('users').doc(userId).update({
   aboutMe: description,
   location: place,
 });
 
 export const deletePost = id => db.collection('posts').doc(id).delete();
+
+export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });

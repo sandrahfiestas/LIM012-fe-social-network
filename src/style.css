@@ -759,10 +759,6 @@ section h3{
     cursor: pointer;
 }
 
-#menu-post:checked ~ .label-menu-post{
-    background-color: rgba(0, 0, 0, 0);
-}
-
 .menu-post{
     display: flex;
     flex-direction: column;
@@ -773,11 +769,18 @@ section h3{
     background-color: #DFD3C7;
 }
 
-#nav-post{
+.nav-post{
     position: absolute;
     top: 1em;
     right: 0;
     z-index: 5;
+}
+
+.input-post{
+    width: 100%;
+    height: 4em;
+    box-sizing: border-box;
+    resize: none;
 }
 
 .btn-post-edit{
@@ -787,6 +790,7 @@ section h3{
     border-bottom-style: solid;
     border-bottom-color: #BE58C0;
     border-bottom-width: 0.1em;
+    cursor: pointer;
 }
 
 .btn-post-delete{
@@ -871,6 +875,14 @@ section h3{
         justify-content: space-between;
         padding-top: 2em;
         box-sizing: border-box;
+    }
+
+    .timeline{
+        width: 47%;
+    }
+
+    .profileSection{
+        width: 47%;
     }
 
     .menuMobile{

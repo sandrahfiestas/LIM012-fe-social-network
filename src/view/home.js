@@ -12,8 +12,7 @@ export default (notes) => {
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-    <input type="checkbox" id="menu-mobile" class="hide">
-    <label for="menu-mobile" class="menuMobile"></label>
+    <label id="menu-mobile" class="menuMobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
         <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="./img/profile-ico.png">Perfil</li>
@@ -38,8 +37,8 @@ export default (notes) => {
       </div>
       <div class="timeline">
         <div class="post">
-        <img id="showPicture" class="post-image" src="#" alt=""><br>
           <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
+          <img id="showPicture" class="post-image" src="#" alt="">
             <div class="buttons-post">
 
               <label for="selectImage">
@@ -80,6 +79,12 @@ export default (notes) => {
     const storageRef = storage.ref(`images/ ${file.name}`);
     // Subir archivo
     storageRef.put(file);
+  });
+
+  const menuMobile = viewSignInUser.querySelector('#menu-mobile');
+  const navHome = viewSignInUser.querySelector('.nav-home');
+  menuMobile.addEventListener('click', () => {
+    navHome.classList.toggle('hide');
   });
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
