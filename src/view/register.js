@@ -14,7 +14,7 @@ export default () => {
     <div class="register-container register">
       <p class="text-purple">Regístrate</p>
       <div class="msgAlertReg">
-      <input class="input-register validity" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{2,30}\\s*)+">
+      <input class="input-register validity" id="nameUser" type="text" placeholder="Nombre de usuario"  pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
         <span class="balloon-2 ocult">Solo letras</span>
       </div>
       <div class="msgAlertReg">
