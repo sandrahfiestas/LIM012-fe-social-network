@@ -1,10 +1,12 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut } from '../firebase-controller.js';
-import { publishComment } from '../firestore-controller.js';
+//import { publishComment } from '../firestore-controller.js';
 import { db} from '../main.js';
+import { uploadImagePost } from '../storage-controller.js';
 
 export default () => {
+  const uid = firebase.auth().currentUser.uid;
   const userName = firebase.auth().currentUser.displayName;
   const photoURL = firebase.auth().currentUser.photoURL;
 
@@ -58,40 +60,13 @@ export default () => {
   const showPicture = viewSignInUser.querySelector('#showPicture');
   // const newPost = viewSignInUser.querySelector('#newPost');
 
-  // Vista previa de imagen cargada
-  selectImage.addEventListener('change', (event) => {
-    const input = event.target;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataURL = reader.result;
-      showPicture.src = dataURL;
-      newPost.classList.add('hide');
-    };
-    reader.readAsDataURL(input.files[0]);
-    
 
-
-/*
-  // Seleccionar imagen y guardarla en Storage
+ // Selecciona y guarda imagen en el Storage (sin visualización previa)
   selectImage.addEventListener('change', (e) => {
-    // Obtener el archivo
     const file = e.target.files[0];
-    // Crea referencia de almacenamiento
-    const storageRef = storage.ref(`images/ ${file.name}`);
-    // Subir archivo
-    storageRef.put(file);
-*/
-
-
-
-  });
-
-  // const handleFileSelect = (evt) => {
-  //   const files = evt.target.selectImage[0];
-  //   const storageRef = storage.ref(`images/ ${files.name}`);
-  //   storageRef.put(files);
-  // }
-  
+    uploadImagePost(file, uid);    
+  });      
+ 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
@@ -105,13 +80,10 @@ export default () => {
 
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
-    publishComment(userName);
-    
-    
+     publishComment(userName);
   });
 
   // Leyendo datos del database
-
   const allPosts = viewSignInUser.querySelector('#allPosts');
   db.collection('posts').onSnapshot((querySnapshot) => {
     allPosts.innerHTML = '';

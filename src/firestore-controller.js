@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { db, storage} from './main.js';
+import { db } from './main.js';
 
 export const publishComment = (userName) => {
   const newPost = document.querySelector('#newPost').value;
