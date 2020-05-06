@@ -1,8 +1,9 @@
+/* eslint-disable import/no-cycle */
 import {
   signIn, logInGoogle,
 } from '../firebase-controller/auth-controller.js';
 import { validation } from '../firebase-controller/validation-controller.js';
-
+import { createProfileInfo } from '../firebase-controller/firestore-controller.js';
 
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
@@ -52,7 +53,11 @@ export default () => {
 
   // Iniciar sesión con Google
   const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', logInGoogle);
+  btnLogInGoogle.addEventListener('click', () => {
+    logInGoogle().then((result) => {
+      createProfileInfo(result.user.uid);
+    });
+  });
 
   // Iniciar sesión con Facebook
   // Agregar como template string
