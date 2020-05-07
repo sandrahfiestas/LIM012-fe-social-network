@@ -3,7 +3,7 @@ import {
   signIn, logInGoogle,
 } from '../firebase-controller/auth-controller.js';
 import { validation } from '../firebase-controller/validation-controller.js';
-import { createProfileInfo } from '../firebase-controller/firestore-controller.js';
+import { createProfileInfo, getUser } from '../firebase-controller/firestore-controller.js';
 
 // eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
@@ -55,7 +55,11 @@ export default () => {
   const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
   btnLogInGoogle.addEventListener('click', () => {
     logInGoogle().then((result) => {
-      createProfileInfo(result.user.uid);
+      getUser(result.user.uid).then((doc) => {
+        if (!doc.exists) {
+          createProfileInfo(result.user.uid);
+        }
+      });
     });
   });
 

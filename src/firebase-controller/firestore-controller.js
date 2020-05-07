@@ -36,3 +36,8 @@ export const updateProfileInfo = (userId, description, place) => db.collection('
 export const deletePost = id => db.collection('posts').doc(id).delete();
 
 export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
+
+export const getUser = (docId) => {
+  const docRef = firebase.firestore().collection('users').doc(docId);
+  return docRef.get();
+};
