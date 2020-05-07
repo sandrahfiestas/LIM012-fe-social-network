@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
