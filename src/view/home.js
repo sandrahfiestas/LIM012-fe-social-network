@@ -35,17 +35,22 @@ export default (notes) => {
         </div>
       </div>
       <div class="timeline">
-        <div class="post">
-          <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-          <img id="showPicture" class="post-image" src="#" alt="">
-            <div class="buttons-post">
-              <label for="selectImage">
-              <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
-              <img class ="point-photo" src="./img/add-photo.png">
-              </label> 
-              <img id="choosePrivacity" src="./img/status.png">
-              <button id="btnNewPost" class="button-right">Publicar</button>
-            </div>
+        <div class="container-post">
+          <div>
+            <img class="profilePicture" src="./img/profile-ico.png" alt="">
+          </div>
+          <div class="post">
+            <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
+            <img id="showPicture" class="post-image" src="#" alt="">
+              <div class="buttons-post">
+                <label for="selectImage">
+                <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
+                <img class ="point-photo" src="./img/add-photo.png">
+                </label> 
+                <img id="choosePrivacity" src="./img/status.png">
+                <button id="btnNewPost" class="button-right">Publicar</button>
+              </div>
+          </div>
         </div>
         <div class="all-posts" id="allPosts"></div>
       </div>
