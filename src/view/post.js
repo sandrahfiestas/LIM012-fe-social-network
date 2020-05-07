@@ -7,6 +7,7 @@ export const eachPost = (objPost) => {
   eachNote.innerHTML = `
     <p>${objPost.name}</p>
     <p id="post">${objPost.post}</p>
+    <p>Publicado el</p>
     <textarea class="hide validity input-post" id="inputPost-${objPost.id}" type="text">${objPost.post}</textarea>
     <div class="container-menu-post" id="containerMenu">
         <label id="menu-${objPost.id}" class="label-menu-post"></label>

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishComment } from '../firebase-controller/firestore-controller.js';
+import { publishComment, time } from '../firebase-controller/firestore-controller.js';
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
@@ -82,7 +82,7 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.displayName, newPost).then(() => {
+    publishComment(currentUser.displayName, newPost, time()).then(() => {
       document.getElementById('newPost').value = '';
     });
   });

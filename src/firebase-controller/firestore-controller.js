@@ -2,12 +2,14 @@
 /* eslint-disable import/no-cycle */
 import { db } from '../main.js';
 
-export const publishComment = (userName, newPost) => db.collection('posts').add({
+export const publishComment = (userName, newPost, time) => db.collection('posts').add({
   name: userName,
   post: newPost,
+  time: time,
 });
 
 export const getAllPosts = callback => db.collection('posts')
+  .orderBy('time', 'desc')
   .onSnapshot((querySnapshot) => {
     const allPosts = [];
     querySnapshot.forEach((doc) => {
@@ -35,3 +37,5 @@ export const updateProfileInfo = (userId, description, place) => db.collection('
 export const deletePost = id => db.collection('posts').doc(id).delete();
 
 export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
+
+export const time = () => firebase.firestore.FieldValue.serverTimestamp();
