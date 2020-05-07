@@ -8,14 +8,16 @@ export const publishComment = (id, userName, newPost) => db.collection('posts').
   user: id,
 });
 
-export const getAllPosts = callback => db.collection('posts')
-  .onSnapshot((querySnapshot) => {
+export const getAllPosts = (callback) => {
+  const unsubscribe = db.collection('posts').onSnapshot((querySnapshot) => {
     const allPosts = [];
     querySnapshot.forEach((doc) => {
       allPosts.push({ id: doc.id, ...doc.data() });
     });
     callback(allPosts);
   });
+  return unsubscribe;
+};
 
 export const createProfileInfo = (id) => {
   db.collection('users').doc(id).set({
