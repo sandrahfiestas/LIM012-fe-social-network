@@ -3,7 +3,7 @@ import {
   signUp, verificationEmail, user, logInGoogle, updateUserName,
 } from '../firebase-controller/auth-controller.js';
 import { changeView } from '../view-controller/router.js';
-import { createProfileInfo } from '../firebase-controller/firestore-controller.js';
+import { createProfileInfo, getUser } from '../firebase-controller/firestore-controller.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
@@ -90,7 +90,11 @@ export default () => {
   const btnLogInGoogle = viewSignUp.querySelector('#btnLogInGoogle');
   btnLogInGoogle.addEventListener('click', () => {
     logInGoogle().then((result) => {
-      createProfileInfo(result.user.uid);
+      getUser(result.user.uid).then((doc) => {
+        if (!doc.exists) {
+          createProfileInfo(result.user.uid);
+        }
+      });
     });
   });
 

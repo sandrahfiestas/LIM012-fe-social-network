@@ -40,3 +40,8 @@ export const deletePost = id => db.collection('posts').doc(id).delete();
 export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
 
 export const time = () => firebase.firestore.FieldValue.serverTimestamp();
+
+export const getUser = (docId) => {
+  const docRef = firebase.firestore().collection('users').doc(docId);
+  return docRef.get();
+};
