@@ -2,13 +2,58 @@
 import { deletePost, updatePost, getPost } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 
+const validatePostContent = (img, post, id) => {
+  let postContent = '';
+  if (img) {
+    postContent = `
+    <img class="post-image" src=${img}>
+    <p id="post">${post}</p>
+    <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    `;
+  } else {
+    postContent = `
+    <p id="post">${post}</p>
+    <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    `;
+  }
+  return postContent;
+};
+
+
 export const eachPost = (objPost) => {
  
   const eachNote = document.createElement('div');
   eachNote.classList.add('each-post');
   eachNote.innerHTML = `
     <p>${objPost.name}</p>
-    <p id="post">${objPost.post}</p>
+  
+    ${validatePostContent(objPost.img, objPost.post, objPost.id)}
+    
+    <div class="container-menu-post" id="containerMenu">
+        <label id="menu-${objPost.id}" class="label-menu-post"></label>
+        <nav class="nav-post hide" id="nav-${objPost.id}">
+        <ul class="menu-post">
+            <li class="btn-post-edit" id="edit-${objPost.id}">Editar</li>
+            <li class="btn-post-delete" id="delete-${objPost.id}">Eliminar</li>
+        </ul>
+        </nav>
+    </div>
+    <button class="hide" id="btnSave">Guardar</button>
+    <button class="hide" id="btnCancel">Cancelar</button>
+    `;
+
+
+
+/*
+export const eachPost = (objPost) => {
+ 
+  const eachNote = document.createElement('div');
+  eachNote.classList.add('each-post');
+  eachNote.innerHTML = `
+    <p>${objPost.name}</p>
+
+    <p id="post">  -----validador ---- ${objPost.post}</p>
+    <img class="post-image" src=${objPost.img}>
     <textarea class="hide validity input-post" id="inputPost-${objPost.id}" type="text">${objPost.post}</textarea>
     <div class="container-menu-post" id="containerMenu">
         <label id="menu-${objPost.id}" class="label-menu-post"></label>
@@ -22,6 +67,8 @@ export const eachPost = (objPost) => {
     <button class="hide" id="btnSave">Guardar</button>
     <button class="hide" id="btnCancel">Cancelar</button>
     `;
+
+*/
 
   const userId = user().uid;
   const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);

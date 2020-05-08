@@ -38,8 +38,8 @@ export default (notes) => {
       </div>
       <div class="timeline">
         <div class="post">
+        <img id="showPicture" class="post-image" src="#" alt="">
           <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-          <img id="showPicture" class="post-image" src="#" alt="">
             <div class="buttons-post">
               <label for="selectImage">
               <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
@@ -54,37 +54,25 @@ export default (notes) => {
     </section>`;
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
-  // const showPicture = viewSignInUser.querySelector('#showPicture');
+  const showPicture = viewSignInUser.querySelector('#showPicture');
 
 
-  // Selecciona y guarda imagen en el Storage (sin visualización previa)
+let file = '';
   selectImage.addEventListener('change', (e) => {
 
-     // Vista previa de imagen cargada
+    // Vista previa de imagen cargada
     const input = event.target;
     const reader = new FileReader();
     reader.onload = () => {
-      const dataURL = reader.result;
+      const dataURL = reader.result;    
       showPicture.src = dataURL;
-      newPost.classList.add('hide');
 
+      // Almacena url en localStorage
       localStorage.setItem('image', dataURL)
-      let showIma = localStorage.getItem('image');
-      profilePhoto.src = showIma;
-      
-      
-     };
-    reader.readAsDataURL(input.files[0]);
-    
-
-   
-    
-    
-    // |^|
-    // const file = e.target.files[0];
-    // uploadImagePost(file, currentUser.uid);
+    };
+    reader.readAsDataURL(input.files[0]); 
+    file = e.target.files[0];
   });
-
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
   const navHome = viewSignInUser.querySelector('.nav-home');
@@ -106,14 +94,17 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.uid, currentUser.displayName, newPost).then(() => {
+    const imPost = localStorage.getItem('image')
+   
+    uploadImagePost(file, currentUser.uid);
+    publishComment(currentUser.uid, currentUser.displayName, newPost, imPost).then(() => {
       document.getElementById('newPost').value = '';
     });
   });
 
   // Leyendo datos del database
   const allPosts = viewSignInUser.querySelector('#allPosts');
-  notes.forEach((element) => {    
+  notes.forEach((element) => {
     allPosts.appendChild(eachPost(element));
   });
 
