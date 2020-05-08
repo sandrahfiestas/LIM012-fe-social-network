@@ -1,17 +1,39 @@
 /* eslint-disable import/no-cycle */
+// eslint-disable-next-line import/named
 import { deletePost, updatePost, getPost } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
+
+const validatePostContent = (img, post, id, time) => {
+  let postContent = '';
+  if (img) {
+    postContent = `
+    <img class="post-image" src=${img}>
+    <p class="text-post" id="post">${post}</p>
+    <p>Publicado el ${time}</p>
+    <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    `;
+  } else {
+    postContent = `
+    <p id="post">${post}</p>
+    <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    `;
+  }
+  return postContent;
+};
+
 
 export const eachPost = (objPost) => {
  
   const eachNote = document.createElement('div');
   eachNote.classList.add('each-post');
+  const userId = user().uid;
   eachNote.innerHTML = `
     <p>${objPost.name}</p>
-    <p id="post">${objPost.post}</p>
-    <textarea class="hide validity input-post" id="inputPost-${objPost.id}" type="text">${objPost.post}</textarea>
+  
+    ${validatePostContent(objPost.img, objPost.post, objPost.id, objPost.time)}
+    
     <div class="container-menu-post" id="containerMenu">
-        <label id="menu-${objPost.id}" class="label-menu-post"></label>
+    <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
         <nav class="nav-post hide" id="nav-${objPost.id}">
         <ul class="menu-post">
             <li class="btn-post-edit" id="edit-${objPost.id}">Editar</li>
@@ -23,11 +45,10 @@ export const eachPost = (objPost) => {
     <button class="hide" id="btnCancel">Cancelar</button>
     `;
 
-  const userId = user().uid;
-  const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
-  if (userId !== objPost.user) {
-    menuBar.classList.add('hide');
-  }  
+  // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
+  // if (userId !== objPost.user) {
+  //   menuBar.classList.add('hide');
+  // }
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
