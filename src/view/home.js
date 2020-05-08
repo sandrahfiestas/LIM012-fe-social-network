@@ -8,6 +8,11 @@ import { eachPost } from './post.js';
 
 export default (notes) => {
   const currentUser = user();
+  getProfileInfo(currentUser.uid).then((doc) => {
+    localStorage.setItem('aboutMe', doc.data().aboutMe);
+    localStorage.setItem('location', doc.data().location);
+    localStorage.setItem('name', currentUser.displayName);
+  });
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -27,15 +32,15 @@ export default (notes) => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-              <img id="profilePhoto" class="profilePicture" src="./img/profile-ico.png" alt="">
+              <img id="profilePhoto" class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
             </div>
-            <p class="user-name">${currentUser.displayName}</p>
+            <p class="user-name">${localStorage.getItem('name')}</p>
           </div>
           <h3>Sobre mí</h3>
-          <p class="description"></p>
+          <p class="description">${localStorage.getItem('aboutMe')}</p>
           <div class="location-info profile-text">
               <img src="./img/location.png">
-              <span id="location"></span>
+              <span id="location">${localStorage.getItem('location')}</span>
             </div>
         </div>
       </div>
@@ -76,13 +81,6 @@ export default (notes) => {
   const navHome = viewSignInUser.querySelector('.nav-home');
   menuMobile.addEventListener('click', () => {
     navHome.classList.toggle('hide');
-  });
-
-  const aboutMe = viewSignInUser.querySelector('.description');
-  const location = viewSignInUser.querySelector('#location');
-  getProfileInfo(currentUser.uid).then((doc) => {
-    aboutMe.textContent = doc.data().aboutMe;
-    location.textContent = doc.data().location;
   });
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
