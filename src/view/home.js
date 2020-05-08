@@ -36,10 +36,15 @@ export default (notes) => {
       </div>
       <div class="timeline">
         <div class="container-post">
-          <div>
-            <img class="profilePicture" src="./img/profile-ico.png" alt="">
+          <div class="like-post">
+            <img class="like-picture" src="./img/profile-ico.png" alt="">
+            <div class="like-counter">
+              <div class="heart"></div>
+              <p>22</p>
+              <p>likes</p>
+            </div>
           </div>
-          <div class="post">
+          <div class="post left">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-image" src="#" alt="">
               <div class="buttons-post">
