@@ -10,6 +10,8 @@ body{
     height: 100vh;
 }
 
+body::-webkit-scrollbar {display: none;}
+
 .hide{
     display: none;
 }
@@ -399,7 +401,7 @@ body{
     margin: 0;
     padding: 0;
     align-items: center;
-    width: 14em;
+    width: 16em;
     height: 7em;
 }
 
@@ -425,6 +427,8 @@ body{
     border-bottom-style: solid;
     border-bottom-color: white;
     border-bottom-width: 0.1em;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
 }
 
 .proPicSmall{
@@ -435,6 +439,8 @@ body{
 .btnGoOut{
     width: 100%;
     height: 50%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
 }
 
 .icoSignOut{
@@ -509,7 +515,7 @@ header img{
     border-bottom: 1px solid #DADADA;
     border-left: 1px solid #DADADA;
     border-right: 1px solid #DADADA;
-    padding-bottom: 3px;
+    padding: 2em;
 }
 
 .profileDiv{
@@ -663,9 +669,12 @@ section h3{
 
 .timeline{
     width: 100%;
-    height: 100%;
-    /* padding: 2em;
-    box-sizing: border-box; */
+}
+
+.container-post{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .post{
@@ -677,6 +686,7 @@ section h3{
     padding: 1em;
     box-sizing: border-box;
     margin-bottom: 2em;
+    border-radius: 1em;
 }
 
 .new-post{
@@ -700,23 +710,24 @@ section h3{
 
 .all-posts{
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    padding: 1em;
-    border: 0.2em solid #BE58C0;
-    box-sizing: border-box;
 }
 
 .each-post{
     width: 100%;
-    height: 10em;
     border: 0.1em solid #E599FF;
     box-sizing: border-box;
     position: relative;
     padding: 1em;
+    margin-bottom: 1em;
+}
+
+.text-post{
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .container-menu-post{
@@ -849,19 +860,22 @@ section h3{
 @media screen and (min-width: 750px){
 
     .containerHome{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding-top: 2em;
+        display: grid;
+        height: 100%;
+        margin: 0 auto;
+        grid-template-columns: 40% 6% 54%;
+        padding-top: 3em;
         box-sizing: border-box;
     }
 
     .timeline{
-        width: 47%;
+        grid-column-start: 3;
+        grid-column-end: 4;
     }
 
     .profileSection{
-        width: 47%;
+        grid-column-start: 1;
+        grid-column-end: 2;
     }
 
     .menuMobile{
@@ -877,7 +891,8 @@ section h3{
 
     .menu-home{
         display: flex;
-        width: 16em;
+        width: 20em;
+        height: 100%;
         flex-direction: row;
         justify-content: space-between;
         list-style-type: none;
@@ -912,21 +927,8 @@ section h3{
     }
 
     .coverImage{
-        height: 10em;
+        height: 12em;
     }
-
-    /* .profile{
-        top: 6em;
-    } */
-    
-
-    /* .profileSection{
-        grid-column-start: 1;
-    }
-
-    .timeline{
-        grid-column-start: 3;
-    } */
 }
 
 @media screen and (min-width: 1024px){
@@ -936,7 +938,6 @@ section h3{
     }
 
     .containerHome{
-        margin: 0 auto;
         max-width: 1024px;
     }
 

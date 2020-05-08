@@ -24,16 +24,16 @@ export default () => {
         <div class="coverImage"></div>
         <div class="profile">
           <div class="profileDiv profile-margin">
-            <img class="profilePicture" src="./img/profile-ico.png">
+            <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{1,30}\\s*)+">
+            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
-            <p class="profile-text" id="description"></p>
+            <p class="profile-text" id="description">${localStorage.getItem('aboutMe')}</p>
             <div class="location-info profile-text">
               <img src="./img/location.png">
-              <span id="location"></span>
+              <span id="location">${localStorage.getItem('location')}</span>
             </div>
           </div>
           <img class="edit-icon" src="../src/img/edition-icon.png">
@@ -51,11 +51,6 @@ export default () => {
 
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
-
-  getProfileInfo(currentUser.uid).then((doc) => {
-    aboutMe.textContent = doc.data().aboutMe;
-    location.textContent = doc.data().location;
-  });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
   const navHome = viewUserProfile.querySelector('.nav-home');
@@ -131,6 +126,8 @@ export default () => {
     updateUserName(currentUser, inputName.value);
     updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
     name.textContent = inputName.value;
+    localStorage.setItem('aboutMe', aboutMe.textContent);
+    localStorage.setItem('location', location.textContent);
   });
 
   return viewUserProfile;
