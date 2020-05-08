@@ -5,25 +5,35 @@ import { user } from '../firebase-controller/auth-controller.js';
 
 export const eachPost = (objPost) => {
   const eachNote = document.createElement('div');
-  eachNote.classList.add('each-post');
+  eachNote.classList.add('container-post');
   const userId = user().uid;
   eachNote.innerHTML = `
-    <p>${objPost.name}</p>
-    <p class="text-post" id="post">${objPost.post}</p>
-    <p>Publicado el ${objPost.time}</p>
-    <textarea class="hide validity input-post" id="inputPost-${objPost.id}" type="text">${objPost.post}</textarea>
-    <div class="container-menu-post" id="containerMenu">
-      <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
-      <nav class="nav-post hide" id="nav-${objPost.id}">
-      <ul class="menu-post">
-          <li class="btn-post-edit" id="edit-${objPost.id}">Editar</li>
-          <li class="btn-post-delete" id="delete-${objPost.id}">Eliminar</li>
-      </ul>
-      </nav>
+    <div class="like-post">
+      <img class="like-picture" src="./img/profile-ico.png" alt="">
+      <div class="like-counter">
+        <div class="heart"></div>
+        <p>22</p>
+        <p>likes</p>
+      </div>
     </div>
-    <button class="hide" id="btnSave">Guardar</button>
-    <button class="hide" id="btnCancel">Cancelar</button>
-    `;
+    <div class="each-post left">
+      <p>${objPost.name}</p>
+      <p class="text-post" id="post">${objPost.post}</p>
+      <p>Publicado el ${objPost.time.toDate().toLocaleDateString()}</p>
+      <textarea class="hide validity input-post" id="inputPost-${objPost.id}" type="text">${objPost.post}</textarea>
+      <div class="container-menu-post" id="containerMenu">
+        <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
+        <nav class="nav-post hide" id="nav-${objPost.id}">
+        <ul class="menu-post">
+            <li class="btn-post-edit" id="edit-${objPost.id}">Editar</li>
+            <li class="btn-post-delete" id="delete-${objPost.id}">Eliminar</li>
+        </ul>
+        </nav>
+      </div>
+      <button class="hide" id="btnSave">Guardar</button>
+      <button class="hide" id="btnCancel">Cancelar</button>
+    </div>
+  `;
 
   // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
   // if (userId !== objPost.user) {

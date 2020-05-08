@@ -671,7 +671,7 @@ section h3{
     width: 100%;
 }
 
-.container-post{
+.container-create-post{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -743,11 +743,11 @@ section h3{
     position: relative;
 }
 
-.post.left{
+.post.left, .each-post.left{
     margin-left: 30px;
 }
 
-.post.left:before{
+.post.left:before, .each-post.left:before{
     top: 10px;
     bottom: auto;
     left: -31px;
@@ -755,7 +755,7 @@ section h3{
     border-color: transparent #BE58C0;
 }
 
-.post:before{
+.post:before, .each-post:before{
     content: "";
     position: absolute;
     bottom: -20px;
@@ -767,7 +767,7 @@ section h3{
     width: 0;
 }
 
-.post.left:after{
+.post.left:after, .each-post.left:after{
     top: 16px;
     bottom: auto;
     left: -21px;
@@ -775,7 +775,7 @@ section h3{
     border-color: transparent #fff;
 }
 
-.post:after{
+.post:after, .each-post:after{
     content: "";
     position: absolute;
     bottom: -13px;
@@ -816,10 +816,17 @@ section h3{
 
 .each-post{
     width: 100%;
-    border: 0.1em solid #E599FF;
+    border: 0.42em solid #E599FF;
     box-sizing: border-box;
     position: relative;
     padding: 1em;
+}
+
+.container-post{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-bottom: 1em;
 }
 
