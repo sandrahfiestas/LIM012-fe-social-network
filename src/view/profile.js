@@ -6,10 +6,6 @@ import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firest
 
 export default () => {
   const currentUser = user();
-  getProfileInfo(currentUser.uid).then((doc) => {
-    localStorage.setItem('aboutMe', doc.data().aboutMe);
-    localStorage.setItem('location', doc.data().location);
-  });
 
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
@@ -30,7 +26,7 @@ export default () => {
           <div class="profileDiv profile-margin">
             <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-Z]{1,30}\\s*)+">
+            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
           <div class="profile-margin">
             <h3>Sobre mí</h3>
