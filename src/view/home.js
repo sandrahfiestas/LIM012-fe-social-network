@@ -1,12 +1,18 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishComment, time } from '../firebase-controller/firestore-controller.js';
+import { publishComment, time, getProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
 export default (notes) => {
   const currentUser = user();
+  getProfileInfo(currentUser.uid).then((doc) => {
+    localStorage.setItem('aboutMe', doc.data().aboutMe);
+    localStorage.setItem('location', doc.data().location);
+    localStorage.setItem('name', currentUser.displayName);
+  });
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -26,12 +32,16 @@ export default (notes) => {
         <div class="profile">
           <div class="profileDiv">
             <div class="profilePicture">
-              <img id="profilePhoto" class="profilePicture" src="./img/profile-ico.png" alt="">
+              <img id="profilePhoto" class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
             </div>
-            <p class="user-name">${currentUser.displayName}</p>
+            <p class="user-name">${localStorage.getItem('name')}</p>
           </div>
           <h3>Sobre mí</h3>
-          <p class="description">Nemo enim ipsam voluptem quia voluptas sit asper aut odit aut fugit.</p>
+          <p class="description">${localStorage.getItem('aboutMe')}</p>
+          <div class="location-info profile-text">
+              <img src="./img/location.png">
+              <span id="location">${localStorage.getItem('location')}</span>
+            </div>
         </div>
       </div>
       <div class="timeline">
@@ -87,7 +97,7 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.displayName, newPost, time()).then(() => {
+    publishComment(currentUser.uid, currentUser.displayName, newPost, time()).then(() => {
       document.getElementById('newPost').value = '';
     });
   });
