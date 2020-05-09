@@ -15,6 +15,7 @@ const validatePostContent = (img, post, id, time) => {
   } else {
     postContent = `
     <p id="post">${post}</p>
+    <p>Publicado el ${time}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
     `;
   }
@@ -50,11 +51,6 @@ export const eachPost = (objPost) => {
       <button class="hide" id="btnCancel">Cancelar</button>
     </div>
   `;
-
-  // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
-  // if (userId !== objPost.user) {
-  //   menuBar.classList.add('hide');
-  // }
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);

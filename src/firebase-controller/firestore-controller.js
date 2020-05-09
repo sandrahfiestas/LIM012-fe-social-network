@@ -2,12 +2,13 @@
 /* eslint-disable import/no-cycle */
 import { db } from '../main.js';
 
-export const publishComment = (id, userName, newPost, imagePost, time) => db.collection('posts').add({
+export const publishComment = (id, userName, newPost, imagePost, time, status) => db.collection('posts').add({
   name: userName,
   post: newPost,
   user: id,
   img: imagePost,
   time: time,
+  privacy: status,
 });
 
 export const getAllPosts = callback => db.collection('posts')
