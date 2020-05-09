@@ -8,7 +8,11 @@ export const eachPost = (objPost) => {
   eachNote.classList.add('each-post');
   const userId = user().uid;
   eachNote.innerHTML = `
-    <p>${objPost.name}</p>
+    <p class="postName">${objPost.name}</p>
+    <select class="privacy">
+      <option value="public">Público</option>
+      <option value="private">Privado</option>
+    </select>
     <p class="text-post" id="post">${objPost.post}</p>
     <p>Publicado el ${objPost.time}</p>
     <textarea class="hide validity input-post" id="inputPost-${objPost.id}" type="text">${objPost.post}</textarea>
@@ -25,10 +29,14 @@ export const eachPost = (objPost) => {
     <button class="hide" id="btnCancel">Cancelar</button>
     `;
 
-  // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
-  // if (userId !== objPost.user) {
-  //   menuBar.classList.add('hide');
-  // }
+  // const selectOption = eachNote.querySelector('.privacy');
+  // selectOption.addEventListener('change', () => {
+  //   if (selectOption.value === 'public') {
+  //     console.log('es público');
+  //   } else {
+  //     console.log('es privado');
+  //   }
+  // });
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
