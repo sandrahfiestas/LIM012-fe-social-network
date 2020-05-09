@@ -66,7 +66,7 @@ export default (notes) => {
             </div>
           </div>
         </div>
-        <div class="all-posts" id="allPosts"></div>
+        <div class="all-posts"></div>
       </div>
     </section>`;
 
@@ -111,22 +111,25 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
+    const status = viewSignInUser.querySelector('.privacy').value;
     let imPost = '';
     if (file) {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
-        document.getElementById('newPost').value = '';
-      });
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
+        .then(() => {
+          document.querySelector('.new-post').value = '';
+        });
     } else {
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
-        document.getElementById('newPost').value = '';
-      });
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
+        .then(() => {
+          document.querySelector('.new-post').value = '';
+        });
     }
   });
 
   // Leyendo datos del database
-  const allPosts = viewSignInUser.querySelector('#allPosts');
+  const allPosts = viewSignInUser.querySelector('.all-posts');
   notes.forEach((element) => {
     allPosts.appendChild(eachPost(element));
   });
