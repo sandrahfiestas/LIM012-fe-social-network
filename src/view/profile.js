@@ -13,7 +13,7 @@ export default () => {
       <label id="menu-mobile2" class="menuMobile"></label>
       <nav class="nav-home hide">
         <ul class="menu-home">
-          <li class="btnGoProfile" id="btnGoHome"><img class="proPicSmall" src="./img/home-ico.png">Inicio</li>
+          <li class="btnGoProfile" id="btnGoHome"><img class="ico-home" src="./img/home-ico.png">Inicio</li>
           <li class="btnGoOut" id="btnSignOut2"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
         </ul>
       </nav>

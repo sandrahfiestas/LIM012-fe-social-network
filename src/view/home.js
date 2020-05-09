@@ -8,7 +8,6 @@ import { eachPost } from './post.js';
 
 
 export default (notes) => {
-  
   const currentUser = user();
   getProfileInfo(currentUser.uid).then((doc) => {
     localStorage.setItem('aboutMe', doc.data().aboutMe);
@@ -22,7 +21,7 @@ export default (notes) => {
     <label id="menu-mobile" class="menuMobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="./img/profile-ico.png">Perfil</li>
+        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
         <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
@@ -48,19 +47,26 @@ export default (notes) => {
       </div>
       <div class="timeline">
         <div class="container-create-post">
-          <img class="like-picture" src="./img/profile-ico.png" alt="">
+          <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
           <div class="post left">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-image" src="#" alt="">
-            <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-              <div class="buttons-post">
+            <div class="buttons-post">
+              <div class="options">
                 <label for="selectImage">
-                <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
-                <img class ="point-photo" src="./img/add-photo.png">
-                </label> 
-                <img id="choosePrivacity" src="./img/status.png">
-                <button id="btnNewPost" class="button-right">Publicar</button>
+                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
+                  <img class ="point-photo" src="./img/add-photo.png">
+                </label>
+                <div id="choosePrivacity" class="menu-privacity"></div>
+                <nav id="navPrivacity" class="nav-privacity hide">
+                  <ul>
+                    <li class="privacity-public"></li>
+                    <li class="privacity-private"></li>
+                  </ul>
+                </nav>
               </div>
+              <button id="btnNewPost" class="btn-post">Publicar</button>
+            </div>
           </div>
         </div>
         <div class="all-posts" id="allPosts"></div>
@@ -71,21 +77,27 @@ export default (notes) => {
   const showPicture = viewSignInUser.querySelector('#showPicture');
 
 
-let file = '';
+  let file = '';
   selectImage.addEventListener('change', (e) => {
-
     // Vista previa de imagen cargada
-    const input = event.target;
+    const input = e.target;
     const reader = new FileReader();
     reader.onload = () => {
-      const dataURL = reader.result;    
+      const dataURL = reader.result;
       showPicture.src = dataURL;
 
       // Almacena url en localStorage
-      localStorage.setItem('image', dataURL)
+      localStorage.setItem('image', dataURL);
     };
-    reader.readAsDataURL(input.files[0]); 
+    reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
+  });
+
+  // btn privacity
+  const menuPrivacity = viewSignInUser.querySelector('#choosePrivacity');
+  const navPrivacity = viewSignInUser.querySelector('#navPrivacity');
+  menuPrivacity.addEventListener('click', () => {
+    navPrivacity.classList.toggle('hide');
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
@@ -108,12 +120,18 @@ let file = '';
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    const imPost = localStorage.getItem('image')
-   
-    uploadImagePost(file, currentUser.uid);
-    publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
-      document.getElementById('newPost').value = '';
-    });
+    let imPost = '';
+    if (file) {
+      imPost = localStorage.getItem('image');
+      uploadImagePost(file, currentUser.uid);
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
+        document.getElementById('newPost').value = '';
+      });
+    } else {
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
+        document.getElementById('newPost').value = '';
+      });
+    }
   });
 
   // Leyendo datos del database
