@@ -2,11 +2,12 @@
 /* eslint-disable import/no-cycle */
 import { db } from '../main.js';
 
-export const publishComment = (id, userName, newPost, time) => db.collection('posts').add({
+export const publishComment = (id, userName, newPost, imagePost, time) => db.collection('posts').add({
   name: userName,
   post: newPost,
-  time: time,
   user: id,
+  img: imagePost,
+  time: time,
 });
 
 export const getAllPosts = callback => db.collection('posts')
@@ -15,7 +16,7 @@ export const getAllPosts = callback => db.collection('posts')
     const allPosts = [];
     querySnapshot.forEach((doc) => {
       allPosts.push({ id: doc.id, ...doc.data() });
-    });
+    }); 
     callback(allPosts);
   });
 

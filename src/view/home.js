@@ -6,7 +6,9 @@ import { publishComment, time, getProfileInfo } from '../firebase-controller/fir
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
+
 export default (notes) => {
+  
   const currentUser = user();
   getProfileInfo(currentUser.uid).then((doc) => {
     localStorage.setItem('aboutMe', doc.data().aboutMe);
@@ -50,6 +52,7 @@ export default (notes) => {
           <div class="post left">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-image" src="#" alt="">
+            <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
               <div class="buttons-post">
                 <label for="selectImage">
                 <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
@@ -65,14 +68,24 @@ export default (notes) => {
     </section>`;
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
-  // const showPicture = viewSignInUser.querySelector('#showPicture');
-  // const newPost = viewSignInUser.querySelector('#newPost');
+  const showPicture = viewSignInUser.querySelector('#showPicture');
 
 
-  // Selecciona y guarda imagen en el Storage (sin visualización previa)
+let file = '';
   selectImage.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    uploadImagePost(file, currentUser.uid);
+
+    // Vista previa de imagen cargada
+    const input = event.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;    
+      showPicture.src = dataURL;
+
+      // Almacena url en localStorage
+      localStorage.setItem('image', dataURL)
+    };
+    reader.readAsDataURL(input.files[0]); 
+    file = e.target.files[0];
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
@@ -95,7 +108,10 @@ export default (notes) => {
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.uid, currentUser.displayName, newPost, time()).then(() => {
+    const imPost = localStorage.getItem('image')
+   
+    uploadImagePost(file, currentUser.uid);
+    publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
       document.getElementById('newPost').value = '';
     });
   });
