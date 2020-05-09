@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
-import { deletePost, updatePost, getPost } from '../firebase-controller/firestore-controller.js';
+import {
+  deletePost, updatePost, getPost, updatePrivacy,
+} from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 
 const validatePostContent = (img, post, id, time) => {
@@ -37,6 +39,10 @@ export const eachPost = (objPost) => {
     </div>
     <div class="each-post left">
       <p>${objPost.name}</p>
+      <select class="privacy ${(userId === objPost.user) || 'hide'}">
+        <option value="0" ${(objPost.privacy === '1') || 'selected'}>&#xf0ac; Público</option>
+        <option value="1" ${(objPost.privacy === '0') || 'selected'}>&#xf023; Privado</option>
+      </select>
       ${validatePostContent(objPost.img, objPost.post, objPost.id, objPost.time)}
       <div class="container-menu-post" id="containerMenu">
         <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
@@ -51,6 +57,11 @@ export const eachPost = (objPost) => {
       <button class="hide" id="btnCancel">Cancelar</button>
     </div>
   `;
+
+  const selectOption = eachNote.querySelector('.privacy');
+  selectOption.addEventListener('change', () => {
+    updatePrivacy(objPost.id, selectOption.value);
+  });
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
