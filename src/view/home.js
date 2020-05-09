@@ -99,6 +99,7 @@ export default (notes) => {
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
+    // localStorage.clear();
     signOut();
   });
 

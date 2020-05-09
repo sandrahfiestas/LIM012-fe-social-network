@@ -51,10 +51,14 @@ export const eachPost = (objPost) => {
     </div>
   `;
 
-  // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
-  // if (userId !== objPost.user) {
-  //   menuBar.classList.add('hide');
-  // }
+  // const selectOption = eachNote.querySelector('.privacy');
+  // selectOption.addEventListener('change', () => {
+  //   if (selectOption.value === 'public') {
+  //     console.log('es público');
+  //   } else {
+  //     console.log('es privado');
+  //   }
+  // });
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
