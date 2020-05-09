@@ -14,7 +14,8 @@ const validatePostContent = (img, post, id, time) => {
     `;
   } else {
     postContent = `
-    <p id="post">${post}</p>
+    <p class="text-post" id="post">${post}</p>
+    <p>Publicado el ${time}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
     `;
   }
