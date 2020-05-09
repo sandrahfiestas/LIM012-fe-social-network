@@ -58,8 +58,8 @@ export default (notes) => {
                   <img class ="point-photo" src="./img/add-photo.png">
                 </label>
                 <select class="privacy">
-                  <option value="0">Público</option>
-                  <option value="1">Privado</option>
+                  <option value="0">&#xf0ac; Público</option>
+                  <option value="1">&#xf023; Privado</option>
                 </select>
               </div>
               <button id="btnNewPost" class="btn-post">Publicar</button>
