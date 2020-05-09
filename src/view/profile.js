@@ -46,7 +46,9 @@ export default (notes) => {
           </div>
         </div>
       </div>
-      <div class="all-posts"></div>
+      <div class="timeline">
+        <div class="all-posts"></div>
+      </div>
     </section>`;
 
   const aboutMe = viewUserProfile.querySelector('#description');
