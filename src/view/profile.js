@@ -3,8 +3,10 @@ import { changeView } from '../view-controller/router.js';
 // import { profileInfo } from '../firestore-controller.js';
 import { signOut, user, updateUserName } from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
+import { eachPost } from './post.js';
+// import { postsFilter } from '../posts-controller.js';
 
-export default () => {
+export default (notes) => {
   const currentUser = user();
 
   const viewUserProfile = document.createElement('div');
@@ -36,7 +38,7 @@ export default () => {
               <span id="location">${localStorage.getItem('location')}</span>
             </div>
           </div>
-          <img class="edit-icon" src="../img/edition-icon.png">
+          <img class="edit-icon" src="./img/edition-icon.png">
           <p class="dropDown hide" id="editName">Editar</p>
           <div class="profile-btn-editions">
             <button id="btnCancel" class="btn-profile hide">Cancelar</button>
@@ -45,7 +47,7 @@ export default () => {
         </div>
       </div>
       <div class="timeline">
-        <div class="newPost"></div>
+        <div class="all-posts"></div>
       </div>
     </section>`;
 
@@ -121,6 +123,8 @@ export default () => {
     }
   });
 
+  // postsFilter(currentUser, window.location.hash);
+
   btnSave.addEventListener('click', () => {
     editableInfo();
     updateUserName(currentUser, inputName.value);
@@ -128,6 +132,11 @@ export default () => {
     name.textContent = inputName.value;
     localStorage.setItem('aboutMe', aboutMe.textContent);
     localStorage.setItem('location', location.textContent);
+  });
+
+  const allPosts = viewUserProfile.querySelector('.all-posts');
+  notes.forEach((element) => {
+    allPosts.appendChild(eachPost(element));
   });
 
   return viewUserProfile;
