@@ -51,15 +51,6 @@ export const eachPost = (objPost) => {
     </div>
   `;
 
-  // const selectOption = eachNote.querySelector('.privacy');
-  // selectOption.addEventListener('change', () => {
-  //   if (selectOption.value === 'public') {
-  //     console.log('es público');
-  //   } else {
-  //     console.log('es privado');
-  //   }
-  // });
-
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
   menuPost.addEventListener('click', () => {
