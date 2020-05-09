@@ -50,16 +50,19 @@ export default (notes) => {
             <img class="profilePicture" src="./img/profile-ico.png" alt="">
           </div>
           <div class="post">
-            <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
+            <textarea class="new-post" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-image" src="#" alt="">
-              <div class="buttons-post">
-                <label for="selectImage">
+            <div class="buttons-post">
+              <label for="selectImage">
                 <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
                 <img class ="point-photo" src="./img/add-photo.png">
-                </label> 
-                <img id="choosePrivacity" src="./img/status.png">
-                <button id="btnNewPost" class="button-right">Publicar</button>
-              </div>
+              </label>
+              <select class="privacy">
+                <option value="0">Público</option>
+                <option value="1">Privado</option>
+              </select>
+              <button id="btnNewPost" class="button-right">Publicar</button>
+            </div>
           </div>
         </div>
         <div class="all-posts" id="allPosts"></div>
@@ -69,7 +72,6 @@ export default (notes) => {
   const selectImage = viewSignInUser.querySelector('#selectImage');
   // const showPicture = viewSignInUser.querySelector('#showPicture');
   // const newPost = viewSignInUser.querySelector('#newPost');
-
 
   // Selecciona y guarda imagen en el Storage (sin visualización previa)
   selectImage.addEventListener('change', (e) => {
@@ -97,9 +99,10 @@ export default (notes) => {
 
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
-    const newPost = document.querySelector('#newPost').value;
-    publishComment(currentUser.uid, currentUser.displayName, newPost, time()).then(() => {
-      document.getElementById('newPost').value = '';
+    const newPost = document.querySelector('.new-post').value;
+    const status = viewSignInUser.querySelector('.privacy').value;
+    publishComment(currentUser.uid, currentUser.displayName, newPost, time(), status).then(() => {
+      document.querySelector('.new-post').value = '';
     });
   });
 
