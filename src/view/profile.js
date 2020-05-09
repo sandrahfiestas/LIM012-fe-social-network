@@ -36,7 +36,7 @@ export default () => {
               <span id="location">${localStorage.getItem('location')}</span>
             </div>
           </div>
-          <img class="edit-icon" src="../src/img/edition-icon.png">
+          <img class="edit-icon" src="../img/edition-icon.png">
           <p class="dropDown hide" id="editName">Editar</p>
           <div class="profile-btn-editions">
             <button id="btnCancel" class="btn-profile hide">Cancelar</button>

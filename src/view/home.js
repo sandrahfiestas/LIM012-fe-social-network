@@ -47,11 +47,10 @@ export default (notes) => {
         </div>
       </div>
       <div class="timeline">
-        <div class="container-post">
-          <div>
-            <img class="profilePicture" src="./img/profile-ico.png" alt="">
-          </div>
-          <div class="post">
+        <div class="container-create-post">
+          <img class="like-picture" src="./img/profile-ico.png" alt="">
+          <div class="post left">
+            <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-image" src="#" alt="">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
               <div class="buttons-post">
