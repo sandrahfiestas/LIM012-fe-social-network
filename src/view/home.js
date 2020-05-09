@@ -57,13 +57,10 @@ export default (notes) => {
                   <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
                   <img class ="point-photo" src="./img/add-photo.png">
                 </label>
-                <div id="choosePrivacity" class="menu-privacity"></div>
-                <nav id="navPrivacity" class="nav-privacity hide">
-                  <ul>
-                    <li class="privacity-public"></li>
-                    <li class="privacity-private"></li>
-                  </ul>
-                </nav>
+                <select class="privacy">
+                  <option value="0">Público</option>
+                  <option value="1">Privado</option>
+                </select>
               </div>
               <button id="btnNewPost" class="btn-post">Publicar</button>
             </div>
@@ -91,13 +88,6 @@ export default (notes) => {
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
-  });
-
-  // btn privacity
-  const menuPrivacity = viewSignInUser.querySelector('#choosePrivacity');
-  const navPrivacity = viewSignInUser.querySelector('#navPrivacity');
-  menuPrivacity.addEventListener('click', () => {
-    navPrivacity.classList.toggle('hide');
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
