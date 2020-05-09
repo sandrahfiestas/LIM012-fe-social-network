@@ -73,7 +73,6 @@ export default (notes) => {
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
 
-
   let file = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
