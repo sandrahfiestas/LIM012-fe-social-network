@@ -52,11 +52,6 @@ export const eachPost = (objPost) => {
     </div>
   `;
 
-  // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
-  // if (userId !== objPost.user) {
-  //   menuBar.classList.add('hide');
-  // }
-
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
   menuPost.addEventListener('click', () => {
