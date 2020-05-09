@@ -109,12 +109,20 @@ let file = '';
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    const imPost = localStorage.getItem('image')
    
-    uploadImagePost(file, currentUser.uid);
+    let imPost = '';
+
+    if (file) {
+      imPost = localStorage.getItem('image')
+      uploadImagePost(file, currentUser.uid);
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
+        document.getElementById('newPost').value = '';
+      });
+    } else {
     publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
       document.getElementById('newPost').value = '';
     });
+    }
   });
 
   // Leyendo datos del database

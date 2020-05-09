@@ -21,7 +21,6 @@ const validatePostContent = (img, post, id, time) => {
   return postContent;
 };
 
-
 export const eachPost = (objPost) => {
  
   const eachNote = document.createElement('div');
