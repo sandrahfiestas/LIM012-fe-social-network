@@ -9,5 +9,3 @@ export const uploadImagePost = (file, uid) => {
   //   console.log(snapshot);
   // })
 };
-
-

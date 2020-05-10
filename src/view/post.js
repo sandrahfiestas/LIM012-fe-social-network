@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
-import { deletePost, updatePost, getPost } from '../firebase-controller/firestore-controller.js';
+import {
+  deletePost, updatePost, getPost, updatePrivacy,
+} from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 
 const validatePostContent = (img, post, id, time) => {
@@ -14,7 +16,8 @@ const validatePostContent = (img, post, id, time) => {
     `;
   } else {
     postContent = `
-    <p id="post">${post}</p>
+    <p class="text-post" id="post">${post}</p>
+    <p>Publicado el ${time}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
     `;
   }
@@ -22,32 +25,43 @@ const validatePostContent = (img, post, id, time) => {
 };
 
 export const eachPost = (objPost) => {
- 
   const eachNote = document.createElement('div');
-  eachNote.classList.add('each-post');
+  eachNote.classList.add('container-post');
   const userId = user().uid;
   eachNote.innerHTML = `
-    <p>${objPost.name}</p>
-  
-    ${validatePostContent(objPost.img, objPost.post, objPost.id, objPost.time)}
-    
-    <div class="container-menu-post" id="containerMenu">
-    <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
+    <div class="like-post">
+      <img class="like-picture" src="./img/profile-ico.png" alt="">
+      <div class="like-counter">
+        <div class="heart"></div>
+        <p>22</p>
+        <p>likes</p>
+      </div>
+    </div>
+    <div class="each-post left">
+      <p>${objPost.name}</p>
+      <select class="privacy ${(userId === objPost.user) || 'hide'}">
+        <option value="0" ${(objPost.privacy === '1') || 'selected'}>&#xf0ac; Público</option>
+        <option value="1" ${(objPost.privacy === '0') || 'selected'}>&#xf023; Privado</option>
+      </select>
+      ${validatePostContent(objPost.img, objPost.post, objPost.id, objPost.time)}
+      <div class="container-menu-post" id="containerMenu">
+        <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
         <nav class="nav-post hide" id="nav-${objPost.id}">
-        <ul class="menu-post">
+          <ul class="menu-post">
             <li class="btn-post-edit" id="edit-${objPost.id}">Editar</li>
             <li class="btn-post-delete" id="delete-${objPost.id}">Eliminar</li>
-        </ul>
+          </ul>
         </nav>
+      </div>
+      <button class="hide" id="btnSave">Guardar</button>
+      <button class="hide" id="btnCancel">Cancelar</button>
     </div>
-    <button class="hide" id="btnSave">Guardar</button>
-    <button class="hide" id="btnCancel">Cancelar</button>
-    `;
+  `;
 
-  // const menuBar = eachNote.querySelector(`#menu-${objPost.id}`);
-  // if (userId !== objPost.user) {
-  //   menuBar.classList.add('hide');
-  // }
+  const selectOption = eachNote.querySelector('.privacy');
+  selectOption.addEventListener('change', () => {
+    updatePrivacy(objPost.id, selectOption.value);
+  });
 
   const menuPost = eachNote.querySelector(`#menu-${objPost.id}`);
   const navPost = eachNote.querySelector(`#nav-${objPost.id}`);
