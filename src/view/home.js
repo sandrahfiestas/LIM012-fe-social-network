@@ -8,7 +8,6 @@ import { eachPost } from './post.js';
 
 
 export default (notes) => {
-  
   const currentUser = user();
   getProfileInfo(currentUser.uid).then((doc) => {
     localStorage.setItem('aboutMe', doc.data().aboutMe);
@@ -22,7 +21,7 @@ export default (notes) => {
     <label id="menu-mobile" class="menuMobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="./img/profile-ico.png">Perfil</li>
+        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
         <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
@@ -47,46 +46,53 @@ export default (notes) => {
         </div>
       </div>
       <div class="timeline">
-        <div class="container-post">
-          <div>
-            <img class="profilePicture" src="./img/profile-ico.png" alt="">
-          </div>
-          <div class="post">
-            <img id="showPicture" class="post-image" src="#" alt="">
+        <div class="container-create-post">
+          <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
+          <div class="post left">
+             <img id="showPicture" class="post-image" src="#" alt="">
+             <button id="btnCancelImg" class="hide cancel-image"></button>
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-              <div class="buttons-post">
+            <img id="showPicture" class="post-image" src="#" alt="">
+            <div class="buttons-post">
+              <div class="options">
                 <label for="selectImage">
-                <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
-                <img class ="point-photo" src="./img/add-photo.png">
-                </label> 
-                <img id="choosePrivacity" src="./img/status.png">
-                <button id="btnNewPost" class="button-right">Publicar</button>
+                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
+                  <img class ="point-photo" src="./img/add-photo.png">
+                </label>
+                <select class="privacy">
+                  <option value="0">&#xf0ac; Público</option>
+                  <option value="1">&#xf023; Privado</option>
+                </select>
               </div>
+              <button id="btnNewPost" class="btn-post">Publicar</button>
+            </div>
           </div>
         </div>
-        <div class="all-posts" id="allPosts"></div>
+        <div class="all-posts"></div>
       </div>
     </section>`;
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
-
+  const btnCancelImg = viewSignInUser.querySelector('#btnCancelImg');
 
 let file = '';
   selectImage.addEventListener('change', (e) => {
-
     // Vista previa de imagen cargada
-    const input = event.target;
+    const input = e.target;
     const reader = new FileReader();
     reader.onload = () => {
-      const dataURL = reader.result;    
+      const dataURL = reader.result;
       showPicture.src = dataURL;
 
       // Almacena url en localStorage
-      localStorage.setItem('image', dataURL)
+      localStorage.setItem('image', dataURL);
     };
-    reader.readAsDataURL(input.files[0]); 
+    reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
+
+      // Botón para cancelar imagen
+      btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
@@ -98,6 +104,7 @@ let file = '';
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
     changeView('#/signin');
+    // localStorage.clear();
     signOut();
   });
 
@@ -109,19 +116,35 @@ let file = '';
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
-    const imPost = localStorage.getItem('image')
-   
-    uploadImagePost(file, currentUser.uid);
-    publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time()).then(() => {
-      document.getElementById('newPost').value = '';
-    });
+    const status = viewSignInUser.querySelector('.privacy').value;
+    let imPost = '';
+    if (file) {
+      imPost = localStorage.getItem('image');
+      uploadImagePost(file, currentUser.uid);
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
+        .then(() => {
+          document.querySelector('.new-post').value = '';
+        });
+    } else {
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
+        .then(() => {
+          document.querySelector('.new-post').value = '';
+        });
+    }
   });
 
   // Leyendo datos del database
-  const allPosts = viewSignInUser.querySelector('#allPosts');
+  const allPosts = viewSignInUser.querySelector('.all-posts');
   notes.forEach((element) => {
     allPosts.appendChild(eachPost(element));
   });
+
+  // Cancela imagen antes de publicar
+  btnCancelImg.addEventListener('click', () => {
+    localStorage.removeItem('image');
+    showPicture.src = ""
+    btnCancelImg.classList.add('hide');
+  })
 
   return viewSignInUser;
 };
