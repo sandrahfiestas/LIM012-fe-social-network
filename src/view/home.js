@@ -49,9 +49,9 @@ export default (notes) => {
         <div class="container-create-post">
           <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
           <div class="post left">
-            <button id="btnCancelImg" class="hide cancel-image"></button>
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-new-image" src="#" alt="">
+            <button id="btnCancelImg" class="hide cancel-image"></button>
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
@@ -119,10 +119,7 @@ export default (notes) => {
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
     const status = viewSignInUser.querySelector('.privacy').value;
-    const newDate = new Date();
-    const getDate = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`;
-    const getHour = `${newDate.getHours()}:${newDate.getMinutes() + 1}:${newDate.getSeconds()}`;
-    const date = `${getDate}<br>${getHour}`;
+    const date = new Date().toLocaleString();
     let imPost = '';
     if (file) {
       imPost = localStorage.getItem('image');

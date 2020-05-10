@@ -697,6 +697,12 @@ header img{
     justify-content: space-between;
 }
 
+.container-photo-time{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .like-picture{
     width: 60px;
     height: 60px;
@@ -705,6 +711,7 @@ header img{
 
 .post-time{
     font-size: 1em;
+    width: 60px;
     font-family: "Noto sans", sans-serif;
     text-align: center;
 }

@@ -28,7 +28,7 @@ export const eachPost = (objPost) => {
   const userId = user().uid;
   eachNote.innerHTML = `
     <div class="like-post">
-      <div>
+      <div class="container-photo-time">
         <img class="like-picture" src="./img/profile-ico.png" alt="">
         <p class="post-time">${objPost.time}</p>
       </div>
