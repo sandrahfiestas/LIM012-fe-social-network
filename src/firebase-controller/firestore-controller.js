@@ -9,6 +9,7 @@ export const publishComment = (id, userName, newPost, imagePost, time, status) =
   img: imagePost,
   time: time,
   privacy: status,
+  likes: [],
 });
 
 export const getAllPosts = callback => db.collection('posts')
@@ -42,6 +43,8 @@ export const deletePost = id => db.collection('posts').doc(id).delete();
 export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
 
 export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
+
+// export const updateLike = (id, like) => db.collection('posts').doc(id).update({ });
 
 // export const time = () => firebase.firestore.FieldValue.serverTimestamp();
 
