@@ -30,7 +30,7 @@ export const eachPost = (objPost) => {
     <div class="like-post">
       <div>
         <img class="like-picture" src="./img/profile-ico.png" alt="">
-        <p class="post-time">${objPost.time.toDate().toLocaleDateString()}</p>
+        <p class="post-time">${objPost.time}</p>
       </div>
       <div class="like-counter">
         <div class="heart"></div>

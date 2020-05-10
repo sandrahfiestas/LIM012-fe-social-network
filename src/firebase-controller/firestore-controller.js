@@ -43,7 +43,7 @@ export const updatePost = (id, post) => db.collection('posts').doc(id).update({ 
 
 export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
 
-export const time = () => firebase.firestore.FieldValue.serverTimestamp();
+// export const time = () => firebase.firestore.FieldValue.serverTimestamp();
 
 export const getUser = (docId) => {
   const docRef = firebase.firestore().collection('users').doc(docId);
