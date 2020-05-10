@@ -49,6 +49,8 @@ export default (notes) => {
         <div class="container-create-post">
           <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
           <div class="post left">
+             <img id="showPicture" class="post-image" src="#" alt="">
+             <button id="btnCancelImg" class="hide cancel-image"></button>
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-new-image" src="#" alt="">
             <div class="buttons-post">
@@ -75,8 +77,9 @@ export default (notes) => {
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
+  const btnCancelImg = viewSignInUser.querySelector('#btnCancelImg');
 
-  let file = '';
+let file = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
     const input = e.target;
@@ -90,6 +93,9 @@ export default (notes) => {
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
+
+      // Botón para cancelar imagen
+      btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
@@ -135,6 +141,13 @@ export default (notes) => {
   notes.forEach((element) => {
     allPosts.appendChild(eachPost(element));
   });
+
+  // Cancela imagen antes de publicar
+  btnCancelImg.addEventListener('click', () => {
+    localStorage.removeItem('image');
+    showPicture.src = ""
+    btnCancelImg.classList.add('hide');
+  })
 
   return viewSignInUser;
 };

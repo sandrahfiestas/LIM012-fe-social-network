@@ -1093,6 +1093,18 @@ header img{
     cursor: pointer;
 }
 
+.cancel-image{
+    width: 3em;
+    height: 1em;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(./img/cancel-image1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    /* outline: none; */
+    cursor: pointer;
+}
+
 
 @media screen and (min-width: 750px){
 
