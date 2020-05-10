@@ -751,6 +751,33 @@ header img{
     top: 0;
 }
 
+.heart-2 {
+    background-color: #BE58C0;
+    height: 20px;
+    transform: rotate(-45deg);
+    width: 20px;
+    margin-bottom: 0.5em;
+}
+
+.heart-2:before,
+.heart-2:after {
+  content: "";
+  background-color: #BE58C0;
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+}
+
+.heart-2:before {
+    top: -10px;
+    left: 0;
+}
+
+.heart-2:after {
+    left: 10px;
+    top: 0;
+}
 .counter-text{
     font-size: 1.2em;
     font-family: "Noto sans", sans-serif;
