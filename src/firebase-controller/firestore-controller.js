@@ -44,7 +44,7 @@ export const updatePost = (id, post) => db.collection('posts').doc(id).update({ 
 
 export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
 
-// export const updateLike = (id, like) => db.collection('posts').doc(id).update({ });
+export const updateLike = (id, likes) => db.collection('posts').doc(id).update({ likes });
 
 // export const time = () => firebase.firestore.FieldValue.serverTimestamp();
 

@@ -119,10 +119,7 @@ export default (notes) => {
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
     const status = viewSignInUser.querySelector('.privacy').value;
-    const newDate = new Date();
-    const getDate = `${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}`;
-    const getHour = `${newDate.getHours()}:${newDate.getMinutes() + 1}:${newDate.getSeconds()}`;
-    const date = `${getDate}<br>${getHour}`;
+    const date = new Date().toLocaleString();
     let imPost = '';
     if (file) {
       imPost = localStorage.getItem('image');

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy,
+  deletePost, updatePost, getPost, updatePrivacy, updateLike,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 
@@ -33,8 +33,8 @@ export const eachPost = (objPost) => {
         <p class="post-time">${objPost.time}</p>
       </div>
       <div class="like-counter">
-        <div class="like heart"></div>
-        <p class="counter-text">0</p>
+        <div class="like ${(objPost.likes.indexOf(userId) === -1) ? 'heart' : 'heart-2'}"></div>
+        <p class="counter-text">${objPost.likes.length}</p>
         <p class="counter-text">likes</p>
       </div>
     </div>
@@ -64,16 +64,13 @@ export const eachPost = (objPost) => {
   // ${(objPost.likes.indexOf(userId) === -1) ? 'heart' : 'heart-2'}
   const likes = eachNote.querySelector('.like');
   likes.addEventListener('click', () => {
-    console.log(objPost.likes);
     const result = objPost.likes.indexOf(userId);
-    console.log(objPost.likes.indexOf(userId) === -1);
     if (result === -1) {
-      likes.classList.add('heart-2');
       objPost.likes.push(userId);
-      console.log('No hay like');
+      updateLike(objPost.id, objPost.likes);
     } else {
-      likes.classList.remove('heart-2');
-      console.log('Sí hay like');
+      objPost.likes.splice(result, 1);
+      updateLike(objPost.id, objPost.likes);
     }
   });
 
