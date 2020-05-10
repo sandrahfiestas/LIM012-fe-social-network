@@ -28,21 +28,21 @@ export default (notes) => {
     <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
-      <div class="profileSection">
+      <div class="profile-section">
         <div class="coverImage"></div>
         <div class="profile">
-          <div class="profileDiv">
+          <div class="profile-photo-name">
             <div class="profilePicture">
               <img id="profilePhoto" class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
             </div>
             <p class="user-name">${localStorage.getItem('name')}</p>
           </div>
-          <h3>Sobre mí</h3>
-          <p class="description">${localStorage.getItem('aboutMe')}</p>
-          <div class="location-info profile-text">
-              <img src="./img/location.png">
-              <span id="location">${localStorage.getItem('location')}</span>
-            </div>
+          <h3 class="about-me">Sobre mí</h3>
+          <p class="profile-text">${localStorage.getItem('aboutMe')}</p>
+          <div class="location-info">
+            <img src="./img/location.png">
+            <span id="location">${localStorage.getItem('location')}</span>
+          </div>
         </div>
       </div>
       <div class="timeline">
@@ -50,17 +50,20 @@ export default (notes) => {
           <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
           <div class="post left">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-            <img id="showPicture" class="post-image" src="#" alt="">
+            <img id="showPicture" class="post-new-image" src="#" alt="">
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
-                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
-                  <img class ="point-photo" src="./img/add-photo.png">
+                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png, image/gif">
+                  <img class ="point-photo" src="./img/add-photo.svg">
                 </label>
-                <select class="privacy">
-                  <option value="0">&#xf0ac; Público</option>
-                  <option value="1">&#xf023; Privado</option>
-                </select>
+                <div class="container-privacy">
+                  <select class="privacy text-1">
+                    <option value="0">&#xf0ac</option>
+                    <option value="1">&#xf023</option>
+                  </select>
+                  <i></i>
+                </div>
               </div>
               <button id="btnNewPost" class="btn-post">Publicar</button>
             </div>
