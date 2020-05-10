@@ -380,43 +380,95 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 0 2em;
     box-sizing: border-box;
+    position: relative;
 }
 
 .nav-home{
-    width: 10em;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    top: 4em;
+    left: 0;
+    z-index: 4;
 }
 
 .menu-home{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     list-style-type: none;
     margin: 0;
     padding: 0;
+    align-items: center;
+    width: 14em;
+    height: 7em;
 }
 
 .menu-home li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     color: white;
+    cursor: pointer;
+    align-content: center;
+    padding: 0.5em 2em;
+    box-sizing: border-box;
+    background-color: #BE58C0;
 }
 
-.btnHeader {
-    color: white;
+.menu-home li:hover{
+    background-color: #A94EAB;
+}
+
+.btnGoProfile{
+    width: 100%;
+    /* */
+    height: 50%;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 0.1em;
+}
+
+.proPicSmall{
+    width: 2em;
+    height: 2em;
+}
+
+.btnGoOut{
+    width: 100%;
+    /* */
+    height: 50%;
+}
+
+.icoSignOut{
+    width: 1.8em;
+    height: 1.8em;  
+}
+
+.menuMobile{
+    width: 2em;
+    height: 2.5em;
+    background-image: url(./img/menu-mobile.png);
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    outline: none;
     cursor: pointer;
 }
 
-.btnHome{
-    width: 10em;
-    background-image: url(./img/logo-voz-amiga.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
+#menu-mobile:checked ~ .menuMobile{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#menu-mobile2:checked ~ .menuMobile2{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Logo en header, no es botón */
+
+header img{
+    height: 50%;
 }
 
 .btn-signup{
@@ -448,7 +500,7 @@ body{
 
 .coverImage{
     width: 100%;
-    height: 10em;
+    height: 12em;
     background-image: url(./img/cover-profile.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -464,7 +516,7 @@ body{
     justify-content: space-evenly;
     z-index: 3;
     position: absolute;
-    top: 6em;
+    top: 7em;
 }
 
 .profileDiv{
@@ -579,6 +631,62 @@ section .description{
         flex-direction: row;
         justify-content: space-evenly;
     }
+
+    .menuMobile{
+        display: none;
+    }
+
+    .nav-home{
+        display: flex;
+        align-items: center;
+        position: relative;
+        top: 0;
+    }
+
+    .menu-home{
+        display: flex;
+        width: 16em;
+        flex-direction: row;
+        justify-content: space-between;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .menu-home li{
+        background-color: rgba(0, 0, 0, 0);
+        justify-content: space-evenly;
+        padding: 0;
+    }
+
+    .menu-home li:hover{
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .btnGoProfile{
+        display: flex;
+        align-items: center;
+        width: 40%;
+        justify-content: space-evenly;
+        border-bottom-style: none;
+    }
+
+    .btnGoOut{
+        display: flex;
+        align-items: center;
+        width: 60%;
+        justify-content: space-evenly;
+    }
+
+    .coverImage{
+        height: 10em;
+    }
+
+    .profile{
+        top: 6em;
+    }
+    
 
     /* .profileSection{
         grid-column-start: 1;

@@ -9,13 +9,15 @@ export default () => {
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-      <nav class="nav-home">
-        <ul class="menu-home">
-          <li class="btnHeader" id="btnProfile">Perfil</li>
-          <li class="btnHeader" id="btnSignOut">Cerrar sesión</li>
-        </ul>
-      </nav>
-      <button class="btnHome"><a href="#/home"></a></button>
+    <input type="checkbox" id="menu-mobile" class="hide">
+    <label for="menu-mobile" class="menuMobile"></label>
+    <nav class="nav-home hide">
+      <ul class="menu-home">
+        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="../img/profile-ico.png">Perfil</li>
+        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="../img/sign-out.png">Cerrar sesión</li>
+      </ul>
+    </nav>
+    <img src="../img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
       <div class="profileSection">
@@ -142,6 +144,15 @@ export default () => {
 
 
 
+  const menuMobile = viewSignInUser.querySelector('#menu-mobile');
+  menuMobile.addEventListener('click', () => {
+    const navHome = viewSignInUser.querySelector('.nav-home');
+    if (menuMobile.checked === true) {
+      navHome.classList.remove('hide');
+    } else if (menuMobile.checked === false) {
+      navHome.classList.add('hide');
+    }
+  });
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
   btnSignOut.addEventListener('click', () => {
@@ -153,6 +164,11 @@ export default () => {
   btnProfile.addEventListener('click', () => {
     changeView('#/profile');
   });
+
+  // const btnViewHome = viewSignInUser.querySelector('#btnHome');
+  // btnViewHome.addEventListener('click', () => {
+  //   changeView('#/home');
+  // });
 
   return viewSignInUser;
 };
