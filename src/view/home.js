@@ -51,7 +51,6 @@ export default (notes) => {
           <div class="post left">
             <button id="btnCancelImg" class="hide cancel-image"></button>
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-            <img id="showPicture" class="post-new-image" src="#" alt="">
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
@@ -138,7 +137,7 @@ export default (notes) => {
 
   // Leyendo datos del database
   const allPosts = viewSignInUser.querySelector('.all-posts');
-  notes.forEach((element) => {
+  notes.forEach((element) => {  
     allPosts.appendChild(eachPost(element));
   });
 

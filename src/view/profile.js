@@ -5,6 +5,7 @@ import { signOut, user, updateUserName } from '../firebase-controller/auth-contr
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
 // import { postsFilter } from '../posts-controller.js';
+import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -25,7 +26,11 @@ export default (notes) => {
       <div class="profile-section">
         <div class="coverImage"></div>
         <div class="profile">
-          <div class="profile-photo-name">
+          <div class="profileDiv profile-margin">
+            <label id="selectProfile" for="selectPhotoProfile" class="hide">
+            <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
+            <img class ="photo-profile" src="./img/photo.png">
+            </label>
             <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
@@ -51,6 +56,26 @@ export default (notes) => {
 
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
+  const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
+  const profilePicture = viewUserProfile.querySelector('.profilePicture');
+  
+  let file = '';
+  selectPhotoProfile.addEventListener('change', (e) => {
+    const input = e.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;
+      profilePicture.src = dataURL;
+
+       // Almacena foto en localStorage
+       localStorage.setItem('imageProfile', dataURL);
+    };
+    reader.readAsDataURL(input.files[0]);
+    file = e.target.files[0];
+
+      // Botón para cancelar imagen
+      // btnCancelImg.classList.remove('hide');
+  });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
   const navHome = viewUserProfile.querySelector('.nav-home');
@@ -75,6 +100,7 @@ export default (notes) => {
   const name = viewUserProfile.querySelector('#name');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
   const inputName = viewUserProfile.querySelector('#inputName');
+  const selectProfile = viewUserProfile.querySelector('#selectProfile');
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
@@ -91,6 +117,7 @@ export default (notes) => {
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
     btnCancel.classList.remove('hide');
+    selectProfile.classList.remove('hide');
   });
 
   const editableInfo = () => {
@@ -124,12 +151,23 @@ export default (notes) => {
   // postsFilter(currentUser, window.location.hash);
 
   btnSave.addEventListener('click', () => {
+
+    let imgProfile = '';
+      if (file) {
+        imgProfile = localStorage.getItem('imageProfile');
+        uploadPhotoProfile(file, currentUser.uid).then((url) => {
+        
     editableInfo();
-    updateUserName(currentUser, inputName.value);
+    updateUserName(currentUser, inputName.value,url);
     updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
     name.textContent = inputName.value;
     localStorage.setItem('aboutMe', aboutMe.textContent);
     localStorage.setItem('location', location.textContent);
+    selectProfile.classList.add('hide');
+
+  })
+} 
+
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');

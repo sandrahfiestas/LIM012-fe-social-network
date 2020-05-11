@@ -1132,6 +1132,18 @@ header img{
     cursor: pointer;
 }
 
+.photo-profile{
+    width: 2em;
+    height: 2em;
+    /* background-color: rgba(0, 0, 0, 0);
+    
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    outline: none; */
+    cursor: pointer;
+}
+
 
 @media screen and (min-width: 750px){
 
