@@ -1,23 +1,21 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy,
+  deletePost, updatePost, getPost, updatePrivacy, updateLike,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 
-const validatePostContent = (img, post, id, time) => {
+const validatePostContent = (img, post, id) => {
   let postContent = '';
   if (img) {
     postContent = `
-    <img class="post-image" src=${img}>
     <p class="text-post" id="post">${post}</p>
-    <p>Publicado el ${time}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    <img class="post-upload-image" src=${img}>
     `;
   } else {
     postContent = `
     <p class="text-post" id="post">${post}</p>
-    <p>Publicado el ${time}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
     `;
   }
@@ -30,20 +28,25 @@ export const eachPost = (objPost) => {
   const userId = user().uid;
   eachNote.innerHTML = `
     <div class="like-post">
-      <img class="like-picture" src="./img/profile-ico.png" alt="">
+      <div>
+        <img class="like-picture" src="./img/profile-ico.png" alt="">
+        <p class="post-time">${objPost.time}</p>
+      </div>
       <div class="like-counter">
-        <div class="heart"></div>
-        <p>22</p>
-        <p>likes</p>
+        <div class="like ${(objPost.likes.indexOf(userId) === -1) ? 'heart' : 'heart-2'}"></div>
+        <p class="counter-text">${objPost.likes.length}</p>
+        <p class="counter-text">likes</p>
       </div>
     </div>
     <div class="each-post left">
-      <p>${objPost.name}</p>
-      <select class="privacy ${(userId === objPost.user) || 'hide'}">
-        <option value="0" ${(objPost.privacy === '1') || 'selected'}>&#xf0ac; Público</option>
-        <option value="1" ${(objPost.privacy === '0') || 'selected'}>&#xf023; Privado</option>
-      </select>
-      ${validatePostContent(objPost.img, objPost.post, objPost.id, objPost.time)}
+      <div class="container-name-privacity">
+        <p>${objPost.name}</p>
+        <select class="privacy ${(userId === objPost.user) || 'hide'} text-2">
+          <option value="0" ${(objPost.privacy === '1') || 'selected'}>&#xf0ac</option>
+          <option value="1" ${(objPost.privacy === '0') || 'selected'}>&#xf023</option>
+        </select>
+      </div>
+      ${validatePostContent(objPost.img, objPost.post, objPost.id)}
       <div class="container-menu-post" id="containerMenu">
         <label id="menu-${objPost.id}" class="${(userId !== objPost.user) ? 'hide' : 'label-menu-post'}"></label>
         <nav class="nav-post hide" id="nav-${objPost.id}">
@@ -57,6 +60,19 @@ export const eachPost = (objPost) => {
       <button class="hide" id="btnCancel">Cancelar</button>
     </div>
   `;
+
+  // ${(objPost.likes.indexOf(userId) === -1) ? 'heart' : 'heart-2'}
+  const likes = eachNote.querySelector('.like');
+  likes.addEventListener('click', () => {
+    const result = objPost.likes.indexOf(userId);
+    if (result === -1) {
+      objPost.likes.push(userId);
+      updateLike(objPost.id, objPost.likes);
+    } else {
+      objPost.likes.splice(result, 1);
+      updateLike(objPost.id, objPost.likes);
+    }
+  });
 
   const selectOption = eachNote.querySelector('.privacy');
   selectOption.addEventListener('change', () => {

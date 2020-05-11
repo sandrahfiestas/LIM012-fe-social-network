@@ -23,27 +23,23 @@ export default (notes) => {
       <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
-      <div class="profileSection">
+      <div class="profile-section">
         <div class="coverImage"></div>
         <div class="profile">
           <div class="profileDiv profile-margin">
-
             <label id="selectProfile" for="selectPhotoProfile" class="hide">
             <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
             <img class ="photo-profile" src="./img/photo.png">
             </label>
-
             <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
-          <div class="profile-margin">
-            <h3>Sobre mí</h3>
-            <p class="profile-text" id="description">${localStorage.getItem('aboutMe')}</p>
-            <div class="location-info profile-text">
-              <img src="./img/location.png">
-              <span id="location">${localStorage.getItem('location')}</span>
-            </div>
+          <h3 class="about-me">Sobre mí</h3>
+          <p class="profile-text" id="description">${localStorage.getItem('aboutMe')}</p>
+          <div class="location-info">
+            <img src="./img/location.png">
+            <span id="location">${localStorage.getItem('location')}</span>
           </div>
           <img class="edit-icon" src="./img/edition-icon.png">
           <p class="dropDown hide" id="editName">Editar</p>

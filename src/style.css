@@ -497,9 +497,8 @@ header img{
     font-weight: 700;
 }
 
-.profileSection{
+.profile-section{
     width: 100%;
-    height: 25em;
     flex-direction: column;
     align-items: center;
     position: relative;
@@ -521,13 +520,14 @@ header img{
     border-bottom: 1px solid #DADADA;
     border-left: 1px solid #DADADA;
     border-right: 1px solid #DADADA;
-    padding: 2em;
+    padding: 3em;
 }
 
-.profileDiv{
+.profile-photo-name{
     display: flex;
     align-content: center;
     align-items: center;
+    margin-bottom: 1em;
 }
 
 .profile-margin {
@@ -537,7 +537,9 @@ header img{
 
 .location-info {
     display: flex;
-    /* align-content: center; */
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+    color: #454545;
     align-items: center;
 }
 
@@ -547,7 +549,7 @@ header img{
     margin-top: 5px;
 }
 
-.profileDiv input {
+.profile-photo-name input {
     font-size: 1.5em;
     color: #454545;
     font-family: 'Noto Sans', sans-serif;
@@ -608,17 +610,19 @@ header img{
     background-color: rgb(248, 174, 158);
 }
 
-section h3{
+.about-me{
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.2em;
     color: #454545;
+    margin-bottom: 1em;
 }
 
 .profile-text{
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.2em;
-    margin-top: 1em;
     color: #454545;
+    margin-bottom: 1em;
+    word-wrap: break-word;
 }
 
 .dropDown {
@@ -661,7 +665,7 @@ section h3{
     cursor: pointer;
     /* align-self: flex-end; */
     position: absolute;
-    top: 2px;
+    top: 8px;
     right: 4px;
 }
 
@@ -675,6 +679,8 @@ section h3{
 
 .timeline{
     width: 100%;
+    padding: 3em;
+    box-sizing: border-box;
 }
 
 .container-create-post{
@@ -685,14 +691,10 @@ section h3{
 
 .like-post{
     display: flex;
+    height: 15em;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-}
-
-.like-post p{
-    font-size: 1.5em;
-    font-family: "Noto sans", sans-serif;
 }
 
 .like-picture{
@@ -701,11 +703,17 @@ section h3{
     border-radius: 50%;
 }
 
+.post-time{
+    font-size: 1em;
+    font-family: "Noto sans", sans-serif;
+    text-align: center;
+}
+
 .like-counter{
-    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .heart {
@@ -713,7 +721,7 @@ section h3{
     height: 20px;
     transform: rotate(-45deg);
     width: 20px;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .heart:before,
@@ -736,6 +744,38 @@ section h3{
     top: 0;
 }
 
+.heart-2 {
+    background-color: #BE58C0;
+    height: 20px;
+    transform: rotate(-45deg);
+    width: 20px;
+    margin-bottom: 0.5em;
+}
+
+.heart-2:before,
+.heart-2:after {
+  content: "";
+  background-color: #BE58C0;
+  border-radius: 50%;
+  height: 20px;
+  position: absolute;
+  width: 20px;
+}
+
+.heart-2:before {
+    top: -10px;
+    left: 0;
+}
+
+.heart-2:after {
+    left: 10px;
+    top: 0;
+}
+.counter-text{
+    font-size: 1.2em;
+    font-family: "Noto sans", sans-serif;
+}
+
 .post{
     width: 100%;
     border: 0.42em solid #BE58C0;
@@ -744,13 +784,13 @@ section h3{
     align-items: center;
     padding: 1em;
     box-sizing: border-box;
-    margin-bottom: 2em;
+    margin-bottom: 3em;
     border-radius: 1em;
     position: relative;
 }
 
 .post.left, .each-post.left{
-    margin-left: 30px;
+    margin-left: 3.6em;
 }
 
 .post.left:before{
@@ -851,24 +891,61 @@ section h3{
 .options{
     display: flex;
     flex-direction: row;
-    width: 10em;
+    width: 7em;
     justify-content: space-between;
+    align-items: center;
 }
 
 .privacy {
     font-family: 'FontAwesome', 'Noto Sans', sans-serif;
-    color: #BE58C0;
-    border-color: #BE58C0;
+    color: #757575;
+    border: none;
     border-radius: 0.2em;
     outline: none;
+    cursor: pointer;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    position: relative;
+    width: 1.4em;
+    padding-left: 0.2em;
+    box-sizing: border-box;
+}
+
+.container-privacy{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.container-privacy i{
+	position: absolute;
+	width: 0;
+    height: 0;
+    border-left: 0.6em solid transparent;
+    border-right: 0.6em solid transparent;
+    border-top: 1em solid #C4C4C4;
+    left: 3em;
+}
+
+.privacy option{
+    font-size: 0.9em;
+    border: none;
+}
+
+.text-1{
+    font-size: 2.6em;
+    height: 100%;
+}
+
+.text-2{
+    font-size: 1.4em;
 }
 
 .all-posts{
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
 .each-post{
@@ -876,7 +953,8 @@ section h3{
     border: 0.42em solid #E599FF;
     box-sizing: border-box;
     position: relative;
-    padding: 1em;
+    padding: 1em 1em 1em 1.2em;
+    border-radius: 1em;
 }
 
 .container-post{
@@ -884,12 +962,30 @@ section h3{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+.container-name-privacity{
+    display: flex;
+    flex-direction: row;
     margin-bottom: 1em;
+    align-items: center;
+}
+
+.container-name-privacity p{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1em;
+    color: #454545;
+    margin-right: 1em;
 }
 
 .text-post{
     width: 100%;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
+    color: #000;
     word-wrap: break-word;
+    margin-bottom: 1em;
 }
 
 .container-menu-post{
@@ -930,7 +1026,9 @@ section h3{
 
 .input-post{
     width: 100%;
-    height: 4em;
+    height: 6em;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.2em;
     box-sizing: border-box;
     resize: none;
 }
@@ -1005,8 +1103,12 @@ section h3{
     height: 100px;
 }
 
-.post-image{
+.post-new-image{
     width: 10em;
+}
+
+.post-upload-image{
+    width: 60%;
 }
 
 .upload{
@@ -1014,6 +1116,7 @@ section h3{
 }
 
 .point-photo{
+    width: 2.5em;
     cursor: pointer;
 }
 
@@ -1054,11 +1157,13 @@ section h3{
     }
 
     .timeline{
+        padding: 0;
         grid-column-start: 3;
         grid-column-end: 4;
     }
 
-    .profileSection{
+    .profile-section{
+        padding: 0;
         grid-column-start: 1;
         grid-column-end: 2;
     }
@@ -1124,6 +1229,14 @@ section h3{
 
     .containerHome{
         max-width: 1024px;
+    }
+
+    .timeline{
+        padding: 0;
+    }
+
+    .profile-section{
+        padding: 0;
     }
 
     .signin{

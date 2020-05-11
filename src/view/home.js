@@ -2,7 +2,7 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishComment, time, getProfileInfo } from '../firebase-controller/firestore-controller.js';
+import { publishComment, getProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
@@ -28,40 +28,42 @@ export default (notes) => {
     <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
-      <div class="profileSection">
+      <div class="profile-section">
         <div class="coverImage"></div>
         <div class="profile">
-          <div class="profileDiv">
+          <div class="profile-photo-name">
             <div class="profilePicture">
               <img id="profilePhoto" class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
             </div>
             <p class="user-name">${localStorage.getItem('name')}</p>
           </div>
-          <h3>Sobre mí</h3>
-          <p class="description">${localStorage.getItem('aboutMe')}</p>
-          <div class="location-info profile-text">
-              <img src="./img/location.png">
-              <span id="location">${localStorage.getItem('location')}</span>
-            </div>
+          <h3 class="about-me">Sobre mí</h3>
+          <p class="profile-text">${localStorage.getItem('aboutMe')}</p>
+          <div class="location-info">
+            <img src="./img/location.png">
+            <span id="location">${localStorage.getItem('location')}</span>
+          </div>
         </div>
       </div>
       <div class="timeline">
         <div class="container-create-post">
           <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
           <div class="post left">
-             <img id="showPicture" class="post-image" src="#" alt="">
-             <button id="btnCancelImg" class="hide cancel-image"></button>
+            <button id="btnCancelImg" class="hide cancel-image"></button>
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
-                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
-                  <img class ="point-photo" src="./img/add-photo.png">
+                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png, image/gif">
+                  <img class ="point-photo" src="./img/add-photo.svg">
                 </label>
-                <select class="privacy">
-                  <option value="0">&#xf0ac; Público</option>
-                  <option value="1">&#xf023; Privado</option>
-                </select>
+                <div class="container-privacy">
+                  <select class="privacy text-1">
+                    <option value="0">&#xf0ac</option>
+                    <option value="1">&#xf023</option>
+                  </select>
+                  <i></i>
+                </div>
               </div>
               <button id="btnNewPost" class="btn-post">Publicar</button>
             </div>
@@ -75,7 +77,7 @@ export default (notes) => {
   const showPicture = viewSignInUser.querySelector('#showPicture');
   const btnCancelImg = viewSignInUser.querySelector('#btnCancelImg');
 
-let file = '';
+  let file = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
     const input = e.target;
@@ -90,8 +92,8 @@ let file = '';
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
 
-      // Botón para cancelar imagen
-      btnCancelImg.classList.remove('hide');
+    // Botón para cancelar imagen
+    btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
@@ -116,16 +118,17 @@ let file = '';
   btnNewPost.addEventListener('click', () => {
     const newPost = document.querySelector('#newPost').value;
     const status = viewSignInUser.querySelector('.privacy').value;
+    const date = new Date().toLocaleString();
     let imPost = '';
     if (file) {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
         .then(() => {
           document.querySelector('.new-post').value = '';
         });
     } else {
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
+      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
         .then(() => {
           document.querySelector('.new-post').value = '';
         });
@@ -141,9 +144,9 @@ let file = '';
   // Cancela imagen antes de publicar
   btnCancelImg.addEventListener('click', () => {
     localStorage.removeItem('image');
-    showPicture.src = ""
+    showPicture.src = '';
     btnCancelImg.classList.add('hide');
-  })
+  });
 
   return viewSignInUser;
 };
