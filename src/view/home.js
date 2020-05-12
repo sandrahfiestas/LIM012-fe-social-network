@@ -86,7 +86,6 @@ export default (notes) => {
     reader.onload = () => {
       const dataURL = reader.result;
       showPicture.src = dataURL;
-
       // Almacena url en localStorage
       localStorage.setItem('image', dataURL);
     };
