@@ -2,7 +2,7 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishComment, getProfileInfo } from '../firebase-controller/firestore-controller.js';
+import { publishPost, getProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
 
@@ -124,12 +124,12 @@ export default (notes) => {
     if (file) {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
+      publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
         .then(() => {
           document.querySelector('.new-post').value = '';
         });
     } else {
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
+      publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
         .then(() => {
           document.querySelector('.new-post').value = '';
         });

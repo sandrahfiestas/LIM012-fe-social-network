@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike,
+  deletePost, updatePost, getPost, updatePrivacy, updateLike, addComment,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 
@@ -58,6 +58,11 @@ export const eachPost = (objPost) => {
       </div>
       <button class="hide" id="btnSave">Guardar</button>
       <button class="hide" id="btnCancel">Cancelar</button>
+      <div>
+        <textarea id="newComment" placeholder="Escribe un comentario"></textarea>
+        <button id="btnNewComment" class="btn-comment">Publicar</button>
+      </div>
+      <div id="allComments"></div>
     </div>
   `;
 
@@ -133,6 +138,13 @@ export const eachPost = (objPost) => {
     editablePost();
     updatePost(objPost.id, inputPost.value);
     post.textContent = inputPost.value;
+  });
+
+  // Comentarios
+  const btnNewComment = eachNote.querySelector('#btnNewComment');
+  btnNewComment.addEventListener('click', () => {
+    const newComment = eachNote.querySelector('#newComment').value;
+    addComment(objPost.id, newComment);
   });
 
   return eachNote;
