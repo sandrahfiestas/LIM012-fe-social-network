@@ -124,16 +124,11 @@ export default (notes) => {
     if (file) {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
-      publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
-    } else {
-      publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
     }
+    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
+      .then(() => {
+        document.querySelector('.new-post').value = '';
+      });
   });
 
   // Leyendo datos del database

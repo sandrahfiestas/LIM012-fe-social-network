@@ -4,8 +4,7 @@ import { changeView } from '../view-controller/router.js';
 import { signOut, user, updateUserName } from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-// import { postsFilter } from '../posts-controller.js';
-import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
+import { uploadPhotoProfile, downLoadPhoto } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -67,9 +66,6 @@ export default (notes) => {
     reader.onload = () => {
       const dataURL = reader.result;
       profilePicture.src = dataURL;
-
-      // Almacena foto en localStorage
-      localStorage.setItem('imageProfile', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
@@ -139,6 +135,7 @@ export default (notes) => {
       location.textContent = doc.data().location;
     });
     editableInfo();
+    selectProfile.classList.add('hide');
   });
 
   inputName.addEventListener('input', () => {
@@ -149,20 +146,19 @@ export default (notes) => {
     }
   });
 
-  // postsFilter(currentUser, window.location.hash);
-
   btnSave.addEventListener('click', () => {
     if (file) {
-      uploadPhotoProfile(file, currentUser.uid).then((url) => {
-        editableInfo();
-        updateUserName(currentUser, inputName.value, url);
-        updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
-        name.textContent = inputName.value;
-        localStorage.setItem('aboutMe', aboutMe.textContent);
-        localStorage.setItem('location', location.textContent);
-        selectProfile.classList.add('hide');
-      });
+      uploadPhotoProfile(file, currentUser.uid);
     }
+    editableInfo();
+    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
+    name.textContent = inputName.value;
+    localStorage.setItem('aboutMe', aboutMe.textContent);
+    localStorage.setItem('location', location.textContent);
+    selectProfile.classList.add('hide');
+    downLoadPhoto(file.name, currentUser.uid).then((url) => {
+      updateUserName(currentUser, inputName.value, url);
+    });
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');
