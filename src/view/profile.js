@@ -23,7 +23,7 @@ export default (notes) => {
       <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
     <section class="containerHome">
-      <div class="profileSection">
+      <div class="profile-section">
         <div class="coverImage"></div>
         <div class="profile">
           <div class="profileDiv profile-margin">
@@ -33,17 +33,16 @@ export default (notes) => {
             <img class ="photo-profile" src="./img/photo.png">
             </label>
 
+          <div class="profile-photo-name">
             <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
-          <div class="profile-margin">
-            <h3>Sobre mí</h3>
-            <p class="profile-text" id="description">${localStorage.getItem('aboutMe')}</p>
-            <div class="location-info profile-text">
-              <img src="./img/location.png">
-              <span id="location">${localStorage.getItem('location')}</span>
-            </div>
+          <h3 class="about-me">Sobre mí</h3>
+          <p class="profile-text" id="description">${localStorage.getItem('aboutMe')}</p>
+          <div class="location-info">
+            <img src="./img/location.png">
+            <span id="location">${localStorage.getItem('location')}</span>
           </div>
           <img class="edit-icon" src="./img/edition-icon.png">
           <p class="dropDown hide" id="editName">Editar</p>
@@ -62,7 +61,7 @@ export default (notes) => {
   const location = viewUserProfile.querySelector('#location');
   const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
   const profilePicture = viewUserProfile.querySelector('.profilePicture');
-  
+
   let file = '';
   selectPhotoProfile.addEventListener('change', (e) => {
     const input = e.target;
@@ -70,15 +69,16 @@ export default (notes) => {
     reader.onload = () => {
       const dataURL = reader.result;
       profilePicture.src = dataURL;
+      console.log(dataURL);
 
-       // Almacena foto en localStorage
-       localStorage.setItem('imageProfile', dataURL);
+      // Almacena foto en localStorage
+      // localStorage.setItem('imageProfile', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
 
-      // Botón para cancelar imagen
-      // btnCancelImg.classList.remove('hide');
+    // Botón para cancelar imagen
+    // btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
@@ -155,23 +155,21 @@ export default (notes) => {
   // postsFilter(currentUser, window.location.hash);
 
   btnSave.addEventListener('click', () => {
+    // let imgProfile = '';
+    // if (file) {
+    // imgProfile = localStorage.getItem('imageProfile');
+    uploadPhotoProfile(file, currentUser.uid).then((url) => {
+      console.log(url);
 
-    let imgProfile = '';
-      if (file) {
-        imgProfile = localStorage.getItem('imageProfile');
-        uploadPhotoProfile(file, currentUser.uid).then((url) => {
-        
-    editableInfo();
-    updateUserName(currentUser, inputName.value,url);
-    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
-    name.textContent = inputName.value;
-    localStorage.setItem('aboutMe', aboutMe.textContent);
-    localStorage.setItem('location', location.textContent);
-    selectProfile.classList.add('hide');
-
-  })
-} 
-
+      editableInfo();
+      updateUserName(currentUser, inputName.value, url);
+      updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
+      name.textContent = inputName.value;
+      localStorage.setItem('aboutMe', aboutMe.textContent);
+      localStorage.setItem('location', location.textContent);
+      selectProfile.classList.add('hide');
+    });
+    // }
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');

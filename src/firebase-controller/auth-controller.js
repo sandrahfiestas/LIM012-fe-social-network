@@ -23,12 +23,13 @@ export const user = () => firebase.auth().currentUser;
 
 
 // Guardando/actualizando nombre de usuario
-export const updateUserName = (userData, userName, photProfile) => {
+export const updateUserName = (userData, userName, photoProfile) => {
   userData.updateProfile({
     displayName: userName,
-    photoURL: photProfile
+    photoURL: photoProfile,
   });
 };
+
 
 // // Guardando/actualizando nombre de usuario
 // export const updateUserName = (userData, userName, photoProfile) => {

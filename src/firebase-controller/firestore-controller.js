@@ -9,6 +9,7 @@ export const publishComment = (id, userName, newPost, imagePost, time, status) =
   img: imagePost,
   time: time,
   privacy: status,
+  likes: [],
 });
 
 export const getAllPosts = callback => db.collection('posts')
@@ -43,7 +44,9 @@ export const updatePost = (id, post) => db.collection('posts').doc(id).update({ 
 
 export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
 
-export const time = () => firebase.firestore.FieldValue.serverTimestamp();
+export const updateLike = (id, likes) => db.collection('posts').doc(id).update({ likes });
+
+// export const time = () => firebase.firestore.FieldValue.serverTimestamp();
 
 export const getUser = (docId) => {
   const docRef = firebase.firestore().collection('users').doc(docId);
