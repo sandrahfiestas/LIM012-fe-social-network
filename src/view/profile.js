@@ -69,7 +69,7 @@ export default (notes) => {
     reader.onload = () => {
       const dataURL = reader.result;
       profilePicture.src = dataURL;
-      console.log(dataURL);
+      // console.log(dataURL);
 
       // Almacena foto en localStorage
       // localStorage.setItem('imageProfile', dataURL);
@@ -159,7 +159,7 @@ export default (notes) => {
     // if (file) {
     // imgProfile = localStorage.getItem('imageProfile');
     uploadPhotoProfile(file, currentUser.uid).then((url) => {
-      console.log(url);
+      // console.log(url);
 
       editableInfo();
       updateUserName(currentUser, inputName.value, url);
