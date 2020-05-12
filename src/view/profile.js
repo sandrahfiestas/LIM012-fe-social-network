@@ -60,7 +60,6 @@ export default (notes) => {
   const location = viewUserProfile.querySelector('#location');
   const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
   const profilePicture = viewUserProfile.querySelector('.profilePicture');
-
   let file = '';
   selectPhotoProfile.addEventListener('change', (e) => {
     const input = e.target;
@@ -153,20 +152,17 @@ export default (notes) => {
   // postsFilter(currentUser, window.location.hash);
 
   btnSave.addEventListener('click', () => {
-
     if (file) {
       uploadPhotoProfile(file, currentUser.uid).then((url) => {
-    editableInfo();
-    updateUserName(currentUser, inputName.value,url);
-    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
-    name.textContent = inputName.value;
-    localStorage.setItem('aboutMe', aboutMe.textContent);
-    localStorage.setItem('location', location.textContent);
-    selectProfile.classList.add('hide');
-
-  })
-} 
-
+        editableInfo();
+        updateUserName(currentUser, inputName.value, url);
+        updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
+        name.textContent = inputName.value;
+        localStorage.setItem('aboutMe', aboutMe.textContent);
+        localStorage.setItem('location', location.textContent);
+        selectProfile.classList.add('hide');
+      });
+    }
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');

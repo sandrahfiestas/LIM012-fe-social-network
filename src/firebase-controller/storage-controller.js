@@ -19,4 +19,4 @@ export const uploadPhotoProfile = (file, uid) => {
   // refStoragePhoto.put(file).then(result)
   // console.log(result);
   // refStoragePhoto.getDownloadURL().then(url => {})
-}
+};

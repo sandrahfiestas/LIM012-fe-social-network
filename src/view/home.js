@@ -50,11 +50,9 @@ export default (notes) => {
           <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
           <div class="post left">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-<<<<<<< HEAD
             <img id="showPicture" class="post-new-image" src="#" alt="">
             <button id="btnCancelImg" class="hide cancel-image"></button>
-=======
->>>>>>> Botón que permite subir una imagen de perfil, guardandola en el Storage
+            <img id="showPicture" class="post-new-image" src="#" alt="">
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
