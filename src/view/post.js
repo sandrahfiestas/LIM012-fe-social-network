@@ -1,9 +1,11 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike, addComment,
+  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
+// import { eachComment } from './comment.js';
+import { db } from '../main.js';
 
 const validatePostContent = (img, post, id) => {
   let postContent = '';
@@ -59,10 +61,10 @@ export const eachPost = (objPost) => {
       <button class="hide" id="btnSave">Guardar</button>
       <button class="hide" id="btnCancel">Cancelar</button>
       <div>
-        <textarea id="newComment" placeholder="Escribe un comentario"></textarea>
-        <button id="btnNewComment" class="btn-comment">Publicar</button>
+        <textarea id="newComment-${objPost.id}" placeholder="Escribe un comentario"></textarea>
+        <button id="comment-${objPost.id}" class="btn-comment">Publicar</button>
       </div>
-      <div id="allComments"></div>
+      <div id="allComments-${objPost.id}"></div>
     </div>
   `;
 
@@ -141,10 +143,29 @@ export const eachPost = (objPost) => {
   });
 
   // Comentarios
-  const btnNewComment = eachNote.querySelector('#btnNewComment');
+  const btnNewComment = eachNote.querySelector(`#comment-${objPost.id}`);
   btnNewComment.addEventListener('click', () => {
-    const newComment = eachNote.querySelector('#newComment').value;
-    addComment(objPost.id, newComment);
+    const newComment = eachNote.querySelector(`#newComment-${objPost.id}`).value;
+    publishComment(userId, newComment, objPost.id);
+    eachNote.querySelector(`#newComment-${objPost.id}`).value = '';
+    const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
+
+    // Leyendo
+    db.collection('comments').where('idPost', '==', objPost.id)
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, ' => ', doc.data());
+          console.log(doc.data().comment);
+          allComments.innerHTML = `
+            <p>${doc.data().user}</p>
+            <p>${doc.data().comment}</p>
+          `;
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting documents: ', error);
+      });
   });
 
   return eachNote;
