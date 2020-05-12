@@ -123,16 +123,11 @@ export default (notes) => {
     if (file) {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
-    } else {
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
     }
+    publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
+      .then(() => {
+        document.querySelector('.new-post').value = '';
+      });
   });
 
   // Leyendo datos del database
