@@ -58,7 +58,6 @@ export default (notes) => {
   const location = viewUserProfile.querySelector('#location');
   const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
   const profilePicture = viewUserProfile.querySelector('.profilePicture');
-  
   let file = '';
   selectPhotoProfile.addEventListener('change', (e) => {
     const input = e.target;
@@ -67,14 +66,14 @@ export default (notes) => {
       const dataURL = reader.result;
       profilePicture.src = dataURL;
 
-       // Almacena foto en localStorage
-       localStorage.setItem('imageProfile', dataURL);
+      // Almacena foto en localStorage
+      localStorage.setItem('imageProfile', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
 
-      // Botón para cancelar imagen
-      // btnCancelImg.classList.remove('hide');
+    // Botón para cancelar imagen
+    // btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
@@ -151,23 +150,19 @@ export default (notes) => {
   // postsFilter(currentUser, window.location.hash);
 
   btnSave.addEventListener('click', () => {
-
-    let imgProfile = '';
-      if (file) {
-        imgProfile = localStorage.getItem('imageProfile');
-        uploadPhotoProfile(file, currentUser.uid).then((url) => {
-        
-    editableInfo();
-    updateUserName(currentUser, inputName.value,url);
-    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
-    name.textContent = inputName.value;
-    localStorage.setItem('aboutMe', aboutMe.textContent);
-    localStorage.setItem('location', location.textContent);
-    selectProfile.classList.add('hide');
-
-  })
-} 
-
+    // let imgProfile = '';
+    if (file) {
+    // imgProfile = localStorage.getItem('imageProfile');
+      uploadPhotoProfile(file, currentUser.uid).then((url) => {
+        editableInfo();
+        updateUserName(currentUser, inputName.value, url);
+        updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
+        name.textContent = inputName.value;
+        localStorage.setItem('aboutMe', aboutMe.textContent);
+        localStorage.setItem('location', location.textContent);
+        selectProfile.classList.add('hide');
+      });
+    }
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');

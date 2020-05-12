@@ -26,7 +26,7 @@ export const user = () => firebase.auth().currentUser;
 export const updateUserName = (userData, userName, photProfile) => {
   userData.updateProfile({
     displayName: userName,
-    photoURL: photProfile
+    photoURL: photProfile,
   });
 };
 
