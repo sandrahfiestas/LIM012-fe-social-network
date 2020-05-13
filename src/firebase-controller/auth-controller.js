@@ -29,6 +29,7 @@ export const updateUserName = (userData, userName) => {
   });
 };
 
+
 // // Guardando/actualizando nombre de usuario
 export const updatePhotoAuth = (userData, photoProfile) => {
   userData.updateProfile({

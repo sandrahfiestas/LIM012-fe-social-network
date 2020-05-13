@@ -1,6 +1,6 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
-// import { profileInfo } from '../firestore-controller.js';
 import {
   signOut, user, updateUserName, updatePhotoAuth,
 } from '../firebase-controller/auth-controller.js';
