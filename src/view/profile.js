@@ -25,14 +25,12 @@ export default (notes) => {
       <div class="profile-section">
         <div class="cover-image"></div>
         <div class="profile">
-          <div class="profileDiv profile-margin">
-
+          <div class="profile-photo-name">
             <label id="selectProfile" for="selectPhotoProfile" class="hide">
-            <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
-            <img class ="photo-profile" src="./img/photo.png">
+              <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
+              <img class ="photo-profile" src="./img/photo.png">
             </label>
-
-            <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
+            <img class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
