@@ -62,9 +62,12 @@ export const eachPost = (objPost) => {
       </div>
       <button class="hide" id="btnSave">Guardar</button>
       <button class="hide" id="btnCancel">Cancelar</button>
-      <div>
-        <textarea id="newComment-${objPost.id}" placeholder="Escribe un comentario"></textarea>
-        <button id="comment-${objPost.id}" class="btn-comment">Publicar</button>
+      <div class="container-new-comment">
+        <p class="new-comment-title">Comentarios</p>
+        <div class="go-comment">
+          <textarea class="input-comment" id="newComment-${objPost.id}" placeholder="Escribe un comentario"></textarea>
+          <button id="comment-${objPost.id}" class="btn-comment"></button>
+        </div>
       </div>
       <div id="allComments-${objPost.id}"></div>
     </div>
@@ -162,10 +165,12 @@ export const eachPost = (objPost) => {
       allComments.innerHTML = '';
       querySnapshot.forEach((doc) => {
         allComments.innerHTML += `
-          <div>
-            <p>${doc.data().user}</p>
-            <p>${doc.data().comment}</p>
-            <p>${doc.data().time}</p>
+          <div class="container-photo-comment">
+            <img class="picture-comment" src="./img/profile-ico.png" alt="">
+            <div class="container-comment">
+              <p class="text-comment"><span>${doc.data().user}</span>${doc.data().comment}</p>
+              <p class="time-comment">${doc.data().time}</p>
+            </div>
           </div>
         `;
       });

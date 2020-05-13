@@ -18,22 +18,22 @@ export default (notes) => {
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-    <label id="menu-mobile" class="menuMobile"></label>
+    <label id="menu-mobile" class="menu-mobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
-        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
+        <li class="btn-go-profile" id="btnProfile"><img class="pro-pic-small" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
+        <li class="btn-go-out" id="btnSignOut"><img class="ico-sign-out" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
     <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
-    <section class="containerHome">
+    <section class="container-home">
       <div class="profile-section">
-        <div class="coverImage"></div>
+        <div class="cover-image"></div>
         <div class="profile">
           <div class="profile-photo-name">
-            <div class="profilePicture">
-              <img id="profilePhoto" class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
+            <div class="profile-picture">
+              <img id="profilePhoto" class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
             </div>
             <p class="user-name">${localStorage.getItem('name')}</p>
           </div>
