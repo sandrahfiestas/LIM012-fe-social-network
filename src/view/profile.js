@@ -4,7 +4,7 @@ import { changeView } from '../view-controller/router.js';
 import { signOut, user, updateUserName } from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-// import { postsFilter } from '../posts-controller.js';
+import { uploadPhotoProfile, downLoadPhoto } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -26,6 +26,10 @@ export default (notes) => {
         <div class="cover-image"></div>
         <div class="profile">
           <div class="profile-photo-name">
+            <label id="selectProfile" for="selectPhotoProfile" class="hide">
+              <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
+              <img class ="photo-profile" src="./img/photo.png">
+            </label>
             <img class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
@@ -51,6 +55,22 @@ export default (notes) => {
 
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
+  const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
+  const profilePicture = viewUserProfile.querySelector('.profilePicture');
+  let file = '';
+  selectPhotoProfile.addEventListener('change', (e) => {
+    const input = e.target;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataURL = reader.result;
+      profilePicture.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+    file = e.target.files[0];
+
+    // Botón para cancelar imagen
+    // btnCancelImg.classList.remove('hide');
+  });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
   const navHome = viewUserProfile.querySelector('.nav-home');
@@ -75,6 +95,7 @@ export default (notes) => {
   const name = viewUserProfile.querySelector('#name');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
   const inputName = viewUserProfile.querySelector('#inputName');
+  const selectProfile = viewUserProfile.querySelector('#selectProfile');
 
   editIcon.addEventListener('click', () => {
     editName.classList.toggle('hide');
@@ -91,6 +112,7 @@ export default (notes) => {
     editName.classList.add('hide');
     btnSave.classList.remove('hide');
     btnCancel.classList.remove('hide');
+    selectProfile.classList.remove('hide');
   });
 
   const editableInfo = () => {
@@ -111,6 +133,7 @@ export default (notes) => {
       location.textContent = doc.data().location;
     });
     editableInfo();
+    selectProfile.classList.add('hide');
   });
 
   inputName.addEventListener('input', () => {
@@ -121,15 +144,19 @@ export default (notes) => {
     }
   });
 
-  // postsFilter(currentUser, window.location.hash);
-
   btnSave.addEventListener('click', () => {
+    if (file) {
+      uploadPhotoProfile(file, currentUser.uid);
+    }
     editableInfo();
-    updateUserName(currentUser, inputName.value);
     updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
     name.textContent = inputName.value;
     localStorage.setItem('aboutMe', aboutMe.textContent);
     localStorage.setItem('location', location.textContent);
+    selectProfile.classList.add('hide');
+    downLoadPhoto(file.name, currentUser.uid).then((url) => {
+      updateUserName(currentUser, inputName.value, url);
+    });
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');
