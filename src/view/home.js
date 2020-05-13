@@ -86,7 +86,6 @@ export default (notes) => {
     reader.onload = () => {
       const dataURL = reader.result;
       showPicture.src = dataURL;
-
       // Almacena url en localStorage
       localStorage.setItem('image', dataURL);
     };
@@ -124,16 +123,11 @@ export default (notes) => {
     if (file) {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
-      publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
-    } else {
-      publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
     }
+    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
+      .then(() => {
+        document.querySelector('.new-post').value = '';
+      });
   });
 
   // Leyendo datos del database

@@ -625,6 +625,12 @@ header img{
     word-wrap: break-word;
 }
 
+.photo-profile{
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
 .drop-down {
     position: absolute;
     right: 5px;
@@ -1218,18 +1224,6 @@ header img{
     background-size: contain;
     border: none;
     /* outline: none; */
-    cursor: pointer;
-}
-
-.photo-profile{
-    width: 2em;
-    height: 2em;
-    /* background-color: rgba(0, 0, 0, 0);
-    
-    background-repeat: no-repeat;
-    background-size: contain;
-    border: none;
-    outline: none; */
     cursor: pointer;
 }
 

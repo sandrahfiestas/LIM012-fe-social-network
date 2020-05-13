@@ -4,8 +4,7 @@ import { changeView } from '../view-controller/router.js';
 import { signOut, user, updateUserName } from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-// import { postsFilter } from '../posts-controller.js';
-import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
+import { uploadPhotoProfile, downLoadPhoto } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -26,13 +25,11 @@ export default (notes) => {
       <div class="profile-section">
         <div class="cover-image"></div>
         <div class="profile">
-          <div class="profileDiv profile-margin">
-            <label id="selectProfile" for="selectPhotoProfile" class="hide">
-            <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
-            <img class ="photo-profile" src="./img/photo.png">
-            </label>
-
           <div class="profile-photo-name">
+            <label id="selectProfile" for="selectPhotoProfile" class="hide">
+              <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
+              <img class ="photo-profile" src="./img/photo.png">
+            </label>
             <img class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
@@ -68,10 +65,6 @@ export default (notes) => {
     reader.onload = () => {
       const dataURL = reader.result;
       profilePicture.src = dataURL;
-      // console.log(dataURL);
-
-      // Almacena foto en localStorage
-      // localStorage.setItem('imageProfile', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
@@ -141,6 +134,7 @@ export default (notes) => {
       location.textContent = doc.data().location;
     });
     editableInfo();
+    selectProfile.classList.add('hide');
   });
 
   inputName.addEventListener('input', () => {
@@ -151,24 +145,20 @@ export default (notes) => {
     }
   });
 
-  // postsFilter(currentUser, window.location.hash);
-
   btnSave.addEventListener('click', () => {
-    // let imgProfile = '';
-    // if (file) {
-    // imgProfile = localStorage.getItem('imageProfile');
-    uploadPhotoProfile(file, currentUser.uid).then((url) => {
-      // console.log(url);
 
-      editableInfo();
+    if (file) {
+      uploadPhotoProfile(file, currentUser.uid);
+    }
+    editableInfo();
+    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
+    name.textContent = inputName.value;
+    localStorage.setItem('aboutMe', aboutMe.textContent);
+    localStorage.setItem('location', location.textContent);
+    selectProfile.classList.add('hide');
+    downLoadPhoto(file.name, currentUser.uid).then((url) => {
       updateUserName(currentUser, inputName.value, url);
-      updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
-      name.textContent = inputName.value;
-      localStorage.setItem('aboutMe', aboutMe.textContent);
-      localStorage.setItem('location', location.textContent);
-      selectProfile.classList.add('hide');
     });
-    // }
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');
