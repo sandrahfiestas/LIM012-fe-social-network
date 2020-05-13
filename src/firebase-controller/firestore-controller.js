@@ -4,10 +4,11 @@ import { db } from '../main.js';
 
 // Posts
 
-export const publishPost = (id, userName, newPost, imagePost, time, status) => db.collection('posts').add({
+export const publishPost = (id, userName, newPost, imagePost, time, status, userPhoto) => db.collection('posts').add({
   name: userName,
   post: newPost,
   user: id,
+  photo: userPhoto,
   img: imagePost,
   time: time,
   privacy: status,
