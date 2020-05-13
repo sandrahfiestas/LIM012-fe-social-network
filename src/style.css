@@ -24,9 +24,39 @@ body::-webkit-scrollbar {display: none;}
     visibility: hidden;
 }
 
+.text{
+    color: white;
+    font-size: 1.2em;
+    width: 14em;
+    text-align: center;
+}
+
+.text-1{
+    font-size: 2.6em;
+    height: 100%;
+}
+
+.text-2{
+    font-size: 1.4em;
+    color: white;
+}
+
+.text-3{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.1em;
+    color: white;
+}
+
+.text-4{
+    color: white;
+    font-size: 1.5em;
+    width: 14em;
+    text-align: center;
+}
+
 /* Inicio de estilos de iniciar sesión*/
 
-.signin{
+.sign-in{
     height: 100vh;
     background-image: url(./img/background-socialnetwork.jpg);
     background-repeat: no-repeat;
@@ -50,20 +80,6 @@ body::-webkit-scrollbar {display: none;}
 
 .logo-social-network{
     width: 14em;
-}
-
-.text{
-    color: white;
-    font-size: 1.2em;
-    width: 14em;
-    text-align: center;
-}
-
-.text2{
-    color: white;
-    font-size: 1.5em;
-    width: 14em;
-    text-align: center;
 }
 
 .email-login, .password-login{
@@ -131,7 +147,7 @@ body::-webkit-scrollbar {display: none;}
     background-color: rgb(128, 64, 136);
 }
 
-.logoGoogle{
+.logo-google{
     width: 2.2em;
     height: 2.2em;
     background-color: rgba(255, 255, 255, 0);
@@ -140,13 +156,7 @@ body::-webkit-scrollbar {display: none;}
     background-size: cover;
 }
 
-.text3{
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1.1em;
-    color: white;
-}
-
-.googleSignIn{
+.google-sign-in{
     background-image: url(./img/logo-google-white.png);
 }
 
@@ -183,7 +193,7 @@ body::-webkit-scrollbar {display: none;}
     border-left: 18px solid transparent;
 }
 
-.msgAlertReg {
+.msg-alert-reg {
     position: relative;
     width: 100%;
     display: flex;
@@ -192,7 +202,7 @@ body::-webkit-scrollbar {display: none;}
     
 }
 
-.msgAlertReg:hover .balloon {
+.msg-alert-reg:hover .balloon {
     visibility: visible;
     /* margin-top: 2%;
     display: inline-block;
@@ -200,14 +210,12 @@ body::-webkit-scrollbar {display: none;}
 }
 
 
-/* Fin de estilos de iniciar sesión*/
-
 /* Estilos de register */
 .hide-show {
     display: none;
 }
 
-.signup {
+.sign-up {
     height: 100vh;
     background: linear-gradient(180deg, #E253C3 0%, #A254AD 100%);
     display: flex;
@@ -244,7 +252,7 @@ body::-webkit-scrollbar {display: none;}
     border-left: 18px solid transparent;
 }
 
-.msgAlertReg:hover .balloon-2 {
+.msg-alert-reg:hover .balloon-2 {
     visibility: visible;
 }
 
@@ -263,14 +271,6 @@ body::-webkit-scrollbar {display: none;}
     flex-direction: column;
     justify-content: space-evenly;
     margin-bottom: 2em;
-    align-items: center;
-}
-
-.formRegister{
-    display: flex;
-    height: 17em;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -421,7 +421,7 @@ body::-webkit-scrollbar {display: none;}
     background-color: #A94EAB;
 }
 
-.btnGoProfile{
+.btn-go-profile{
     width: 100%;
     height: 50%;
     border-bottom-style: solid;
@@ -431,7 +431,7 @@ body::-webkit-scrollbar {display: none;}
     font-size: 1.2em;
 }
 
-.proPicSmall{
+.pro-pic-small{
     width: 2em;
     height: 2em;
     border-radius: 50%;
@@ -442,19 +442,19 @@ body::-webkit-scrollbar {display: none;}
     height: 2em;
 }
 
-.btnGoOut{
+.btn-go-out{
     width: 100%;
     height: 50%;
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.2em;
 }
 
-.icoSignOut{
+.ico-sign-out{
     width: 1.8em;
     height: 1.8em;  
 }
 
-.menuMobile{
+.menu-mobile{
     width: 2em;
     height: 2.5em;
     background-image: url(./img/menu-mobile.png);
@@ -467,7 +467,7 @@ body::-webkit-scrollbar {display: none;}
     cursor: pointer;
 }
 
-#menu-mobile:checked ~ .menuMobile{
+#menu-mobile:checked ~ .menu-mobile{
     background-color: rgba(0, 0, 0, 0);
 }
 
@@ -504,7 +504,7 @@ header img{
     position: relative;
 }
 
-.coverImage{
+.cover-image{
     width: 100%;
     height: 8em;
     background-image: url(./img/cover-profile.jpg);
@@ -555,7 +555,7 @@ header img{
     font-family: 'Noto Sans', sans-serif;
 }
 
-.profilePicture {
+.profile-picture {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -625,7 +625,7 @@ header img{
     word-wrap: break-word;
 }
 
-.dropDown {
+.drop-down {
     position: absolute;
     right: 5px;
     top: 30px;
@@ -642,7 +642,7 @@ header img{
     cursor: pointer;
 }
 
-.dropDown:before {
+.drop-down:before {
     content:"";
     width: 0;
     height: 0;
@@ -668,12 +668,6 @@ header img{
     top: 8px;
     right: 4px;
 }
-
-/* .btn-save {
-    align-self: flex-end;
-    margin: 0 0.5em 0 0;
-    padding: 0.3em;
-} */
 
 /* TIMELINE DE POSTS */
 
@@ -871,6 +865,7 @@ header img{
     font-family: "Noto sans", sans-serif;
     padding: 0.4em;
     font-size: 1.2em;
+    outline: none;
 }
 
 .buttons-post{
@@ -938,15 +933,6 @@ header img{
 .privacy option{
     font-size: 0.9em;
     border: none;
-}
-
-.text-1{
-    font-size: 2.6em;
-    height: 100%;
-}
-
-.text-2{
-    font-size: 1.4em;
 }
 
 .all-posts{
@@ -1057,6 +1043,101 @@ header img{
     cursor: pointer;
 }
 
+/* Estilos de los comentario */
+
+.container-photo-comment{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1em;
+}
+
+.container-new-comment{
+    height: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.new-comment-title{
+    font-family: 'Noto Sans', sans-serif;
+    color: #454545;
+    font-size: 1.2em;
+}
+
+.go-comment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-comment{
+    width: 100%;
+    height: 3em;
+    resize: none;
+    background-color: rgba(190, 88, 192, 0.18);
+    border-radius: 0.5em;
+    border-style: none;
+    padding: 0.4em;
+    box-sizing: border-box;
+    margin-right: 0.5em;
+    font-family: "Noto sans", sans-serif;
+    font-size: 1.2em;
+    outline: none;
+}
+
+.input-comment::placeholder{
+    color: #D08ECA;
+}
+
+.btn-comment{
+    width: 4em;
+    height: 2em;
+    background-image: url(./img/arrow-comment.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    outline: none;
+}
+
+.picture-comment{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+.container-comment{
+    width: 100%;
+    background-color: rgba(190, 88, 192, 0.18);
+    border-radius: 0.5em;
+    padding: 0.4em;
+    box-sizing: border-box;
+}
+
+.text-comment{
+    font-size: 1.2em;
+    font-family: "Noto sans", sans-serif;
+    color: #454545;
+    margin-bottom: 1em;
+}
+
+.text-comment span{
+    color: #A254AD;
+    margin-right: 1em;
+}
+
+.time-comment{
+    color: #454545;
+    font-family: "Noto sans", sans-serif;
+    font-size: 1em;
+    text-align: end;
+}
+
+
 /* Estilos de notfound */
 
 .nf-page {
@@ -1100,12 +1181,13 @@ header img{
     cursor: none;
 }
 
-.logoRedes{
+/* Revisar si se usar */
+.logo-redes{
     width: 50px;
     height: 50px;
 }
 
-.imgPhotoURL{
+.img-photo-URL{
     width: 100px;
     height: 100px;
 }
@@ -1115,7 +1197,7 @@ header img{
 }
 
 .post-upload-image{
-    width: 60%;
+    width: 50%;
 }
 
 .upload{
@@ -1154,7 +1236,7 @@ header img{
 
 @media screen and (min-width: 750px){
 
-    .containerHome{
+    .container-home{
         display: grid;
         height: 100%;
         margin: 0 auto;
@@ -1175,7 +1257,7 @@ header img{
         grid-column-end: 2;
     }
 
-    .menuMobile{
+    .menu-mobile{
         display: none;
     }
 
@@ -1208,7 +1290,7 @@ header img{
         background-color: rgba(0, 0, 0, 0);
     }
 
-    .btnGoProfile{
+    .btn-go-profile{
         display: flex;
         align-items: center;
         width: 40%;
@@ -1216,14 +1298,14 @@ header img{
         border-bottom-style: none;
     }
 
-    .btnGoOut{
+    .btn-go-out{
         display: flex;
         align-items: center;
         width: 60%;
         justify-content: space-evenly;
     }
 
-    .coverImage{
+    .cover-image{
         height: 12em;
     }
 }
@@ -1234,7 +1316,7 @@ header img{
         display: grid;
     }
 
-    .containerHome{
+    .container-home{
         max-width: 1024px;
     }
 
@@ -1246,7 +1328,7 @@ header img{
         padding: 0;
     }
 
-    .signin{
+    .sign-in{
         display: grid;
         grid-template-columns: 50% 50%;
     }

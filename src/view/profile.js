@@ -13,18 +13,18 @@ export default (notes) => {
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
     <header class="header-home">
-      <label id="menu-mobile2" class="menuMobile"></label>
+      <label id="menu-mobile2" class="menu-mobile"></label>
       <nav class="nav-home hide">
         <ul class="menu-home">
-          <li class="btnGoProfile" id="btnGoHome"><img class="ico-home" src="./img/home-ico.png">Inicio</li>
-          <li class="btnGoOut" id="btnSignOut2"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
+          <li class="btn-go-profile" id="btnGoHome"><img class="ico-home" src="./img/home-ico.png">Inicio</li>
+          <li class="btn-go-out" id="btnSignOut2"><img class="ico-sign-out" src="./img/sign-out.png">Cerrar sesión</li>
         </ul>
       </nav>
       <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
-    <section class="containerHome">
+    <section class="container-home">
       <div class="profile-section">
-        <div class="coverImage"></div>
+        <div class="cover-image"></div>
         <div class="profile">
           <div class="profileDiv profile-margin">
             <label id="selectProfile" for="selectPhotoProfile" class="hide">
@@ -33,7 +33,7 @@ export default (notes) => {
             </label>
 
           <div class="profile-photo-name">
-            <img class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}">
+            <img class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}">
             <p class="user-name" id="name">${currentUser.displayName}</p>
             <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
@@ -44,7 +44,7 @@ export default (notes) => {
             <span id="location">${localStorage.getItem('location')}</span>
           </div>
           <img class="edit-icon" src="./img/edition-icon.png">
-          <p class="dropDown hide" id="editName">Editar</p>
+          <p class="drop-down hide" id="editName">Editar</p>
           <div class="profile-btn-editions">
             <button id="btnCancel" class="btn-profile hide">Cancelar</button>
             <button id="btnSave" class="btn-profile hide">Guardar</button>

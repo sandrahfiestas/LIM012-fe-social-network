@@ -1,9 +1,11 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike,
+  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
+// import { eachComment } from './comment.js';
+import { db } from '../main.js';
 
 const validatePostContent = (img, post, id) => {
   let postContent = '';
@@ -21,6 +23,8 @@ const validatePostContent = (img, post, id) => {
   }
   return postContent;
 };
+
+// const currentUser = user();
 
 export const eachPost = (objPost) => {
   const eachNote = document.createElement('div');
@@ -58,6 +62,14 @@ export const eachPost = (objPost) => {
       </div>
       <button class="hide" id="btnSave">Guardar</button>
       <button class="hide" id="btnCancel">Cancelar</button>
+      <div class="container-new-comment">
+        <p class="new-comment-title">Comentarios</p>
+        <div class="go-comment">
+          <textarea class="input-comment" id="newComment-${objPost.id}" placeholder="Escribe un comentario"></textarea>
+          <button id="comment-${objPost.id}" class="btn-comment"></button>
+        </div>
+      </div>
+      <div id="allComments-${objPost.id}"></div>
     </div>
   `;
 
@@ -134,6 +146,35 @@ export const eachPost = (objPost) => {
     updatePost(objPost.id, inputPost.value);
     post.textContent = inputPost.value;
   });
+
+  // Comentarios
+  const btnNewComment = eachNote.querySelector(`#comment-${objPost.id}`);
+  btnNewComment.addEventListener('click', () => {
+    const newComment = eachNote.querySelector(`#newComment-${objPost.id}`).value;
+    const date = new Date().toLocaleString();
+    const currentUser = user();
+    publishComment(currentUser.displayName, newComment, objPost.id, date);
+    eachNote.querySelector(`#newComment-${objPost.id}`).value = '';
+  });
+
+  // Leyendo
+  const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
+  db.collection('comments').where('idPost', '==', objPost.id)
+    .orderBy('time', 'desc')
+    .onSnapshot((querySnapshot) => {
+      allComments.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+        allComments.innerHTML += `
+          <div class="container-photo-comment">
+            <img class="picture-comment" src="./img/profile-ico.png" alt="">
+            <div class="container-comment">
+              <p class="text-comment"><span>${doc.data().user}</span>${doc.data().comment}</p>
+              <p class="time-comment">${doc.data().time}</p>
+            </div>
+          </div>
+        `;
+      });
+    });
 
   return eachNote;
 };
