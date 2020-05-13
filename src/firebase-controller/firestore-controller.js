@@ -26,10 +26,11 @@ export const getAllPosts = callback => db.collection('posts')
 
 // Comentarios
 
-export const publishComment = (userName, comment, idPost) => db.collection('comments').add({
+export const publishComment = (userName, comment, idPost, date) => db.collection('comments').add({
   user: userName,
   comment: comment,
   idPost: idPost,
+  time: date,
 });
 
 // export const getComment = id => db.collection('comments').doc(id).get();

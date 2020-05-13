@@ -24,6 +24,8 @@ const validatePostContent = (img, post, id) => {
   return postContent;
 };
 
+// const currentUser = user();
+
 export const eachPost = (objPost) => {
   const eachNote = document.createElement('div');
   eachNote.classList.add('container-post');
@@ -146,27 +148,28 @@ export const eachPost = (objPost) => {
   const btnNewComment = eachNote.querySelector(`#comment-${objPost.id}`);
   btnNewComment.addEventListener('click', () => {
     const newComment = eachNote.querySelector(`#newComment-${objPost.id}`).value;
-    publishComment(userId, newComment, objPost.id);
+    const date = new Date().toLocaleString();
+    const currentUser = user();
+    publishComment(currentUser.displayName, newComment, objPost.id, date);
     eachNote.querySelector(`#newComment-${objPost.id}`).value = '';
-    const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
+  });
 
-    // Leyendo
-    db.collection('comments').where('idPost', '==', objPost.id)
-      .onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, ' => ', doc.data());
-          console.log(doc.data().comment);
-          allComments.innerHTML = `
+  // Leyendo
+  const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
+  db.collection('comments').where('idPost', '==', objPost.id)
+    .orderBy('time', 'desc')
+    .onSnapshot((querySnapshot) => {
+      allComments.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+        allComments.innerHTML += `
+          <div>
             <p>${doc.data().user}</p>
             <p>${doc.data().comment}</p>
-          `;
-        });
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
+            <p>${doc.data().time}</p>
+          </div>
+        `;
       });
-  });
+    });
 
   return eachNote;
 };
