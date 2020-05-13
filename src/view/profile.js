@@ -1,10 +1,12 @@
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 // import { profileInfo } from '../firestore-controller.js';
-import { signOut, user, updateUserName } from '../firebase-controller/auth-controller.js';
+import {
+  signOut, user, updateUserName, updatePhoto,
+} from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-import { uploadPhotoProfile, downLoadPhoto } from '../firebase-controller/storage-controller.js';
+import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -56,7 +58,7 @@ export default (notes) => {
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
   const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
-  const profilePicture = viewUserProfile.querySelector('.profilePicture');
+  const profilePicture = viewUserProfile.querySelector('.profile-picture');
   let file = '';
   selectPhotoProfile.addEventListener('change', (e) => {
     const input = e.target;
@@ -146,7 +148,9 @@ export default (notes) => {
 
   btnSave.addEventListener('click', () => {
     if (file) {
-      uploadPhotoProfile(file, currentUser.uid);
+      uploadPhotoProfile(file, currentUser.uid).then((url) => {
+        updatePhoto(currentUser, url);
+      });
     }
     editableInfo();
     updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
@@ -154,9 +158,7 @@ export default (notes) => {
     localStorage.setItem('aboutMe', aboutMe.textContent);
     localStorage.setItem('location', location.textContent);
     selectProfile.classList.add('hide');
-    downLoadPhoto(file.name, currentUser.uid).then((url) => {
-      updateUserName(currentUser, inputName.value, url);
-    });
+    updateUserName(currentUser, inputName.value);
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');
