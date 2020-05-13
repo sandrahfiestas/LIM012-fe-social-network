@@ -11,7 +11,7 @@ import { changeView } from '../view-controller/router.js';
 
 export default () => {
   const viewSignIn = document.createElement('div');
-  viewSignIn.classList.add('signin');
+  viewSignIn.classList.add('sign-in');
   viewSignIn.innerHTML = `
     <div class="signin-container">
       <img src="./img/logo.svg" alt="Voz Amiga" class="logo-social-network">
@@ -22,10 +22,10 @@ export default () => {
         <span class="balloon ocult">El email o contraseña no son válidos</span>
       </button>
       <div class="btn-google" id="btnLogInGoogle">
-        <div class="logoGoogle googleSignIn"></div>
-        <p class="text3">Ingresa sesión con Google</p>
+        <div class="logo-google google-sign-in"></div>
+        <p class="text-3">Ingresa sesión con Google</p>
       </div>
-      <p class="text2">¿No tienes cuenta?</p>
+      <p class="text-4">¿No tienes cuenta?</p>
       <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
     </div>
     `;

@@ -2,7 +2,9 @@
 /* eslint-disable import/no-cycle */
 import { db } from '../main.js';
 
-export const publishComment = (id, userName, newPost, imagePost, time, status) => db.collection('posts').add({
+// Posts
+
+export const publishPost = (id, userName, newPost, imagePost, time, status) => db.collection('posts').add({
   name: userName,
   post: newPost,
   user: id,
@@ -21,6 +23,19 @@ export const getAllPosts = callback => db.collection('posts')
     });
     callback(allPosts);
   });
+
+// Comentarios
+
+export const publishComment = (userName, comment, idPost, date) => db.collection('comments').add({
+  user: userName,
+  comment: comment,
+  idPost: idPost,
+  time: date,
+});
+
+// export const getComment = id => db.collection('comments').doc(id).get();
+
+// Profile
 
 export const createProfileInfo = (id) => {
   db.collection('users').doc(id).set({
