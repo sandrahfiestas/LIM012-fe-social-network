@@ -30,7 +30,7 @@ export const updateUserName = (userData, userName) => {
 };
 
 // // Guardando/actualizando nombre de usuario
-export const updatePhoto = (userData, photoProfile) => {
+export const updatePhotoAuth = (userData, photoProfile) => {
   userData.updateProfile({
     photoURL: photoProfile,
   });

@@ -2,11 +2,11 @@
 import { changeView } from '../view-controller/router.js';
 // import { profileInfo } from '../firestore-controller.js';
 import {
-  signOut, user, updateUserName, updatePhoto,
+  signOut, user, updateUserName, updatePhotoAuth,
 } from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
+import { uploadPhotoProfile/* , downLoadPhoto */ } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -149,8 +149,9 @@ export default (notes) => {
   btnSave.addEventListener('click', () => {
     if (file) {
       uploadPhotoProfile(file, currentUser.uid).then((url) => {
-        updatePhoto(currentUser, url);
+        updatePhotoAuth(currentUser, url);
       });
+      // downLoadPhoto(file.name, currentUser.uid)
     }
     editableInfo();
     updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
