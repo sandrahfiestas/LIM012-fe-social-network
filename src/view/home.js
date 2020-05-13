@@ -14,7 +14,6 @@ export default (notes) => {
     localStorage.setItem('location', doc.data().location);
   });
   localStorage.setItem('name', currentUser.displayName);
-  const userPhoto = currentUser.photoURL || './img/profile-ico.png';
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -22,7 +21,7 @@ export default (notes) => {
     <label id="menu-mobile" class="menu-mobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btn-go-profile" id="btnProfile"><img class="pro-pic-small" src="${userPhoto}">Perfil</li>
+        <li class="btn-go-profile" id="btnProfile"><img class="pro-pic-small" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
         <li class="btn-go-out" id="btnSignOut"><img class="ico-sign-out" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
@@ -34,7 +33,7 @@ export default (notes) => {
         <div class="profile">
           <div class="profile-photo-name">
             <div class="profile-picture">
-              <img id="profilePhoto" class="profile-picture" src="${userPhoto}" alt="">
+              <img id="profilePhoto" class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
             </div>
             <p class="user-name">${localStorage.getItem('name')}</p>
           </div>
@@ -126,7 +125,8 @@ export default (notes) => {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
     }
-    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status, userPhoto)
+    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost,
+      date, status, currentUser.photoURL)
       .then(() => {
         document.querySelector('.new-post').value = '';
       });
