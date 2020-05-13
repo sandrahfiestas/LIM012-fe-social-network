@@ -27,7 +27,6 @@ export default (notes) => {
         <div class="coverImage"></div>
         <div class="profile">
           <div class="profileDiv profile-margin">
-
             <label id="selectProfile" for="selectPhotoProfile" class="hide">
             <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
             <img class ="photo-profile" src="./img/photo.png">
