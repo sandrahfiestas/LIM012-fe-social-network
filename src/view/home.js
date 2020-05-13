@@ -52,7 +52,6 @@ export default (notes) => {
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-new-image" src="#" alt="">
             <button id="btnCancelImg" class="hide cancel-image"></button>
-            <img id="showPicture" class="post-new-image" src="#" alt="">
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
