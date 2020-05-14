@@ -12,8 +12,8 @@ export default (notes) => {
   getProfileInfo(currentUser.uid).then((doc) => {
     localStorage.setItem('aboutMe', doc.data().aboutMe);
     localStorage.setItem('location', doc.data().location);
-    localStorage.setItem('name', currentUser.displayName);
   });
+  localStorage.setItem('name', currentUser.displayName);
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -52,7 +52,6 @@ export default (notes) => {
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-new-image" src="#" alt="">
             <button id="btnCancelImg" class="hide cancel-image"></button>
-            <img id="showPicture" class="post-new-image" src="#" alt="">
             <div class="buttons-post">
               <div class="options">
                 <label for="selectImage">
@@ -125,7 +124,8 @@ export default (notes) => {
       imPost = localStorage.getItem('image');
       uploadImagePost(file, currentUser.uid);
     }
-    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
+    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost,
+      date, status, currentUser.photoURL)
       .then(() => {
         document.querySelector('.new-post').value = '';
       });

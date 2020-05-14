@@ -435,6 +435,7 @@ body::-webkit-scrollbar {display: none;}
     width: 2em;
     height: 2em;
     border-radius: 50%;
+    border: 1px solid #FFF;
 }
 
 .ico-home{
