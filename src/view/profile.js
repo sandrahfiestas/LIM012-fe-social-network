@@ -6,7 +6,7 @@ import {
 } from '../firebase-controller/auth-controller.js';
 import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-import { uploadPhotoProfile/* , downLoadPhoto */ } from '../firebase-controller/storage-controller.js';
+import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
 
 export default (notes) => {
   const currentUser = user();
@@ -69,9 +69,6 @@ export default (notes) => {
     };
     reader.readAsDataURL(input.files[0]);
     file = e.target.files[0];
-
-    // Botón para cancelar imagen
-    // btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewUserProfile.querySelector('#menu-mobile2');
@@ -151,7 +148,6 @@ export default (notes) => {
       uploadPhotoProfile(file, currentUser.uid).then((url) => {
         updatePhotoAuth(currentUser, url);
       });
-      // downLoadPhoto(file.name, currentUser.uid)
     }
     editableInfo();
     updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
