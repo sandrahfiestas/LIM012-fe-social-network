@@ -27,14 +27,24 @@ export const getAllPosts = callback => db.collection('posts')
 
 // Comentarios
 
-export const publishComment = (userName, comment, idPost, date) => db.collection('comments').add({
+export const publishComment = (userName, comment, idPost, date, userId) => db.collection('comments').add({
   user: userName,
   comment: comment,
   idPost: idPost,
   time: date,
+  userId: userId,
 });
 
-// export const getComment = id => db.collection('comments').doc(id).get();
+export const getAllComments = (callback, id) => db.collection('comments')
+  .where('idPost', '==', id)
+  .orderBy('time', 'asc')
+  .onSnapshot((querySnapshot) => {
+    const allComments = [];
+    querySnapshot.forEach((doc) => {
+      allComments.push({ id: doc.id, ...doc.data() });
+    });
+    callback(allComments);
+  });
 
 // Profile
 

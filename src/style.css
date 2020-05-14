@@ -1135,6 +1135,7 @@ header img{
     border-radius: 0.5em;
     padding: 0.4em;
     box-sizing: border-box;
+    position: relative;
 }
 
 .text-comment{
@@ -1154,6 +1155,55 @@ header img{
     font-family: "Noto sans", sans-serif;
     font-size: 1em;
     text-align: end;
+}
+
+.label-menu-comment{
+    width: 3em;
+    height: 1em;
+    top: 0.5em;
+    right: 0.5em;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(./img/three-points-ico.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.nav-comment{
+    position: absolute;
+    top: 2em;
+    right: 0;
+    z-index: 5;
+}
+
+.menu-comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style-type: none;
+    width: 5em;
+    height: 4em;
+    background-color: #BE58C0;
+}
+
+.btn-comment-edit{
+    height: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 0.1em;
+    cursor: pointer;
+}
+
+.btn-comment-delete{
+    height: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 

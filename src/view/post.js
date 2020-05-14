@@ -1,11 +1,10 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment,
+  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
-// import { eachComment } from './comment.js';
-import { db } from '../main.js';
+import { eachComment } from './comment.js';
 
 const validatePostContent = (img, post, id) => {
   let postContent = '';
@@ -153,28 +152,18 @@ export const eachPost = (objPost) => {
     const newComment = eachNote.querySelector(`#newComment-${objPost.id}`).value;
     const date = new Date().toLocaleString();
     const currentUser = user();
-    publishComment(currentUser.displayName, newComment, objPost.id, date);
+    publishComment(currentUser.displayName, newComment, objPost.id, date, userId);
     eachNote.querySelector(`#newComment-${objPost.id}`).value = '';
   });
 
   // Leyendo
   const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
-  db.collection('comments').where('idPost', '==', objPost.id)
-    .orderBy('time', 'desc')
-    .onSnapshot((querySnapshot) => {
-      allComments.innerHTML = '';
-      querySnapshot.forEach((doc) => {
-        allComments.innerHTML += `
-          <div class="container-photo-comment">
-            <img class="picture-comment" src="./img/profile-ico.png" alt="">
-            <div class="container-comment">
-              <p class="text-comment"><span>${doc.data().user}</span>${doc.data().comment}</p>
-              <p class="time-comment">${doc.data().time}</p>
-            </div>
-          </div>
-        `;
-      });
+
+  getAllComments((comments) => {
+    comments.forEach((doc) => {
+      allComments.appendChild(eachComment(doc));
     });
+  }, objPost.id);
 
   return eachNote;
 };
