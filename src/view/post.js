@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment, getAllComments,
+  deletePost, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 import { eachComment } from './comment.js';
