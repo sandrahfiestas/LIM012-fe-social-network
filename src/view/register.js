@@ -1,10 +1,6 @@
 /* eslint-disable import/no-cycle */
-import {
-  signUp, verificationEmail, user, logInGoogle, updateUserName,
-} from '../firebase-controller/auth-controller.js';
 import { changeView } from '../view-controller/router.js';
-import { createProfileInfo, getUser } from '../firebase-controller/firestore-controller.js';
-import { signUpValidInputs } from '../view-controller/register-controller.js';
+import { signUpValidInputs, userRegistration, googleAccount } from '../view-controller/register-controller.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
@@ -41,32 +37,15 @@ export default () => {
   const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
   const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
 
+  // Eventos para validar campos
   nameUser.addEventListener('input', signUpValidInputs);
   emailLogUp2.addEventListener('input', signUpValidInputs);
   passwordLogUp2.addEventListener('input', signUpValidInputs);
-  // Termina validación de registro
-  btnNewAccount.addEventListener('click', () => {
-    const emailLogUp = viewSignUp.querySelector('#emailSignUp').value;
-    const passwordLogUp = viewSignUp.querySelector('#passwordSignUp').value;
 
-    signUp(emailLogUp, passwordLogUp).then((result) => {
-      createProfileInfo(result.user.uid);
-      verificationEmail().then(() => {
-        // Guardando nombre de usuario en la base de datos
-        const userData = user();
-        updateUserName(userData, nameUser.value);
+  // Evento para registrar usuario
+  btnNewAccount.addEventListener('click', userRegistration);
 
-        const notification = document.createElement('div');
-        notification.classList.add('notification');
-        notification.textContent = 'Revisa tu correo electrónico para terminar el registro';
-        document.body.appendChild(notification);
-        setTimeout(() => {
-          document.body.removeChild(notification);
-        }, 3000);
-      });
-    });
-  });
-
+  // Evento para cambiar de vista a sign in
   const btnViewLogIn = viewSignUp.querySelector('#btnViewLogIn');
   btnViewLogIn.addEventListener('click', () => {
     changeView('#/signin');
@@ -74,18 +53,7 @@ export default () => {
 
   // Iniciar sesión con Google
   const btnLogInGoogle = viewSignUp.querySelector('#btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle().then((result) => {
-      getUser(result.user.uid).then((doc) => {
-        if (!doc.exists) {
-          createProfileInfo(result.user.uid);
-        }
-      });
-    });
-  });
+  btnLogInGoogle.addEventListener('click', googleAccount);
 
   return viewSignUp;
 };
-
-// Template string del botón de Facebook
-// <button class="btnSocialNetwork facebookRegister" id="btnLogInFacebook"></button>
