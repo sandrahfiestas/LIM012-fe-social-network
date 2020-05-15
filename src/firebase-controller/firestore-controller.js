@@ -25,7 +25,7 @@ export const getAllPosts = callback => db.collection('posts')
     callback(allPosts);
   });
 
-export const getPost = id => db.collection('posts').doc(id).get();
+// export const getPost = id => db.collection('posts').doc(id).get();
 
 export const deletePost = id => db.collection('posts').doc(id).delete();
 
@@ -56,9 +56,9 @@ export const getAllComments = (callback, id) => db.collection('comments')
 
 export const updateComment = (id, comment) => db.collection('comments').doc(id).update({ comment: comment });
 
-export const getComment = id => db.collection('comment').doc(id).get();
+// export const getComment = id => db.collection('comment').doc(id).get();
 
-export const deleteComment = id => db.collection('comment').doc(id).delete();
+export const deleteComment = id => db.collection('comments').doc(id).delete();
 
 // Profile
 

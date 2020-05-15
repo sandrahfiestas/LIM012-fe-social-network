@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { user } from '../firebase-controller/auth-controller.js';
-import { getComment, updateComment, deleteComment } from '../firebase-controller/firestore-controller.js';
+import { updateComment, deleteComment } from '../firebase-controller/firestore-controller.js';
 
 export const eachComment = (obj) => {
   const comment = document.createElement('div');
@@ -9,7 +9,8 @@ export const eachComment = (obj) => {
   comment.innerHTML = `
     <img class="picture-comment" src="./img/profile-ico.png" alt="">
     <div class="container-comment">
-      <p class="text-comment" id="textComment"><span>${obj.user}</span>${obj.comment}</p>
+      <p class="text-name">${obj.user}</p>
+      <p class="text-comment" id="textComment">${obj.comment}</p>
       <textarea class="hide" id="input-comment-${obj.id}">${obj.comment}</textarea>
       <button class="hide" id="btnSaveComment">Guardar</button>
       <button class="hide" id="btnCancelComment">Cancelar</button>
@@ -47,7 +48,6 @@ export const eachComment = (obj) => {
   });
 
   const editComment = () => {
-    // textComment.contentEditable = 'false';
     textComment.classList.remove('hide');
     btnSave.classList.add('hide');
     btnCancel.classList.add('hide');
@@ -56,9 +56,9 @@ export const eachComment = (obj) => {
 
   btnCancel.addEventListener('click', () => {
     inputComment.value = textComment.textContent;
-    getComment(obj.id).then((doc) => {
-      textComment.textContent = doc.data().comment;
-    });
+    // getComment(obj.id).then((doc) => {
+    //   textComment.textContent = doc.data().comment;
+    // });
     editComment();
   });
 
@@ -73,7 +73,7 @@ export const eachComment = (obj) => {
   btnSave.addEventListener('click', () => {
     editComment();
     updateComment(obj.id, inputComment.value);
-    comment.textContent = inputComment.value;
+    // textComment.textContent = inputComment.value;
   });
 
   btnDelete.addEventListener('click', () => {
