@@ -47,7 +47,7 @@ export const eachComment = (obj) => {
   });
 
   const editComment = () => {
-    textComment.contentEditable = 'false';
+    // textComment.contentEditable = 'false';
     textComment.classList.remove('hide');
     btnSave.classList.add('hide');
     btnCancel.classList.add('hide');
@@ -56,8 +56,8 @@ export const eachComment = (obj) => {
 
   btnCancel.addEventListener('click', () => {
     inputComment.value = textComment.textContent;
-    getComment(obj.id).then(() => {
-      comment.textContent = obj.comment;
+    getComment(obj.id).then((doc) => {
+      textComment.textContent = doc.data().comment;
     });
     editComment();
   });
