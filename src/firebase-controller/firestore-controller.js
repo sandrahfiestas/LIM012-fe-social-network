@@ -25,6 +25,14 @@ export const getAllPosts = callback => db.collection('posts')
     callback(allPosts);
   });
 
+export const getPost = id => db.collection('posts').doc(id).get();
+
+export const deletePost = id => db.collection('posts').doc(id).delete();
+
+export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
+
+export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
+
 // Comentarios
 
 export const publishComment = (userName, comment, idPost, date, userId) => db.collection('comments').add({
@@ -46,6 +54,12 @@ export const getAllComments = (callback, id) => db.collection('comments')
     callback(allComments);
   });
 
+export const updateComment = (id, comment) => db.collection('comments').doc(id).update({ comment: comment });
+
+export const getComment = id => db.collection('comment').doc(id).get();
+
+export const deleteComment = id => db.collection('comment').doc(id).delete();
+
 // Profile
 
 export const createProfileInfo = (id) => {
@@ -57,22 +71,16 @@ export const createProfileInfo = (id) => {
 
 export const getProfileInfo = userId => db.collection('users').doc(userId).get();
 
-export const getPost = id => db.collection('posts').doc(id).get();
-
 export const updateProfileInfo = (userId, description, place) => db.collection('users').doc(userId).update({
   aboutMe: description,
   location: place,
 });
 
-export const deletePost = id => db.collection('posts').doc(id).delete();
-
-export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
-
-export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
+// Likes
 
 export const updateLike = (id, likes) => db.collection('posts').doc(id).update({ likes });
 
-// export const time = () => firebase.firestore.FieldValue.serverTimestamp();
+// User
 
 export const getUser = (docId) => {
   const docRef = firebase.firestore().collection('users').doc(docId);

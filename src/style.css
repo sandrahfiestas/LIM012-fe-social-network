@@ -1045,21 +1045,17 @@ header img{
     resize: none;
 }
 
-.btn-post-edit{
-    height: 50%;
-    padding: 0.5em;
-    box-sizing: border-box;
-    border-bottom-style: solid;
-    border-bottom-color: #BE58C0;
-    border-bottom-width: 0.1em;
+.btn-post-edit, .btn-post-delete{
     cursor: pointer;
+    font-family: "Noto sans", sans-serif;
+    padding: 0.5em 0 0 1em;
+    box-sizing: border-box;
+    height: 100%;
 }
 
-.btn-post-delete{
-    height: 50%;
-    padding: 0.5em;
-    box-sizing: border-box;
-    cursor: pointer;
+.btn-post-edit:hover, .btn-post-delete:hover{
+    color: white;
+    background-color: #BE58C0;
 }
 
 /* Estilos de los comentario */
@@ -1174,38 +1170,37 @@ header img{
 
 .nav-comment{
     position: absolute;
-    top: 2em;
+    top: 1.6em;
     right: 0;
     z-index: 5;
 }
 
 .menu-comment{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-evenly;
     list-style-type: none;
-    width: 5em;
-    height: 4em;
+    align-items: center;
+    width: 10em;
+    height: 2em;
     background-color: #BE58C0;
 }
 
-.btn-comment-edit{
-    height: 50%;
-    padding: 0.5em;
-    box-sizing: border-box;
-    border-bottom-style: solid;
-    border-bottom-color: white;
-    border-bottom-width: 0.1em;
+.btn-comment-edit, .btn-comment-delete{
     cursor: pointer;
+    font-family: "Noto sans", sans-serif;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100%;
+    padding-top: 0.3em;
+    box-sizing: border-box;
 }
 
-.btn-comment-delete{
-    height: 50%;
-    padding: 0.5em;
-    box-sizing: border-box;
-    cursor: pointer;
+.btn-comment-edit:hover, .btn-comment-delete:hover{
+    color: #454545;
+    background-color: #DFD3C7;
 }
-
 
 /* Estilos de notfound */
 

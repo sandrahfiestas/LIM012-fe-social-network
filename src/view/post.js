@@ -146,9 +146,12 @@ export const eachPost = (objPost) => {
     post.textContent = inputPost.value;
   });
 
+  const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
+
   // Comentarios
   const btnNewComment = eachNote.querySelector(`#comment-${objPost.id}`);
   btnNewComment.addEventListener('click', () => {
+    allComments.innerHTML = '';
     const newComment = eachNote.querySelector(`#newComment-${objPost.id}`).value;
     const date = new Date().toLocaleString();
     const currentUser = user();
@@ -157,7 +160,6 @@ export const eachPost = (objPost) => {
   });
 
   // Leyendo
-  const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
 
   getAllComments((comments) => {
     comments.forEach((doc) => {
