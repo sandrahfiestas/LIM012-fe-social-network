@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
 import { signUpValidInputs, userRegistration, googleAccount } from '../view-controller/register-controller.js';
