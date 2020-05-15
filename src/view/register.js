@@ -4,6 +4,7 @@ import {
 } from '../firebase-controller/auth-controller.js';
 import { changeView } from '../view-controller/router.js';
 import { createProfileInfo, getUser } from '../firebase-controller/firestore-controller.js';
+import { signUpValidInputs } from '../view-controller/register-controller.js';
 
 export default () => {
   const viewSignUp = document.createElement('div');
@@ -39,21 +40,6 @@ export default () => {
   const emailLogUp2 = viewSignUp.querySelector('#emailSignUp');
   const passwordLogUp2 = viewSignUp.querySelector('#passwordSignUp');
   const btnNewAccount = viewSignUp.querySelector('#btnNewAccount');
-
-  // Inicia validación de registro
-  const signUpValidInputs = () => {
-    if (nameUser.value === '' || emailLogUp2.value === '' || passwordLogUp2.value === '') {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    } else if (nameUser.validity.valid && emailLogUp2.validity.valid
-      && passwordLogUp2.validity.valid) {
-      btnNewAccount.classList.remove('btn-locked');
-      btnNewAccount.disabled = false;
-    } else {
-      btnNewAccount.classList.add('btn-locked');
-      btnNewAccount.disabled = true;
-    }
-  };
 
   nameUser.addEventListener('input', signUpValidInputs);
   emailLogUp2.addEventListener('input', signUpValidInputs);
