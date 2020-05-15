@@ -1141,9 +1141,10 @@ header img{
     margin-bottom: 1em;
 }
 
-.text-comment span{
+.text-name{
     color: #A254AD;
     margin-right: 1em;
+    font-family: "Noto sans", sans-serif;
 }
 
 .time-comment{

@@ -58,7 +58,7 @@ export const updateComment = (id, comment) => db.collection('comments').doc(id).
 
 export const getComment = id => db.collection('comment').doc(id).get();
 
-export const deleteComment = id => db.collection('comment').doc(id).delete();
+export const deleteComment = id => db.collection('comments').doc(id).delete();
 
 // Profile
 
