@@ -9,11 +9,5 @@ export const uploadImagePost = (file, uid) => {
 
 export const uploadPhotoProfile = (file, uid) => {
   const refStoragePhoto = storage.ref(`imagePhotoProfile/${uid}/${file.name}`);
-  refStoragePhoto.put(file);
-  return refStoragePhoto.getDownloadURL();
+  return refStoragePhoto.put(file).then(snapshot => snapshot.ref.getDownloadURL());
 };
-
-// export const downLoadPhoto = (file, uid) => {
-//   const refStoragePhoto = storage.ref(`imagePhotoProfile/${uid}/${file}`);
-//   return refStoragePhoto.getDownloadURL();
-// };

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment, getAllComments,
+  deletePost, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 import { eachComment } from './comment.js';
@@ -126,9 +126,9 @@ export const eachPost = (objPost) => {
 
   btnCancel.addEventListener('click', () => {
     inputPost.value = post.textContent;
-    getPost(objPost.id).then((doc) => {
-      post.textContent = doc.data().post;
-    });
+    // getPost(objPost.id).then((doc) => {
+    //   post.textContent = doc.data().post;
+    // });
     editablePost();
   });
 
@@ -143,7 +143,7 @@ export const eachPost = (objPost) => {
   btnSave.addEventListener('click', () => {
     editablePost();
     updatePost(objPost.id, inputPost.value);
-    post.textContent = inputPost.value;
+    // post.textContent = inputPost.value;
   });
 
   const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
@@ -160,7 +160,6 @@ export const eachPost = (objPost) => {
   });
 
   // Leyendo
-
   getAllComments((comments) => {
     comments.forEach((doc) => {
       allComments.appendChild(eachComment(doc));

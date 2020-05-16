@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { user } from '../firebase-controller/auth-controller.js';
-import { getComment, updateComment, deleteComment } from '../firebase-controller/firestore-controller.js';
+import { updateComment, deleteComment } from '../firebase-controller/firestore-controller.js';
 
 export const eachComment = (obj) => {
   const newComment = document.createElement('div');
@@ -48,7 +48,6 @@ export const eachComment = (obj) => {
   });
 
   const editComment = () => {
-    textComment.contentEditable = 'false';
     textComment.classList.remove('hide');
     btnSaveComment.classList.add('hide');
     btnCancelComment.classList.add('hide');
@@ -57,9 +56,9 @@ export const eachComment = (obj) => {
 
   btnCancelComment.addEventListener('click', () => {
     inputComment.value = textComment.textContent;
-    getComment(obj.id).then((doc) => {
-      textComment.textContent = doc.data().comment;
-    });
+    // getComment(obj.id).then((doc) => {
+    //   textComment.textContent = doc.data().comment;
+    // });
     editComment();
   });
 
@@ -74,7 +73,6 @@ export const eachComment = (obj) => {
   btnSaveComment.addEventListener('click', () => {
     editComment();
     updateComment(obj.id, inputComment.value);
-    newComment.textContent = inputComment.value;
   });
 
   btnDeleteComment.addEventListener('click', () => {
