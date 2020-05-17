@@ -70,6 +70,16 @@ export default (notes) => {
       </div>
     </section>`;
 
+  const profileSection = viewSignInUser.querySelector('.profile-section');
+  const view750px = window.matchMedia('(max-width: 750px)');
+  view750px.addEventListener('change', () => {
+    if (view750px.matches) {
+      profileSection.classList.add('hide');
+    } else {
+      profileSection.classList.remove('hide');
+    }
+  });
+
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
   const btnCancelImg = viewSignInUser.querySelector('#btnCancelImg');

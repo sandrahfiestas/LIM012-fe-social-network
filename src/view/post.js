@@ -12,12 +12,20 @@ const validatePostContent = (img, post, id) => {
     postContent = `
     <p class="text-post" id="post">${post}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    <div class="buttons-post">
+      <button class="hide" id="btnSave">Guardar</button>
+      <button class="hide" id="btnCancel">Cancelar</button>
+    </div>
     <img class="post-upload-image" src=${img}>
     `;
   } else {
     postContent = `
     <p class="text-post" id="post">${post}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    <div class="buttons-post">
+      <button class="hide" id="btnSave">Guardar</button>
+      <button class="hide" id="btnCancel">Cancelar</button>
+    </div>
     `;
   }
   return postContent;
@@ -59,8 +67,6 @@ export const eachPost = (objPost) => {
           </ul>
         </nav>
       </div>
-      <button class="hide" id="btnSave">Guardar</button>
-      <button class="hide" id="btnCancel">Cancelar</button>
       <div class="container-new-comment">
         <p class="new-comment-title">Comentarios</p>
         <div class="go-comment">

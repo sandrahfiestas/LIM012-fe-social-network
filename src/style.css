@@ -717,14 +717,15 @@ header img{
 }
 
 .like-picture{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    margin-bottom: 0.5em;
 }
 
 .post-time{
-    font-size: 1em;
-    width: 60px;
+    font-size: 0.9em;
+    width: 50px;
     font-family: "Noto sans", sans-serif;
     text-align: center;
 }
@@ -875,7 +876,7 @@ header img{
 
 .new-post{
     width: 100%;
-    height: 10em;
+    height: 6em;
     box-sizing: border-box;
     border: 0.1em solid #C4C4C4;
     resize: none;
@@ -895,7 +896,7 @@ header img{
 }
 
 .btn-post{
-    width: 8em;
+    width: 6em;
     height: 2em;
     color: #fff;
     background-color: #BE58C0;
@@ -1067,7 +1068,7 @@ header img{
 }
 
 .container-new-comment{
-    height: 6em;
+    height: 5em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1097,7 +1098,7 @@ header img{
     box-sizing: border-box;
     margin-right: 0.5em;
     font-family: "Noto sans", sans-serif;
-    font-size: 1.2em;
+    font-size: 1em;
     outline: none;
 }
 
@@ -1141,7 +1142,7 @@ header img{
 }
 
 .text-comment{
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: "Noto sans", sans-serif;
     color: #454545;
     margin-bottom: 1em;
@@ -1156,7 +1157,7 @@ header img{
 .time-comment{
     color: #454545;
     font-family: "Noto sans", sans-serif;
-    font-size: 1em;
+    font-size: 0.8em;
     text-align: end;
 }
 
@@ -1367,6 +1368,41 @@ header img{
     .cover-image{
         height: 12em;
     }
+
+    .like-picture{
+        width: 60px;
+        height: 60px;
+    }
+
+    .new-post{
+        height: 10em;
+    }
+
+    .btn-post{
+        width: 8em;
+    }
+
+    .post-time{
+        width: 60px;
+        font-size: 1em;
+    }
+
+    .input-comment{
+        font-size: 1.2em;
+    }
+
+    .text-comment{
+        font-size: 1.2em;
+    }
+
+    .time-comment{
+        font-size: 1em;
+    }
+
+    .container-new-comment{
+        height: 6em;
+    }
+    
 }
 
 @media screen and (min-width: 1024px){
