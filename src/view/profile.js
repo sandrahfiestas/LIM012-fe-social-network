@@ -56,7 +56,7 @@ export default (notes) => {
   const aboutMe = viewUserProfile.querySelector('#description');
   const location = viewUserProfile.querySelector('#location');
   const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
-  const profilePicture = viewUserProfile.querySelector('.profilePicture');
+  const profilePicture = viewUserProfile.querySelector('.profile-picture');
 
   let file = '';
   selectPhotoProfile.addEventListener('change', (e) => {
@@ -146,7 +146,6 @@ export default (notes) => {
   });
 
   btnSave.addEventListener('click', () => {
-
     if (file) {
       uploadPhotoProfile(file, currentUser.uid);
     }

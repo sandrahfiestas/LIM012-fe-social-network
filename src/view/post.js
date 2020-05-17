@@ -5,7 +5,7 @@ import {
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 // import { eachComment } from './comment.js';
-import { db } from '../main.js';
+
 
 const validatePostContent = (img, post, id) => {
   let postContent = '';
@@ -159,7 +159,7 @@ export const eachPost = (objPost) => {
 
   // Leyendo
   const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
-  db.collection('comments').where('idPost', '==', objPost.id)
+  firebase.firestore().collection('comments').where('idPost', '==', objPost.id)
     .orderBy('time', 'desc')
     .onSnapshot((querySnapshot) => {
       allComments.innerHTML = '';

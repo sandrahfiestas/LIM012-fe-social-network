@@ -1,10 +1,10 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable import/no-cycle */
-import { db } from '../main.js';
+// import { db } from '../main.js';
 
 // Posts
 
-export const publishPost = (id, userName, newPost, imagePost, time, status) => db.collection('posts').add({
+export const publishPost = (id, userName, newPost, imagePost, time, status) => firebase.firestore().collection('posts').add({
   name: userName,
   post: newPost,
   user: id,
@@ -14,7 +14,7 @@ export const publishPost = (id, userName, newPost, imagePost, time, status) => d
   likes: [],
 });
 
-export const getAllPosts = callback => db.collection('posts')
+export const getAllPosts = callback => firebase.firestore().collection('posts')
   .orderBy('time', 'desc')
   .onSnapshot((querySnapshot) => {
     const allPosts = [];
@@ -26,40 +26,40 @@ export const getAllPosts = callback => db.collection('posts')
 
 // Comentarios
 
-export const publishComment = (userName, comment, idPost, date) => db.collection('comments').add({
+export const publishComment = (userName, comment, idPost, date) => firebase.firestore().collection('comments').add({
   user: userName,
   comment: comment,
   idPost: idPost,
   time: date,
 });
 
-// export const getComment = id => db.collection('comments').doc(id).get();
+// export const getComment = id => firebase.firestore().collection('comments').doc(id).get();
 
 // Profile
 
 export const createProfileInfo = (id) => {
-  db.collection('users').doc(id).set({
+  firebase.firestore().collection('users').doc(id).set({
     aboutMe: 'Cuenta un poco sobre ti',
     location: 'Ciudad, País',
   });
 };
 
-export const getProfileInfo = userId => db.collection('users').doc(userId).get();
+export const getProfileInfo = userId => firebase.firestore().collection('users').doc(userId).get();
 
-export const getPost = id => db.collection('posts').doc(id).get();
+export const getPost = id => firebase.firestore().collection('posts').doc(id).get();
 
-export const updateProfileInfo = (userId, description, place) => db.collection('users').doc(userId).update({
+export const updateProfileInfo = (userId, description, place) => firebase.firestore().collection('users').doc(userId).update({
   aboutMe: description,
   location: place,
 });
 
-export const deletePost = id => db.collection('posts').doc(id).delete();
+export const deletePost = id => firebase.firestore().collection('posts').doc(id).delete();
 
-export const updatePost = (id, post) => db.collection('posts').doc(id).update({ post: post });
+export const updatePost = (id, post) => firebase.firestore().collection('posts').doc(id).update({ post: post });
 
-export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
+export const updatePrivacy = (id, status) => firebase.firestore().collection('posts').doc(id).update({ privacy: status });
 
-export const updateLike = (id, likes) => db.collection('posts').doc(id).update({ likes });
+export const updateLike = (id, likes) => firebase.firestore().collection('posts').doc(id).update({ likes });
 
 // export const time = () => firebase.firestore.FieldValue.serverTimestamp();
 

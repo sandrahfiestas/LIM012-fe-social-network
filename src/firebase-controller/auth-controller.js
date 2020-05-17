@@ -26,20 +26,10 @@ export const user = () => firebase.auth().currentUser;
 export const updateUserName = (userData, userName, photoProfile) => {
   userData.updateProfile({
     displayName: userName,
-    photoURL: photProfile,
+    photoURL: photoProfile,
 
   });
 };
-
-
-// // Guardando/actualizando nombre de usuario
-// export const updateUserName = (userData, userName, photoProfile) => {
-//   userData.updateProfile({
-//     displayName: userName,
-//     photoURL: photoProfile,
-//   });
-// };
-
 
 // Iniciar sesión con Facebook
 // export const logInFacebook = () => {

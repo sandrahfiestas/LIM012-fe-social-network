@@ -90,6 +90,7 @@ export default (notes) => {
       localStorage.setItem('image', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
+
     file = e.target.files[0];
 
     // Botón para cancelar imagen

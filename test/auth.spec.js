@@ -11,12 +11,19 @@ import {
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockAuthentication();
+//
+// const mockfirestore = new firebasemock.MockFirestore();
+
 mockauth.autoFlush();
+//
+// mockfirestore.autoFlush();
 
 global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   () => null,
   () => mockauth,
+  //
+//  () => mockfirestore,
 );
 
 describe('signIn', () => {
