@@ -1102,12 +1102,6 @@ header img{
     outline: none;
 }
 
-.text-name{
-    color: #A254AD;
-    margin-right: 1em;
-    font-family: "Noto sans", sans-serif;
-}
-
 .input-comment::placeholder{
     color: #D08ECA;
 }
