@@ -1,15 +1,13 @@
-/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
-import {
-  signOut, user, updateUserName, updatePhotoAuth,
-} from '../firebase-controller/auth-controller.js';
-import { getProfileInfo, updateProfileInfo } from '../firebase-controller/firestore-controller.js';
 import { eachPost } from './post.js';
-import { uploadPhotoProfile } from '../firebase-controller/storage-controller.js';
+import { signingOut, gettingProfileInfo, savingChanges } from '../view-controller/profile-controller.js';
+import { loadingInfo } from '../view-controller/home-controller.js';
 
 export default (notes) => {
-  const currentUser = user();
+  loadingInfo();
+  const userName = localStorage.getItem('name');
+  const userPhoto = localStorage.getItem('userphoto');
 
   const viewUserProfile = document.createElement('div');
   viewUserProfile.innerHTML = `
@@ -32,9 +30,9 @@ export default (notes) => {
               <input type="file" id="selectPhotoProfile" class="hide" accept="image/jpeg, image/png">
               <img class ="photo-profile" src="./img/photo.png">
             </label>
-            <img class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}">
-            <p class="user-name" id="name">${currentUser.displayName}</p>
-            <input class="hide validity" id="inputName" type="text" value="${currentUser.displayName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
+            <img class="profile-picture" src="${userPhoto || './img/profile-ico.png'}">
+            <p class="user-name" id="name">${userName}</p>
+            <input class="hide validity" id="inputName" type="text" value="${userName}" maxlength="30" pattern="([a-zA-ZÁÉÍÓÚñáéíóúÑ]{1,30}\\s*)+">
           </div>
           <h3 class="about-me">Sobre mí</h3>
           <p class="profile-text" id="description">${localStorage.getItem('aboutMe')}</p>
@@ -55,8 +53,6 @@ export default (notes) => {
       </div>
     </section>`;
 
-  const aboutMe = viewUserProfile.querySelector('#description');
-  const location = viewUserProfile.querySelector('#location');
   const selectPhotoProfile = viewUserProfile.querySelector('#selectPhotoProfile');
   const profilePicture = viewUserProfile.querySelector('.profile-picture');
   let file = '';
@@ -78,10 +74,7 @@ export default (notes) => {
   });
 
   const btnSignOut = viewUserProfile.querySelector('#btnSignOut2');
-  btnSignOut.addEventListener('click', () => {
-    // changeView('#/signin');
-    signOut();
-  });
+  btnSignOut.addEventListener('click', signingOut);
 
   const btnHome = viewUserProfile.querySelector('#btnGoHome');
   btnHome.addEventListener('click', () => {
@@ -90,15 +83,17 @@ export default (notes) => {
 
   const editIcon = viewUserProfile.querySelector('.edit-icon');
   const editName = viewUserProfile.querySelector('#editName');
+  editIcon.addEventListener('click', () => {
+    editName.classList.toggle('hide');
+  });
+
   const btnSave = viewUserProfile.querySelector('#btnSave');
   const name = viewUserProfile.querySelector('#name');
   const btnCancel = viewUserProfile.querySelector('#btnCancel');
   const inputName = viewUserProfile.querySelector('#inputName');
   const selectProfile = viewUserProfile.querySelector('#selectProfile');
-
-  editIcon.addEventListener('click', () => {
-    editName.classList.toggle('hide');
-  });
+  const aboutMe = viewUserProfile.querySelector('#description');
+  const location = viewUserProfile.querySelector('#location');
 
   editName.addEventListener('click', () => {
     aboutMe.contentEditable = 'true';
@@ -114,25 +109,8 @@ export default (notes) => {
     selectProfile.classList.remove('hide');
   });
 
-  const editableInfo = () => {
-    aboutMe.contentEditable = 'false';
-    location.contentEditable = 'false';
-    aboutMe.classList.remove('input-style');
-    location.classList.remove('input-style');
-    name.classList.remove('hide');
-    inputName.classList.add('hide');
-    btnSave.classList.add('hide');
-    btnCancel.classList.add('hide');
-  };
-
   btnCancel.addEventListener('click', () => {
-    inputName.value = name.textContent;
-    getProfileInfo(currentUser.uid).then((doc) => {
-      aboutMe.textContent = doc.data().aboutMe;
-      location.textContent = doc.data().location;
-    });
-    editableInfo();
-    selectProfile.classList.add('hide');
+    gettingProfileInfo();
   });
 
   inputName.addEventListener('input', () => {
@@ -144,18 +122,7 @@ export default (notes) => {
   });
 
   btnSave.addEventListener('click', () => {
-    if (file) {
-      uploadPhotoProfile(file, currentUser.uid).then((url) => {
-        updatePhotoAuth(currentUser, url);
-      });
-    }
-    editableInfo();
-    updateProfileInfo(currentUser.uid, aboutMe.textContent, location.textContent);
-    name.textContent = inputName.value;
-    localStorage.setItem('aboutMe', aboutMe.textContent);
-    localStorage.setItem('location', location.textContent);
-    selectProfile.classList.add('hide');
-    updateUserName(currentUser, inputName.value);
+    savingChanges(file);
   });
 
   const allPosts = viewUserProfile.querySelector('.all-posts');
