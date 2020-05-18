@@ -1,7 +1,5 @@
 /* eslint-disable object-shorthand */
 
-// Posts
-
 export const publishPost = (id, userName, newPost, imagePost, time, status, userPhoto) => firebase.firestore().collection('posts').add({
   name: userName,
   post: newPost,
