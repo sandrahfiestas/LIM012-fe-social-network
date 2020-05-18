@@ -61,14 +61,6 @@ describe('logInGoogle', () => {
     }));
 });
 
-// describe('logInFacebook', () => {
-//   it('Debería poder iniciar sesión con Facebook', () => logInFacebook()
-//     .then((user) => {
-//       expect(user.isAnonymous).toBe(false);
-//       expect(user.providerData).toEqual([{ providerId: 'facebook.com' }]);
-//     }));
-// });
-
 describe('verificationEmail', () => {
   it('Debería enviar un mail de verificación', () => {
     const myMock = jest.fn();

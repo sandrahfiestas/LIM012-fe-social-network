@@ -1,19 +1,15 @@
 /* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
-import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishPost, getProfileInfo } from '../firebase-controller/firestore-controller.js';
-import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
+import { loadingInfo, signingOut, makingPost } from '../view-controller/home-controller.js';
 
 
 export default (notes) => {
-  const currentUser = user();
-  getProfileInfo(currentUser.uid).then((doc) => {
-    localStorage.setItem('aboutMe', doc.data().aboutMe);
-    localStorage.setItem('location', doc.data().location);
-    localStorage.setItem('name', currentUser.displayName);
-  });
+  loadingInfo();
+  const userId = localStorage.getItem('userId');
+  const userName = localStorage.getItem('name');
+  const userPhoto = localStorage.getItem('userphoto');
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
@@ -21,7 +17,7 @@ export default (notes) => {
     <label id="menu-mobile" class="menu-mobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btn-go-profile" id="btnProfile"><img class="pro-pic-small" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
+        <li class="btn-go-profile" id="btnProfile"><img class="pro-pic-small" src="${userPhoto || './img/profile-ico.png'}">Perfil</li>
         <li class="btn-go-out" id="btnSignOut"><img class="ico-sign-out" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
@@ -33,9 +29,9 @@ export default (notes) => {
         <div class="profile">
           <div class="profile-photo-name">
             <div class="profile-picture">
-              <img id="profilePhoto" class="profile-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
+              <img id="profilePhoto" class="profile-picture" src="${userPhoto || './img/profile-ico.png'}" alt="">
             </div>
-            <p class="user-name">${localStorage.getItem('name')}</p>
+            <p class="user-name">${userName}</p>
           </div>
           <h3 class="about-me">Sobre mí</h3>
           <p class="profile-text">${localStorage.getItem('aboutMe')}</p>
@@ -47,7 +43,7 @@ export default (notes) => {
       </div>
       <div class="timeline">
         <div class="container-create-post">
-          <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
+          <img class="like-picture" src="${userPhoto || './img/profile-ico.png'}" alt="">
           <div class="post left">
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-new-image" src="#" alt="">
@@ -73,6 +69,16 @@ export default (notes) => {
         <div class="all-posts"></div>
       </div>
     </section>`;
+
+  const profileSection = viewSignInUser.querySelector('.profile-section');
+  const view750px = window.matchMedia('(max-width: 750px)');
+  view750px.addEventListener('change', () => {
+    if (view750px.matches) {
+      profileSection.classList.add('hide');
+    } else {
+      profileSection.classList.remove('hide');
+    }
+  });
 
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
@@ -104,11 +110,7 @@ export default (notes) => {
   });
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
-  btnSignOut.addEventListener('click', () => {
-    changeView('#/signin');
-    // localStorage.clear();
-    signOut();
-  });
+  btnSignOut.addEventListener('click', signingOut);
 
   const btnProfile = viewSignInUser.querySelector('#btnProfile');
   btnProfile.addEventListener('click', () => {
@@ -117,18 +119,7 @@ export default (notes) => {
 
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
-    const newPost = document.querySelector('#newPost').value;
-    const status = viewSignInUser.querySelector('.privacy').value;
-    const date = new Date().toLocaleString();
-    let imPost = '';
-    if (file) {
-      imPost = localStorage.getItem('image');
-      uploadImagePost(file, currentUser.uid);
-    }
-    publishPost(currentUser.uid, currentUser.displayName, newPost, imPost, date, status)
-      .then(() => {
-        document.querySelector('.new-post').value = '';
-      });
+    makingPost(file, userId, userName, userPhoto);
   });
 
   // Leyendo datos del database

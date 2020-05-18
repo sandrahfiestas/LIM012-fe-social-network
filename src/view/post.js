@@ -1,11 +1,10 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, getPost, updatePrivacy, updateLike, publishComment,
+  deletePost, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
-// import { eachComment } from './comment.js';
-
+import { eachComment } from './comment.js';
 
 const validatePostContent = (img, post, id) => {
   let postContent = '';
@@ -13,12 +12,20 @@ const validatePostContent = (img, post, id) => {
     postContent = `
     <p class="text-post" id="post">${post}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    <div class="buttons-post">
+      <button class="hide" id="btnSave">Guardar</button>
+      <button class="hide" id="btnCancel">Cancelar</button>
+    </div>
     <img class="post-upload-image" src=${img}>
     `;
   } else {
     postContent = `
     <p class="text-post" id="post">${post}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
+    <div class="buttons-post">
+      <button class="hide" id="btnSave">Guardar</button>
+      <button class="hide" id="btnCancel">Cancelar</button>
+    </div>
     `;
   }
   return postContent;
@@ -33,7 +40,7 @@ export const eachPost = (objPost) => {
   eachNote.innerHTML = `
     <div class="like-post">
       <div class="container-photo-time">
-        <img class="like-picture" src="./img/profile-ico.png" alt="">
+        <img class="like-picture" src="${objPost.photo || './img/profile-ico.png'}" alt="">
         <p class="post-time">${objPost.time}</p>
       </div>
       <div class="like-counter">
@@ -60,8 +67,6 @@ export const eachPost = (objPost) => {
           </ul>
         </nav>
       </div>
-      <button class="hide" id="btnSave">Guardar</button>
-      <button class="hide" id="btnCancel">Cancelar</button>
       <div class="container-new-comment">
         <p class="new-comment-title">Comentarios</p>
         <div class="go-comment">
@@ -127,9 +132,9 @@ export const eachPost = (objPost) => {
 
   btnCancel.addEventListener('click', () => {
     inputPost.value = post.textContent;
-    getPost(objPost.id).then((doc) => {
-      post.textContent = doc.data().post;
-    });
+    // getPost(objPost.id).then((doc) => {
+    //   post.textContent = doc.data().post;
+    // });
     editablePost();
   });
 
@@ -144,37 +149,28 @@ export const eachPost = (objPost) => {
   btnSave.addEventListener('click', () => {
     editablePost();
     updatePost(objPost.id, inputPost.value);
-    post.textContent = inputPost.value;
+    // post.textContent = inputPost.value;
   });
+
+  const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
 
   // Comentarios
   const btnNewComment = eachNote.querySelector(`#comment-${objPost.id}`);
   btnNewComment.addEventListener('click', () => {
+    allComments.innerHTML = '';
     const newComment = eachNote.querySelector(`#newComment-${objPost.id}`).value;
     const date = new Date().toLocaleString();
     const currentUser = user();
-    publishComment(currentUser.displayName, newComment, objPost.id, date);
+    publishComment(currentUser.displayName, newComment, objPost.id, date, userId);
     eachNote.querySelector(`#newComment-${objPost.id}`).value = '';
   });
 
   // Leyendo
-  const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);
-  firebase.firestore().collection('comments').where('idPost', '==', objPost.id)
-    .orderBy('time', 'desc')
-    .onSnapshot((querySnapshot) => {
-      allComments.innerHTML = '';
-      querySnapshot.forEach((doc) => {
-        allComments.innerHTML += `
-          <div class="container-photo-comment">
-            <img class="picture-comment" src="./img/profile-ico.png" alt="">
-            <div class="container-comment">
-              <p class="text-comment"><span>${doc.data().user}</span>${doc.data().comment}</p>
-              <p class="time-comment">${doc.data().time}</p>
-            </div>
-          </div>
-        `;
-      });
+  getAllComments((comments) => {
+    comments.forEach((doc) => {
+      allComments.appendChild(eachComment(doc));
     });
+  }, objPost.id);
 
   return eachNote;
 };
