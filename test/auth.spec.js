@@ -4,33 +4,28 @@ import {
   signOut,
   logInGoogle,
   verificationEmail,
-  // logInFacebook,
+  user,
 } from '../src/firebase-controller/auth-controller.js';
 
 // configurando firebase mock
 const firebasemock = require('firebase-mock');
 
 const mockauth = new firebasemock.MockAuthentication();
-//
-// const mockfirestore = new firebasemock.MockFirestore();
 
 mockauth.autoFlush();
-//
-// mockfirestore.autoFlush();
 
 global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
   () => null,
   () => mockauth,
-  //
-//  () => mockfirestore,
+
 );
 
 describe('signIn', () => {
   it('Debería poder iniciar sesión', (done) => {
-    signIn('hola@gmail.com', '123456').then((user) => {
-      expect(user.email).toBe('hola@gmail.com');
-      expect(user.isAnonymous).toBe(false);
+    signIn('hola@gmail.com', '123456').then((userLog) => {
+      expect(userLog.email).toBe('hola@gmail.com');
+      expect(userLog.isAnonymous).toBe(false);
       done();
     });
   });
@@ -38,9 +33,9 @@ describe('signIn', () => {
 
 describe('signUp', () => {
   it('Debería poder crear un nuevo usuario', (done) => {
-    signUp('hola@laboratoria.com', '123456').then((user) => {
-      expect(user.email).toBe('hola@laboratoria.com');
-      expect(user.isAnonymous).toBe(false);
+    signUp('hola@laboratoria.com', '123456').then((newUser) => {
+      expect(newUser.email).toBe('hola@laboratoria.com');
+      expect(newUser.isAnonymous).toBe(false);
       done();
     });
   });
@@ -48,16 +43,16 @@ describe('signUp', () => {
 
 describe('signOut', () => {
   it('Debería poder cerrar sesión', () => signOut()
-    .then((user) => {
-      expect(user).toBe(undefined);
+    .then((userLog) => {
+      expect(userLog).toBe(undefined);
     }));
 });
 
 describe('logInGoogle', () => {
   it('Debería poder iniciar sesión con Google', () => logInGoogle()
-    .then((user) => {
-      expect(user.isAnonymous).toBe(false);
-      expect(user.providerData).toEqual([{ providerId: 'google.com' }]);
+    .then((userLog) => {
+      expect(userLog.isAnonymous).toBe(false);
+      expect(userLog.providerData).toEqual([{ providerId: 'google.com' }]);
     }));
 });
 
@@ -67,5 +62,14 @@ describe('verificationEmail', () => {
     firebase.auth().currentUser.sendEmailVerification = myMock;
     verificationEmail();
     expect(myMock.mock.calls).toHaveLength(1);
+  });
+});
+
+describe('Current user', () => {
+  it('Recognize current user', () => {
+    signIn('hola@laboratoria.com', '123456')
+      .then(() => {
+        expect(user().email).toBe('hola@laboratoria.com');
+      });
   });
 });

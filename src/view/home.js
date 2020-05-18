@@ -48,7 +48,7 @@ export default (notes) => {
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
             <img id="showPicture" class="post-new-image" src="#" alt="">
             <button id="btnCancelImg" class="hide cancel-image"></button>
-            <div class="buttons-post">
+            <div class="buttons-new-post">
               <div class="options">
                 <label for="selectImage">
                   <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png, image/gif">

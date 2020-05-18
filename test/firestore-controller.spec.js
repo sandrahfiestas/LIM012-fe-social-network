@@ -3,7 +3,7 @@ import MockFirebase from 'mock-cloud-firestore';
 import {
   publishPost,
   getAllPosts,
-  deletePost,
+  deleteDoc,
   updatePost,
   publishComment,
   getAllComments,
@@ -89,8 +89,8 @@ describe('publishPost', () => {
     }));
 });
 
-describe('deletePost', () => {
-  it('Deberia de poder eliminar un post con el id: post001', done => deletePost('post001')
+describe('deleteDoc', () => {
+  it('Deberia de poder eliminar un post con el id: post001', done => deleteDoc('posts', 'post001')
     .then(() => {
       const callback = (post) => {
         const result = post.find(element => element.id === 'post001');

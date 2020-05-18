@@ -1,10 +1,4 @@
 /* eslint-disable object-shorthand */
-/* eslint-disable import/no-cycle */
-// import { db } from '../main.js';
-
-// el db se cambió por el firebase.firestore()
-// export const publishPost = (id, userName, newPost, imagePost, time, status) =>
-// firebase.firestore().collection('posts').add({osts
 
 export const publishPost = (id, userName, newPost, imagePost, time, status, userPhoto) => firebase.firestore().collection('posts').add({
   name: userName,
@@ -27,13 +21,11 @@ export const getAllPosts = callback => firebase.firestore().collection('posts')
     callback(allPosts);
   });
 
-// export const getPost = id => db.collection('posts').doc(id).get();
-
-export const deletePost = id => firebase.firestore().collection('posts').doc(id).delete();
-
 export const updatePost = (id, post) => firebase.firestore().collection('posts').doc(id).update({ post: post });
 
 export const updatePrivacy = (id, status) => firebase.firestore().collection('posts').doc(id).update({ privacy: status });
+
+// Comentarios
 
 export const publishComment = (userName, comment, idPost, date, userId) => firebase.firestore().collection('comments').add({
   user: userName,
@@ -56,11 +48,6 @@ export const getAllComments = (callback, id) => firebase.firestore().collection(
 
 export const updateComment = (id, comment) => firebase.firestore().collection('comments').doc(id).update({ comment: comment });
 
-// export const getComment = id => db.collection('comment').doc(id).get();
-
-
-export const deleteComment = id => firebase.firestore().collection('comments').doc(id).delete();
-
 // Profile
 
 export const createProfileInfo = (id) => {
@@ -71,10 +58,6 @@ export const createProfileInfo = (id) => {
 };
 
 export const getProfileInfo = userId => firebase.firestore().collection('users').doc(userId).get();
-
-// el db se cambió por el firebase.firestore()
-// export const updateProfileInfo = (userId, description, place) =>
-// firebase.firestore().collection('users').doc(userId).update({
 
 export const updateProfileInfo = (userId, description, place) => firebase.firestore().collection('users').doc(userId).update({
   aboutMe: description,
@@ -91,3 +74,7 @@ export const getUser = (docId) => {
   const docRef = firebase.firestore().collection('users').doc(docId);
   return docRef.get();
 };
+
+// Delete
+// eslint-disable-next-line max-len
+export const deleteDoc = (collection, id) => firebase.firestore().collection(collection).doc(id).delete();
