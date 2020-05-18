@@ -1,5 +1,4 @@
 /* eslint-disable object-shorthand */
-
 export const publishPost = (id, userName, newPost, imagePost, time, status, userPhoto) => firebase.firestore().collection('posts').add({
   name: userName,
   post: newPost,
@@ -64,7 +63,6 @@ export const updateProfileInfo = (userId, description, place) => firebase.firest
 });
 
 // Likes
-
 export const updateLike = (id, likes) => firebase.firestore().collection('posts').doc(id).update({ likes });
 
 // User
