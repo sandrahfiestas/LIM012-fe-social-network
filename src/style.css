@@ -888,11 +888,29 @@ header img{
     outline: none;
 }
 
-.buttons-post{
+.buttons-new-post{
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.buttons-post{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 1em;
+}
+
+.btn-save-post, .btn-cancel-post{
+    width: 5em;
+    border-style: none;
+    height: 2em;
+    background-color: #D965DB;
+    border-radius: 0.6em;
+    color: white;
+    cursor: pointer;
 }
 
 .btn-post{
@@ -932,6 +950,7 @@ header img{
     width: 1.4em;
     padding-left: 0.2em;
     box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .container-privacy{
@@ -1044,6 +1063,7 @@ header img{
     font-size: 1.2em;
     box-sizing: border-box;
     resize: none;
+    margin-bottom: 0.5em;
 }
 
 .btn-post-edit, .btn-post-delete{
@@ -1130,7 +1150,7 @@ header img{
     width: 100%;
     background-color: rgba(190, 88, 192, 0.18);
     border-radius: 0.5em;
-    padding: 0.4em;
+    padding: 0.8em;
     box-sizing: border-box;
     position: relative;
 }
@@ -1140,6 +1160,13 @@ header img{
     font-family: "Noto sans", sans-serif;
     color: #454545;
     margin-bottom: 1em;
+}
+
+.input-edit-comment{
+    width: 100%;
+    resize: none;
+    font-size: 1em;
+    font-family: "Noto sans", sans-serif;
 }
 
 .text-name{
@@ -1158,8 +1185,8 @@ header img{
 .label-menu-comment{
     width: 3em;
     height: 1em;
-    top: 0.5em;
-    right: 0.5em;
+    top: 1em;
+    right: 1em;
     position: absolute;
     background-color: rgba(0, 0, 0, 0);
     background-image: url(./img/three-points-ico.png);
@@ -1172,7 +1199,7 @@ header img{
 
 .nav-comment{
     position: absolute;
-    top: 1.6em;
+    top: 2em;
     right: 0;
     z-index: 5;
 }
@@ -1202,6 +1229,24 @@ header img{
 .btn-comment-edit:hover, .btn-comment-delete:hover{
     color: #454545;
     background-color: #DFD3C7;
+}
+
+.buttons-comments{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 0.5em;
+}
+
+.btn-save-comment, .btn-cancel-comment{
+    width: 5em;
+    border-style: none;
+    height: 1.5em;
+    background-color: #DFD3C7;
+    border-radius: 0.6em;
+    color: #454545;
+    cursor: pointer;
 }
 
 /* Estilos de notfound */
@@ -1376,6 +1421,10 @@ header img{
         width: 8em;
     }
 
+    .btn-save-post, .btn-cancel-post{
+        width: 8em;
+    }
+
     .post-time{
         width: 60px;
         font-size: 1em;
@@ -1389,12 +1438,21 @@ header img{
         font-size: 1.2em;
     }
 
+    .input-edit-comment{
+        font-size: 1.2em;
+    }
+
     .time-comment{
         font-size: 1em;
     }
 
     .container-new-comment{
         height: 6em;
+    }
+
+    .btn-save-comment, .btn-cancel-comment{
+        width: 7em;
+        height: 2em;
     }
     
 }

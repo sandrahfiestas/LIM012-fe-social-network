@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
+  deleteDoc, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 import { eachComment } from './comment.js';
@@ -13,8 +13,8 @@ const validatePostContent = (img, post, id) => {
     <p class="text-post" id="post">${post}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
     <div class="buttons-post">
-      <button class="hide" id="btnSave">Guardar</button>
-      <button class="hide" id="btnCancel">Cancelar</button>
+      <button class="hide btn-save-post" id="btnSave">Guardar</button>
+      <button class="hide btn-cancel-post" id="btnCancel">Cancelar</button>
     </div>
     <img class="post-upload-image" src=${img}>
     `;
@@ -23,8 +23,8 @@ const validatePostContent = (img, post, id) => {
     <p class="text-post" id="post">${post}</p>
     <textarea class="hide validity input-post" id="inputPost-${id}" type="text">${post}</textarea>
     <div class="buttons-post">
-      <button class="hide" id="btnSave">Guardar</button>
-      <button class="hide" id="btnCancel">Cancelar</button>
+      <button class="hide btn-save-post" id="btnSave">Guardar</button>
+      <button class="hide btn-cancel-post" id="btnCancel">Cancelar</button>
     </div>
     `;
   }
@@ -104,7 +104,7 @@ export const eachPost = (objPost) => {
 
   const btnDelete = eachNote.querySelector(`#delete-${objPost.id}`);
   btnDelete.addEventListener('click', () => {
-    deletePost(objPost.id);
+    deleteDoc('posts', objPost.id);
   });
 
   const btnEdit = eachNote.querySelector(`#edit-${objPost.id}`);

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { user } from '../firebase-controller/auth-controller.js';
-import { updateComment, deleteComment } from '../firebase-controller/firestore-controller.js';
+import { updateComment, deleteDoc } from '../firebase-controller/firestore-controller.js';
 
 export const eachComment = (obj) => {
   const newComment = document.createElement('div');
@@ -11,9 +11,11 @@ export const eachComment = (obj) => {
     <div class="container-comment">
       <p class="text-name">${obj.user}</p>
       <p class="text-comment" id="textComment">${obj.comment}</p>
-      <textarea class="hide" id="input-comment-${obj.id}">${obj.comment}</textarea>
-      <button class="hide" id="btnSaveComment">Guardar</button>
-      <button class="hide" id="btnCancelComment">Cancelar</button>
+      <textarea class="hide input-edit-comment" id="input-comment-${obj.id}">${obj.comment}</textarea>
+      <div class="buttons-comments">
+        <button class="hide btn-save-comment" id="btnSaveComment">Guardar</button>
+        <button class="hide btn-cancel-comment" id="btnCancelComment">Cancelar</button>
+      </div>
       <p class="time-comment">${obj.time}</p>
       <label id="menu-${obj.id}" class="${(userId !== obj.userId) ? 'hide' : 'label-menu-comment'}"></label>
       <nav class="nav-comment hide" id="nav-${obj.id}">
@@ -76,7 +78,7 @@ export const eachComment = (obj) => {
   });
 
   btnDeleteComment.addEventListener('click', () => {
-    deleteComment(obj.id);
+    deleteDoc('comments', obj.id);
   });
 
   return newComment;
