@@ -167,6 +167,7 @@ export const eachPost = (objPost) => {
 
   // Leyendo
   getAllComments((comments) => {
+    allComments.innerHTML = '';
     comments.forEach((doc) => {
       allComments.appendChild(eachComment(doc));
     });
