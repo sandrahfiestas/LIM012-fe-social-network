@@ -35,13 +35,6 @@ export const updatePost = (id, post) => firebase.firestore().collection('posts')
 
 export const updatePrivacy = (id, status) => firebase.firestore().collection('posts').doc(id).update({ privacy: status });
 
-// Comentarios
-
-
-// el db se cambió por el firebase.firestore()
-// export const publishComment = (userName, comment, idPost, date) => firebase.firestore()
-// .collection('comments').add({
-
 export const publishComment = (userName, comment, idPost, date, userId) => firebase.firestore().collection('comments').add({
   user: userName,
   comment: comment,
@@ -64,6 +57,7 @@ export const getAllComments = (callback, id) => firebase.firestore().collection(
 export const updateComment = (id, comment) => firebase.firestore().collection('comments').doc(id).update({ comment: comment });
 
 // export const getComment = id => db.collection('comment').doc(id).get();
+
 
 export const deleteComment = id => firebase.firestore().collection('comments').doc(id).delete();
 
