@@ -4,7 +4,6 @@ import {
   signOut,
   logInGoogle,
   verificationEmail,
-  // logInFacebook,
 } from '../src/firebase-controller/auth-controller.js';
 
 // configurando firebase mock
@@ -53,14 +52,6 @@ describe('logInGoogle', () => {
       expect(user.providerData).toEqual([{ providerId: 'google.com' }]);
     }));
 });
-
-// describe('logInFacebook', () => {
-//   it('Debería poder iniciar sesión con Facebook', () => logInFacebook()
-//     .then((user) => {
-//       expect(user.isAnonymous).toBe(false);
-//       expect(user.providerData).toEqual([{ providerId: 'facebook.com' }]);
-//     }));
-// });
 
 describe('verificationEmail', () => {
   it('Debería enviar un mail de verificación', () => {

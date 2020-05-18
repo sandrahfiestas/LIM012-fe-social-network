@@ -34,7 +34,6 @@ export const updatePost = (id, post) => db.collection('posts').doc(id).update({ 
 export const updatePrivacy = (id, status) => db.collection('posts').doc(id).update({ privacy: status });
 
 // Comentarios
-
 export const publishComment = (userName, comment, idPost, date, userId) => db.collection('comments').add({
   user: userName,
   comment: comment,
@@ -56,12 +55,9 @@ export const getAllComments = (callback, id) => db.collection('comments')
 
 export const updateComment = (id, comment) => db.collection('comments').doc(id).update({ comment: comment });
 
-// export const getComment = id => db.collection('comment').doc(id).get();
-
 export const deleteComment = id => db.collection('comments').doc(id).delete();
 
 // Profile
-
 export const createProfileInfo = (id) => {
   db.collection('users').doc(id).set({
     aboutMe: 'Cuenta un poco sobre ti',
@@ -77,11 +73,9 @@ export const updateProfileInfo = (userId, description, place) => db.collection('
 });
 
 // Likes
-
 export const updateLike = (id, likes) => db.collection('posts').doc(id).update({ likes });
 
 // User
-
 export const getUser = (docId) => {
   const docRef = firebase.firestore().collection('users').doc(docId);
   return docRef.get();
