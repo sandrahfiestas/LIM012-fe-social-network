@@ -78,11 +78,11 @@ const fixtureData = {
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('publishPost', () => {
-  it('Deberia de poder agregar un post', done => publishPost('Usuario Tres', 'Post tres', '03', '', '', '', '', '')
+  it('Deberia de poder agregar un post', done => publishPost('03', 'Usuario Tres', 'Post tres', '', '', '', '', '')
     .then(() => {
       const callback = (post) => {
-        const result = post.find(element => element.name === 'Post tres');
-        expect(result.name).toBe('Post tres');
+        const result = post.find(element => element.post === 'Post tres');
+        expect(result.name).toBe('Usuario Tres');
         done();
       };
       getAllPosts(callback);
