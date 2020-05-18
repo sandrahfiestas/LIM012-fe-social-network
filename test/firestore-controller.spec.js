@@ -5,6 +5,8 @@ import {
   getAllPosts,
   deletePost,
   updatePost,
+  publishComment,
+  getAllComments,
 } from '../src/firebase-controller/firestore-controller.js';
 
 // import MockFirebase from '../_mocks_/firebase-mock.js';
@@ -23,6 +25,19 @@ const fixtureData = {
           time: '',
           privacy: '',
           likes: '',
+          __collection__: {
+            comments: {
+              __doc__: {
+                comment001: {
+                  user: '01',
+                  comment: 'Comentando el post1',
+                  idPost: 'post0001',
+                  time: '',
+                  userId: '',
+                },
+              },
+            },
+          },
         },
         post002: {
           name: 'Usuario Dos',
@@ -33,6 +48,19 @@ const fixtureData = {
           time: '',
           privacy: '',
           likes: '',
+          __collection__: {
+            comments: {
+              __doc__: {
+                comment001: {
+                  user: '02',
+                  comment: 'Comentando el post2',
+                  idPost: 'post0002',
+                  time: '',
+                  userId: '',
+                },
+              },
+            },
+          },
         },
       },
     },
@@ -83,3 +111,24 @@ describe('updatePost', () => {
       getAllPosts(callback);
     }));
 });
+
+
+describe('publishComment', () => {
+  it('Deberia poder agregar un comentario al post002', done => publishComment('Usuario3', 'Agregando comentario al post2', 'post002', '', 'User003')
+    .then(() => {
+      const callback = (publish) => {
+        // console.log(publish);
+        const result = publish.find(element => element.comment === 'Agregando comentario al post2');
+        // console.log(result);
+        expect(result.userId).toBe('User003');
+        done();
+      };
+      getAllComments(callback, 'post002');
+    }));
+});
+
+// user: userName,
+// comment: comment,
+// idPost: idPost,
+// time: date,
+// userId: userId,
