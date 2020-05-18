@@ -1,5 +1,5 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
-// eslint-disable-next-line import/named
 import {
   deleteDoc, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';

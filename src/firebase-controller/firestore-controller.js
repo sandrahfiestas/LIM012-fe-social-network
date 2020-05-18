@@ -49,7 +49,6 @@ export const getAllComments = (callback, id) => firebase.firestore().collection(
 export const updateComment = (id, comment) => firebase.firestore().collection('comments').doc(id).update({ comment: comment });
 
 // Profile
-
 export const createProfileInfo = (id) => {
   firebase.firestore().collection('users').doc(id).set({
     aboutMe: 'Cuenta un poco sobre ti',
@@ -69,7 +68,6 @@ export const updateProfileInfo = (userId, description, place) => firebase.firest
 export const updateLike = (id, likes) => firebase.firestore().collection('posts').doc(id).update({ likes });
 
 // User
-
 export const getUser = (docId) => {
   const docRef = firebase.firestore().collection('users').doc(docId);
   return docRef.get();
