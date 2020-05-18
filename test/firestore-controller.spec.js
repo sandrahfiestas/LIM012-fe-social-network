@@ -117,18 +117,10 @@ describe('publishComment', () => {
   it('Deberia poder agregar un comentario al post002', done => publishComment('Usuario3', 'Agregando comentario al post2', 'post002', '', 'User003')
     .then(() => {
       const callback = (publish) => {
-        // console.log(publish);
         const result = publish.find(element => element.comment === 'Agregando comentario al post2');
-        // console.log(result);
         expect(result.userId).toBe('User003');
         done();
       };
       getAllComments(callback, 'post002');
     }));
 });
-
-// user: userName,
-// comment: comment,
-// idPost: idPost,
-// time: date,
-// userId: userId,
