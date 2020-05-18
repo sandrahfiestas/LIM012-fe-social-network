@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { user } from '../firebase-controller/auth-controller.js';
 import { updateComment, deleteDoc } from '../firebase-controller/firestore-controller.js';

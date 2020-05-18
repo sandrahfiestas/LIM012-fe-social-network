@@ -21,7 +21,6 @@ export const logInGoogle = () => {
 // Usuario loggeado
 export const user = () => firebase.auth().currentUser;
 
-
 // Guardando/actualizando nombre de usuario
 export const updateUserName = (userData, userName) => {
   userData.updateProfile({

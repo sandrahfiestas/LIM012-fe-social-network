@@ -16,6 +16,7 @@ export const loadingInfo = () => {
 };
 
 export const signingOut = () => {
+  localStorage.clear();
   signOut();
 };
 
