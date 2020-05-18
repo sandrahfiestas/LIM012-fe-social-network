@@ -1,6 +1,11 @@
 import MockFirebase from 'mock-cloud-firestore';
 
-import { publishPost, getAllPosts, deletePost } from '../src/firebase-controller/firestore-controller.js';
+import {
+  publishPost,
+  getAllPosts,
+  deletePost,
+  updatePost,
+} from '../src/firebase-controller/firestore-controller.js';
 
 // import MockFirebase from '../_mocks_/firebase-mock.js';
 
@@ -59,6 +64,20 @@ describe('deletePost', () => {
         const result = post.find(element => element.id === 'post001');
         // console.log(result);
         expect(result).toBe(undefined);
+        done();
+      };
+      getAllPosts(callback);
+    }));
+});
+
+describe('updatePost', () => {
+  it('Deberia de poder actualizar el contenido de un post002', done => updatePost('post002', 'Actualizando post')
+    .then(() => {
+      const callback = (post) => {
+        // console.log(post);
+        const result = post.find(element => element.id === 'post002');
+        // console.log(result);
+        expect(result.post).toBe('Actualizando post');
         done();
       };
       getAllPosts(callback);
