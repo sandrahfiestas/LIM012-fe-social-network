@@ -26,7 +26,6 @@ export const updatePost = (id, post) => firebase.firestore().collection('posts')
 export const updatePrivacy = (id, status) => firebase.firestore().collection('posts').doc(id).update({ privacy: status });
 
 // Comentarios
-
 export const publishComment = (userName, comment, idPost, date, userId) => firebase.firestore().collection('comments').add({
   user: userName,
   comment: comment,
