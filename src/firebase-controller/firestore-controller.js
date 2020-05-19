@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable object-shorthand */
 /* eslint-disable import/no-cycle */
 
@@ -25,7 +26,7 @@ export const getAllPosts = callback => firebase.firestore().collection('posts')
 
 // export const getPost = id => firebase.firestore().collection('posts').doc(id).get();
 
-export const deletePost = id => firebase.firestore().collection('posts').doc(id).delete();
+export const deleteDoc = (collection, id) => firebase.firestore().collection(collection).doc(id).delete();
 
 export const updatePost = (id, post) => firebase.firestore().collection('posts').doc(id).update({ post: post });
 
@@ -52,8 +53,6 @@ export const getAllComments = (callback, id) => firebase.firestore().collection(
   });
 
 export const updateComment = (id, comment) => firebase.firestore().collection('comments').doc(id).update({ comment: comment });
-
-export const deleteComment = id => firebase.firestore().collection('comments').doc(id).delete();
 
 // Profile
 export const createProfileInfo = (id) => {

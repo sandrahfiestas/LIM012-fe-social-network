@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 // eslint-disable-next-line import/named
 import {
-  deletePost, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
+  deleteDoc, updatePost, updatePrivacy, updateLike, publishComment, getAllComments,
 } from '../firebase-controller/firestore-controller.js';
 import { user } from '../firebase-controller/auth-controller.js';
 import { eachComment } from './comment.js';
@@ -98,7 +98,7 @@ export const eachPost = (objPost) => {
 
   const btnDelete = eachNote.querySelector(`#delete-${objPost.id}`);
   btnDelete.addEventListener('click', () => {
-    deletePost(objPost.id);
+    deleteDoc('posts', objPost.id);
   });
 
   const btnEdit = eachNote.querySelector(`#edit-${objPost.id}`);

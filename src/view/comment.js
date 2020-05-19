@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { user } from '../firebase-controller/auth-controller.js';
-import { updateComment, deleteComment } from '../firebase-controller/firestore-controller.js';
+import { updateComment, deleteDoc } from '../firebase-controller/firestore-controller.js';
 
 export const eachComment = (obj) => {
   const comment = document.createElement('div');
@@ -77,7 +77,7 @@ export const eachComment = (obj) => {
   });
 
   btnDelete.addEventListener('click', () => {
-    deleteComment(obj.id);
+    deleteDoc('comments', obj.id);
   });
 
   return comment;
