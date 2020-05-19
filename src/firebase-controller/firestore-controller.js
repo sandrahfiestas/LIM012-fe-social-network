@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable object-shorthand */
 export const publishPost = (id, userName, newPost, imagePost, time, status, userPhoto) => firebase.firestore().collection('posts').add({
   name: userName,
@@ -72,5 +73,4 @@ export const getUser = (docId) => {
 };
 
 // Delete
-// eslint-disable-next-line max-len
 export const deleteDoc = (collection, id) => firebase.firestore().collection(collection).doc(id).delete();
