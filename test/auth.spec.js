@@ -5,6 +5,7 @@ import {
   logInGoogle,
   verificationEmail,
   user,
+  updateUserName,
 } from '../src/firebase-controller/auth-controller.js';
 
 // configurando firebase mock
@@ -42,17 +43,19 @@ describe('signUp', () => {
 });
 
 describe('signOut', () => {
-  it('Debería poder cerrar sesión', () => signOut()
+  it('Debería poder cerrar sesión', done => signOut()
     .then((userLog) => {
       expect(userLog).toBe(undefined);
+      done();
     }));
 });
 
 describe('logInGoogle', () => {
-  it('Debería poder iniciar sesión con Google', () => logInGoogle()
+  it('Debería poder iniciar sesión con Google', done => logInGoogle()
     .then((userLog) => {
       expect(userLog.isAnonymous).toBe(false);
       expect(userLog.providerData).toEqual([{ providerId: 'google.com' }]);
+      done();
     }));
 });
 
@@ -66,10 +69,15 @@ describe('verificationEmail', () => {
 });
 
 describe('Current user', () => {
-  it('Recognize current user', () => {
-    signIn('hola@laboratoria.com', '123456')
-      .then(() => {
-        expect(user().email).toBe('hola@laboratoria.com');
-      });
-  });
+  it('Debería reconocer current user', () => signIn('hola@laboratoria.com', '123456')
+    .then(() => {
+      expect(user().email).toBe('hola@laboratoria.com');
+    }));
+});
+
+describe('updateUserName', () => {
+  it('Debería actualizar el nombre del usuarios', () => updateUserName(user(), '2')
+    .then(() => {
+      expect(user().displayName).toBe('2');
+    }));
 });
