@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import MockFirebase from 'mock-cloud-firestore';
 
 import {

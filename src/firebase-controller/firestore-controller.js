@@ -1,5 +1,11 @@
 /* eslint-disable max-len */
 /* eslint-disable object-shorthand */
+<<<<<<< HEAD
+=======
+/* eslint-disable import/no-cycle */
+
+// Posts
+>>>>>>> 2dbf463c1f429b9677f8382790b3d70a9bc12cba
 export const publishPost = (id, userName, newPost, imagePost, time, status, userPhoto) => firebase.firestore().collection('posts').add({
   name: userName,
   post: newPost,
@@ -21,12 +27,24 @@ export const getAllPosts = callback => firebase.firestore().collection('posts')
     callback(allPosts);
   });
 
+<<<<<<< HEAD
 export const updatePost = (id, post) => firebase.firestore().collection('posts').doc(id).update({ post: post });
 
 export const updatePrivacy = (id, status) => firebase.firestore().collection('posts').doc(id).update({ privacy: status });
 
 // Comentarios
 
+=======
+// export const getPost = id => firebase.firestore().collection('posts').doc(id).get();
+
+export const deleteDoc = (collection, id) => firebase.firestore().collection(collection).doc(id).delete();
+
+export const updatePost = (id, post) => firebase.firestore().collection('posts').doc(id).update({ post: post });
+
+export const updatePrivacy = (id, status) => firebase.firestore().collection('posts').doc(id).update({ privacy: status });
+
+// Comentarios
+>>>>>>> 2dbf463c1f429b9677f8382790b3d70a9bc12cba
 export const publishComment = (userName, comment, idPost, date, userId) => firebase.firestore().collection('comments').add({
   user: userName,
   comment: comment,
