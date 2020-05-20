@@ -6,6 +6,7 @@ import {
   verificationEmail,
   user,
   updateUserName,
+  updatePhotoAuth,
 } from '../src/firebase-controller/auth-controller.js';
 
 // configurando firebase mock
@@ -59,6 +60,14 @@ describe('logInGoogle', () => {
     }));
 });
 
+
+describe('Current user', () => {
+  it('Debería reconocer current user', () => signIn('hola@laboratoria.com', '123456')
+    .then(() => {
+      expect(user().email).toBe('hola@laboratoria.com');
+    }));
+});
+
 describe('verificationEmail', () => {
   it('Debería enviar un mail de verificación', () => {
     const myMock = jest.fn();
@@ -68,16 +77,20 @@ describe('verificationEmail', () => {
   });
 });
 
-describe('Current user', () => {
-  it('Debería reconocer current user', () => signIn('hola@laboratoria.com', '123456')
-    .then(() => {
-      expect(user().email).toBe('hola@laboratoria.com');
-    }));
+describe('updateUserName', () => {
+  it('Debería ejecutar el método para actualizar el nombre', () => {
+    const anotherMock = jest.fn();
+    firebase.auth().currentUser.updateProfile = anotherMock;
+    updateUserName();
+    expect(anotherMock.mock.calls).toHaveLength(1);
+  });
 });
 
-describe('updateUserName', () => {
-  it('Debería actualizar el nombre del usuarios', () => updateUserName(user(), '2')
-    .then(() => {
-      expect(user().displayName).toBe('2');
-    }));
+describe('updatePhotoAuth', () => {
+  it('Debería ejecutar el método para actualizar la foto', () => {
+    const anotherMock = jest.fn();
+    firebase.auth().currentUser.updateProfile = anotherMock;
+    updatePhotoAuth();
+    expect(anotherMock.mock.calls).toHaveLength(1);
+  });
 });

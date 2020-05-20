@@ -50,7 +50,7 @@ export const savingChanges = (file) => {
   const name3 = document.querySelector('#name');
   if (file) {
     uploadPhotoProfile(file, user().uid).then((url) => {
-      updatePhotoAuth(user(), url);
+      updatePhotoAuth(url);
     });
   }
   editableInfo();
@@ -59,5 +59,5 @@ export const savingChanges = (file) => {
   localStorage.setItem('aboutMe', aboutMe3.textContent);
   localStorage.setItem('location', location3.textContent);
   selectProfile2.classList.add('hide');
-  updateUserName(user(), inputName3.value);
+  updateUserName(inputName3.value);
 };

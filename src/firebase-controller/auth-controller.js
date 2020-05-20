@@ -22,15 +22,11 @@ export const logInGoogle = () => {
 export const user = () => firebase.auth().currentUser;
 
 // Guardando/actualizando nombre de usuario
-export const updateUserName = (userData, userName) => {
-  userData.updateProfile({
-    displayName: userName,
-  });
-};
+export const updateUserName = userName => firebase.auth().currentUser.updateProfile({
+  displayName: userName,
+});
 
-// Guardando/actualizando nombre de usuario
-export const updatePhotoAuth = (userData, photoProfile) => {
-  userData.updateProfile({
-    photoURL: photoProfile,
-  });
-};
+// Guardando/actualizando foto de usuario
+export const updatePhotoAuth = photoProfile => firebase.auth().currentUser.updateProfile({
+  photoURL: photoProfile,
+});
