@@ -19,7 +19,7 @@ El proyecto VOZ AMIGA, es una red social para mujeres, crea una plataforma que p
 ![Home](src/img/mockup-home.jpg)
 ![Profile](src/img/mockup-profile.jpg)
 
-## 3. Testeos de usabilidad
+## 3. Test de usabilidad
 
 Resultados de los tests de usabilidad:
 
@@ -34,87 +34,9 @@ Home y perfil
 - Agregar un botón de cancelar si no se quiere guardar los cambios en el perfil
 - Cuando se carga una foto para hacer un post falta una opción para eliminarla en caso que ya no la quiero publicar
 
+***
+
 # Creando una Red Social
-
-Bienvenida a tu primer proyecto del track de Frontend en Laboratoria.
-
-En este proyecto construirás una red social, cuya temáticas dejaremos a tu elección.
-
-Aquí algunas ideas para inspirarte:
-
-- Alimentación
-- Feminismo
-- Educación
-- Salud
-- Energías Renovables
-
-Las **caraterísticas técnicas** de tu aplicación serán las siguientes:
-- Debe ser una Single-Page Application [SPA](https://dzone.com/articles/how-single-page-web-applications-actually-work) ([versión traducida](https://dzone.com/articles/how-single-page-web-applications-actually-work))
-- Debe ser diseñada con un enfoque [mobile first](https://darwindigital.com/mobile-first-versus-responsive-web-design/) ([versión traducida](https://translate.google.com/translate?hl=&sl=auto&tl=es&u=https%3A%2F%2Fdarwindigital.com%2Fmobile-first-versus-responsive-web-design))
-- Debe permitir la persintencia de datos
-  
-Para implementar tu aplicación usarás *HTML5*, *CCS3* o *SASS*, *Vanilla JavaScript(ES6+)*, *Firebase* o *LocalStogarge*
-
-## Objetivo
-
-El objetivo de este proyecto es construir una Red Social, Single-Page Application (SPA), responsiva en la que podamos escribir, leer, actualizar y eliminar datos.
-
-Para ello deberás poner en juego tu creatividad para generar ideas que lleven a una solución original y valiosa del problema, trabajando en equipo buscando feedback constante.
-
-En otras palabras, seguirás afianzando todo lo aprendido en el Common Core, pero en particular verás :
-
-### Planificación
-
-* Te recomendamos utilizar *projects*, *issues* y *milestones* de GitHub para gestionar la planificación de tu proyecto. Estos recursos serán la fuente de organización de tu equipo y a través de estas herramientas tus coaches podrán ver el avance del proyecto y darte feedback.
-
-* Escribir, de manera colaborativa, las **Definiciones de terminado** y **Criterios de Aceptación** por cada **Historia de usuario** que te daremos para este proyecto y que se deberán ver reflejadas en tu planificación.
-
-* **Priorizar** la implementación de tus funcionalidades, en función al esfuerzo que demandan en relación al valor que le aportan al usuario, y ejecutar en equipo todas las historias de usuario dentro del tiempo estimado para cada sprint y que finalmente se vean reflejadas en publicaciones completamentamente funcionales al final de cada sprint.
-
-* Adquirir la disciplina de la completitud, terminando una historia de usuario antes de pasar a la siguiente (es decir, que cumple con *Definición de Terminado* y *Criterios de Aceptación* contemplando todos los puntos que son objetivos de aprendizaje para este proyecto).
-
-### Desarrollo frontend
-
-#### Arquitectura de la aplicación
-
-- Diseñar la arquitectura de tu aplicación, modularizando tu código a través de *es modules* ([`import`](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import) y [`export`](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export))
-
-- Familiarizarte con el patrón  modelo - vista - controlador ([MVC](https://es.wikipedia.org/wiki/Modelo%E2%80%93vista%E2%80%93controlador)).
-
-#### Tecnologías HTML5 y CSS3/SASS
-
-* Aplicar HTML5 semántico en tu proyecto.
-* Aplicar y reforzar los conceptos fundamentales de CSS3.
-* Implementar selectores de clase evitando la redundancia de estilos en CCS3.
-* Utilizar `flexbox` para lograr un diseño `mobile first`, implementando un layout que te permita crear un diseño adaptativo para **mobile y desktop**
-
-A continuación te proporcionamos el layout (diseño) de la vista mobile y desktop que deberás replicar visualmente y cuyo contenido, colores y fuentes de texto, dejaremos a tu elección.
-
-* Vista mobile
-
-    ![mobile](https://user-images.githubusercontent.com/32286663/56174616-ec9f6100-5fb8-11e9-9edb-d5ef7c251d9c.png)
-
-* Vista Desktop
-
-    ![desktop](https://user-images.githubusercontent.com/32286663/56174626-fcb74080-5fb8-11e9-8854-26e8d9c4e25f.png)
-
-#### JavaScript (ES6+)
-
-* Utilizar modulos de ES6 para poder modularizar tu código JavaScript.
-* Reforzar tu conocimiento sobre el uso de Template literals (Template strings).
-* Reforzar tu conocimiento de la manipulacion de los elementos del DOM a traves JavaScript.
-* Implementar un sistema de rutas para cambiar de una vista a otra de manera dinámica (SPA).
-* Testear la lógica de tu aplicación, con Jest cuidando que el coverage pase el 90% de statements (sentencias), functions (funciones), lines (líneas), y branches (ramas).
-
-### Persistencia de datos
-
-En los proyectos anteriores solo has consumido (leído) datos, por ejemplo, a través de un archivo `json` o utilizando `fetch`.
-
-En este proyecto diseñarás la estructura de esos datos, la forma de consultarlos, actualizarlos, modificarlos y eliminarlos según los requerimiento del usuario. Para llevarlo a cabo utilizaras `Firestore` de `Firebase` o `LocalStogarge` una `Web Storage API`
-
-#### Firebase
-
-El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y persistir datos a traves de una base de datos no relacional, en tiempo real y puedas implementar operaciones CRUD (Creación, Lectura, Actualización y eliminación) de datos.
 
 ## Consideraciones generales del proyecto
 
@@ -210,76 +132,5 @@ anterior en la siguiente sección.
 * [ ] Modularización
 * [ ] Nomenclatura / Semántica
 * [ ] Linting
-
-***
-
-## Recursos
-
-### Mobile first
-
-El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
-y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
-ve como adaptar la aplicación a pantallas progresivamente grandes y
-características específicas del entorno desktop. Esto es en contraposición al
-modelo tradicional, donde primero se diseñaban los websites (o webapps) para
-desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
-más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
-la vista _responsive_ de las herramientas de desarrollador (developer tools) del
-navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
-pantalla y entorno móvil.
-
-### Múltiples vistas
-
-En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
-sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
-necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
-y ofrecer una manera de navegar entre ellas.
-
-### Escritura de datos
-
-En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
-habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
-proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
-modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firestore](https://firebase.google.com/docs/firestore) o de forma
-local utilizando`localStorage`.
-
-### Autenticación y autorización
-
-Hasta el momento, los proyectos han sido pensados como recursos públicos, donde todos
-los usuarios compartían un mismo rol y la misma información.
-
-En este proyecto tendrás que diferenciar la información a mostrar y modificar,
-dependiendo de la identidad del usuario.
-De la misma manera deberás crear reglar de autorización para el acceso a los
-datos.
-
-Para esto utilizaras respectivamente
-[`Firebase authentication`](https://firebase.google.com/docs/auth/) y
-[`Firestore security rules`](https://firebase.google.com/docs/firestore/security/get-started)
-
-### CSS
-
-En este proyecto queremos que ganes confianza y experiencia con CSS profesional,
-por eso usarás [`flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-para posicionar tus elementos.
-
-Recuerda que no puedes usar frameworks CSS, sólo *vanilla css* o [*sass*](https://sass-lang.com/).
-
-### Otras:
-
-* [Pildora SPA](https://www.loom.com/share/fa63a8ad0e9a43428222c15b6f6613d3)
-* [Repositorio de pildora de SPA](https://github.com/betsyvies/bootcamp-spa)
-* [Pildora de mock Firebase](https://www.youtube.com/watch?v=06myVn41OTY&t=1s)
-* [Repositorio de pildora de mock Firebase](https://github.com/Danielalab/2018-2-Testing)
-* [Pildora MVC](https://github.com/merunga/todomvc-vanillajs)
-* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
-* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
-* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
-* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
-* [Mobile First - ZURB](https://zurb.com/word/mobile-first)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
 
 ***
