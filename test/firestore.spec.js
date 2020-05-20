@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/named */
 import MockFirebase from 'mock-cloud-firestore';
 
@@ -8,7 +9,7 @@ import {
   updatePost,
   publishComment,
   getAllComments,
-  //  updateComment,
+  // updateComment,
 } from '../src/firebase-controller/firestore-controller.js';
 
 const fixtureData = {
@@ -24,22 +25,9 @@ const fixtureData = {
           time: '',
           privacy: '',
           likes: '',
-          __collection__: {
-            comments: {
-              __doc__: {
-                comment001: {
-                  user: '01',
-                  message: 'Comentando el post1',
-                  idPost: 'post0001',
-                  time: '',
-                  userId: '',
-                },
-              },
-            },
-          },
         },
         post002: {
-          name: 'Usuario Dos',
+          name: 'Usuario dos',
           post: 'Post dos',
           user: '02',
           photo: '',
@@ -47,40 +35,31 @@ const fixtureData = {
           time: '',
           privacy: '',
           likes: '',
-          __collection__: {
-            comments: {
-              __doc__: {
-                comment001: {
-                  user: '02',
-                  message: 'Comentando el post2',
-                  idPost: 'post0002',
-                  time: '',
-                  userId: '',
-                },
-                comment002: {
-                  user: '02',
-                  message: 'Otro comentando para el post2',
-                  idPost: 'post0002',
-                  time: '',
-                  userId: '',
-                },
-              },
-            },
-          },
         },
       },
     },
+    // comments: {
+    //   __doc__: {
+    //     comment001: {
+    //       user: '02',
+    //       message: 'Comentando el post2',
+    //       idPost: 'post0002',
+    //       time: '',
+    //       userId: '',
+    //     },
+    //   },
+    // },
   },
 };
 
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('publishPost', () => {
-  it('Deberia de poder agregar un post', done => publishPost('03', 'Usuario Tres', 'Post tres', '', '', '', '', '')
+  it('Deberia de poder agregar un post', done => publishPost('03', 'Usuario Tres', 'Post agregado', '', '', '', '', '')
     .then(() => {
       const callback = (post) => {
-        const result = post.find(element => element.post === 'Post tres');
-        expect(result.post).toBe('Post tres');
+        const result = post.find(element => element.post === 'Post agregado');
+        expect(result.post).toBe('Post agregado');
         done();
       };
       getAllPosts(callback);
@@ -103,6 +82,7 @@ describe('updatePost', () => {
   it('Deberia de poder actualizar el contenido de un post002', done => updatePost('post002', 'Actualizando post')
     .then(() => {
       const callback = (post) => {
+        // console.log(post);
         const result = post.find(element => element.id === 'post002');
         expect(result.post).toBe('Actualizando post');
         done();
@@ -116,9 +96,7 @@ describe('publishComment', () => {
   it('Deberia poder agregar un comentario al post002', done => publishComment('Usuario3', 'Agregando comentario al post2', 'post002', '', 'User003')
     .then(() => {
       const callback = (comment) => {
-        // console.log(comment);
         const result = comment.find(element => element.comment === 'Agregando comentario al post2');
-        // console.log(result);
         expect(result.userId).toBe('User003');
         done();
       };
@@ -128,14 +106,16 @@ describe('publishComment', () => {
 
 
 // describe('updateComment', () => {
-//   it('Debería poder editar un comentario con el id: comment002',
-// done => updateComment('comment001', 'Comentando el post2')
-//     .then(() => {
-//       const callback = (comment) => {
-//         const result = comment.find(element => element.id === 'comment001');
-//         expect(result.message).toBe('Actualizando comentario');
-//         done();
-//       };
-//       getAllComments(callback, 'comment001');
-//     }));
+//   it('Debería poder editar un comentario con el id: comment001',
+//     done => updateComment('comment001', 'Actualizando comentario')
+//       .then(() => {
+//         const callback = (comments) => {
+//           // console.log(comments);
+//           const result = comments.find(element => element.id === 'comment001');
+//           // console.log(result);
+//           expect(result.comments).toBe('Actualizando comentario');
+//           done();
+//         };
+//         getAllComments(callback, 'comment001');
+//       }));
 // });
