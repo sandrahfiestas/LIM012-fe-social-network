@@ -10,25 +10,29 @@
 
 ## 1. Definición del producto
 
-El proyecto VOZ AMIGA ...
-
-
-
+El proyecto VOZ AMIGA, es una red social para mujeres, crea una plataforma que permite brindar un espacio de confianza y de encuentro, en donde mujeres de cualquier parte del mundo puedan expresarse y compartir no solo opiniones y vivencias, sino encontrar el apoyo mutuo y saber que no están solas, descubriendo la verdadera fuerza y poder que tiene toda mujer.
 
 ## 2. Diseño de la Interfaz de Usuario
 
-#### Prototipo de alta fidelidad
-
-
+![Sign In](src/img/mockup-signin.jpg)
+![Sign Up](src/img/mockup-signup.jpg)
+![Home](src/img/mockup-home.jpg)
+![Profile](src/img/mockup-profile.jpg)
 
 ## 3. Testeos de usabilidad
 
+Resultados de los tests de usabilidad:
 
+Luego de los tests con usuarios realizamos mejoras según el feedback recibido 
 
+Inicio de sesión y registro
+- Dar jerarquía a los botones mediante el color: el botón con mayor contraste (fondo blanco) llama más a atención por lo tanto lo cambiamos al de iniciar sesión, el cual tiene mayor importancia
+- La opción de ingreso con Google inicialmente solo se veía en la vista de iniciar sesión y no de registro, eso generaba confusión en el caso que la personas quiera ingresar a la página por primera vez, por lo tanto también lo agregamos a la vista de registro
 
-
-***
-
+Home y perfil
+- Agregar la hora que se realizó los posteos
+- Agregar un botón de cancelar si no se quiere guardar los cambios en el perfil
+- Cuando se carga una foto para hacer un post falta una opción para eliminarla en caso que ya no la quiero publicar
 
 # Creando una Red Social
 
@@ -145,29 +149,6 @@ El objetivo de usar Firestore en este proyecto, es que aprendes a manejar y pers
 * Yo como usuario loggeado, puedo dar like y llevar un conteo de likes en mi publicación así como poder escribir, guardar, editar o eliminar un comentario en mi publicación.
 
 * Al final debo poder ingresar a la red social y poder visualizar los datos de mi perfil creado o editarlos.
-
-* Te dejamos un ejemplo de cómo definir criterios de aceptación y definiciones de terminado para una H.U. Si se te complica definirlas o no tienes idea de que considerar para cada H.U. es de gran ayuda revisar redes sociales como `facebok`, `twitter`, `instagram`, `devopedia` o la red social que más te guste y puedas evaluar qué consideran en cada funcionalidad para darla como terminada y aceptada.
-
-    > Como usuario nuevo debo poder crear una cuenta con email y password para 
-    > poder iniciar sesion. Por otro lado, necesito también tener la opción de 
-    > iniciar sesión con mi cuenta de Google o Facebook.
-    >
-    > **Criterios de aceptación**
-    > - Si el mail o password no es válido, al momento de logearme, debo poder 
-    >   ver un mensaje de error.
-    > - Debe ser visible si hay algún mensaje de error.
-    > - Debo poder ver esta página de creación en Móviles y desktop (responsive). 
-    > - No debe necesitar recargar la página para crear una cuenta (SPA).
-    >
-    > **Definición de terminado**
-    > - La funcionalidad cumple satisface los criterios de aceptación.
-    > - La funcionalidad tiene _test unitarios_.
-    > - El diseño visual corresponde al prototipo de alta fidelidad.
-    > - El código de esta funcionalidad recibió code review.
-    > - La funcionalidad esta desplegada y pública para ser probada. 
-    > - La funcionalidad fue probada manualmente.
-    > - Se hicieron pruebas de usuabilidad y se implementó el feedback si se 
-    >   consideró necesario.
 
 ## Objetivos de aprendizaje
 
