@@ -39,7 +39,7 @@ export const eachComment = (obj) => {
   const btnEditComment = newComment.querySelector(`#edit-${obj.id}`);
   const btnSaveComment = newComment.querySelector('#btnSaveComment');
   const btnCancelComment = newComment.querySelector('#btnCancelComment');
-  const btnDeleteComment = newComment.querySelector(`#delete-${obj.id}`);
+  const btnDelete = newComment.querySelector(`#delete-${obj.id}`);
 
   btnEditComment.addEventListener('click', () => {
     textComment.classList.add('hide');
@@ -78,7 +78,7 @@ export const eachComment = (obj) => {
     updateComment(obj.id, inputComment.value);
   });
 
-  btnDeleteComment.addEventListener('click', () => {
+  btnDelete.addEventListener('click', () => {
     deleteDoc('comments', obj.id);
   });
 
