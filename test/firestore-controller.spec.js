@@ -82,7 +82,7 @@ describe('publishPost', () => {
     .then(() => {
       const callback = (post) => {
         const result = post.find(element => element.post === 'Post tres');
-        expect(result.name).toBe('Usuario Tres');
+        expect(result.post).toBe('Post Tres');
         done();
       };
       getAllPosts(callback);
