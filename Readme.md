@@ -32,7 +32,7 @@ Inicio de sesión y registro
 Home y perfil
 - Agregar la hora que se realizó los posteos
 - Agregar un botón de cancelar si no se quiere guardar los cambios en el perfil
-- Cuando se carga una foto para hacer un post falta una opción para eliminarla en caso que ya no la quiero publicar
+- Cuando se carga una foto para hacer un post falta una opción para eliminarla en caso que ya no se va a publicar
 
 
 ***
