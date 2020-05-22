@@ -31,6 +31,8 @@ const validatePostContent = (img, post, id) => {
   return postContent;
 };
 
+// const currentUser = user();
+
 export const eachPost = (objPost) => {
   const eachNote = document.createElement('div');
   eachNote.classList.add('container-post');
@@ -76,6 +78,7 @@ export const eachPost = (objPost) => {
     </div>
   `;
 
+  // ${(objPost.likes.indexOf(userId) === -1) ? 'heart' : 'heart-2'}
   const likes = eachNote.querySelector('.like');
   likes.addEventListener('click', () => {
     const result = objPost.likes.indexOf(userId);
@@ -129,6 +132,9 @@ export const eachPost = (objPost) => {
 
   btnCancel.addEventListener('click', () => {
     inputPost.value = post.textContent;
+    // getPost(objPost.id).then((doc) => {
+    //   post.textContent = doc.data().post;
+    // });
     editablePost();
   });
 
@@ -143,6 +149,7 @@ export const eachPost = (objPost) => {
   btnSave.addEventListener('click', () => {
     editablePost();
     updatePost(objPost.id, inputPost.value);
+    // post.textContent = inputPost.value;
   });
 
   const allComments = eachNote.querySelector(`#allComments-${objPost.id}`);

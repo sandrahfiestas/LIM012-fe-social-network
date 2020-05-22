@@ -97,7 +97,6 @@ export default (notes) => {
     };
     reader.readAsDataURL(input.files[0]);
 
-    // accede a la lista de archivos
     file = e.target.files[0];
 
     // Botón para cancelar imagen
