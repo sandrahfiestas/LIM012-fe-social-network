@@ -21,6 +21,7 @@ export const logInGoogle = () => {
 // Usuario loggeado
 export const user = () => firebase.auth().currentUser;
 
+
 // Guardando/actualizando nombre de usuario
 export const updateUserName = (userData, userName) => {
   userData.updateProfile({
@@ -28,8 +29,9 @@ export const updateUserName = (userData, userName) => {
   });
 };
 
-// Iniciar sesión con Facebook
-// export const logInFacebook = () => {
-//   const providerFacebook = new firebase.auth.FacebookAuthProvider();
-//   return firebase.auth().signInWithPopup(providerFacebook);
-// };
+// Guardando/actualizando nombre de usuario
+export const updatePhotoAuth = (userData, photoProfile) => {
+  userData.updateProfile({
+    photoURL: photoProfile,
+  });
+};

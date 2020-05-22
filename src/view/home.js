@@ -1,68 +1,66 @@
 /* eslint-disable import/named */
 /* eslint-disable import/no-cycle */
 import { changeView } from '../view-controller/router.js';
-import { signOut, user } from '../firebase-controller/auth-controller.js';
-import { publishComment, time, getProfileInfo } from '../firebase-controller/firestore-controller.js';
-import { uploadImagePost } from '../firebase-controller/storage-controller.js';
 import { eachPost } from './post.js';
+import { loadingInfo, signingOut, makingPost } from '../view-controller/home-controller.js';
 
 
 export default (notes) => {
-  const currentUser = user();
-  getProfileInfo(currentUser.uid).then((doc) => {
-    localStorage.setItem('aboutMe', doc.data().aboutMe);
-    localStorage.setItem('location', doc.data().location);
-    localStorage.setItem('name', currentUser.displayName);
-  });
+  loadingInfo();
+  const userId = localStorage.getItem('userId');
+  const userName = localStorage.getItem('name');
+  const userPhoto = localStorage.getItem('userphoto');
 
   const viewSignInUser = document.createElement('div');
   viewSignInUser.innerHTML = `
     <header class="header-home">
-    <label id="menu-mobile" class="menuMobile"></label>
+    <label id="menu-mobile" class="menu-mobile"></label>
     <nav class="nav-home hide">
       <ul class="menu-home">
-        <li class="btnGoProfile" id="btnProfile"><img class="proPicSmall" src="${currentUser.photoURL || './img/profile-ico.png'}">Perfil</li>
-        <li class="btnGoOut" id="btnSignOut"><img class="icoSignOut" src="./img/sign-out.png">Cerrar sesión</li>
+        <li class="btn-go-profile" id="btnProfile"><img class="pro-pic-small" src="${userPhoto || './img/profile-ico.png'}">Perfil</li>
+        <li class="btn-go-out" id="btnSignOut"><img class="ico-sign-out" src="./img/sign-out.png">Cerrar sesión</li>
       </ul>
     </nav>
     <img src="./img/logo-voz-amiga.png" alt="Voz Amiga">
     </header>
-    <section class="containerHome">
-      <div class="profileSection">
-        <div class="coverImage"></div>
+    <section class="container-home">
+      <div class="profile-section">
+        <div class="cover-image"></div>
         <div class="profile">
-          <div class="profileDiv">
-            <div class="profilePicture">
-              <img id="profilePhoto" class="profilePicture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
+          <div class="profile-photo-name">
+            <div class="profile-picture">
+              <img id="profilePhoto" class="profile-picture" src="${userPhoto || './img/profile-ico.png'}" alt="">
             </div>
-            <p class="user-name">${localStorage.getItem('name')}</p>
+            <p class="user-name">${userName}</p>
           </div>
-          <h3>Sobre mí</h3>
-          <p class="description">${localStorage.getItem('aboutMe')}</p>
-          <div class="location-info profile-text">
-              <img src="./img/location.png">
-              <span id="location">${localStorage.getItem('location')}</span>
-            </div>
+          <h3 class="about-me">Sobre mí</h3>
+          <p class="profile-text">${localStorage.getItem('aboutMe')}</p>
+          <div class="location-info">
+            <img src="./img/location.png">
+            <span id="location">${localStorage.getItem('location')}</span>
+          </div>
         </div>
       </div>
       <div class="timeline">
         <div class="container-create-post">
-          <img class="like-picture" src="${currentUser.photoURL || './img/profile-ico.png'}" alt="">
+          <img class="like-picture" src="${userPhoto || './img/profile-ico.png'}" alt="">
           <div class="post left">
-             <img id="showPicture" class="post-image" src="#" alt="">
-             <button id="btnCancelImg" class="hide cancel-image"></button>
             <textarea class="new-post" id="newPost" placeholder="¿Qué quisieras compartir?"></textarea>
-            <img id="showPicture" class="post-image" src="#" alt="">
-            <div class="buttons-post">
+            <img id="showPicture" class="post-new-image" src="#" alt="">
+            <button id="btnCancelImg" class="hide cancel-image"></button>
+            <div class="buttons-new-post">
               <div class="options">
                 <label for="selectImage">
-                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png">
-                  <img class ="point-photo" src="./img/add-photo.png">
+                  <input type="file" id="selectImage" class="upload" accept="image/jpeg, image/png, image/gif">
+                  <img class ="point-photo" src="./img/add-photo.svg">
                 </label>
-                <select class="privacy">
-                  <option value="0">&#xf0ac; Público</option>
-                  <option value="1">&#xf023; Privado</option>
-                </select>
+                <div class="container-privacy">
+                  <select class="privacy text-1">
+                    <option value="0">&#xf0ac</option>
+                    <option value="1">&#xf023</option>
+                  </select>
+                  <i></i>
+                </div>
               </div>
               <button id="btnNewPost" class="btn-post">Publicar</button>
             </div>
@@ -72,11 +70,21 @@ export default (notes) => {
       </div>
     </section>`;
 
+  const profileSection = viewSignInUser.querySelector('.profile-section');
+  const view750px = window.matchMedia('(max-width: 750px)');
+  view750px.addEventListener('change', () => {
+    if (view750px.matches) {
+      profileSection.classList.add('hide');
+    } else {
+      profileSection.classList.remove('hide');
+    }
+  });
+
   const selectImage = viewSignInUser.querySelector('#selectImage');
   const showPicture = viewSignInUser.querySelector('#showPicture');
   const btnCancelImg = viewSignInUser.querySelector('#btnCancelImg');
 
-let file = '';
+  let file = '';
   selectImage.addEventListener('change', (e) => {
     // Vista previa de imagen cargada
     const input = e.target;
@@ -84,15 +92,16 @@ let file = '';
     reader.onload = () => {
       const dataURL = reader.result;
       showPicture.src = dataURL;
-
       // Almacena url en localStorage
       localStorage.setItem('image', dataURL);
     };
     reader.readAsDataURL(input.files[0]);
+
+    // accede a la lista de archivos
     file = e.target.files[0];
 
-      // Botón para cancelar imagen
-      btnCancelImg.classList.remove('hide');
+    // Botón para cancelar imagen
+    btnCancelImg.classList.remove('hide');
   });
 
   const menuMobile = viewSignInUser.querySelector('#menu-mobile');
@@ -102,11 +111,7 @@ let file = '';
   });
 
   const btnSignOut = viewSignInUser.querySelector('#btnSignOut');
-  btnSignOut.addEventListener('click', () => {
-    changeView('#/signin');
-    // localStorage.clear();
-    signOut();
-  });
+  btnSignOut.addEventListener('click', signingOut);
 
   const btnProfile = viewSignInUser.querySelector('#btnProfile');
   btnProfile.addEventListener('click', () => {
@@ -115,22 +120,7 @@ let file = '';
 
   const btnNewPost = viewSignInUser.querySelector('#btnNewPost');
   btnNewPost.addEventListener('click', () => {
-    const newPost = document.querySelector('#newPost').value;
-    const status = viewSignInUser.querySelector('.privacy').value;
-    let imPost = '';
-    if (file) {
-      imPost = localStorage.getItem('image');
-      uploadImagePost(file, currentUser.uid);
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
-    } else {
-      publishComment(currentUser.uid, currentUser.displayName, newPost, imPost, time(), status)
-        .then(() => {
-          document.querySelector('.new-post').value = '';
-        });
-    }
+    makingPost(file, userId, userName, userPhoto);
   });
 
   // Leyendo datos del database
@@ -142,9 +132,9 @@ let file = '';
   // Cancela imagen antes de publicar
   btnCancelImg.addEventListener('click', () => {
     localStorage.removeItem('image');
-    showPicture.src = ""
+    showPicture.src = '';
     btnCancelImg.classList.add('hide');
-  })
+  });
 
   return viewSignInUser;
 };

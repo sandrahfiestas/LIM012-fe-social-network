@@ -1,17 +1,11 @@
 /* eslint-disable import/no-cycle */
-import {
-  signIn, logInGoogle,
-} from '../firebase-controller/auth-controller.js';
-import { validation } from '../firebase-controller/validation-controller.js';
-import { createProfileInfo, getUser } from '../firebase-controller/firestore-controller.js';
-
-// eslint-disable-next-line import/no-cycle
 import { changeView } from '../view-controller/router.js';
+import { signingIn, signingInGoogle } from '../view-controller/signin-controller.js';
 // const BASE_URL = 'http://127.0.0.1:5500/src';
 
 export default () => {
   const viewSignIn = document.createElement('div');
-  viewSignIn.classList.add('signin');
+  viewSignIn.classList.add('sign-in');
   viewSignIn.innerHTML = `
     <div class="signin-container">
       <img src="./img/logo.svg" alt="Voz Amiga" class="logo-social-network">
@@ -22,52 +16,24 @@ export default () => {
         <span class="balloon ocult">El email o contraseña no son válidos</span>
       </button>
       <div class="btn-google" id="btnLogInGoogle">
-        <div class="logoGoogle googleSignIn"></div>
-        <p class="text3">Ingresa sesión con Google</p>
+        <div class="logo-google google-sign-in"></div>
+        <p class="text-3">Ingresa sesión con Google</p>
       </div>
-      <p class="text2">¿No tienes cuenta?</p>
+      <p class="text-4">¿No tienes cuenta?</p>
       <button class="btn-signup" id="btnViewSignUp"><a href="#/signup">Regístrate</a></button>
     </div>
     `;
-
+  // Iniciando sesión con correo y contraseña
   const btnLogIn = viewSignIn.querySelector('#btnInitSession');
-  btnLogIn.addEventListener('click', () => {
-    const emailLogIn = viewSignIn.querySelector('#emailLogIn').value;
-    const passwordLogIn = viewSignIn.querySelector('#passwordLogIn').value;
-    const msgAlert = viewSignIn.querySelector('.balloon');
-
-    signIn(emailLogIn, passwordLogIn).then(() => {
-      validation(changeView);
-    }).catch(() => {
-      msgAlert.classList.remove('ocult');
-      setTimeout(() => {
-        msgAlert.classList.add('ocult');
-      }, 3000);
-    });
-  });
-
+  btnLogIn.addEventListener('click', signingIn);
+  // Cambiando a vista de registro
   const btnViewSignUp = viewSignIn.querySelector('#btnViewSignUp');
   btnViewSignUp.addEventListener('click', () => {
     changeView('#/signup');
   });
-
   // Iniciar sesión con Google
   const btnLogInGoogle = viewSignIn.querySelector('#btnLogInGoogle');
-  btnLogInGoogle.addEventListener('click', () => {
-    logInGoogle().then((result) => {
-      getUser(result.user.uid).then((doc) => {
-        if (!doc.exists) {
-          createProfileInfo(result.user.uid);
-        }
-      });
-    });
-  });
-
-  // Iniciar sesión con Facebook
-  // Agregar como template string
-  // <button class="btnSocialNetwork facebookSignIn" id="btnLogInFacebook"></button>
-  // const btnLogInFacebook = viewSignIn.querySelector('#btnLogInFacebook');
-  // btnLogInFacebook.addEventListener('click', logInFacebook);
+  btnLogInGoogle.addEventListener('click', signingInGoogle);
 
   return viewSignIn;
 };
