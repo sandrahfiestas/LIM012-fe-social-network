@@ -7,7 +7,7 @@ import {
   updatePost,
   publishComment,
   getAllComments,
-  //  updateComment,
+
 } from '../src/firebase-controller/firestore-controller.js';
 
 // import MockFirebase from '../_mocks_/firebase-mock.js';
@@ -75,14 +75,15 @@ const fixtureData = {
   },
 };
 
+
 global.firebase = new MockFirebase(fixtureData, { isNaiveSnapshotListenerEnabled: true });
 
 describe('publishPost', () => {
-  it('Deberia de poder agregar un post', done => publishPost('Usuario Tres', 'Post tres', '03', '', '', '', '', '')
+  it('Deberia de poder agregar un post', done => publishPost('03', 'Usuario Tres', 'Post tres', '', '', '', '', '')
     .then(() => {
       const callback = (post) => {
-        const result = post.find(element => element.name === 'Post tres');
-        expect(result.name).toBe('Post tres');
+        const result = post.find(element => element.post === 'Post tres');
+        expect(result.name).toBe('Usuario Tres');
         done();
       };
       getAllPosts(callback);
@@ -113,7 +114,6 @@ describe('updatePost', () => {
     }));
 });
 
-
 describe('publishComment', () => {
   it('Deberia poder agregar un comentario al post002', done => publishComment('Usuario3', 'Agregando comentario al post2', 'post002', '', 'User003')
     .then(() => {
@@ -127,17 +127,3 @@ describe('publishComment', () => {
       getAllComments(callback, 'post002');
     }));
 });
-
-
-// describe('updateComment', () => {
-//   it('Debería poder editar un comentario con el id: comment002',
-// done => updateComment('comment001', 'Comentando el post2')
-//     .then(() => {
-//       const callback = (comment) => {
-//         const result = comment.find(element => element.id === 'comment001');
-//         expect(result.message).toBe('Actualizando comentario');
-//         done();
-//       };
-//       getAllComments(callback, 'comment001');
-//     }));
-// });

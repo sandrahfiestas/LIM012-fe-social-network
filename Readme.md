@@ -10,10 +10,6 @@
 
 ## 1. Definición del producto
 
-El proyecto VOZ AMIGA ...
-
-
-
 
 ## 2. Diseño de la Interfaz de Usuario
 

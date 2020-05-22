@@ -58,9 +58,6 @@ export const eachComment = (obj) => {
 
   btnCancelComment.addEventListener('click', () => {
     inputComment.value = textComment.textContent;
-    // getComment(obj.id).then((doc) => {
-    //   textComment.textContent = doc.data().comment;
-    // });
     editComment();
   });
 
