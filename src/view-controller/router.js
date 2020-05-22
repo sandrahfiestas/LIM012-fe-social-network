@@ -10,10 +10,6 @@ const changeView = (route) => {
   sectionContainer.innerHTML = '';
   let routeSelected = '';
   switch (route) {
-    case '/':
-    case '':
-    case '#/':
-    {return routeSelected = sectionContainer.appendChild(components.signin());}
     case '#/signin': routeSelected = sectionContainer.appendChild(components.signin());
       break;
     case '#/signup': routeSelected = sectionContainer.appendChild(components.signup());
